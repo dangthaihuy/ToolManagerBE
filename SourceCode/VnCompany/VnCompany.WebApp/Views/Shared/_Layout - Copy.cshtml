@@ -1,0 +1,85 @@
+﻿@{
+    string controllerName = Html.ViewContext.HttpContext.Request.RouteValues["controller"].ToString();
+    string actionName = Html.ViewContext.HttpContext.Request.RouteValues["action"].ToString();
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Searching tool</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/extensions/jconfirm/css/jquery-confirm.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand @(controllerName == "WordsChecking" && actionName == "Index" ? "active" : string.Empty)" asp-area="" asp-controller="WordsChecking" asp-action="Index" title="ホームページ"><i class="fa fa-home"></i> Home</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item @(controllerName == "Regular" && actionName == "Index" ? "active" : string.Empty)">
+                            <a class="nav-link text-dark @((controllerName == "Regular" && actionName == "Index") ? "active" : string.Empty)" asp-area="" asp-controller="Regular" asp-action="Index"><i class="fa fa-filter"></i> Regular</a>
+                        </li>
+                        <li class="nav-item @(controllerName == "SearchInput" && actionName == "Index" ? "active" : string.Empty)">
+                            <a class="nav-link text-dark @(controllerName == "SearchInput" && actionName == "Index" ? "active" : string.Empty)" asp-area="" asp-controller="SearchInput" asp-action="Index"><i class="fa fa-list-ul"></i> キーワードリスト</a>
+                        </li>
+
+                        @*<li class="nav-item @(controllerName == "SystemSettings" && actionName == "Index" ? "active" : string.Empty)">
+                            <a class="nav-link text-dark @(controllerName == "SystemSettings" && actionName == "Index" ? "active" : string.Empty)" asp-area="" asp-controller="SystemSettings" asp-action="Index"><i class="fa fa-cogs"></i> Settings</a>
+                        </li>*@
+                        @*<li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="GoogleDrive" asp-action="AutoSearch">Drive search</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="GoogleDrive" asp-action="Settings">Drive settings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>*@
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="common-loading">
+        <div class="lds-css"><div style="width:100%;height:100%;" class="lds-ripple"><div></div><div></div></div></div>
+    </div>
+
+    <div class="common-loading-item">
+        <div class="lds-css"><div style="width:100%;height:100%;" class="lds-ripple"><div></div><div></div></div></div>
+    </div>
+
+    <main role="main" class="pb-3">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - Jinzai Tech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/extensions/jconfirm/js/jquery-confirm.js" asp-append-version="true"></script>
+    <script src="~/js/common.notifications.js" asp-append-version="true"></script>
+    <script src="~/js/common.modalform.js" asp-append-version="true"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6, #logo, #primary-menu ul li > a, #primary-menu ul li .mega-menu-content.style-2 ul.mega-menu-column > li.mega-menu-title > a, #top-search form input, .entry-link, .entry.entry-date-section span, .button.button-desc, .counter, label, .nav-tree li a, .wedding-head .first-name, .wedding-head .last-name, .testi-content p, .font-primary {
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.entry-image, .entry-image > a, .entry-image .slide a, .entry-image img{
+    max-height:150px;
+    object-fit:cover;
+}
+
+.portfolio-item .portfolio-image{
+    max-height:407px;
+}
+
+.portfolio-item .portfolio-image img{
+    object-fit: cover;
+    height: 407px !important;
+}
+
+.portfolio-single-image img{
+    max-height:500px;
+    object-fit:cover;
+}
+
+#related-projects img {
+    height: 164px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+.page-link {
+    background-color: unset !important;
+}
+
+.dropdown-lang .lang-item {
+    float: left;
+    width: 100%;
+    padding: 5px 0px 5px 10px;
+}
+
+.lang-item-flag {
+    width: 32px;
+    height: auto;
+    margin-right: 5px;
+    border:1px solid #ccc;
+}
+
+.dropdown-lang .lang-item.active, .not-dark .lang-item.active {
+    background-color: #00bed7;
+    color: #fff !important;
+}
+
+.content-wrap {
+    padding: 30px 0;
+}
+
+.feature-box.media-box.fbox-bg .fbox-media {
+    border: 1px solid #E5E5E5;
+    border-bottom: unset;
+}

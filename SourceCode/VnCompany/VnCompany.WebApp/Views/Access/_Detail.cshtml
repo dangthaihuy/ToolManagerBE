@@ -1,0 +1,68 @@
+﻿@using VnCompany.WebApp.Resources
+@using VnCompany.SharedLibs;
+@model VnCompany.WebApp.Models.ManageAccessLangModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="">
+        @ManagerResource.LB_UPDATE_INFO @((Model.AccessInfo != null ? " - [" + Model.AccessInfo.AccessName + "]" : string.Empty))
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("UpdateLang", "Access", FormMethod.Post, new { role = "form", @id = "FormMenu" }))
+{
+    <div class="modal-body">
+        @Html.HiddenFor(m=>m.AccessId)
+        @Html.HiddenFor(m=>m.Id)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="clearfix pull-right">
+                    <a class="btn btn-white btn-info btn-sm" data-modal="" href="javascript:;" data-href="@Url.Action("UpdateLang", "Access", new { AccessId = Model.AccessId })" title="@ManagerResource.LB_ADD_NEW">
+                        <i class="la la-plus"></i> @ManagerResource.LB_ADD_NEW
+                    </a>
+                </div>
+
+                <table class="table m-table m-table--head-bg-brand table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Code</th>
+                            <th class="text-center">@ManagerResource.LB_TITLE</th>
+                            <th class="text-center">@ManagerResource.LB_ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (Model.AccessInfo != null && Model.AccessInfo.LangList.HasData())
+                            {
+                                foreach (var item in Model.AccessInfo.LangList)
+                                {
+                                    <tr>
+                                        <td class="text-center">@item.LangCode</td>
+                                        <td>@item.Description</td>
+                                        <td class="text-center">
+                                            <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" data-modal="" data-href="/Access/UpdateLang?id=@item.Id&AccessId=@item.AccessId" title="@ManagerResource.LB_EDIT">
+                                                <i class="la la-pencil"></i>
+                                            </a>
+                                            <a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" data-href="/Access/DeleteLang?id=@item.Id&AccessId=@item.AccessId" data-modal="" title="@ManagerResource.LB_DELETE">
+                                                <i class="la la-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>        
+
+    </div>
+    <div class="modal-footer">
+        @*<button data-dismiss="modal" class="btn btn-danger pull-left btn-sm" onclick="UpdateLang()" data-id="@Model.MenuId" id="btnApprove"><i class="fa fa-floppy-o"></i>  @ManagerResource.LB_SAVE</button>*@
+        <button class="btn btn-info btn-sm" data-dismiss="modal">@ManagerResource.LB_CLOSE</button>
+    </div>
+}

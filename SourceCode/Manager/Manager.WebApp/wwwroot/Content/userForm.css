@@ -1,0 +1,64 @@
+﻿/*.pageHeading {
+    display: flex;
+}*/
+
+.updateForm-header-resetPass {
+    padding-right: 10px;
+    width: 100%;
+}
+
+.pageHeading h4 {
+    text-transform: uppercase;
+    color: #06586e;
+}
+
+.pageHeading p {
+    font-style: italic;
+}
+
+.userForm-section {
+    width: 100%;
+    padding: 10px;
+}
+
+.userForm-section-header {
+    color: #06586e;
+    padding: 10px;
+    border-bottom: 0.5px dashed gray;
+    margin-bottom: 25px;
+}
+
+.userForm-section-body-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    grid-gap: 20px 100px;
+    margin-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 20px;
+}
+
+.innerRow {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    min-width: 275px;
+    margin-bottom: 12px;
+}
+
+.innerField input {
+    width: 100%;
+    border: 0.5px solid lightgray;
+}
+
+@media screen and (max-width: 600px) {
+    .innerRow {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(275px,1fr));
+    }
+
+    .userForm-section-body-row {
+        width: 100%;
+        padding-left: 10px;
+    }
+}

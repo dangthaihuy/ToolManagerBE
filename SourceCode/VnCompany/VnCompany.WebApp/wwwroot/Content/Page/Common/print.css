@@ -1,0 +1,28 @@
+﻿@media print{
+    body{
+        margin:0!important;
+        padding:0!important;
+    }
+
+    .table-input th, .table-input td, table td, table th {                                  
+        font-weight:normal;
+    }
+                              
+    table {
+        border-collapse: collapse;
+    }
+
+    td, th {                                    
+        padding: 5px; 
+        white-space: nowrap;
+        border: 1px solid #ccc;
+    }
+
+    td b{font-weight:normal !important}
+
+    .non-printable{display:none;}
+
+    .print-space{
+        margin-top:10px;
+    }
+}

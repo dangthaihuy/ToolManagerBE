@@ -1,0 +1,67 @@
+﻿.table-input .input-group>.form-control{
+    width:auto;
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+.table-input .tr-input td {
+    margin:0;
+    padding:5px;
+    font-size:0.8rem;
+}
+
+.table-input .tr-input td {
+    margin:0;
+    padding:5px;
+}
+
+.input-group{
+    flex-wrap:nowrap;
+}
+
+.table-input thead th {
+    font-weight:bold;
+    text-align:center;
+    border-width:1px;
+    border-bottom:inherit;
+    border:1px solid #ccc;
+    font-size:0.8rem;
+}
+
+.table-input tbody td, .table-input tfoot td{
+    padding:7px 10px;
+    border:1px solid #ccc;
+    font-size:0.8rem;
+}
+
+.table-input.no-border tbody td, .table-input.no-border tfoot td{
+    border:0 none;
+}
+
+.table-input.no-padding tbody td, .table-input.no-padding tfoot td{
+    padding:0;
+}
+
+.table-input .form-control, .table-input .input-group-text{
+    padding:5px;
+    font-size:0.8rem;
+}
+
+.table-input select.form-control{
+    height:inherit !important;
+}
+
+.table-input .bootstrap-select .btn.dropdown-toggle{
+    font-size: 0.8rem;
+    padding: inherit;
+}
+
+.form-control[readonly]{
+    border-color: #f4f5f8;
+    color: #6f727d;
+    background-color: #f4f5f8;
+}
+
+.btn-material-sort{
+    padding:2px 0px 0px 5px;
+}

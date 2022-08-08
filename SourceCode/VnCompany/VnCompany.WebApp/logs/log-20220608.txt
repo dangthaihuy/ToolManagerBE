@@ -1,0 +1,38 @@
+[08/06/2022 11:31:07 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[08/06/2022 11:31:07 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[08/06/2022 11:31:07 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[08/06/2022 11:31:07 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[08/06/2022 11:31:07 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[08/06/2022 11:35:20 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[08/06/2022 11:35:20 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[08/06/2022 11:35:20 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[08/06/2022 11:35:20 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[08/06/2022 11:35:20 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[08/06/2022 11:36:05 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[08/06/2022 11:36:05 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[08/06/2022 11:36:05 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[08/06/2022 11:36:05 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[08/06/2022 11:36:05 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[08/06/2022 12:17:30 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[08/06/2022 12:17:30 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[08/06/2022 12:17:30 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[08/06/2022 12:17:30 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[08/06/2022 12:17:30 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[08/06/2022 12:18:10 INF Microsoft.Hosting.Lifetime] Application is shutting down... 
+[08/06/2022 12:18:17 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[08/06/2022 12:18:17 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[08/06/2022 12:18:17 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[08/06/2022 12:18:17 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[08/06/2022 12:18:17 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[08/06/2022 12:19:30 INF Microsoft.Hosting.Lifetime] Application is shutting down... 
+[08/06/2022 13:58:47 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[08/06/2022 13:58:47 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[08/06/2022 13:58:47 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[08/06/2022 13:58:47 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[08/06/2022 13:58:47 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[08/06/2022 13:58:51 INF Microsoft.Hosting.Lifetime] Application is shutting down... 
+[08/06/2022 16:49:17 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[08/06/2022 16:49:17 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[08/06/2022 16:49:17 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[08/06/2022 16:49:17 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[08/06/2022 16:49:17 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 

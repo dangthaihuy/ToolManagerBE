@@ -1,0 +1,18 @@
+﻿@using Manager.WebApp.Resources;
+@using Newtonsoft.Json;
+@model Manager.WebApp.Models.FormCreateOrUpdateViewModel
+
+
+<div class="form-group row">
+    <div class="col-md-12">
+        <fieldset class="fieldset">
+            <legend class="legend-ctrl">@Model.Name</legend>
+            <div class="fieldset-content">
+                <input id="template-form" type="hidden" value="@Model.Template" />
+                <div id="formio-detail">
+                </div>    
+            </div>
+        </fieldset>
+    </div>
+</div>
+

@@ -1,0 +1,394 @@
+﻿@using Manager.WebApp.Resources;
+@model Manager.WebApp.Models.FormCreateOrUpdateViewModel
+
+@{
+    ViewBag.Title = "Form";
+}
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_DefaultModal")
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            Thêm mới Form
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <!--begin::Form-->
+            @using (Html.BeginForm("Create", "Form", FormMethod.Post, new { @class = "m-form m-form--fit", role = "form", id = "creForm" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Partial("_Notifications")
+
+                <div class="m-portlet__body">
+                    <div class="form-group m-form__group row" style="display: flex;">
+                        @Html.HiddenFor(m => m.Id, new { id = "formId" })
+                        @Html.HiddenFor(m => m.Template, new { id = "template" })
+                        <div class="col-lg-4">
+                            @Html.LabelFor(m => m.Code, new { @class = "form-control-label" }) <span class="required-input">*</span>
+                            @Html.TextBoxFor(m => m.Code, new { @class = "form-control form-control-warning m-input" })
+                            @Html.ValidationMessageFor(m => m.Code, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-4">
+                            @Html.LabelFor(m => m.Name, new { @class = "form-control-label" }) <span class="required-input">*</span>
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control form-control-warning m-input" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12">
+                            @Html.LabelFor(m => m.ShortDescription, new { @class = "form-control-label" })
+                            @Html.TextAreaFor(m => m.ShortDescription, new { @class = "form-control form-control-warning m-input", @rows = 5 })
+                        </div>
+                    </div>
+                    <br />
+                    <hr />
+                    <br />
+                    <div id="builder"></div>
+                </div>
+                <div class="m-portlet__foot">
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group pt-3 row">
+                        <div class="col-lg-6">
+                            <button id="btnSave" type="button" class="btn btn-info btn-sm">
+                                <i class="fa fa-download"></i> @ManagerResource.LB_SAVE
+                            </button>
+                            <a class="btn btn-outline-info btn-back btn-sm" href="@Url.Action("Index", "Form")"><i class="fa fa-backward"></i> @ManagerResource.LB_GOBACK</a>
+                        </div>
+                        <div class="col-lg-6 m--align-right">
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section PageInlineStyles{
+    <link rel="stylesheet" href="~/Content/Plugins/formio/formio.full.min.css">
+}
+
+    @section PageInlineScripts{
+    <script src="~/Content/Plugins/formio/formio.full.min.js"></script>
+    <script>
+        const commonIgnoreTabs = [
+            {
+                key: 'api',
+                ignore: true,
+            },
+            {
+                key: 'conditional',
+                ignore: true,
+            },
+            {
+                key: 'logic',
+                ignore: true,
+            },
+            {
+                key: 'layout',
+                ignore: true,
+            }
+        ];
+
+        const dataTab = [
+            {
+                key: 'data',
+                ignore: true,
+            }
+        ];
+
+        const customDataTab = [
+            {
+                key: 'data',
+                ignore: false,
+                components: [
+                    {
+                        key: 'persistent',
+                        ignore: true
+                    },
+                    {
+                        key: 'protected',
+                        ignore: true
+                    },
+                    {
+                        key: 'dbIndex',
+                        ignore: true
+                    },
+                    {
+                        key: 'encrypted',
+                        ignore: true
+                    },
+                    {
+                        key: 'redrawOn',
+                        ignore: true
+                    },
+                    {
+                        key: 'clearOnHide',
+                        ignore: true
+                    },
+                    {
+                        key: 'customDefaultValuePanel',
+                        ignore: true
+                    },
+                    {
+                        key: 'calculateValuePanel',
+                        ignore: true
+                    },
+                    {
+                        key: 'calculateServer',
+                        ignore: true
+                    },
+                    {
+                        key: 'allowCalculateOverride',
+                        ignore: true
+                    },
+                    {
+                        key: 'dataSrc',
+                        ignore: true
+                    },
+                    {
+                        key: 'dataType',
+                        ignore: true
+                    },
+                    {
+                        key: 'idPath',
+                        ignore: true
+                    },
+                    {
+                        key: 'template',
+                        ignore: true
+                    },
+                    {
+                        key: 'refreshOn',
+                        ignore: true
+                    },
+                    {
+                        key: 'refreshOnBlur',
+                        ignore: true
+                    },
+                    {
+                        key: 'clearOnRefresh',
+                        ignore: true
+                    },
+                    {
+                        key: 'selectThreshold',
+                        ignore: true
+                    },
+                    {
+                        key: 'customOptions',
+                        ignore: true
+                    },
+                    {
+                        key: 'defaultDate',
+                        ignore: true
+                    },
+                    {
+                        key: 'case',
+                        ignore: true
+                    },
+                    {
+                        key: 'inputFormat',
+                        ignore: true
+                    }
+                ]
+            }
+        ];
+
+        const addonTab = [
+            {
+                key: 'addons',
+                ignore: true
+            }
+        ];
+
+        var hiddenOptionsForDisplay = [
+            {
+                key: "display",
+                ignore: false,
+
+                components: [
+                    {
+                        key: "inputMask",
+                        ignore: true
+                    },
+                    {
+                        key: "displayMask",
+                        ignore: true
+                    },
+                    {
+                        key: "customClass",
+                        ignore: true
+                    },
+                    {
+                        key: "tabindex",
+                        ignore: true
+                    },
+                    {
+                        key: "hidden",
+                        ignore: true
+                    },
+                    {
+                        key: "showWordCount",
+                        ignore: true
+                    },
+                    {
+                        key: "showCharCount",
+                        ignore: true
+                    },
+                    {
+                        key: "mask",
+                        ignore: true
+                    },
+                    {
+                        key: "autofocus",
+                        ignore: true
+                    },
+                    {
+                        key: "spellcheck",
+                        ignore: true
+                    },
+                    {
+                        key: "tableView",
+                        ignore: true
+                    },
+                    {
+                        key: "modalEdit",
+                        ignore: true
+                    },
+                    {
+                        key: "allowMultipleMasks",
+                        ignore: true
+                    },
+                    {
+                        key: "autocomplete",
+                        ignore: true
+                    },
+                    {
+                        key: "widget.type",
+                        ignore: true
+                    },
+                    {
+                        key: 'widget',
+                        ignore: true
+                    }
+                ]
+            }
+        ];
+
+        var hiddenOptionsForValidation = [
+            {
+                key: 'validation',
+                ignore: false,
+                components: [
+                    {
+                        key: 'validate.pattern',
+                        ignore: true
+                    },
+                    {
+                        key: 'errorLabel',
+                        ignore: true
+                    },
+                    {
+                        key: 'custom-validation-js',
+                        ignore: true
+                    },
+                    {
+                        key: 'json-validation-json',
+                        ignore: true
+                    },
+                    {
+                        key: 'errors',
+                        ignore: true
+                    },
+                ]
+            }
+        ]
+
+        var commonIgnoreOptions = commonIgnoreTabs.concat(hiddenOptionsForDisplay).concat(hiddenOptionsForValidation);
+
+        Formio.builder(document.getElementById('builder'), { components: [] }, {
+            noDefaultSubmitButton: true,
+           @* builder: {
+               
+                advanced: {
+                    components: {
+                        url: false,
+                        address: false,
+                        tags: false,
+                        signature: false
+                    }
+                },
+
+                layout: {
+                    components: {
+                        table: false,
+                        well: false,
+                        htmlelement: false
+                    }
+                },
+
+                data: false,
+                premium: false,              
+            },
+            editForm: {
+
+                textfield: commonIgnoreOptions.concat(dataTab),
+
+                textarea: commonIgnoreOptions.concat(dataTab),
+
+                number: commonIgnoreOptions.concat(dataTab),
+
+                password: commonIgnoreOptions.concat(dataTab).concat(addonTab),
+
+                checkbox: commonIgnoreOptions.concat(dataTab),
+
+                selectboxes: commonIgnoreOptions.concat(customDataTab),
+
+                select: commonIgnoreOptions.concat(customDataTab),
+
+                radio: commonIgnoreOptions.concat(customDataTab),
+
+                button: commonIgnoreOptions,
+
+                email: commonIgnoreOptions.concat(dataTab),
+
+                phoneNumber: commonIgnoreOptions.concat(dataTab),
+
+                datetime: commonIgnoreOptions.concat(customDataTab),
+
+                day: commonIgnoreOptions.concat(customDataTab),
+
+                time: commonIgnoreOptions.concat(customDataTab),
+
+                currency: commonIgnoreOptions.concat(customDataTab),
+
+                survey: commonIgnoreOptions.concat(customDataTab),
+
+                content: commonIgnoreOptions,
+
+                columns: commonIgnoreOptions,
+
+                fieldset: commonIgnoreOptions,
+
+                panel: commonIgnoreOptions,
+
+                tabs: commonIgnoreOptions
+            }*@
+        }).then(function (builder) {
+
+            $("#btnSave").on("click", function() {
+                $("#template").val(JSON.stringify(builder.schema.components));
+
+                $(creForm).submit();
+            });
+        });
+    </script>
+}

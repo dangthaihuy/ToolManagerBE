@@ -1,0 +1,152 @@
+﻿@using Manager.WebApp.Resources;
+@using Newtonsoft.Json;
+@using Manager.DataLayer.Entities.Business
+@using Manager.SharedLibs;
+@using Manager.WebApp.Helpers
+
+@model Manager.WebApp.Models.WorkFlowViewModel
+
+@*
+@{
+    var allForms = HelperForm.GetList();
+}*@
+
+@Html.AntiForgeryToken()
+@Html.Partial("_Notifications")
+
+<div class="m-portlet__body">
+    <div class="form-group row" style="display: flex;">
+        @Html.HiddenFor(m => m.Id, new { id = "workFlowId" })
+        @Html.HiddenFor(m => m.ModelWorkFlow.WorkFlowForm, new {id = "workFlowForm"})
+        <div class="col-lg-4">
+            @Html.LabelFor(m => m.ModelWorkFlow.Code, new { @class = "form-control-label" }) <span class="required-input">*</span>
+            @Html.TextBoxFor(m => m.ModelWorkFlow.Code, new { @class = "form-control form-control-warning m-input" })
+            @Html.ValidationMessageFor(m => m.ModelWorkFlow.Code, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-lg-4">
+            @Html.LabelFor(m => m.ModelWorkFlow.Name, new { @class = "form-control-label" }) <span class="required-input">*</span>
+            @Html.TextBoxFor(m => m.ModelWorkFlow.Name, new { @class = "form-control form-control-warning m-input" })
+            @Html.ValidationMessageFor(m => m.ModelWorkFlow.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-lg-12">
+            @Html.LabelFor(m => m.ModelWorkFlow.Description, new { @class = "form-control-label" })
+            @Html.TextAreaFor(m => m.ModelWorkFlow.Description, new { @class = "form-control form-control-warning m-input", @rows = 5 })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-12 text-right">
+            <a class="btn btn-info btn-sm btn-search-form" href="javascript:;">
+                <i class="fa fa-search-plus"></i> Thêm form
+            </a>
+        </div>
+
+    </div>
+    <div class="form-group row" id="forms">
+        <div class="col-md-12">
+            <fieldset class="fieldset">
+                <legend class="legend-ctrl">Forms</legend>
+                <div class="fieldset-content">
+                    <div id="formio">
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="row"></div>
+</div>
+<div class="m-portlet__foot">
+    <div class="col-lg-12 col-md-12 col-sm-12 form-group pt-3 row">
+        <div class="col-lg-6">
+            <button id="btnSave" type="button" class="btn btn-info btn-sm">
+                <i class="fa fa-download"></i> @ManagerResource.LB_SAVE
+            </button>
+            <a class="btn btn-outline-info btn-back btn-sm" href="@Url.Action("Index", "WorkFlow")"><i class="fa fa-backward"></i> @ManagerResource.LB_GOBACK</a>
+        </div>
+        <div class="col-lg-6 m--align-right">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" role="dialog" aria-labelledby="" data-backdrop="static" aria-hidden="true" id="modalSearchForm">
+    <div class="modal-dialog modal-lg" style="max-width: 75%;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100"><i class="fa fa-search"></i> 材料リスト</h5>
+                @*<h5 class="modal-title w-100"><i class="fa fa-search"></i> Chi tiết Form</h5>*@
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+
+            <div class="modal-body" style="max-height:unset;overflow-y:unset;">
+                <div class="m-portlet">
+                    <div class="m-portlet__body">
+                        <form action="/Form/Search" id="frmFormSearch" method="post">
+                            <input type="hidden" name="SearchExec" value="" />
+                            <div class="row form-group">
+                                <div class="col-md-2">
+                                    <input class="form-control form-control-sm m-input" autocomplete="off" name="Code" placeholder="コード" type="text" value="">
+                                </div>
+
+                                <div class="col-md-2">
+                                    <input class="form-control form-control-sm m-input" autocomplete="off" name="Keyword" placeholder="タイトル" type="text" value="">
+                                </div>
+
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-info btn-sm btn-filter-form" style="padding: 0.28rem 0.75rem;">
+                                        <i class="fa fa-search"></i> 検索
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="modalSearchFormContent"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-info mr-auto" onclick="FormSearchTool.SearchAllowSelect('AfterSelectForm');">
+                    <i class="fa fa-check"></i> 選択済み
+                </button>
+
+                <button type="button" class="btn btn-outline-info btn-sm text-right" data-dismiss="modal">
+                    <i class="fa fa-remove"></i> 閉じる
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" role="dialog" aria-labelledby="" data-backdrop="static" aria-hidden="true" id="modalFormDetail">
+    <div class="modal-dialog modal-lg" style="max-width: 75%;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<h5 class="modal-title w-100"><i class="fa fa-cubes"></i> 材料情報</h5>*@
+                <h5 class="modal-title w-100"><i class="fa fa-cubes"></i> Chi tiết form</h5>
+                <button type="button" class="close btn-search-form-show" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div id="modalFormDetailContent"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-info btn-sm text-right btn-search-form-show" data-dismiss="modal">
+                    <i class="fa fa-remove"></i> 閉じる
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

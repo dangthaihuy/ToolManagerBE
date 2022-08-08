@@ -1,0 +1,214 @@
+﻿@using VnCompany.WebApp.Resources
+@using VnCompany.SharedLibs
+@using VnCompany.WebApp.Helpers
+@model VnCompany.WebApp.Models.AccessRolesViewModel
+
+@{
+//ViewBag.Title = ManagerResource.LB_GRANT_PERMISSION;
+}
+
+
+@Html.Partial("_Notifications")
+
+
+@{ 
+    RenderForm();
+}
+
+
+
+@functions
+{
+    private async Task RenderForm()
+    {
+        var currentLang = CommonHelpers.GetCurrentLanguageOrDefault();
+        var isAdmin = CommonHelpers.CurrentUserIsAdmin();
+        <!--begin::Portlet-->
+        <div class="m-portlet m-portlet--full-height mb-0">
+            @using (Html.BeginForm("UpdateAccessRoles", "AccessRoles", FormMethod.Post, new { role = "form" }))
+            {
+                <div class="m-portlet__body">
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <select class="form-control selectpicker" name="RoleId" id="RoleId" onchange="SelectRole();" style="font-weight:bold;">
+                                <option value="">@ManagerResource.LB_SELECT_ROLE</option>
+                                @if (Model.AllRoles != null && Model.AllRoles.Count > 0)
+                                {
+                                    foreach (var role in Model.AllRoles)
+                                    {
+                                        if (!isAdmin)
+                                        {
+                                            if (role.Name.ToLower() == "admin")
+                                            {
+                                                continue;
+                                            }
+                                        }
+                                        var selectedText = Model.RoleId == role.Id ? "selected" : string.Empty;
+
+                                        if (!string.IsNullOrEmpty(selectedText))
+                                        {
+                                            <option value="@role.Id" selected>@role.Name</option>
+                                        }
+                                        else { 
+                                            <option value="@role.Id">@role.Name</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-8">
+                            @if (!string.IsNullOrEmpty(Model.RoleId))
+                            {
+                                <button class="btn btn-info pull-right btn-sm" type="submit">
+                                    <i class="fa fa-download"></i>
+                                    @ManagerResource.LB_SAVE
+                                </button>
+                            }
+                        </div>
+                    </div>
+
+                    @Html.AntiForgeryToken()
+
+                    <!--begin::Section-->
+                    @if (Model.AllAccess != null && Model.AllAccess.Count > 0)
+                    {
+                        Model.AllAccess = Model.AllAccess.OrderBy(x => x.Description).ToList();
+                        var count = 0;
+                        <div class="m-accordion m-accordion--default m-accordion--toggle-arrow m-ac" id="m_accordion_7" role="tablist">
+                            <!--begin::Item-->
+                            @foreach (var acc in Model.AllAccess)
+                            {
+                                if (!isAdmin && (acc.AccessName == "Menu" || acc.AccessName == "FrontEndSystem" || acc.AccessName == "Navigation"
+                                    || acc.AccessName == "Access" || acc.AccessName == "Function"))
+                                {
+
+                                    count++;
+                                    continue;
+                                }
+                                var desLang = string.Empty;
+                                if (acc.LangList.HasData())
+                                {
+                                    desLang = acc.LangList.Where(x => x.LangCode == currentLang).Select(x => x.Description).FirstOrDefault();
+                                }
+
+                                if (string.IsNullOrEmpty(desLang))
+                                {
+                                    desLang = acc.Description;
+                                }
+
+                                <div class="m-accordion__item">
+                                    <div class="m-accordion__item-head collapsed" role="tab" id="m_accordion_@(count)_item_1_head" data-toggle="collapse" href="#m_accordion_@(count)_item_1_body" aria-expanded="false">
+
+                                        <span class="m-accordion__item-title">
+                                            @desLang
+                                        </span>
+                                        <span class="m-accordion__item-mode"></span>
+                                    </div>
+                                    <div class="m-accordion__item-body collapse" id="m_accordion_@(count)_item_1_body" role="tabpanel" aria-labelledby="m_accordion_@(count)_item_1_head" data-parent="#m_accordion_@(count)">
+                                        <div class="m-accordion__item-content">
+                                            <div class="m-checkbox-inline">
+                                                @if (acc.OperationsList != null && acc.OperationsList.Count > 0)
+                                                {
+                                                    foreach (var op in acc.OperationsList)
+                                                    {
+                                                        var desOperationLang = string.Empty;
+                                                        if (op.LangList.HasData())
+                                                        {
+                                                            desOperationLang = op.LangList.Where(x => x.LangCode == currentLang).Select(x => x.OperationName).FirstOrDefault();
+                                                        }
+
+                                                        if (string.IsNullOrEmpty(desOperationLang))
+                                                        {
+                                                            desOperationLang = op.OperationName;
+                                                        }
+
+                                                        var isChecked = false;
+                                                        if (Model.PermissionsList != null && Model.PermissionsList.Count > 0)
+                                                        {
+                                                            if (Model.PermissionsList != null && Model.PermissionsList.Count > 0)
+                                                            {
+                                                                foreach (var per in Model.PermissionsList)
+                                                                {
+                                                                    if (op.Id == per.OperationId)
+                                                                    {
+                                                                        isChecked = true;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        if (isChecked)
+                                                        {
+                                                            <label class="m-checkbox">
+                                                                <input name="selectedOperations" id="@op.Id" value="@op.Id" class="m-checkbox m-checkbox--state-success" checked type="checkbox">
+                                                                @desOperationLang
+                                                                <span></span>
+                                                            </label>
+                                                        }
+                                                        else
+                                                        {
+                                                            <label class="m-checkbox">
+                                                                <input name="selectedOperations" id="@op.Id" value="@op.Id" class="m-checkbox m-checkbox--state-primary" type="checkbox">
+                                                                @desOperationLang
+                                                                <span></span>
+                                                            </label>
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <div><label class="label label-default">-</label></div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                count++;
+                            }
+
+                            <!--end::Item-->
+                        </div>
+                    }
+                    <!--end::Section-->
+                </div>
+            }
+        </div>
+        <!--end::Portlet-->
+    }}
+
+@section PageInlineStyles{
+    <style>
+        .m-accordion .m-accordion__item .m-accordion__item-head .m-accordion__item-title {
+            font-size: 1rem;
+        }
+
+        .bootstrap-select .dropdown-toggle .filter-option-inner {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .bootstrap-select .dropdown-menu.inner > li > a {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+    </style>
+}
+
+@section PageInlineScripts{
+    <script type="text/javascript">
+        function SelectRole() {
+            window.location.href = "?RoleId=" + $("#RoleId").val();
+        }
+        setTimeout(function () {
+            $(".selectpicker").selectpicker({ width: '100%' });
+        }, 300);
+        $(".m-scrollable").each(function () {
+            var t = $(this);
+            var height = window.innerHeight;
+            var width = window.innerWidth;
+            if (width > 768) {
+                t.data("original-height", t.data("max-height")), t.css("height", (height - 220) + "px"), t.css("max-height", (height - 220) + "px"), mApp.initScroller(t, {});
+            }
+        });
+    </script>
+}

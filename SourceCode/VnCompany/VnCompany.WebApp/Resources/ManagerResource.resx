@@ -1,0 +1,1959 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BT_ADD" xml:space="preserve">
+    <value>Thêm mới</value>
+  </data>
+  <data name="BT_AGENCY_REGISTER" xml:space="preserve">
+    <value>Đăng ký</value>
+  </data>
+  <data name="BT_ALLOW" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="BT_APPLICATION_ACCEPT" xml:space="preserve">
+    <value>Duyệt</value>
+  </data>
+  <data name="BT_APPLICATION_ACCEPTED" xml:space="preserve">
+    <value>Đã duyệt</value>
+  </data>
+  <data name="BT_APPLICATION_IGNORE" xml:space="preserve">
+    <value>Từ chối</value>
+  </data>
+  <data name="BT_CANCEL" xml:space="preserve">
+    <value>Hủy bỏ</value>
+  </data>
+  <data name="BT_CHOOSE_FILE" xml:space="preserve">
+    <value>Chọn file</value>
+  </data>
+  <data name="BT_CHOOSE_PRODUCT" xml:space="preserve">
+    <value>Chọn sản phẩm</value>
+  </data>
+  <data name="BT_CLEAR" xml:space="preserve">
+    <value>Nhập lại</value>
+  </data>
+  <data name="BT_CLICK_HERE" xml:space="preserve">
+    <value>Bấm vào đây</value>
+  </data>
+  <data name="BT_EXPORT_PDF" xml:space="preserve">
+    <value>Xuất file PDF</value>
+  </data>
+  <data name="BT_INVITE_JOBSEEKER" xml:space="preserve">
+    <value>Mời</value>
+  </data>
+  <data name="BT_NEXT" xml:space="preserve">
+    <value>Tiếp theo</value>
+  </data>
+  <data name="BT_OUTPUT_CSV" xml:space="preserve">
+    <value>Xuất file CSV</value>
+  </data>
+  <data name="BT_PRINT" xml:space="preserve">
+    <value>In</value>
+  </data>
+  <data name="BT_REGISTER" xml:space="preserve">
+    <value>Đăng ký</value>
+  </data>
+  <data name="BT_RESET" xml:space="preserve">
+    <value>Nhập lại</value>
+  </data>
+  <data name="BT_SEND" xml:space="preserve">
+    <value>Gửi</value>
+  </data>
+  <data name="BT_UPDATE" xml:space="preserve">
+    <value>Cập nhật</value>
+  </data>
+  <data name="BT_UPLOAD_PHOTO" xml:space="preserve">
+    <value>Tải ảnh</value>
+  </data>
+  <data name="COMMON_ERROR_ACCOUNT_BY_EMAIL_NOT_FOUND" xml:space="preserve">
+    <value>Chưa có tài khoản đăng ký bằng địa chỉ email này</value>
+  </data>
+  <data name="COMMON_ERROR_AGE_MUST_NUMBERIC" xml:space="preserve">
+    <value>Tuổi không lớn hơn 2 chữ số</value>
+  </data>
+  <data name="COMMON_ERROR_DATA_INVALID" xml:space="preserve">
+    <value>Dữ liệu không hợp lệ</value>
+  </data>
+  <data name="COMMON_ERROR_EMAIL_MAX_LENGTH" xml:space="preserve">
+    <value>Email không được quá {1} ký tự</value>
+  </data>
+  <data name="COMMON_ERROR_EXTERNALSERVICE_TIMEOUT" xml:space="preserve">
+    <value>Hệ thống đang bận, vui lòng thử lại sau</value>
+  </data>
+  <data name="COMMON_ERROR_FULL_NAME_MAX_LENGTH" xml:space="preserve">
+    <value>Họ và tên không được quá {1} ký tự</value>
+  </data>
+  <data name="COMMON_ERROR_INACTIVE_ACCOUNT" xml:space="preserve">
+    <value>Tài khoản của bạn chưa được kích hoạt</value>
+  </data>
+  <data name="COMMON_ERROR_NULL_VALUE" xml:space="preserve">
+    <value>Không được để trống</value>
+  </data>
+  <data name="COMMON_ERROR_PHONE_MAX_LENGTH" xml:space="preserve">
+    <value>Điện thoại không được quá {1} ký tự</value>
+  </data>
+  <data name="COMMON_ERROR_QUANTITY_MUST_NUMBERIC" xml:space="preserve">
+    <value>Số lượng không quá 3 chữ số</value>
+  </data>
+  <data name="CONFIRM_DELETE" xml:space="preserve">
+    <value>Bạn có chắc chắn muốn xóa ?</value>
+  </data>
+  <data name="CONFIRM_UPDATE_SCHEDULE" xml:space="preserve">
+    <value>Lịch công việc sẽ bị thay đổi, bạn có chắc chắn muốn thực hiện ?</value>
+  </data>
+  <data name="ERROR_ACCOUNT_DUPLICATED" xml:space="preserve">
+    <value>Tài khoản đã được sử dụng, vui lòng sử dụng tài khoản khác</value>
+  </data>
+  <data name="ERROR_ACTION_DENNIED" xml:space="preserve">
+    <value>Xin lỗi, bạn không có quyền sử dụng chức năng này.</value>
+  </data>
+  <data name="ERROR_ACTION_DENNIED_EDIT" xml:space="preserve">
+    <value>Bạn không có quyền sửa</value>
+  </data>
+  <data name="ERROR_ALEAST_ONE_PIC_SELECT" xml:space="preserve">
+    <value>Vui lòng chọn người phụ trách</value>
+  </data>
+  <data name="ERROR_ATTACH_FILE_LIMIT" xml:space="preserve">
+    <value>File đính kèm không vượt quá {0} MB</value>
+  </data>
+  <data name="ERROR_CONFRIM_PASSWORD_NOT_MATCH" xml:space="preserve">
+    <value>Mật khẩu và xác nhận mật khẩu không khớp</value>
+  </data>
+  <data name="ERROR_COULD_NOT_CREATE_CHAT" xml:space="preserve">
+    <value>Không thể khởi tạo phiên chat</value>
+  </data>
+  <data name="ERROR_DATE_RANGE_IN_PAST" xml:space="preserve">
+    <value>Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc</value>
+  </data>
+  <data name="ERROR_EMAIL_INVALID" xml:space="preserve">
+    <value>Địa chỉ email không hợp lệ</value>
+  </data>
+  <data name="ERROR_EMAIL_IS_EMPTY" xml:space="preserve">
+    <value>Mail chưa được nhập !</value>
+  </data>
+  <data name="ERROR_EMAIL_NOT_NULL" xml:space="preserve">
+    <value>Email không được để trống</value>
+  </data>
+  <data name="ERROR_ENUMVALUE_EXISTED" xml:space="preserve">
+    <value>Giá trị đã tồn tại, vui lòng kiểm tra lại !</value>
+  </data>
+  <data name="ERROR_EXISTS_ROLE" xml:space="preserve">
+    <value>Tên nhóm quyền đã tồn tại</value>
+  </data>
+  <data name="ERROR_GOODS_ISSUE_NOT_ENOUGH_FORMAT" xml:space="preserve">
+    <value>Số lượng trong kho không đủ {0} để xuất. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="ERROR_INCORRECT_USER" xml:space="preserve">
+    <value>Không thực thiện được tính năng này với thông tin user khác phụ trách !</value>
+  </data>
+  <data name="ERROR_INVALID_LOGIN" xml:space="preserve">
+    <value>Tên đăng nhập hoặc mật khẩu không đúng !</value>
+  </data>
+  <data name="ERROR_ITEM_CODE_EXISTED" xml:space="preserve">
+    <value>Mã sản phẩm đã tồn tại, vui lòng kiểm tra lại</value>
+  </data>
+  <data name="ERROR_ITEM_DUPLICATED_ON_LIST" xml:space="preserve">
+    <value>Sản phẩm bị trùng lặp.</value>
+  </data>
+  <data name="ERROR_ITEM_LIST_EMPTY" xml:space="preserve">
+    <value>Danh sách sản phẩm đang trống. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="ERROR_LOGIN_SESSION_ENDED" xml:space="preserve">
+    <value>Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.</value>
+  </data>
+  <data name="ERROR_NOT_NULL_REQUIRED" xml:space="preserve">
+    <value>Không được để trống</value>
+  </data>
+  <data name="ERROR_NOT_SELECT_ITEM" xml:space="preserve">
+    <value>Vui lòng chọn sản phẩm</value>
+  </data>
+  <data name="ERROR_NOT_SELECT_MEMBER" xml:space="preserve">
+    <value>Vui lòng chọn thành viên</value>
+  </data>
+  <data name="ERROR_NUMBER_INPUT_ONLY" xml:space="preserve">
+    <value>Chỉ được nhập số</value>
+  </data>
+  <data name="ERROR_NUMBER_MIN_0" xml:space="preserve">
+    <value>Vui lòng nhập giá trị tối thiểu phải lớn hơn 0</value>
+  </data>
+  <data name="ERROR_OUTGOING_INCOMING_EMAIL_MUST_SAME" xml:space="preserve">
+    <value>Địa chỉ nhận và gửi mail không khớp</value>
+  </data>
+  <data name="ERROR_PAGE_NOT_FOUND" xml:space="preserve">
+    <value>Không tìm thấy trang</value>
+  </data>
+  <data name="ERROR_PASSWORD_NOT_NULL" xml:space="preserve">
+    <value>Mật khẩu không được để trống</value>
+  </data>
+  <data name="ERROR_PERMISSION_DENNIED" xml:space="preserve">
+    <value>Bạn không có quyền sử dụng chức năng này !!!</value>
+  </data>
+  <data name="ERROR_PHONE_INVALID" xml:space="preserve">
+    <value>Số điện thoại không đúng định dạng</value>
+  </data>
+  <data name="ERROR_PRODUCT_ITEM_CODE_NOTFOUND_FORMAT" xml:space="preserve">
+    <value>Không tìm thấy sản phẩm [{0}]. Vui lòng kiểm tra lại !</value>
+  </data>
+  <data name="ERROR_PRODUCT_ITEM_NOTFOUND" xml:space="preserve">
+    <value>Không tìm thấy sản phẩm. Vui lòng kiểm tra lại !</value>
+  </data>
+  <data name="ERROR_QTY_MUST_LARGE_THAN_0" xml:space="preserve">
+    <value>Số lượng nhập vào phải lớn hơn 0</value>
+  </data>
+  <data name="ERROR_SELECTION_LIMITED" xml:space="preserve">
+    <value>Số lượng chọn đã vượt quá giới hạn</value>
+  </data>
+  <data name="ERROR_SELECT_FILE_TO_IMPORT" xml:space="preserve">
+    <value>Vui lòng chọn file để import</value>
+  </data>
+  <data name="ERROR_SELECT_FILE_TO_UPLOAD" xml:space="preserve">
+    <value>Vui lòng chọn tệp để tải lên</value>
+  </data>
+  <data name="ERROR_SYSTEM_PERIOD_MIN_0_MAX_24" xml:space="preserve">
+    <value>Thời gian định kỳ phải nằm trong khoảng từ 1 đến 24 tháng</value>
+  </data>
+  <data name="ERROR_THE_FILE_TYPE_INVALID" xml:space="preserve">
+    <value>File chưa đúng, vui lòng kiểm tra lại</value>
+  </data>
+  <data name="ERROR_THIS_ITEM_DONT_NEED_REFLECT" xml:space="preserve">
+    <value>Sản phẩm này đã kiểm kê xong !</value>
+  </data>
+  <data name="ERROR_USERNAME_EXISTED" xml:space="preserve">
+    <value>Tên đăng nhập đã tồn tại</value>
+  </data>
+  <data name="INVITATION_STATUS_ACCEPTED" xml:space="preserve">
+    <value>Đã chấp nhận</value>
+  </data>
+  <data name="INVITATION_STATUS_AWAITING" xml:space="preserve">
+    <value>Chờ xác nhận</value>
+  </data>
+  <data name="INVITATION_STATUS_IGNORED" xml:space="preserve">
+    <value>Đã từ chối</value>
+  </data>
+  <data name="IP_START_DATE" xml:space="preserve">
+    <value>Ngày bắt đầu làm việc</value>
+  </data>
+  <data name="LANGUAGE" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="LB_ACCEPTED_DATE" xml:space="preserve">
+    <value>Ngày chấp nhận</value>
+  </data>
+  <data name="LB_ACCOUNT_LOCKED" xml:space="preserve">
+    <value>Tài khoản đã bị khóa</value>
+  </data>
+  <data name="LB_ACCOUNT_NOT_LOCKED" xml:space="preserve">
+    <value>Tài khoản đang hoạt động</value>
+  </data>
+  <data name="LB_ACCOUNT_WAS_LOCKED" xml:space="preserve">
+    <value>Tài khoản của bạn đã bị khóa !</value>
+  </data>
+  <data name="LB_ACTION" xml:space="preserve">
+    <value>Hành động</value>
+  </data>
+  <data name="LB_ACTIVATED" xml:space="preserve">
+    <value>Đã kích hoạt</value>
+  </data>
+  <data name="LB_ACTIVE" xml:space="preserve">
+    <value>Kích hoạt</value>
+  </data>
+  <data name="LB_ACTIVE_MAIL_SERVER" xml:space="preserve">
+    <value>Kích hoạt</value>
+  </data>
+  <data name="LB_ADDRESS" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="LB_ADDRESS_CONTACT" xml:space="preserve">
+    <value>Địa chỉ liên hệ</value>
+  </data>
+  <data name="LB_ADDRESS_DETAIL" xml:space="preserve">
+    <value>Địa chỉ chi tiết</value>
+  </data>
+  <data name="LB_ADDRESS_FURIGANA" xml:space="preserve">
+    <value>Phiên âm</value>
+  </data>
+  <data name="LB_ADD_IMAGE" xml:space="preserve">
+    <value>Thêm ảnh</value>
+  </data>
+  <data name="LB_ADD_NEW" xml:space="preserve">
+    <value>Thêm mới</value>
+  </data>
+  <data name="LB_ADD_NEW_EMAIL_SERVER" xml:space="preserve">
+    <value>Thêm cấu hình email server</value>
+  </data>
+  <data name="LB_ADD_NEW_POST" xml:space="preserve">
+    <value>Thêm bài viết</value>
+  </data>
+  <data name="LB_ADD_NOTE" xml:space="preserve">
+    <value>Thêm ghi chép</value>
+  </data>
+  <data name="LB_ADD_USER_MANAGER" xml:space="preserve">
+    <value>Thêm nhân viên quản lý</value>
+  </data>
+  <data name="LB_ADD_WORKING_ADDRESS" xml:space="preserve">
+    <value>Thêm nơi làm việc</value>
+  </data>
+  <data name="LB_ADD_WORKING_EXPERIENCE" xml:space="preserve">
+    <value>Thêm kinh nghiệm làm việc</value>
+  </data>
+  <data name="LB_AGE" xml:space="preserve">
+    <value>Tuổi</value>
+  </data>
+  <data name="LB_ALL" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="LB_ALLOW_SHOW_FILTER" xml:space="preserve">
+    <value>Cho phép hiển thị trên bộ lọc</value>
+  </data>
+  <data name="LB_ALL_APPLICATION_STATUS" xml:space="preserve">
+    <value>Tất cả trạng thái</value>
+  </data>
+  <data name="LB_ANSWERED_DATE" xml:space="preserve">
+    <value>Ngày trả lời</value>
+  </data>
+  <data name="LB_APPLICATION_INVITATION_SUCCESS" xml:space="preserve">
+    <value>Đã gửi lời mời thành công</value>
+  </data>
+  <data name="LB_APPROVED_DATE" xml:space="preserve">
+    <value>Ngày duyệt</value>
+  </data>
+  <data name="LB_ASSIGNED_USER" xml:space="preserve">
+    <value>Danh sách quản trị viên</value>
+  </data>
+  <data name="LB_ASSIGNMENT_WORK" xml:space="preserve">
+    <value>Giới thiệu việc</value>
+  </data>
+  <data name="LB_ASSIGN_CATEGORY" xml:space="preserve">
+    <value>Phân loại</value>
+  </data>
+  <data name="LB_ASSIGN_TO_USER" xml:space="preserve">
+    <value>Thêm quản trị viên</value>
+  </data>
+  <data name="LB_ATTACHMENT_FILE" xml:space="preserve">
+    <value>File đính kèm</value>
+  </data>
+  <data name="LB_AUTHORIZED_CAPITAL" xml:space="preserve">
+    <value>Vốn điều lệ</value>
+  </data>
+  <data name="LB_AVATAR" xml:space="preserve">
+    <value>Ảnh đại diện</value>
+  </data>
+  <data name="LB_AWAITING_APPROVAL" xml:space="preserve">
+    <value>Chờ duyệt</value>
+  </data>
+  <data name="LB_BEGIN" xml:space="preserve">
+    <value>Bắt đầu</value>
+  </data>
+  <data name="LB_BIRTHDAY" xml:space="preserve">
+    <value>Ngày sinh</value>
+  </data>
+  <data name="LB_BRAND" xml:space="preserve">
+    <value>Nhãn hiệu</value>
+  </data>
+  <data name="LB_BUSINESS_CONTENT" xml:space="preserve">
+    <value>Nội dung kinh doanh</value>
+  </data>
+  <data name="LB_BY_HOUR" xml:space="preserve">
+    <value>theo giờ</value>
+  </data>
+  <data name="LB_BY_MONTH" xml:space="preserve">
+    <value>theo tháng</value>
+  </data>
+  <data name="LB_CANCEL" xml:space="preserve">
+    <value>Hủy bỏ</value>
+  </data>
+  <data name="LB_CANCELED" xml:space="preserve">
+    <value>Bị từ chối</value>
+  </data>
+  <data name="LB_CERTIFICATE" xml:space="preserve">
+    <value>Chứng chỉ, bằng cấp</value>
+  </data>
+  <data name="LB_CERTIFICATE_NAME" xml:space="preserve">
+    <value>Tên chứng chỉ, bằng cấp</value>
+  </data>
+  <data name="LB_CHANGE" xml:space="preserve">
+    <value>Thay đổi</value>
+  </data>
+  <data name="LB_CHANGE_PWD" xml:space="preserve">
+    <value>Đổi mật khẩu</value>
+  </data>
+  <data name="LB_CHANGE_PWD_SUCCESS" xml:space="preserve">
+    <value>Thay đổi mật khẩu thành công</value>
+  </data>
+  <data name="LB_CHANGE_STATUS_PROCESS" xml:space="preserve">
+    <value>Thay đổi trạng thái tiến độ</value>
+  </data>
+  <data name="LB_CHECK_VALID_LINK" xml:space="preserve">
+    <value>Kiểm tra đường link truy cập</value>
+  </data>
+  <data name="LB_CHECK_YOUR_PEMISSIONS" xml:space="preserve">
+    <value>Kiểm tra lại quyền</value>
+  </data>
+  <data name="LB_CHOOSE_FILE" xml:space="preserve">
+    <value>Chọn file</value>
+  </data>
+  <data name="LB_CITY" xml:space="preserve">
+    <value>Thành phố</value>
+  </data>
+  <data name="LB_CLICK_TO_SELECT_FILE" xml:space="preserve">
+    <value>Bấm vào đây để chọn file</value>
+  </data>
+  <data name="LB_CLICK_VIEW_DETAIL" xml:space="preserve">
+    <value>Click xem chi tiết</value>
+  </data>
+  <data name="LB_CLIENT" xml:space="preserve">
+    <value>Khách hàng</value>
+  </data>
+  <data name="LB_CLOSE" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="LB_CLOSED" xml:space="preserve">
+    <value>Đã đóng</value>
+  </data>
+  <data name="LB_CLOSE_TAB" xml:space="preserve">
+    <value>Đóng lại</value>
+  </data>
+  <data name="LB_CODE" xml:space="preserve">
+    <value>Mã</value>
+  </data>
+  <data name="LB_CODE_MAX_LENGTH" xml:space="preserve">
+    <value>Độ dài mã vạch</value>
+  </data>
+  <data name="LB_COLLAPSE" xml:space="preserve">
+    <value>Thu gọn</value>
+  </data>
+  <data name="LB_COMPANY" xml:space="preserve">
+    <value>Công ty</value>
+  </data>
+  <data name="LB_COMPANY_ADDRESS" xml:space="preserve">
+    <value>Địa chỉ công ty</value>
+  </data>
+  <data name="LB_COMPANY_CODE" xml:space="preserve">
+    <value>Mã công ty</value>
+  </data>
+  <data name="LB_COMPANY_CREATE" xml:space="preserve">
+    <value>Thêm mới công ty</value>
+  </data>
+  <data name="LB_COMPANY_DETAIL" xml:space="preserve">
+    <value>Thông tin công ty</value>
+  </data>
+  <data name="LB_COMPANY_EDIT" xml:space="preserve">
+    <value>Sửa thông tin công ty</value>
+  </data>
+  <data name="LB_COMPANY_EMPTY_WARNING_MESSAGE_BEGIN" xml:space="preserve">
+    <value>Danh sách công ty chưa có. Vui lòng tạo công ty trước khi tạo đơn tuyển.</value>
+  </data>
+  <data name="LB_COMPANY_EMPTY_WARNING_MESSAGE_END" xml:space="preserve">
+    <value>để tạo công ty!</value>
+  </data>
+  <data name="LB_COMPANY_MANAGEMENT" xml:space="preserve">
+    <value>Quản lý công ty</value>
+  </data>
+  <data name="LB_COMPANY_NAME" xml:space="preserve">
+    <value>Tên công ty</value>
+  </data>
+  <data name="LB_COMPANY_NOTE_EMAIL" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LB_COMPANY_NOTE_MEETING" xml:space="preserve">
+    <value>Họp</value>
+  </data>
+  <data name="LB_COMPANY_NOTE_PHONE" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="LB_COMPANY_SIZE" xml:space="preserve">
+    <value>Quy mô công ty</value>
+  </data>
+  <data name="LB_CONFIRM_PASSWORD" xml:space="preserve">
+    <value>Xác nhận mật khẩu</value>
+  </data>
+  <data name="LB_CONFIRM_REFLECT_STOCK_TAKE" xml:space="preserve">
+    <value>Số lượng trong kho sẽ được cập nhật lại theo số lượng kiểm kê. Bạn chắc chắn muốn thực hiện ?</value>
+  </data>
+  <data name="LB_CONFIRM_RESET_PWD" xml:space="preserve">
+    <value>Mật khẩu sẽ đặt về mặc định. Bạn có chắc chắn muốn làm lại mật khẩu ?</value>
+  </data>
+  <data name="LB_CONFIRM_STOCK_QTY" xml:space="preserve">
+    <value>Cần kiểm kê</value>
+  </data>
+  <data name="LB_CONTACT_FORM" xml:space="preserve">
+    <value>Hình thức liên hệ</value>
+  </data>
+  <data name="LB_CONTENT" xml:space="preserve">
+    <value>Nội dung</value>
+  </data>
+  <data name="LB_CORRESPONDING_STATUS" xml:space="preserve">
+    <value>Tình trạng</value>
+  </data>
+  <data name="LB_COUNTRY" xml:space="preserve">
+    <value>Quốc gia</value>
+  </data>
+  <data name="LB_COVER_IMAGE" xml:space="preserve">
+    <value>Ảnh bìa</value>
+  </data>
+  <data name="LB_CREATED_BY" xml:space="preserve">
+    <value>Người tạo</value>
+  </data>
+  <data name="LB_CREATED_DATE" xml:space="preserve">
+    <value>Ngày tạo</value>
+  </data>
+  <data name="LB_CREATE_KEYWORD" xml:space="preserve">
+    <value>Thêm mới từ khóa tìm kiếm</value>
+  </data>
+  <data name="LB_CREATE_NEW_FUNCTION" xml:space="preserve">
+    <value>Thêm chức năng mới</value>
+  </data>
+  <data name="LB_CREATE_PERSON" xml:space="preserve">
+    <value>Người tạo</value>
+  </data>
+  <data name="LB_CURRENCY" xml:space="preserve">
+    <value>Tiền tệ</value>
+  </data>
+  <data name="LB_CURRENT_QTY" xml:space="preserve">
+    <value>Số lượng hiện tại</value>
+  </data>
+  <data name="LB_CUSTOMER" xml:space="preserve">
+    <value>Khách hàng</value>
+  </data>
+  <data name="LB_CUSTOMFIELD_ADD" xml:space="preserve">
+    <value>Thêm thuộc tính</value>
+  </data>
+  <data name="LB_CUSTOMFIELD_KEY" xml:space="preserve">
+    <value>Khóa</value>
+  </data>
+  <data name="LB_CUSTOMFIELD_KEY_DES" xml:space="preserve">
+    <value>Khóa của thuộc tính được sử dụng cho việc lọc dữ liệu khi cần thiết</value>
+  </data>
+  <data name="LB_CUSTOMFIELD_NAME" xml:space="preserve">
+    <value>Tên hiển thị</value>
+  </data>
+  <data name="LB_DASHBOARD" xml:space="preserve">
+    <value>Bảng điều khiển</value>
+  </data>
+  <data name="LB_DASHBOARD_WELCOME_SLOGAN" xml:space="preserve">
+    <value>giao diện thân thiện, đa chức năng và dễ sử dụng để quản lý dữ liệu.</value>
+  </data>
+  <data name="LB_DASHBOARD_WELCOME_TO" xml:space="preserve">
+    <value>Bạn đang sử dụng</value>
+  </data>
+  <data name="LB_DATA_DAILY_UPDATE_AUTO" xml:space="preserve">
+    <value>Dữ liệu sẽ được thống kê tự động hàng ngày</value>
+  </data>
+  <data name="LB_DATA_TYPE" xml:space="preserve">
+    <value>Kiểu dữ liệu</value>
+  </data>
+  <data name="LB_DATE_FRIDAY" xml:space="preserve">
+    <value>Thứ 6</value>
+  </data>
+  <data name="LB_DATE_MONDAY" xml:space="preserve">
+    <value>Thứ 2</value>
+  </data>
+  <data name="LB_DATE_OF_LICENSE" xml:space="preserve">
+    <value>Ngày cấp</value>
+  </data>
+  <data name="LB_DATE_SATURDAY" xml:space="preserve">
+    <value>Thứ 7</value>
+  </data>
+  <data name="LB_DATE_SUNDAY" xml:space="preserve">
+    <value>Chủ Nhật</value>
+  </data>
+  <data name="LB_DATE_THUSDAY" xml:space="preserve">
+    <value>Thứ 5</value>
+  </data>
+  <data name="LB_DATE_TIME" xml:space="preserve">
+    <value>Ngày giờ</value>
+  </data>
+  <data name="LB_DATE_TUESDAY" xml:space="preserve">
+    <value>Thứ 3</value>
+  </data>
+  <data name="LB_DATE_WEDNESDAY" xml:space="preserve">
+    <value>Thứ 4</value>
+  </data>
+  <data name="LB_DEFAULT" xml:space="preserve">
+    <value>Mặc định</value>
+  </data>
+  <data name="LB_DELAYTIME" xml:space="preserve">
+    <value>Thời gian trễ</value>
+  </data>
+  <data name="LB_DELETE" xml:space="preserve">
+    <value>Xoá</value>
+  </data>
+  <data name="LB_DELETED" xml:space="preserve">
+    <value>Đã xóa</value>
+  </data>
+  <data name="LB_DELETE_SUCCESS" xml:space="preserve">
+    <value>Xóa thành công</value>
+  </data>
+  <data name="LB_DESCRIPTION" xml:space="preserve">
+    <value>Mô tả</value>
+  </data>
+  <data name="LB_DESELECT_ALL" xml:space="preserve">
+    <value>Bỏ chọn</value>
+  </data>
+  <data name="LB_DESTINATION" xml:space="preserve">
+    <value>Điểm đến</value>
+  </data>
+  <data name="LB_DETAIL" xml:space="preserve">
+    <value>Chi tiết</value>
+  </data>
+  <data name="LB_DEVELOPMENT_EXAMPLE" xml:space="preserve">
+    <value>Các dự án</value>
+  </data>
+  <data name="LB_DEVICE" xml:space="preserve">
+    <value>Thiết bị</value>
+  </data>
+  <data name="LB_DEVICE_ID" xml:space="preserve">
+    <value>Id thiết bị</value>
+  </data>
+  <data name="LB_DEVICE_NAME" xml:space="preserve">
+    <value>Tên thiết bị</value>
+  </data>
+  <data name="LB_DISCUSS" xml:space="preserve">
+    <value>Trao đổi</value>
+  </data>
+  <data name="LB_DISPLAY" xml:space="preserve">
+    <value>Hiển thị</value>
+  </data>
+  <data name="LB_DISPLAYING" xml:space="preserve">
+    <value>Hiển thị</value>
+  </data>
+  <data name="LB_DISPLAYNAME" xml:space="preserve">
+    <value>Tên hiển thị</value>
+  </data>
+  <data name="LB_DOCUMENTATION" xml:space="preserve">
+    <value>Hướng dẫn sử dụng</value>
+  </data>
+  <data name="LB_DONT_HAVE_ACCOUNT_YET" xml:space="preserve">
+    <value>Bạn chưa có tài khoản</value>
+  </data>
+  <data name="LB_DOWNLOAD_SAMPLE_FILE" xml:space="preserve">
+    <value>Tải file mẫu</value>
+  </data>
+  <data name="LB_DUPLICATE_DATA" xml:space="preserve">
+    <value>Dữ liệu đã tồn tại. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="LB_DURATION_VISA" xml:space="preserve">
+    <value>Thời hạn visa</value>
+  </data>
+  <data name="LB_EDIT" xml:space="preserve">
+    <value>Sửa</value>
+  </data>
+  <data name="LB_EDIT_POST" xml:space="preserve">
+    <value>Sửa bài viết</value>
+  </data>
+  <data name="LB_EMAIL" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LB_EMAIL_CONTENT" xml:space="preserve">
+    <value>Nội dung</value>
+  </data>
+  <data name="LB_EMAIL_INCOMING_SETTINGS" xml:space="preserve">
+    <value>Địa chỉ nhận email</value>
+  </data>
+  <data name="LB_EMAIL_INCOMMING" xml:space="preserve">
+    <value>Thư đến</value>
+  </data>
+  <data name="LB_EMAIL_LOGIN" xml:space="preserve">
+    <value>Email đăng nhập</value>
+  </data>
+  <data name="LB_EMAIL_MESSAGE" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LB_EMAIL_OUTGOING" xml:space="preserve">
+    <value>Thư đi</value>
+  </data>
+  <data name="LB_EMAIL_OUTGOING_SETTINGS" xml:space="preserve">
+    <value>Địa chỉ gửi email</value>
+  </data>
+  <data name="LB_EMAIL_RECEIVING_CONFIG" xml:space="preserve">
+    <value>Cấu hình hộp thư đến</value>
+  </data>
+  <data name="LB_EMAIL_SENDING_CONFIG" xml:space="preserve">
+    <value>Cấu hình hộp thư đi</value>
+  </data>
+  <data name="LB_EMAIL_SENT_SUCCESS" xml:space="preserve">
+    <value>Email đã được gửi thành công</value>
+  </data>
+  <data name="LB_EMAIL_SETTINGS" xml:space="preserve">
+    <value>Cài đặt email</value>
+  </data>
+  <data name="LB_EMAIL_SYNC_IN_PROGRESS" xml:space="preserve">
+    <value>Đang đồng bộ email từ server</value>
+  </data>
+  <data name="LB_EMAIL_TITLE" xml:space="preserve">
+    <value>Tiêu đề</value>
+  </data>
+  <data name="LB_EMAIL_TYPE" xml:space="preserve">
+    <value>Máy chủ email</value>
+  </data>
+  <data name="LB_EMPLOYEES" xml:space="preserve">
+    <value>Nhân viên</value>
+  </data>
+  <data name="LB_END" xml:space="preserve">
+    <value>Kết thúc</value>
+  </data>
+  <data name="LB_ENUM_VALUE" xml:space="preserve">
+    <value>Giá trị</value>
+  </data>
+  <data name="LB_ERROR_OCCURED" xml:space="preserve">
+    <value>Xảy ra lỗi</value>
+  </data>
+  <data name="LB_ESTABLISHED_YEAR" xml:space="preserve">
+    <value>Năm thành lập</value>
+  </data>
+  <data name="LB_EVENT_ACTIVITY" xml:space="preserve">
+    <value>Loại sự kiện</value>
+  </data>
+  <data name="LB_EXPIRATION_DATE" xml:space="preserve">
+    <value>Ngày hết hạn</value>
+  </data>
+  <data name="LB_EXPORT" xml:space="preserve">
+    <value>Xuất dữ liệu</value>
+  </data>
+  <data name="LB_EXPORT_CONFIRM" xml:space="preserve">
+    <value>Quá trình này có thể mất vài phút. Bạn có muốn tiếp tục ?</value>
+  </data>
+  <data name="LB_EXPRIRED" xml:space="preserve">
+    <value>Hết hạn</value>
+  </data>
+  <data name="LB_FAX" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="LB_FEMALE" xml:space="preserve">
+    <value>Nữ</value>
+  </data>
+  <data name="LB_FILTER_ON_MAP" xml:space="preserve">
+    <value>Bộ lọc</value>
+  </data>
+  <data name="LB_FINISH" xml:space="preserve">
+    <value>Kết thúc</value>
+  </data>
+  <data name="LB_FIRST_PAGE" xml:space="preserve">
+    <value>Trang đầu</value>
+  </data>
+  <data name="LB_FOOTER_MANAGE" xml:space="preserve">
+    <value>Quản lý chân trang</value>
+  </data>
+  <data name="LB_FOR_GOT_PASSWORD" xml:space="preserve">
+    <value>Quên mật khẩu</value>
+  </data>
+  <data name="LB_FRAMEWORK" xml:space="preserve">
+    <value>Nền tảng</value>
+  </data>
+  <data name="LB_FROM" xml:space="preserve">
+    <value>Từ</value>
+  </data>
+  <data name="LB_FROM_DATE" xml:space="preserve">
+    <value>Từ ngày</value>
+  </data>
+  <data name="LB_FRONTEND_CONFIG" xml:space="preserve">
+    <value>Cấu hình trang web</value>
+  </data>
+  <data name="LB_FULL_NAME" xml:space="preserve">
+    <value>Họ và tên</value>
+  </data>
+  <data name="LB_FULL_NAME_FURIGANA" xml:space="preserve">
+    <value>Tên phiên âm</value>
+  </data>
+  <data name="LB_GENDER" xml:space="preserve">
+    <value>Giới tính</value>
+  </data>
+  <data name="LB_GOBACK" xml:space="preserve">
+    <value>Quay lại</value>
+  </data>
+  <data name="LB_GOODS_ISSUE" xml:space="preserve">
+    <value>Xuất kho</value>
+  </data>
+  <data name="LB_GOODS_ISSUE_SUCCESS" xml:space="preserve">
+    <value>Xuất kho thành công !</value>
+  </data>
+  <data name="LB_GOODS_RECEIPT" xml:space="preserve">
+    <value>Nhập kho</value>
+  </data>
+  <data name="LB_GOODS_RECEIPT_SUCCESS" xml:space="preserve">
+    <value>Nhập kho thành công !</value>
+  </data>
+  <data name="LB_GOODS_REFLECT_STOCK_TAKE_SUCCESS" xml:space="preserve">
+    <value>Kiểm kê thành công !</value>
+  </data>
+  <data name="LB_GRANT_PERMISSION" xml:space="preserve">
+    <value>Phân quyền</value>
+  </data>
+  <data name="LB_GRANT_PERMISSION_TO_ROLE" xml:space="preserve">
+    <value>Phân quyền cho nhóm</value>
+  </data>
+  <data name="LB_GROUP" xml:space="preserve">
+    <value>Nhóm</value>
+  </data>
+  <data name="LB_HAS_NO_APPLICATION" xml:space="preserve">
+    <value>Không có đơn ứng tuyển nào</value>
+  </data>
+  <data name="LB_HAS_NO_ASSIGNED_USER" xml:space="preserve">
+    <value>Chưa có quản trị viên</value>
+  </data>
+  <data name="LB_HAS_NO_DATA" xml:space="preserve">
+    <value>Không có dữ liệu</value>
+  </data>
+  <data name="LB_HAS_NO_NOTIFICATION" xml:space="preserve">
+    <value>Không có thông báo</value>
+  </data>
+  <data name="LB_HAS_NO_TODAY_TASK" xml:space="preserve">
+    <value>Không có nhiệm vụ nào trong ngày</value>
+  </data>
+  <data name="LB_HAS_PROCESS" xml:space="preserve">
+    <value>Có tiến độ</value>
+  </data>
+  <data name="LB_HAS_READ" xml:space="preserve">
+    <value>Đã đọc</value>
+  </data>
+  <data name="LB_HAS_UNREAD" xml:space="preserve">
+    <value>Chưa đọc</value>
+  </data>
+  <data name="LB_HAS_VIEWED" xml:space="preserve">
+    <value>Đã xem</value>
+  </data>
+  <data name="LB_HAVE_ACCOUNT_YET" xml:space="preserve">
+    <value>Đã có tài khoản</value>
+  </data>
+  <data name="LB_HAVE_NOT_RECEIVED_EMAIL_ACTIVE" xml:space="preserve">
+    <value>Bạn chưa nhận được email kích hoạt tài khoản</value>
+  </data>
+  <data name="LB_HIDE_QUOTE" xml:space="preserve">
+    <value>Ẩn trích dẫn</value>
+  </data>
+  <data name="LB_HT_DEFAULT_SETTING" xml:space="preserve">
+    <value>Cấu hình mặc định của máy quét</value>
+  </data>
+  <data name="LB_ICON" xml:space="preserve">
+    <value>Biểu tượng</value>
+  </data>
+  <data name="LB_IMAGE" xml:space="preserve">
+    <value>Hình ảnh</value>
+  </data>
+  <data name="LB_IMPORT_DATA" xml:space="preserve">
+    <value>Nhập dữ liệu</value>
+  </data>
+  <data name="LB_INDUSTRY_LABEL" xml:space="preserve">
+    <value>Ngành nghề</value>
+  </data>
+  <data name="LB_INFORMATION" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="LB_INFORMATION_COMPANY" xml:space="preserve">
+    <value>Thông tin công ty</value>
+  </data>
+  <data name="LB_INFO_NOT_UPDATED" xml:space="preserve">
+    <value>Chưa cập nhật</value>
+  </data>
+  <data name="LB_INPUT_EMAIL_FOR_ACTIVATION" xml:space="preserve">
+    <value>Nhập địa chỉ email để kích hoạt tài khoản</value>
+  </data>
+  <data name="LB_INPUT_EMAIL_FOR_PASSWORD_RECOVERY" xml:space="preserve">
+    <value>Nhập địa chỉ email để thực hiện khôi phục mật khẩu</value>
+  </data>
+  <data name="LB_INPUT_KEYWORD_TO_SEARCH" xml:space="preserve">
+    <value>Nhập từ khóa tìm kiếm</value>
+  </data>
+  <data name="LB_INPUT_LANGUAGE" xml:space="preserve">
+    <value>Nhập ngôn ngữ</value>
+  </data>
+  <data name="LB_INPUT_MESSAGE" xml:space="preserve">
+    <value>Nhập tin nhắn</value>
+  </data>
+  <data name="LB_INPUT_STATION_NAME" xml:space="preserve">
+    <value>Nhập tên nhà ga</value>
+  </data>
+  <data name="LB_INPUT_TRAIN_LINE_NAME" xml:space="preserve">
+    <value>Nhập tên tuyến tàu</value>
+  </data>
+  <data name="LB_INSERT_SUCCESS" xml:space="preserve">
+    <value>Thêm mới thành công</value>
+  </data>
+  <data name="LB_INTRODUCE_COUNT" xml:space="preserve">
+    <value>Đã giới thiệu</value>
+  </data>
+  <data name="LB_INVITATION_ACCEPTED" xml:space="preserve">
+    <value>Đồng ý</value>
+  </data>
+  <data name="LB_INVITATION_CANCELED" xml:space="preserve">
+    <value>Từ chối</value>
+  </data>
+  <data name="LB_INVITATION_CONFIRM" xml:space="preserve">
+    <value>Chưa xác nhận</value>
+  </data>
+  <data name="LB_INVITATION_DATE" xml:space="preserve">
+    <value>Ngày mời</value>
+  </data>
+  <data name="LB_INVITATION_HISTORY" xml:space="preserve">
+    <value>Lịch sử lời mời ứng tuyển</value>
+  </data>
+  <data name="LB_INVITATION_SEND" xml:space="preserve">
+    <value>Gửi lời mời</value>
+  </data>
+  <data name="LB_INVITATION_SENT" xml:space="preserve">
+    <value>Đã mời</value>
+  </data>
+  <data name="LB_INVITATION_TO_APPLY" xml:space="preserve">
+    <value>Mời ứng tuyển</value>
+  </data>
+  <data name="LB_INVITED_COUNT" xml:space="preserve">
+    <value>Đã mời</value>
+  </data>
+  <data name="LB_INVITE_DATE" xml:space="preserve">
+    <value>Ngày mời</value>
+  </data>
+  <data name="LB_IS_HIRING" xml:space="preserve">
+    <value>Đang tuyển dụng</value>
+  </data>
+  <data name="LB_IS_LOCKED" xml:space="preserve">
+    <value>Đã khóa</value>
+  </data>
+  <data name="LB_IS_OWNER" xml:space="preserve">
+    <value>Là chủ sở hữu</value>
+  </data>
+  <data name="LB_ITEMS_COUNT" xml:space="preserve">
+    <value>Số lượng</value>
+  </data>
+  <data name="LB_ITEM_CODE" xml:space="preserve">
+    <value>Mã sản phẩm</value>
+  </data>
+  <data name="LB_ITEM_NAME" xml:space="preserve">
+    <value>Tên sản phẩm</value>
+  </data>
+  <data name="LB_ITEM_REMAINS_IN_WAREHOUSE" xml:space="preserve">
+    <value>Số lượng còn lại trong kho</value>
+  </data>
+  <data name="LB_JAPANESE_LEVEL" xml:space="preserve">
+    <value>Trình độ tiếng Nhật</value>
+  </data>
+  <data name="LB_KEYWORD" xml:space="preserve">
+    <value>Từ khóa</value>
+  </data>
+  <data name="LB_KEYWORDS" xml:space="preserve">
+    <value>Các từ khóa tìm kiếm</value>
+  </data>
+  <data name="LB_KEYWORD_CAT_PLACEHOLDER" xml:space="preserve">
+    <value>Tên danh mục, mã danh mục,...</value>
+  </data>
+  <data name="LB_KEYWORD_INVITATION_SEARCH" xml:space="preserve">
+    <value>Nhập tên ứng viên</value>
+  </data>
+  <data name="LB_KEYWORD_ITEMNAME_ITEMCODE" xml:space="preserve">
+    <value>Mã sản phẩm, tên sản phẩm</value>
+  </data>
+  <data name="LB_KEYWORD_NAME" xml:space="preserve">
+    <value>Tên từ khóa tìm kiếm</value>
+  </data>
+  <data name="LB_KEYWORD_SEARCH" xml:space="preserve">
+    <value>Từ khóa tìm kiếm...</value>
+  </data>
+  <data name="LB_KEYWORD_TYPE" xml:space="preserve">
+    <value>Loại từ khóa tìm kiếm</value>
+  </data>
+  <data name="LB_LABEL_PRINT" xml:space="preserve">
+    <value>In tem nhãn</value>
+  </data>
+  <data name="LB_LANGUAGE" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="LB_LANGUAGE_LEVEL" xml:space="preserve">
+    <value>Trình độ tiếng</value>
+  </data>
+  <data name="LB_LANGUAGE_SKILL" xml:space="preserve">
+    <value>Kĩ năng ngôn ngữ</value>
+  </data>
+  <data name="LB_LANG_ENGLISH" xml:space="preserve">
+    <value>Tiếng Anh</value>
+  </data>
+  <data name="LB_LANG_JAPANESE" xml:space="preserve">
+    <value>Tiếng Nhật</value>
+  </data>
+  <data name="LB_LANG_VIETNAMESE" xml:space="preserve">
+    <value>Tiếng Việt</value>
+  </data>
+  <data name="LB_LAST_PAGE" xml:space="preserve">
+    <value>Trang cuối</value>
+  </data>
+  <data name="LB_LAST_PROCESS" xml:space="preserve">
+    <value>Tiến độ cuối</value>
+  </data>
+  <data name="LB_LAST_SCHOOL" xml:space="preserve">
+    <value>Tên trường</value>
+  </data>
+  <data name="LB_LAST_STATUS" xml:space="preserve">
+    <value>Trạng thái cuối</value>
+  </data>
+  <data name="LB_LATEST_ARTICLE" xml:space="preserve">
+    <value>Bài viết mới nhất</value>
+  </data>
+  <data name="LB_LINK" xml:space="preserve">
+    <value>Điều hướng</value>
+  </data>
+  <data name="LB_LIST" xml:space="preserve">
+    <value>Danh sách</value>
+  </data>
+  <data name="LB_LIST_USER_MANAGER" xml:space="preserve">
+    <value>Danh sách nhân viên quản lý</value>
+  </data>
+  <data name="LB_LOADING" xml:space="preserve">
+    <value>Đang tải</value>
+  </data>
+  <data name="LB_LOCK" xml:space="preserve">
+    <value>Khóa</value>
+  </data>
+  <data name="LB_LOCKED" xml:space="preserve">
+    <value>Đã khóa</value>
+  </data>
+  <data name="LB_LOGIN" xml:space="preserve">
+    <value>Đăng nhập</value>
+  </data>
+  <data name="LB_LOGO" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="LB_LOGOUT" xml:space="preserve">
+    <value>Đăng xuất</value>
+  </data>
+  <data name="LB_MAKER" xml:space="preserve">
+    <value>Nhà sản xuất</value>
+  </data>
+  <data name="LB_MALE" xml:space="preserve">
+    <value>Nam</value>
+  </data>
+  <data name="LB_MAN" xml:space="preserve">
+    <value>Man</value>
+  </data>
+  <data name="LB_MANAGEMENT_ASSIGNED_COMPANIES" xml:space="preserve">
+    <value>Danh sách công ty quản lý</value>
+  </data>
+  <data name="LB_MANAGER" xml:space="preserve">
+    <value>Người quản lý</value>
+  </data>
+  <data name="LB_MANAGER_COMPANY" xml:space="preserve">
+    <value>Quản lý công ty</value>
+  </data>
+  <data name="LB_MANAGE_JOB" xml:space="preserve">
+    <value>Quản lý việc làm</value>
+  </data>
+  <data name="LB_MANAGE_SLIDE_ITEM" xml:space="preserve">
+    <value>Quản lý các thành phần của slide</value>
+  </data>
+  <data name="LB_MARK_HIGHLIGHTS" xml:space="preserve">
+    <value>Đánh dấu nổi bật</value>
+  </data>
+  <data name="LB_MARRIAGE" xml:space="preserve">
+    <value>Tình trạng hôn nhân</value>
+  </data>
+  <data name="LB_MARRIAGE_MARRIED" xml:space="preserve">
+    <value>Đã kết hôn</value>
+  </data>
+  <data name="LB_MARRIAGE_SINGLE" xml:space="preserve">
+    <value>Độc thân</value>
+  </data>
+  <data name="LB_MARRIAGE_STATUS" xml:space="preserve">
+    <value>Tình trạng hôn nhân</value>
+  </data>
+  <data name="LB_MAXIMUM" xml:space="preserve">
+    <value>Tối đa</value>
+  </data>
+  <data name="LB_MEMBER" xml:space="preserve">
+    <value>Nhân viên</value>
+  </data>
+  <data name="LB_MESSAGE" xml:space="preserve">
+    <value>Lời nhắn</value>
+  </data>
+  <data name="LB_MINIMUM" xml:space="preserve">
+    <value>Tối thiểu</value>
+  </data>
+  <data name="LB_MIN_INVENTORY" xml:space="preserve">
+    <value>Tồn kho tối thiểu</value>
+  </data>
+  <data name="LB_MONTHS" xml:space="preserve">
+    <value>Tháng</value>
+  </data>
+  <data name="LB_MONTH_1" xml:space="preserve">
+    <value>Tháng 1</value>
+  </data>
+  <data name="LB_MONTH_10" xml:space="preserve">
+    <value>Tháng 10</value>
+  </data>
+  <data name="LB_MONTH_11" xml:space="preserve">
+    <value>Tháng 11</value>
+  </data>
+  <data name="LB_MONTH_12" xml:space="preserve">
+    <value>Tháng 12</value>
+  </data>
+  <data name="LB_MONTH_2" xml:space="preserve">
+    <value>Tháng 2</value>
+  </data>
+  <data name="LB_MONTH_3" xml:space="preserve">
+    <value>Tháng 3</value>
+  </data>
+  <data name="LB_MONTH_4" xml:space="preserve">
+    <value>Tháng 4</value>
+  </data>
+  <data name="LB_MONTH_5" xml:space="preserve">
+    <value>Tháng 5</value>
+  </data>
+  <data name="LB_MONTH_6" xml:space="preserve">
+    <value>Tháng 6</value>
+  </data>
+  <data name="LB_MONTH_7" xml:space="preserve">
+    <value>Tháng 7</value>
+  </data>
+  <data name="LB_MONTH_8" xml:space="preserve">
+    <value>Tháng 8</value>
+  </data>
+  <data name="LB_MONTH_9" xml:space="preserve">
+    <value>Tháng 9</value>
+  </data>
+  <data name="LB_MULTI_LANGUAGES" xml:space="preserve">
+    <value>Đa ngôn ngữ</value>
+  </data>
+  <data name="LB_MYPROFILE" xml:space="preserve">
+    <value>Tài khoản của tôi</value>
+  </data>
+  <data name="LB_NAME" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="LB_NATIONALITY" xml:space="preserve">
+    <value>Quốc tịch</value>
+  </data>
+  <data name="LB_NEAREST_STATION" xml:space="preserve">
+    <value>Nhà ga gần nhất</value>
+  </data>
+  <data name="LB_NEW_FEATURES" xml:space="preserve">
+    <value>Các tính năng mới</value>
+  </data>
+  <data name="LB_NEW_PASSWORD" xml:space="preserve">
+    <value>Mật khẩu mới</value>
+  </data>
+  <data name="LB_NEXT_PAGE" xml:space="preserve">
+    <value>Trang tiếp</value>
+  </data>
+  <data name="LB_NEXT_STEP" xml:space="preserve">
+    <value>Bước tiếp theo</value>
+  </data>
+  <data name="LB_NO" xml:space="preserve">
+    <value>Không</value>
+  </data>
+  <data name="LB_NOTE" xml:space="preserve">
+    <value>Lưu ý</value>
+  </data>
+  <data name="LB_NOTE_MULTILANG_NULL" xml:space="preserve">
+    <value>Hệ thống sẽ lấy dữ liệu mặc định nếu dữ liệu đa ngôn ngữ không tồn tại</value>
+  </data>
+  <data name="LB_NOTIFICATION" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="LB_NOT_TRANSLATED_YET" xml:space="preserve">
+    <value>Chưa dịch</value>
+  </data>
+  <data name="LB_NOT_UPDATED" xml:space="preserve">
+    <value>Chưa cập nhật</value>
+  </data>
+  <data name="LB_NO_RECORD" xml:space="preserve">
+    <value>Không tìm thấy bản ghi nào</value>
+  </data>
+  <data name="LB_NO_RESULTS_FOUND" xml:space="preserve">
+    <value>Không có kết quả</value>
+  </data>
+  <data name="LB_NUMBER_CODE" xml:space="preserve">
+    <value>Mã số</value>
+  </data>
+  <data name="LB_NUMBER_EMPLOYEES" xml:space="preserve">
+    <value>Số lượng nhân  viên</value>
+  </data>
+  <data name="LB_NUMBER_OF_CHARACTERS" xml:space="preserve">
+    <value>Số lượng ký tự</value>
+  </data>
+  <data name="LB_OF" xml:space="preserve">
+    <value>của</value>
+  </data>
+  <data name="LB_OLD_PASSWORD" xml:space="preserve">
+    <value>Mật khẩu cũ</value>
+  </data>
+  <data name="LB_OPERATION_DATE" xml:space="preserve">
+    <value>Ngày thực hiện</value>
+  </data>
+  <data name="LB_OPERATION_NAME" xml:space="preserve">
+    <value>Tên chức năng</value>
+  </data>
+  <data name="LB_OPERATION_SUCCESS" xml:space="preserve">
+    <value>Thao tác thành công</value>
+  </data>
+  <data name="LB_ORDER" xml:space="preserve">
+    <value>Thứ tự</value>
+  </data>
+  <data name="LB_ORDER_DISPLAY" xml:space="preserve">
+    <value>Thứ tự hiển thị</value>
+  </data>
+  <data name="LB_OTHER_INFO" xml:space="preserve">
+    <value>Thông tin thêm</value>
+  </data>
+  <data name="LB_PAID_HOLIDAY" xml:space="preserve">
+    <value>Chế độ nghỉ phép</value>
+  </data>
+  <data name="LB_PARENT_CATEGORY" xml:space="preserve">
+    <value>Loại cha</value>
+  </data>
+  <data name="LB_PASSWORD" xml:space="preserve">
+    <value>Mật khẩu</value>
+  </data>
+  <data name="LB_PASSWORD_RESET_SUCCESS" xml:space="preserve">
+    <value>Mật khẩu đã được thay đổi về mặc định</value>
+  </data>
+  <data name="LB_PERSON_INCHARGE_NAME" xml:space="preserve">
+    <value>Tên người chịu trách nhiệm</value>
+  </data>
+  <data name="LB_PERSON_IN_CHARGE" xml:space="preserve">
+    <value>Người phụ trách</value>
+  </data>
+  <data name="LB_PHONE" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="LB_POINT" xml:space="preserve">
+    <value>Điểm</value>
+  </data>
+  <data name="LB_POP_SERVER" xml:space="preserve">
+    <value>POP server</value>
+  </data>
+  <data name="LB_PORT_SERVER" xml:space="preserve">
+    <value>Cổng truy cập</value>
+  </data>
+  <data name="LB_POSTAL_CODE" xml:space="preserve">
+    <value>Mã bưu điện</value>
+  </data>
+  <data name="LB_POSTER" xml:space="preserve">
+    <value>Người đăng</value>
+  </data>
+  <data name="LB_POST_HIGHLIGHTS" xml:space="preserve">
+    <value>Bài viết nổi bật</value>
+  </data>
+  <data name="LB_POST_TYPE" xml:space="preserve">
+    <value>Loại bài viết</value>
+  </data>
+  <data name="LB_PREFECTURE" xml:space="preserve">
+    <value>Tỉnh</value>
+  </data>
+  <data name="LB_PREVIEW" xml:space="preserve">
+    <value>Xem trước</value>
+  </data>
+  <data name="LB_PREVIOUS_PAGE" xml:space="preserve">
+    <value>Trang trước</value>
+  </data>
+  <data name="LB_PRIORITY" xml:space="preserve">
+    <value>Độ ưu tiên</value>
+  </data>
+  <data name="LB_PRIVATE" xml:space="preserve">
+    <value>Không công khai</value>
+  </data>
+  <data name="LB_PROCESSING" xml:space="preserve">
+    <value>Đang xử lý</value>
+  </data>
+  <data name="LB_PRODUCTION_CONFIRMATION" xml:space="preserve">
+    <value>Xác nhận sản xuất</value>
+  </data>
+  <data name="LB_PRODUCT_CATEGORY" xml:space="preserve">
+    <value>Loại sản phẩm</value>
+  </data>
+  <data name="LB_PRODUCT_MANAGE" xml:space="preserve">
+    <value>Quản lý sản phẩm</value>
+  </data>
+  <data name="LB_PRODUCT_NAME" xml:space="preserve">
+    <value>商品名</value>
+  </data>
+  <data name="LB_PRODUCT_WAREHOUSE" xml:space="preserve">
+    <value>Kho sản phẩm</value>
+  </data>
+  <data name="LB_PROFILE" xml:space="preserve">
+    <value>Hồ sơ</value>
+  </data>
+  <data name="LB_PROPERTIES" xml:space="preserve">
+    <value>Các thuộc tính</value>
+  </data>
+  <data name="LB_PROPERTY" xml:space="preserve">
+    <value>Thuộc tính</value>
+  </data>
+  <data name="LB_PROPERTY_CATEGORY" xml:space="preserve">
+    <value>Loại thuộc tính</value>
+  </data>
+  <data name="LB_PROPERTY_VALUES" xml:space="preserve">
+    <value>Các giá trị thuộc tính</value>
+  </data>
+  <data name="LB_PROVIDER" xml:space="preserve">
+    <value>Nhà cung cấp</value>
+  </data>
+  <data name="LB_PROVIDER_MANAGE" xml:space="preserve">
+    <value>Quản lý nhà cung cấp</value>
+  </data>
+  <data name="LB_PROVIDER_NAME" xml:space="preserve">
+    <value>Tên nhà cung cấp</value>
+  </data>
+  <data name="LB_QTY" xml:space="preserve">
+    <value>Số lượng</value>
+  </data>
+  <data name="LB_QUALIFICATION" xml:space="preserve">
+    <value>Học vấn</value>
+  </data>
+  <data name="LB_READ_AND_AGREE" xml:space="preserve">
+    <value>Tôi đã đọc và đồng ý với</value>
+  </data>
+  <data name="LB_READ_MORE" xml:space="preserve">
+    <value>Đọc thêm</value>
+  </data>
+  <data name="LB_RECEIVED_DATE" xml:space="preserve">
+    <value>Ngày nhận</value>
+  </data>
+  <data name="LB_RECEIVER" xml:space="preserve">
+    <value>Người nhận</value>
+  </data>
+  <data name="LB_RECEIVER_COUNT" xml:space="preserve">
+    <value>Số người nhận</value>
+  </data>
+  <data name="LB_RECORD" xml:space="preserve">
+    <value>bản ghi</value>
+  </data>
+  <data name="LB_RECORDS" xml:space="preserve">
+    <value>bản ghi, đang hiển thị từ</value>
+  </data>
+  <data name="LB_RECORDS_ALL" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="LB_RECORDS_COUNT" xml:space="preserve">
+    <value>Số bản ghi</value>
+  </data>
+  <data name="LB_RECORDS_DISPLAY" xml:space="preserve">
+    <value>Hiển thị số bản ghi</value>
+  </data>
+  <data name="LB_REFLECT_STOCK_TAKE" xml:space="preserve">
+    <value>Kiểm kê</value>
+  </data>
+  <data name="LB_REFRESH" xml:space="preserve">
+    <value>Làm mới</value>
+  </data>
+  <data name="LB_REGION" xml:space="preserve">
+    <value>Khu vực</value>
+  </data>
+  <data name="LB_REGISTER_NEW_ACCOUNT" xml:space="preserve">
+    <value>Tạo tài khoản</value>
+  </data>
+  <data name="LB_RELIGION" xml:space="preserve">
+    <value>Tôn giáo</value>
+  </data>
+  <data name="LB_REMEMBER_LOGIN" xml:space="preserve">
+    <value>Duy trì đăng nhập</value>
+  </data>
+  <data name="LB_REORDER_POINT" xml:space="preserve">
+    <value>Tồn kho tối thiểu</value>
+  </data>
+  <data name="LB_REQUIRED_INFORMATION" xml:space="preserve">
+    <value>Thông tin phải nhập</value>
+  </data>
+  <data name="LB_RESEND_EMAIL_ACTIVE_ACCOUNT" xml:space="preserve">
+    <value>Gửi lại email kích hoạt tài khoản</value>
+  </data>
+  <data name="LB_RESET" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="LB_RESET_PASSWORD" xml:space="preserve">
+    <value>Làm lại mật khẩu</value>
+  </data>
+  <data name="LB_RESET_PASSWORD_SUCCESS" xml:space="preserve">
+    <value>Mật khẩu đã được thay đổi thành công</value>
+  </data>
+  <data name="LB_RESIDENCE_COUNTRY" xml:space="preserve">
+    <value>Quốc gia</value>
+  </data>
+  <data name="LB_RESULTS" xml:space="preserve">
+    <value>Kết quả</value>
+  </data>
+  <data name="LB_REVENUE" xml:space="preserve">
+    <value>Doanh thu</value>
+  </data>
+  <data name="LB_ROLE" xml:space="preserve">
+    <value>Nhóm</value>
+  </data>
+  <data name="LB_ROLES_ASSIGNED" xml:space="preserve">
+    <value>Thuộc nhóm</value>
+  </data>
+  <data name="LB_ROLE_NAME" xml:space="preserve">
+    <value>Tên nhóm</value>
+  </data>
+  <data name="LB_SAME_ABOVE" xml:space="preserve">
+    <value>Như trên</value>
+  </data>
+  <data name="LB_SAVE" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="LB_SAVED" xml:space="preserve">
+    <value>Lưu nháp</value>
+  </data>
+  <data name="LB_SAVE_AND_CONTINUE" xml:space="preserve">
+    <value>Lưu &amp; Tiếp tục</value>
+  </data>
+  <data name="LB_SAVE_SEND_ADMIN" xml:space="preserve">
+    <value>Lưu và gửi tới admin</value>
+  </data>
+  <data name="LB_SAVE_TRANSLATED" xml:space="preserve">
+    <value>Lưu và dịch xong</value>
+  </data>
+  <data name="LB_SCHEDULE_ADD_NEW" xml:space="preserve">
+    <value>Thêm mới lịch công việc</value>
+  </data>
+  <data name="LB_SCHEDULE_CAT" xml:space="preserve">
+    <value>Loại công việc</value>
+  </data>
+  <data name="LB_SCHEDULE_MYSELF" xml:space="preserve">
+    <value>Lịch cá nhân</value>
+  </data>
+  <data name="LB_SCHEDULE_UPDATE" xml:space="preserve">
+    <value>Cập nhật lịch công việc</value>
+  </data>
+  <data name="LB_SEARCH" xml:space="preserve">
+    <value>Tìm kiếm</value>
+  </data>
+  <data name="LB_SEARCHING" xml:space="preserve">
+    <value>Đang tìm kiếm</value>
+  </data>
+  <data name="LB_SEARCH_FILTER" xml:space="preserve">
+    <value>Bộ lọc tìm kiếm</value>
+  </data>
+  <data name="LB_SEARCH_RESULTS" xml:space="preserve">
+    <value>Kết quả tìm kiếm</value>
+  </data>
+  <data name="LB_SELECT _SUB_INDUSTRY" xml:space="preserve">
+    <value>Chọn lĩnh vực</value>
+  </data>
+  <data name="LB_SELECTED" xml:space="preserve">
+    <value>Đã chọn</value>
+  </data>
+  <data name="LB_SELECT_ALL" xml:space="preserve">
+    <value>Chọn tất cả</value>
+  </data>
+  <data name="LB_SELECT_CITY" xml:space="preserve">
+    <value>Chọn thành phố</value>
+  </data>
+  <data name="LB_SELECT_COMPANY" xml:space="preserve">
+    <value>Chọn công ty</value>
+  </data>
+  <data name="LB_SELECT_COUNTRY" xml:space="preserve">
+    <value>Chọn quốc gia</value>
+  </data>
+  <data name="LB_SELECT_DATA_TYPE" xml:space="preserve">
+    <value>Chọn kiểu dữ liệu</value>
+  </data>
+  <data name="LB_SELECT_GENDER" xml:space="preserve">
+    <value>Chọn giới tính</value>
+  </data>
+  <data name="LB_SELECT_INVITATION_STATUS" xml:space="preserve">
+    <value>Chọn trạng thái</value>
+  </data>
+  <data name="LB_SELECT_JAPANESE_LEVEL" xml:space="preserve">
+    <value>Chọn trình độ tiếng nhật</value>
+  </data>
+  <data name="LB_SELECT_MAJOR" xml:space="preserve">
+    <value>Chọn chuyên ngành</value>
+  </data>
+  <data name="LB_SELECT_MEMBER" xml:space="preserve">
+    <value>Chọn thành viên</value>
+  </data>
+  <data name="LB_SELECT_NATIONALITY" xml:space="preserve">
+    <value>Chọn quốc tịch</value>
+  </data>
+  <data name="LB_SELECT_PIC" xml:space="preserve">
+    <value>Chọn người phụ trách</value>
+  </data>
+  <data name="LB_SELECT_PREFECTURE" xml:space="preserve">
+    <value>Chọn tỉnh</value>
+  </data>
+  <data name="LB_SELECT_PROCESS_STATUS" xml:space="preserve">
+    <value>Chọn trạng thái</value>
+  </data>
+  <data name="LB_SELECT_PRODUCT_CATEGORY" xml:space="preserve">
+    <value>Chọn loại sản phẩm</value>
+  </data>
+  <data name="LB_SELECT_PROPERTY" xml:space="preserve">
+    <value>Chọn thuộc tính</value>
+  </data>
+  <data name="LB_SELECT_PROPERTY_CATEGORY" xml:space="preserve">
+    <value>Chọn loại thuộc tính</value>
+  </data>
+  <data name="LB_SELECT_PROVIDER" xml:space="preserve">
+    <value>Chọn nhà cung cấp</value>
+  </data>
+  <data name="LB_SELECT_REGION" xml:space="preserve">
+    <value>Chọn khu vực</value>
+  </data>
+  <data name="LB_SELECT_ROLE" xml:space="preserve">
+    <value>Chọn nhóm</value>
+  </data>
+  <data name="LB_SELECT_STATION" xml:space="preserve">
+    <value>Chọn nhà ga</value>
+  </data>
+  <data name="LB_SELECT_STATUS" xml:space="preserve">
+    <value>Chọn trạng thái</value>
+  </data>
+  <data name="LB_SELECT_SUB_FIELD" xml:space="preserve">
+    <value>Chọn ngành nghề</value>
+  </data>
+  <data name="LB_SELECT_TRAIN_LINE" xml:space="preserve">
+    <value>Chọn tuyến tàu</value>
+  </data>
+  <data name="LB_SELECT_TRANSLATE_STATUS" xml:space="preserve">
+    <value>Chọn trạng thái dịch</value>
+  </data>
+  <data name="LB_SELECT_VISA" xml:space="preserve">
+    <value>Chọn visa</value>
+  </data>
+  <data name="LB_SELECT_WORK_PLACE" xml:space="preserve">
+    <value>Chọn nơi làm việc</value>
+  </data>
+  <data name="LB_SELECT_YEAR_STATISTICS" xml:space="preserve">
+    <value>Chọn năm muốn thống kê</value>
+  </data>
+  <data name="LB_SENDER" xml:space="preserve">
+    <value>Người gửi</value>
+  </data>
+  <data name="LB_SEND_EMAIL" xml:space="preserve">
+    <value>Gửi email</value>
+  </data>
+  <data name="LB_SENT_DATE" xml:space="preserve">
+    <value>Ngày gửi</value>
+  </data>
+  <data name="LB_SENT_EMAIL_LIST" xml:space="preserve">
+    <value>Hòm thư</value>
+  </data>
+  <data name="LB_SETTINGS" xml:space="preserve">
+    <value>Cấu hình</value>
+  </data>
+  <data name="LB_SHIPPING_PRICE_EACH_BOX" xml:space="preserve">
+    <value>Giá vận chuyển từng hộp</value>
+  </data>
+  <data name="LB_SHORTAGE" xml:space="preserve">
+    <value>Phần thiếu</value>
+  </data>
+  <data name="LB_SHOW_QUOTE" xml:space="preserve">
+    <value>Xem trích dẫn</value>
+  </data>
+  <data name="LB_SMTP_SERVER" xml:space="preserve">
+    <value>SMTP server</value>
+  </data>
+  <data name="LB_SORT_ORDER" xml:space="preserve">
+    <value>Thứ tự sắp xếp</value>
+  </data>
+  <data name="LB_SPECIALIZE" xml:space="preserve">
+    <value>Chuyên môn</value>
+  </data>
+  <data name="LB_SSL_REQUIRED" xml:space="preserve">
+    <value>Sử dụng bảo mật SSL</value>
+  </data>
+  <data name="LB_STAFF" xml:space="preserve">
+    <value>Nhân viên</value>
+  </data>
+  <data name="LB_STAR" xml:space="preserve">
+    <value>sao</value>
+  </data>
+  <data name="LB_START" xml:space="preserve">
+    <value>Bắt đầu</value>
+  </data>
+  <data name="LB_START_END_TIME_REQUIRED" xml:space="preserve">
+    <value>Vui lòng nhập thời gian bắt đầu và thời gian kết thúc</value>
+  </data>
+  <data name="LB_START_LARGE_END_TIME_ERROR" xml:space="preserve">
+    <value>Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc</value>
+  </data>
+  <data name="LB_START_POSITION" xml:space="preserve">
+    <value>Vị trí bắt đầu</value>
+  </data>
+  <data name="LB_STATISTICS" xml:space="preserve">
+    <value>Thống kê</value>
+  </data>
+  <data name="LB_STATISTICS_APP_IN_WEEK" xml:space="preserve">
+    <value>Thống kê ứng tuyển trong tuần</value>
+  </data>
+  <data name="LB_STATISTICS_BY_YEAR_FORMAT" xml:space="preserve">
+    <value>Thống kê năm {0}</value>
+  </data>
+  <data name="LB_STATISTICS_IN_WEEK" xml:space="preserve">
+    <value>Thống kê trong tuần</value>
+  </data>
+  <data name="LB_STATUS" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="LB_STOCK_OUT" xml:space="preserve">
+    <value>Cần nhập kho</value>
+  </data>
+  <data name="LB_STOCK_QTY" xml:space="preserve">
+    <value>Số lượng trong kho</value>
+  </data>
+  <data name="LB_STOCK_TAKE_QTY" xml:space="preserve">
+    <value>Số lượng kiểm kê</value>
+  </data>
+  <data name="LB_STORAGE_HISTORY_PERIOD_TIME" xml:space="preserve">
+    <value>Thời gian lưu lịch sử (tháng)</value>
+  </data>
+  <data name="LB_STORAGE_HISTORY_PERIOD_TIME_DES" xml:space="preserve">
+    <value>Thời gian lưu giữ lịch sử thao tác của hệ thống (Sẽ xóa sau 'x' tháng)</value>
+  </data>
+  <data name="LB_SUPPORT" xml:space="preserve">
+    <value>Hỗ trợ</value>
+  </data>
+  <data name="LB_SUPPORT_REQUEST_WITH_ADMIN" xml:space="preserve">
+    <value>Chat với quản trị viên</value>
+  </data>
+  <data name="LB_SURROGATE" xml:space="preserve">
+    <value>Người đại diện</value>
+  </data>
+  <data name="LB_SYMBOL" xml:space="preserve">
+    <value>Biểu tượng</value>
+  </data>
+  <data name="LB_SYNC_EMAIL_DATA" xml:space="preserve">
+    <value>Đồng bộ email</value>
+  </data>
+  <data name="LB_SYSTEM_BUSY" xml:space="preserve">
+    <value>Hệ thống đang bận, vui lòng thử lại sau hoặc liên hệ Admin để biết thêm chi tiết.</value>
+  </data>
+  <data name="LB_SYTEM_SETTING" xml:space="preserve">
+    <value>Cấu hình hệ thống</value>
+  </data>
+  <data name="LB_TELL_ADMIN_ABOUTIT" xml:space="preserve">
+    <value>Liên hệ "Admin" để biết thêm chi tiết</value>
+  </data>
+  <data name="LB_TERMS_AND_CONDITIONS" xml:space="preserve">
+    <value>Các điều khoản và điều kiện chung</value>
+  </data>
+  <data name="LB_TERMS_AND_CONDTION_CHECK_FIRST" xml:space="preserve">
+    <value>Bạn hãy chắc chắn mình đã đọc và đồng ý các điều khoản</value>
+  </data>
+  <data name="LB_TEST" xml:space="preserve">
+    <value>Kiểm tra</value>
+  </data>
+  <data name="LB_TEST_DONE" xml:space="preserve">
+    <value>Đã kiểm tra</value>
+  </data>
+  <data name="LB_TEXT" xml:space="preserve">
+    <value>Văn bản</value>
+  </data>
+  <data name="LB_THE_LATEST_HISTORY" xml:space="preserve">
+    <value>Lịch sử mới nhất</value>
+  </data>
+  <data name="LB_THIS_ACCOUNT_ALREADY_ACTIVED" xml:space="preserve">
+    <value>Tài khoản này đã được kích hoạt</value>
+  </data>
+  <data name="LB_TIME_PROCESS" xml:space="preserve">
+    <value>Thời gian tiến độ</value>
+  </data>
+  <data name="LB_TITLE" xml:space="preserve">
+    <value>Tiêu đề</value>
+  </data>
+  <data name="LB_TO" xml:space="preserve">
+    <value>đến</value>
+  </data>
+  <data name="LB_TOTAL" xml:space="preserve">
+    <value>Tổng</value>
+  </data>
+  <data name="LB_TO_DATE" xml:space="preserve">
+    <value>Đến ngày</value>
+  </data>
+  <data name="LB_TRAIN_LINE" xml:space="preserve">
+    <value>Tuyến tàu</value>
+  </data>
+  <data name="LB_TRY_ONE_FOLLOWING" xml:space="preserve">
+    <value>Thử các cách sau</value>
+  </data>
+  <data name="LB_TYPE_USER_SEARCH" xml:space="preserve">
+    <value>Nhập tên, địa chỉ email, số điện thoại</value>
+  </data>
+  <data name="LB_UNIT" xml:space="preserve">
+    <value>Đơn vị</value>
+  </data>
+  <data name="LB_UNIT_MASTER" xml:space="preserve">
+    <value>Danh mục đơn vị</value>
+  </data>
+  <data name="LB_UNIT_SELECT" xml:space="preserve">
+    <value>Đơn vị tính</value>
+  </data>
+  <data name="LB_UNLOCK" xml:space="preserve">
+    <value>Mở khóa</value>
+  </data>
+  <data name="LB_UPDATE_EMAIL_SERVER" xml:space="preserve">
+    <value>Cập nhật cấu hình email server</value>
+  </data>
+  <data name="LB_UPDATE_INFO" xml:space="preserve">
+    <value>Cập nhật thông tin</value>
+  </data>
+  <data name="LB_UPDATE_KEYWORD" xml:space="preserve">
+    <value>Cập nhật thông tin từ khóa tìm kiếm</value>
+  </data>
+  <data name="LB_UPDATE_LANGUAGE" xml:space="preserve">
+    <value>Cập nhật ngôn ngữ</value>
+  </data>
+  <data name="LB_UPDATE_ROLE" xml:space="preserve">
+    <value>Cập nhật nhóm quyền</value>
+  </data>
+  <data name="LB_UPDATE_SUCCESS" xml:space="preserve">
+    <value>Cập nhật thành công</value>
+  </data>
+  <data name="LB_UPLOAD" xml:space="preserve">
+    <value>Tải lên</value>
+  </data>
+  <data name="LB_UPLOAD_COMPANY_LOGO" xml:space="preserve">
+    <value>Tải ảnh công ty</value>
+  </data>
+  <data name="LB_UPLOAD_IMAGE" xml:space="preserve">
+    <value>Tải ảnh</value>
+  </data>
+  <data name="LB_UPLOAD_LOGO" xml:space="preserve">
+    <value>Tải lên logo</value>
+  </data>
+  <data name="LB_USERNAME" xml:space="preserve">
+    <value>Tên đăng nhập</value>
+  </data>
+  <data name="LB_USER_CODE" xml:space="preserve">
+    <value>Mã người dùng</value>
+  </data>
+  <data name="LB_USER_CREATE" xml:space="preserve">
+    <value>Thêm mới người dùng</value>
+  </data>
+  <data name="LB_USER_EDIT" xml:space="preserve">
+    <value>Sửa thông tin người dùng</value>
+  </data>
+  <data name="LB_USER_MANAGE" xml:space="preserve">
+    <value>Quản lý nhân viên</value>
+  </data>
+  <data name="LB_VERIFY_REGISTRATION_EMAIL" xml:space="preserve">
+    <value>Xác thực thông tin đăng ký</value>
+  </data>
+  <data name="LB_VIEW_ASSIGNED_USER" xml:space="preserve">
+    <value>Xem danh sách quản trị viên</value>
+  </data>
+  <data name="LB_VIEW_DETAIL" xml:space="preserve">
+    <value>Xem chi tiết</value>
+  </data>
+  <data name="LB_VIEW_MESSAGE_NOTE" xml:space="preserve">
+    <value>Xem lời nhắn</value>
+  </data>
+  <data name="LB_VIEW_PROFILE" xml:space="preserve">
+    <value>Xem hồ sơ</value>
+  </data>
+  <data name="LB_VISA" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+  <data name="LB_WAREHOUSE_HISTORY" xml:space="preserve">
+    <value>Lịch sử hoạt động kho</value>
+  </data>
+  <data name="LB_WAREHOUSE_MANAGE" xml:space="preserve">
+    <value>Quản lý kho</value>
+  </data>
+  <data name="LB_WAREHOUSE_RECEIPT_HISTORY" xml:space="preserve">
+    <value>Lịch sử nhập kho</value>
+  </data>
+  <data name="LB_WAREHOUSE_STATUS" xml:space="preserve">
+    <value>Trong kho</value>
+  </data>
+  <data name="LB_WARNING_SPAM_REQUEST" xml:space="preserve">
+    <value>Thao tác không hợp lệ, vui lòng không thực hiện spam</value>
+  </data>
+  <data name="LB_WARN_DEL_RELATED" xml:space="preserve">
+    <value>Vui lòng kiểm tra và xóa những dữ liệu liên quan trước khi thực hiện</value>
+  </data>
+  <data name="LB_WEBSITE" xml:space="preserve">
+    <value>Trang web</value>
+  </data>
+  <data name="LB_WEIGHT_OF_PACK_CONTAIER" xml:space="preserve">
+    <value>Trọng lượng mỗi thùng hàng</value>
+  </data>
+  <data name="LB_WOMEN" xml:space="preserve">
+    <value>Nữ</value>
+  </data>
+  <data name="LB_WORKING_ADDRESS" xml:space="preserve">
+    <value>Nơi làm việc</value>
+  </data>
+  <data name="LB_WORKING_EXPERIENCE" xml:space="preserve">
+    <value>Kinh nghiệm làm việc</value>
+  </data>
+  <data name="LB_WORKING_FLUNKED_DATE" xml:space="preserve">
+    <value>Ngày nghỉ việc</value>
+  </data>
+  <data name="LB_WORKING_JOINED_DATE" xml:space="preserve">
+    <value>Từ ngày</value>
+  </data>
+  <data name="LB_WORKING_SCHEDULE" xml:space="preserve">
+    <value>Lịch công việc</value>
+  </data>
+  <data name="LB_WORK_CONTENT" xml:space="preserve">
+    <value>Nội dung công việc</value>
+  </data>
+  <data name="LB_WORK_PLACE" xml:space="preserve">
+    <value>Nơi làm việc</value>
+  </data>
+  <data name="LB_WORK_STATUS" xml:space="preserve">
+    <value>Tình trạng làm việc</value>
+  </data>
+  <data name="LB_YEARS_OLD" xml:space="preserve">
+    <value>tuổi</value>
+  </data>
+  <data name="LB_YEN" xml:space="preserve">
+    <value>Yên</value>
+  </data>
+  <data name="LB_YES" xml:space="preserve">
+    <value>Có</value>
+  </data>
+  <data name="NOTIF_INVITATION_ACCEPT" xml:space="preserve">
+    <value>Chấp nhận lời mời ứng tuyển</value>
+  </data>
+  <data name="NOTIF_INVITATION_REJECT" xml:space="preserve">
+    <value>Từ chối lời mời ứng tuyển</value>
+  </data>
+  <data name="NOTIF_JOB_APPLICATION_CANCEL" xml:space="preserve">
+    <value>Hủy đơn ứng tuyển</value>
+  </data>
+  <data name="NOTIF_JOB_APPLY" xml:space="preserve">
+    <value>Nộp đơn ứng tuyển</value>
+  </data>
+  <data name="NOTIF_JOB_PUBLIC_ACCEPTED" xml:space="preserve">
+    <value>Đơn tuyển đã được duyệt</value>
+  </data>
+  <data name="NOTIF_JOB_PUBLIC_CANCELED" xml:space="preserve">
+    <value>Đơn tuyển đã bị từ chối</value>
+  </data>
+  <data name="SCHEDULE_CAT_GUEST" xml:space="preserve">
+    <value>Gặp khách</value>
+  </data>
+  <data name="SCHEDULE_CAT_MEETING" xml:space="preserve">
+    <value>Họp</value>
+  </data>
+  <data name="SCHEDULE_CAT_OTHERS" xml:space="preserve">
+    <value>Công việc khác</value>
+  </data>
+  <data name="SCHEDULE_CAT_SALES" xml:space="preserve">
+    <value>Bán hàng</value>
+  </data>
+  <data name="SCHEDULE_CONTENT" xml:space="preserve">
+    <value>Nội dung công việc</value>
+  </data>
+  <data name="SUCCESS_ACCOUNT_ACTIVATED" xml:space="preserve">
+    <value>Tài khoản của bạn đã được kích hoạt thành công</value>
+  </data>
+  <data name="WORK_STATUS_RESIGN" xml:space="preserve">
+    <value>Đã nghỉ việc</value>
+  </data>
+  <data name="WORK_STATUS_WORKING" xml:space="preserve">
+    <value>Đang làm việc</value>
+  </data>
+</root>

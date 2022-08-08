@@ -1,0 +1,204 @@
+﻿@using VnCompany.WebApp.Helpers
+@using VnCompany.WebApp.Resources
+@using VnCompany.WebApp.Models
+
+@model VnCompany.WebApp.Models.AccountDetailViewModel
+
+@{
+    ViewBag.Title = ManagerResource.LB_MYPROFILE;
+}
+
+@{
+    await RenderUserInfo();
+}
+
+@functions
+{       private async Task RenderUserInfo()
+    {
+        var user = CommonHelpers.GetCurrentUser();
+        var avatarUrl = string.Empty;
+
+        if (user != null && !string.IsNullOrEmpty(user.Avatar))
+        {
+            avatarUrl = user.Avatar;
+        }
+        else
+        {
+            avatarUrl = "/assets/app/media/img/users/default-avatar.jpg";
+        }
+
+        @Html.Partial("_Notifications")
+        <div class="updateForm-header">
+            <h4>
+                @ManagerResource.LB_MYPROFILE
+            </h4>
+            <p>Thông tin về tên đăng nhập, mật khẩu, ảnh đại diện,...</p>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-tools">
+                            <ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
+                                <li class="nav-item m-tabs__item">
+                                    <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_user_profile_tab_1" role="tab">
+                                        <i class="flaticon-share m--hide"></i>
+                                        @ManagerResource.LB_INFORMATION
+                                    </a>
+                                </li>
+                                <li class="nav-item m-tabs__item">
+                                    <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_2" role="tab">
+                                        @ManagerResource.LB_AVATAR
+                                    </a>
+                                </li>
+                                @*<li class="nav-item m-tabs__item">
+                                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_2" role="tab">
+                                            @ManagerResource.LB_AVATAR
+                                        </a>
+                                    </li>
+                                    <li class="nav-item m-tabs__item">
+                                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_3" role="tab">
+                                            Cấu hình email
+                                        </a>
+                                    </li>*@
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="m_user_profile_tab_1">
+                            <div class="m-form m-form--fit m-form--label-align-right">
+                                <div class="m-portlet__body">
+                                    <div class="row" style="padding:20px !important">
+                                        <div class="col-md-6">
+                                            <table class="full-width">
+                                                <tbody>
+                                                    @*                                                    <tr>
+                                                            <td width="5%">@ManagerResource.LB_FULL_NAME</td>
+                                                            <td><input class="form-control m-input" disabled type="text" value="@Model.FullName" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><br /></td>
+                                                            <td><br /></td>
+                                                        </tr>*@
+                                                    <tr>
+                                                        <td width="5%">@ManagerResource.LB_USERNAME</td>
+                                                        <td><input class="form-control m-input" disabled type="text" value="@Model.UserName" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><br /></td>
+                                                        <td><br /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@ManagerResource.LB_CREATED_DATE</td>
+                                                        <td><input class="form-control m-input" type="text" disabled value="@Model.CreatedDateUtc.ToLocalTime()"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><br /></td>
+                                                        <td><br /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@ManagerResource.LB_ROLES_ASSIGNED</td>
+                                                        <td>
+                                                            @if (Model.RolesList != null && Model.RolesList.Count > 0)
+                                                            {
+                                                                <div class="m-list-badge m-list-badge--light-bg" style="padding:5px">
+                                                                    <div class="m-list-badge__items">
+                                                                        @foreach (var item in Model.RolesList)
+                                                                        {
+                                                                            <span class="m-list-badge__item">
+                                                                                @item
+                                                                            </span>
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><br /></td>
+                                                        <td><br /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a class="btn btn-info m-btn btn-sm" href="@Url.Action("ChangePassword", "MyAccount")"><i class="fa fa-lock"></i> @ManagerResource.LB_CHANGE_PWD</a></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane show" id="m_user_profile_tab_2" role="tabpanel">
+                            <div class="m-form m-form--fit m-form--label-align-right">
+                                <div class="m-portlet__body">
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-12" style="padding:20px">
+                                            <form enctype="multipart/form-data" class="avatar" id="frmChangeAvatar">
+                                                <div class="" style="width:250px; height:250px; float:left">
+                                                    <div class="slim" data-label="写真をドラッグアンドドロップするか、ここをクリックしてください" data-status-no-support="お使いのブラウザは画像のトリミングをサポートしていません"
+                                                         data-label-loading="画像のアップロード..." data-button-edit-label="@ManagerResource.LB_EDIT"
+                                                         data-button-remove-label="@ManagerResource.LB_DELETE"
+                                                         data-button-upload-label="@ManagerResource.LB_UPLOAD"
+                                                         data-button-cancel-label="@ManagerResource.BT_CANCEL"
+                                                         data-button-confirm-label="@ManagerResource.BT_ALLOW"
+                                                         data-button-download-label="ダウンロード" data-max-file-size="50" data-status-file-size="画像が大きすぎます、最大サイズ：$0 MB"
+                                                         data-status-upload-success="アップロードの成功" data-download="true" data-fetcher="" data-size="250,250" data-ratio="1:1">
+
+                                                        <input type="file" name="Base64ImageStr" required id="fileUpload" />
+                                                        @if (!string.IsNullOrEmpty(avatarUrl))
+                                                        {
+                                                            <img src="@avatarUrl" alt="" onerror="this.onerror=null;this.src='/assets/app/media/img/users/default-avatar.jpg';" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="/assets/app/media/img/users/default-avatar.jpg" alt="" />
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div style="float:left; margin-left: 10px;">
+                                                    <input type="hidden" id="ChangingDetected" name="ChangingDetected" />
+                                                    <button type="button" id="btnUpload" class="btn btn-danger btn-sm"><i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+@section PageInlineStyles{
+    <link href="~/Scripts/Plugins/slim/slim.min.css" rel="stylesheet" />
+    <style>
+        .slim-result img {
+            border: 1px solid #ccc;
+        }
+
+        .updateForm-header h4 {
+            text-transform: uppercase;
+            color: #06586e;
+        }
+
+        .updateForm-header p {
+            font-style: italic;
+        }
+    </style>
+}
+
+@section PagePluginScripts{
+    <script src="~/Scripts/Plugins/slim/slim.jquery.min.js"></script>
+    <script src="~/Scripts/Plugins/slim/slim.kickstart.min.js"></script>
+}
+
+@section PageInlineScripts{
+    <script>
+        var _MaxFileSizeUpload = 50000;
+    </script>
+    <script src="~/Scripts/Account/editprofile.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,192 @@
+[23/06/2022 08:03:05 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/06/2022 08:03:05 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/06/2022 08:03:05 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/06/2022 08:03:05 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/06/2022 08:03:05 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[23/06/2022 08:44:07 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/06/2022 08:44:07 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/06/2022 08:44:07 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/06/2022 08:44:07 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/06/2022 08:44:07 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[23/06/2022 08:57:42 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/06/2022 08:57:42 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/06/2022 08:57:42 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/06/2022 08:57:42 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/06/2022 08:57:42 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[23/06/2022 10:01:22 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/06/2022 10:01:22 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/06/2022 10:01:22 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/06/2022 10:01:22 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/06/2022 10:01:22 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[23/06/2022 10:10:35 ERR VnCompany.WebApp.Helpers.CommonHelpers] GetUserById error because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetById. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetById(String id)
+   at VnCompany.DataLayer.Stores.StoreUser.GetById(String id)
+   at VnCompany.WebApp.Helpers.CommonHelpers.GetUserById(String userId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Helpers\Common\CommonHelpers.cs:line 220 
+[23/06/2022 10:10:35 ERR VnCompany.WebApp.Helpers.CommonHelpers] GetUserById error because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetById. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetById(String id)
+   at VnCompany.DataLayer.Stores.StoreUser.GetById(String id)
+   at VnCompany.WebApp.Helpers.CommonHelpers.GetUserById(String userId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Helpers\Common\CommonHelpers.cs:line 220 
+[23/06/2022 10:10:35 ERR VnCompany.WebApp.Helpers.CommonHelpers] GetUserById error because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetById. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetById(String id)
+   at VnCompany.DataLayer.Stores.StoreUser.GetById(String id)
+   at VnCompany.WebApp.Helpers.CommonHelpers.GetUserById(String userId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Helpers\Common\CommonHelpers.cs:line 220 
+[23/06/2022 10:10:41 ERR VnCompany.WebApp.Helpers.CommonHelpers] Could not check permission of user [] because: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VnCompany.WebApp.AccessRoleChecker.OnResultExecuting(ResultExecutingContext context) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Content\AccessRoleChecker.cs:line 60 
+[23/06/2022 10:10:41 ERR VnCompany.WebApp.Helpers.CommonHelpers] GetUserById error because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetById. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetById(String id)
+   at VnCompany.DataLayer.Stores.StoreUser.GetById(String id)
+   at VnCompany.WebApp.Helpers.CommonHelpers.GetUserById(String userId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Helpers\Common\CommonHelpers.cs:line 220 
+[23/06/2022 10:10:41 ERR VnCompany.WebApp.Helpers.CommonHelpers] GetUserById error because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetById. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetById(String id)
+   at VnCompany.DataLayer.Stores.StoreUser.GetById(String id)
+   at VnCompany.WebApp.Helpers.CommonHelpers.GetUserById(String userId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Helpers\Common\CommonHelpers.cs:line 220 
+[23/06/2022 10:10:47 ERR VnCompany.WebApp.Helpers.CommonHelpers] GetUserById error because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetById. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetById(String id)
+   at VnCompany.DataLayer.Stores.StoreUser.GetById(String id)
+   at VnCompany.WebApp.Helpers.CommonHelpers.GetUserById(String userId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Helpers\Common\CommonHelpers.cs:line 220 
+[23/06/2022 10:10:52 ERR VnCompany.WebApp.Helpers.CommonHelpers] GetUserById error because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetById. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetById(String id)
+   at VnCompany.DataLayer.Stores.StoreUser.GetById(String id)
+   at VnCompany.WebApp.Helpers.CommonHelpers.GetUserById(String userId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Helpers\Common\CommonHelpers.cs:line 220 
+[23/06/2022 10:11:01 ERR VnCompany.WebApp.Helpers.CommonHelpers] GetUserById error because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetById. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetById(String id)
+   at VnCompany.DataLayer.Stores.StoreUser.GetById(String id)
+   at VnCompany.WebApp.Helpers.CommonHelpers.GetUserById(String userId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Helpers\Common\CommonHelpers.cs:line 220 
+[23/06/2022 10:11:01 ERR VnCompany.WebApp.Helpers.CommonHelpers] GetUserById error because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetById. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetById(String id)
+   at VnCompany.DataLayer.Stores.StoreUser.GetById(String id)
+   at VnCompany.WebApp.Helpers.CommonHelpers.GetUserById(String userId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Helpers\Common\CommonHelpers.cs:line 220 
+[23/06/2022 10:11:01 ERR VnCompany.WebApp.Helpers.CommonHelpers] GetUserById error because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetById. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetById(String id)
+   at VnCompany.DataLayer.Stores.StoreUser.GetById(String id)
+   at VnCompany.WebApp.Helpers.CommonHelpers.GetUserById(String userId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Helpers\Common\CommonHelpers.cs:line 220 
+[23/06/2022 10:11:55 ERR VnCompany.WebApp.Helpers.CommonHelpers] Could not check permission of user [] because: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VnCompany.WebApp.AccessRoleChecker.OnResultExecuting(ResultExecutingContext context) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Content\AccessRoleChecker.cs:line 60 
+[23/06/2022 10:12:27 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/06/2022 10:12:27 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/06/2022 10:12:27 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/06/2022 10:12:27 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/06/2022 10:12:27 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[23/06/2022 10:14:57 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetByPage. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.StoreUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Index(UserViewModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 68 
+[23/06/2022 10:15:03 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetByPage. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.StoreUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Index(UserViewModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 68 
+[23/06/2022 10:15:04 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetByPage. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.StoreUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Index(UserViewModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 68 
+[23/06/2022 10:15:05 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetByPage. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.StoreUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Index(UserViewModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 68 
+[23/06/2022 10:15:06 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetByPage. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.StoreUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Index(UserViewModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 68 
+[23/06/2022 10:15:06 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetByPage. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.StoreUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Index(UserViewModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 68 
+[23/06/2022 10:15:07 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetByPage. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.StoreUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Index(UserViewModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 68 
+[23/06/2022 10:15:41 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetByPage. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.StoreUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Index(UserViewModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 68 
+[23/06/2022 10:15:42 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetByPage. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.StoreUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Index(UserViewModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 68 
+[23/06/2022 10:16:28 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetByPage. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.StoreUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Index(UserViewModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 68 
+[23/06/2022 10:16:57 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetByPage. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.StoreUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Index(UserViewModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 68 
+[23/06/2022 10:17:18 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute User_GetByPage. Error: RoleId
+   at VnCompany.Datalayer.Repositories.RpsUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.StoreUser.GetByPage(IdentityUser filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Index(UserViewModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 68 
+[23/06/2022 10:24:55 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/06/2022 10:24:56 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/06/2022 10:24:56 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/06/2022 10:24:56 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/06/2022 10:24:56 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[23/06/2022 10:37:14 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display EditUser page because: System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Edit(String id) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 336 
+[23/06/2022 10:37:20 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display EditUser page because: System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Edit(String id) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 336 
+[23/06/2022 10:38:18 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display EditUser page because: System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Edit(String id) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 336 
+[23/06/2022 10:38:59 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display EditUser page because: System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Edit(String id) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 336 
+[23/06/2022 10:40:18 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display EditUser page because: System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Edit(String id) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 336 
+[23/06/2022 10:41:38 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display EditUser page because: System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Edit(String id) 
+[23/06/2022 11:08:24 ERR VnCompany.WebApp.Helpers.CacheProvider] Could not Get because: {0} 
+System.AggregateException: One or more errors occurred. (Timeout awaiting response (outbound=0KiB, inbound=0KiB, 3704ms elapsed, timeout is 1000ms), command=GET, next: GET USER_94E7515B-09B1-4B90-872E-6D544BA4A339, inst: 0, qu: 0, qs: 1, aw: False, rs: DequeueResult, ws: Idle, in: 0, in-pipe: 669, out-pipe: 0, serverEndpoint: localhost:6379, mc: 1/1/0, mgr: 9 of 10 available, clientName: DESKTOP-FH38LD5, IOCP: (Busy=0,Free=1000,Min=8,Max=1000), WORKER: (Busy=3,Free=32764,Min=8,Max=32767), v: 2.2.50.36290 (Please take a look at this article for some common client-side issues that can cause timeouts: https://stackexchange.github.io/StackExchange.Redis/Timeouts))
+ ---> StackExchange.Redis.RedisTimeoutException: Timeout awaiting response (outbound=0KiB, inbound=0KiB, 3704ms elapsed, timeout is 1000ms), command=GET, next: GET USER_94E7515B-09B1-4B90-872E-6D544BA4A339, inst: 0, qu: 0, qs: 1, aw: False, rs: DequeueResult, ws: Idle, in: 0, in-pipe: 669, out-pipe: 0, serverEndpoint: localhost:6379, mc: 1/1/0, mgr: 9 of 10 available, clientName: DESKTOP-FH38LD5, IOCP: (Busy=0,Free=1000,Min=8,Max=1000), WORKER: (Busy=3,Free=32764,Min=8,Max=32767), v: 2.2.50.36290 (Please take a look at this article for some common client-side issues that can cause timeouts: https://stackexchange.github.io/StackExchange.Redis/Timeouts)
+   at StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.GetAsync[T](String key, CommandFlags flag)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VnCompany.WebApp.Helpers.CacheProvider.Get[T](String key)
+[23/06/2022 11:37:45 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/06/2022 11:37:45 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/06/2022 11:37:45 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/06/2022 11:37:45 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/06/2022 11:37:45 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[23/06/2022 15:57:24 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.CompilationFailedException: One or more compilation failures occurred:
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Views\UsersAdmin\Edit.cshtml(93,51): error CS7036: There is no argument given that corresponds to the required formal parameter 'htmlAttributes' of 'IHtmlHelper<EditUserViewModel>.LabelFor<TResult>(Expression<Func<EditUserViewModel, TResult>>, string, object)'
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Views\UsersAdmin\Edit.cshtml(96,51): error CS0411: The type arguments for method 'IHtmlHelper<EditUserViewModel>.PasswordFor<TResult>(Expression<Func<EditUserViewModel, TResult>>, object)' cannot be inferred from the usage. Try specifying the type arguments explicitly.
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Views\UsersAdmin\Edit.cshtml(97,51): error CS7036: There is no argument given that corresponds to the required formal parameter 'tag' of 'IHtmlHelper<EditUserViewModel>.ValidationMessageFor<TResult>(Expression<Func<EditUserViewModel, TResult>>, string, object, string)'
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.CompileAndEmit(RazorCodeDocument codeDocument, String generatedCode)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.CompileAndEmit(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.OnCacheMiss(String normalizedPath)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[23/06/2022 16:55:29 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/06/2022 16:55:29 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/06/2022 16:55:29 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/06/2022 16:55:29 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/06/2022 16:55:29 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 

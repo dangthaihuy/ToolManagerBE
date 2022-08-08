@@ -1,0 +1,24 @@
+﻿@using System.Web;
+
+@{
+    ViewData["Title"] = "Home Page";
+
+    var rq = HttpContext.Current.Request.Query;
+    var ck = HttpContext.Current.Request.Cookies["JZ-VSTK"];
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <h3>RequestId: @ViewBag.RequestId</h3>
+    <h3>Cookie: @ck</h3>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label>Name</label>
+        </div>
+    </div>
+</div>

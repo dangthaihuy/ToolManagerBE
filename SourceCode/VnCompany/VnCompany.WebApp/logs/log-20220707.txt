@@ -1,0 +1,370 @@
+[07/07/2022 08:27:55 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 08:27:55 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 08:27:55 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 08:27:55 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 08:27:55 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 08:34:59 ERR VnCompany.WebApp.Controllers.Business.EmployeeController] Failed for Create Employee request: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Employee_InsertAll. Error: Could not find stored procedure 'Employee_Contact'.
+   at VnCompany.DataLayer.Repositories.Business.RpsEmployee.InsertAll(IdentityEmployee employee, IdentityEmployeeContact contact) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Repositories\Business\RpsEmployee.cs:line 159
+   at VnCompany.DataLayer.Stores.Business.StoreEmployee.InsertAll(IdentityEmployee employee, IdentityEmployeeContact contact) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Stores\Business\StoreEmployee.cs:line 61
+   at VnCompany.WebApp.Controllers.Business.EmployeeController.Create(EmployeeContactUpdateModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\EmployeeController.cs:line 246 
+[07/07/2022 08:39:38 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 08:39:39 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 08:39:39 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 08:39:39 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 08:39:39 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 08:57:40 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 08:57:40 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 08:57:40 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 08:57:40 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 08:57:40 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 09:02:20 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 09:02:20 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 09:02:20 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 09:02:20 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 09:02:20 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 09:06:05 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 09:06:05 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 09:06:05 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 09:06:05 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 09:06:05 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 09:08:21 ERR VnCompany.WebApp.Controllers.Business.EmployeeController] Failed for Create Employee request: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Employee_InsertAll. Error: Could not find stored procedure 'Employee_Contact_Inserts'.
+   at VnCompany.DataLayer.Repositories.Business.RpsEmployee.InsertAll(IdentityEmployee employee, IdentityEmployeeContact contact) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Repositories\Business\RpsEmployee.cs:line 159
+   at VnCompany.DataLayer.Stores.Business.StoreEmployee.InsertAll(IdentityEmployee employee, IdentityEmployeeContact contact) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Stores\Business\StoreEmployee.cs:line 61
+   at VnCompany.WebApp.Controllers.Business.EmployeeController.Create(EmployeeContactUpdateModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\EmployeeController.cs:line 222 
+[07/07/2022 09:12:45 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 09:12:45 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 09:12:45 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 09:12:45 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 09:12:45 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 09:13:12 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 09:13:12 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 09:13:12 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 09:13:12 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 09:13:12 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 09:14:42 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\wwwroot\EmployeeAvatars\150'.
+   at System.IO.FileSystem.DeleteFile(String fullPath)
+   at System.IO.File.Delete(String path)
+   at VnCompany.WebApp.Controllers.Business.EmployeeController.Create(EmployeeContactUpdateModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\EmployeeController.cs:line 236
+   at lambda_method25(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[07/07/2022 09:15:55 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 09:15:55 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 09:15:56 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 09:15:56 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 09:15:56 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 09:17:37 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\wwwroot\EmployeeAvatars\150'.
+   at System.IO.FileSystem.DeleteFile(String fullPath)
+   at System.IO.File.Delete(String path)
+   at VnCompany.WebApp.Controllers.Business.EmployeeController.Create(EmployeeContactUpdateModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\EmployeeController.cs:line 236
+   at lambda_method109(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[07/07/2022 09:18:39 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 09:18:39 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 09:18:39 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 09:18:39 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 09:18:39 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 09:21:18 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+System.UnauthorizedAccessException: Access to the path 'E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\wwwroot\Media\EmployeeAvatars\150' is denied.
+   at System.IO.FileSystem.DeleteFile(String fullPath)
+   at System.IO.File.Delete(String path)
+   at VnCompany.WebApp.Controllers.Business.EmployeeController.Create(EmployeeContactUpdateModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\EmployeeController.cs:line 236
+   at lambda_method131(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[07/07/2022 09:25:31 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'E:\Media\EmployeeAvatars\150'.
+   at System.IO.FileSystem.DeleteFile(String fullPath)
+   at System.IO.File.Delete(String path)
+   at VnCompany.WebApp.Controllers.Business.EmployeeController.Create(EmployeeContactUpdateModel model)
+   at lambda_method131(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[07/07/2022 09:27:02 ERR StackExchange.Redis.Extensions.Core.Implementations.RedisCacheConnectionPoolManager] Redis connection error restored. 
+[07/07/2022 09:27:02 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 09:27:02 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 09:27:02 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 09:27:02 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 09:27:02 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 09:27:54 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'E:\Media\EmployeeAvatars\150'.
+   at System.IO.FileSystem.DeleteFile(String fullPath)
+   at System.IO.File.Delete(String path)
+   at VnCompany.WebApp.Controllers.Business.EmployeeController.Create(EmployeeContactUpdateModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\EmployeeController.cs:line 236
+   at lambda_method135(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[07/07/2022 09:29:02 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 09:29:02 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 09:29:02 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 09:29:02 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 09:29:02 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 09:29:58 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+System.UnauthorizedAccessException: Access to the path 'E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\wwwroot\Media\EmployeeAvatars\150' is denied.
+   at System.IO.FileSystem.DeleteFile(String fullPath)
+   at System.IO.File.Delete(String path)
+   at VnCompany.WebApp.Controllers.Business.EmployeeController.Create(EmployeeContactUpdateModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\EmployeeController.cs:line 236
+   at lambda_method25(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[07/07/2022 09:44:45 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 09:44:45 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 09:44:45 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 09:44:45 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 09:44:45 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 09:54:03 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 09:54:03 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 09:54:03 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 09:54:03 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 09:54:03 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 10:00:41 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 10:00:41 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 10:00:41 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 10:00:41 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 10:00:41 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 10:05:07 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 10:05:07 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 10:05:07 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 10:05:07 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 10:05:07 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 11:11:54 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 11:11:54 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 11:11:54 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 11:11:54 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 11:11:54 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 11:12:28 ERR VnCompany.WebApp.Controllers.Business.EmployeeController] Failed for Create Employee request: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Employee_InsertAll. Error: Could not find stored procedure 'Employee_Contact_Inserts'.
+   at VnCompany.DataLayer.Repositories.Business.RpsEmployee.InsertAll(IdentityEmployee employee, IdentityEmployeeContact contact) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Repositories\Business\RpsEmployee.cs:line 159
+   at VnCompany.DataLayer.Stores.Business.StoreEmployee.InsertAll(IdentityEmployee employee, IdentityEmployeeContact contact) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Stores\Business\StoreEmployee.cs:line 62
+   at VnCompany.WebApp.Controllers.Business.EmployeeController.Create(EmployeeContactUpdateModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\EmployeeController.cs:line 223 
+[07/07/2022 11:27:39 ERR StackExchange.Redis.Extensions.Core.Implementations.RedisCacheConnectionPoolManager] Redis connection error restored. 
+[07/07/2022 11:27:39 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 11:27:39 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 11:27:39 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 11:27:39 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 11:27:39 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 12:19:25 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 12:19:25 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 12:19:25 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 12:19:25 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 12:19:25 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 13:51:47 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 13:51:47 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 13:51:47 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 13:51:47 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 13:51:47 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 13:53:39 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 13:53:39 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 13:53:39 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 13:53:39 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 13:53:39 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 13:56:27 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 13:56:27 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 13:56:27 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 13:56:27 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 13:56:27 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 14:07:01 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 14:07:01 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 14:07:01 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 14:07:01 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 14:07:01 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 14:08:03 ERR VnCompany.WebApp.Controllers.Business.EmployeeController] Could not display Edit page because: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VnCompany.WebApp.Controllers.Business.EmployeeController.Edit(Int32 employeeId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\EmployeeController.cs:line 226 
+[07/07/2022 14:09:38 ERR VnCompany.WebApp.Controllers.Business.EmployeeController] Could not display Edit page because: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VnCompany.WebApp.Controllers.Business.EmployeeController.Edit(Int32 employeeId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\EmployeeController.cs:line 226 
+[07/07/2022 14:23:24 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 14:23:24 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 14:23:24 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 14:23:24 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 14:23:24 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 14:32:29 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 14:32:29 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 14:32:29 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 14:32:29 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 14:32:29 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 16:04:06 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 16:04:06 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 16:04:06 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 16:04:06 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 16:04:06 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 16:06:43 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 16:06:43 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 16:06:43 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 16:06:43 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 16:06:43 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 16:08:01 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 16:08:01 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 16:08:01 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 16:08:01 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 16:08:01 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 16:26:30 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 16:26:30 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 16:26:30 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 16:26:30 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 16:26:30 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 16:35:16 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 16:35:16 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 16:35:16 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 16:35:16 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 16:35:16 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 16:47:31 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 16:47:31 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 16:47:31 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 16:47:31 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 16:47:31 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 16:55:18 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 16:55:18 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 16:55:18 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 16:55:18 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 16:55:18 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 17:00:15 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 17:00:15 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 17:00:15 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 17:00:15 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 17:00:15 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 17:03:56 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 17:03:57 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 17:03:57 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 17:03:57 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 17:03:57 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 17:11:50 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 17:11:50 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 17:11:50 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 17:11:50 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 17:11:50 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 17:17:50 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 17:17:50 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 17:17:50 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 17:17:50 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 17:17:50 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 17:18:58 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 17:18:58 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 17:18:58 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 17:18:58 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 17:18:58 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 17:29:14 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 17:29:14 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 17:29:14 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 17:29:14 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 17:29:14 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 17:45:31 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 17:45:31 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 17:45:31 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 17:45:31 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 17:45:31 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 17:50:32 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 17:50:32 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 17:50:32 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 17:50:32 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 17:50:32 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[07/07/2022 17:58:09 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[07/07/2022 17:58:10 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[07/07/2022 17:58:10 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[07/07/2022 17:58:10 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[07/07/2022 17:58:10 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 

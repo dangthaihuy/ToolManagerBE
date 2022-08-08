@@ -1,0 +1,29 @@
+﻿@using VnCompany.WebApp.Models
+@using VnCompany.WebApp.Resources
+
+@model VnCompany.WebApp.Models.MenuViewModels
+
+<div class="modal-header">
+    <h5 class="modal-title" id="">
+        @ManagerResource.CONFIRM_DELETE
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="Id" value="@Model.Id" />
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-trash"></i> @ManagerResource.LB_YES
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL
+        </button>      
+    </div>
+}

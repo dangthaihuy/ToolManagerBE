@@ -1,0 +1,105 @@
+﻿@using Manager.WebApp.Resources;
+@using Newtonsoft.Json;
+@model Manager.WebApp.Models.WorkFlowViewModel
+
+@{
+    ViewBag.Title = "WorkFlow";
+}
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="row pl30 pr30">
+    <div class="col-lg-12">
+        <div class="m-portlet">
+            <div class="m-portlet__head" style="height: 4rem;">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            Chỉnh sửa work flow
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="data-form-workflow" value="@(JsonConvert.SerializeObject(@Model.ModelWorkFlow.Forms))" />
+            <!--begin::Form-->
+            @using (Html.BeginForm("Edit", "WorkFlow", FormMethod.Post, new { @class = "m-form m-form--fit", role = "form", id = "editWorkFlow" }))
+            {
+                @Html.Partial("Partials/_UpdateForm", Model)
+            }
+        </div>
+    </div></div>
+
+@section PageInlineScripts{
+
+    <script src="~/Scripts/Form/search.js"></script>
+    <script src="~/Scripts/Form/main.js"></script>
+    <script src="~/Scripts/Form/update.js"></script>
+    <script src="~/Content/Plugins/formio/formio.full.min.js"></script>
+    <!-- inline scripts related to this page -->
+    <script type="text/javascript">
+        function moveUpForm(el) {
+            let formId = el.id.replace("btnUp-", "");
+            let index = FormControl.SelectedItems.findIndex(c => c.info.Id == formId);
+            // Swap two element
+            var obj1 = document.getElementById("block" + formId);
+            var obj2 = document.getElementById("block" + FormControl.SelectedItems[index - 1].info.Id);
+            // Swap two element
+            FormControl.SwapArrayElements(FormControl.SelectedItems, index, index - 1);
+
+            FormControl.SwapObj(obj1, obj2);
+        }
+
+        function moveDownForm(el) {
+            let formId = el.id.replace("btnDown-", "");
+            let index = FormControl.SelectedItems.findIndex(c => c.info.Id == formId);
+            // Swap two element
+            var obj1 = document.getElementById("block" + FormControl.SelectedItems[index + 1].info.Id);
+            var obj2 = document.getElementById("block" + formId);
+            // Swap two element
+            FormControl.SwapArrayElements(FormControl.SelectedItems, index, index + 1);
+
+            FormControl.SwapObj(obj1, obj2);
+        }
+
+        function deleteForm(element) {
+            let formIdInWorkFlow = element.id.substring(element.id.indexOf("-") + 1);
+            let idBlock = `block${formIdInWorkFlow}`;
+            var f = document.getElementById(idBlock);
+            f.remove();
+            var index = FormControl.SelectedItems.findIndex(c => c.info.Id == formIdInWorkFlow);
+            FormControl.SelectedItems.splice(index, 1);
+        }
+
+        $("#btnSave").click(function() {
+          let formIdObj = [];
+            let formIds = FormControl.SelectedItems.map(c => c.info.Id);
+            for (let i = 0; i < formIds.length; i++) {
+                let tempData = {
+                    FormId: formIds[i],
+                    SortOrder: i + 1
+                }
+                formIdObj.push(tempData);
+            }
+            $("#workFlowForm").val(JSON.stringify(formIdObj));
+            $("#editWorkFlow").submit();
+        });
+
+        $(function() {
+            let dt = JSON.parse($("#data-form-workflow").val());
+            if (dt && dt.length > 0) {
+                dt.forEach(item => {
+                    let data = {
+                        info: item
+                    }
+                    FormControl.PushItem(data);
+                });
+                FormControl.GenerateHtml();
+            }
+        });
+
+    </script>
+}

@@ -1,0 +1,214 @@
+[14/06/2022 07:57:38 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 07:57:38 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 07:57:38 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 07:57:38 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 07:57:38 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 09:50:55 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 09:50:55 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 09:50:55 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 09:50:55 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 09:50:55 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 14:07:16 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 14:07:16 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 14:07:16 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 14:07:16 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 14:07:16 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 14:21:00 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 14:21:00 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 14:21:00 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 14:21:00 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 14:21:00 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 14:48:02 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 14:48:02 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 14:48:02 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 14:48:02 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 14:48:02 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 14:48:59 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: The partial view '_UpdateForm' was not found. The following locations were searched:
+/Views/Forms/_UpdateForm.cshtml
+/Views/Shared/_UpdateForm.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.RenderPartialCoreAsync(String partialViewName, Object model, ViewDataDictionary viewData, TextWriter writer)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.PartialAsync(String partialViewName, Object model, ViewDataDictionary viewData)
+   at Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.Partial(IHtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   at Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.Partial(IHtmlHelper htmlHelper, String partialViewName, Object model)
+   at AspNetCore.Views_Forms_Edit.ExecuteAsync() in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Views\Forms\Edit.cshtml:line 14
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[14/06/2022 14:54:04 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: The partial view '_UpdateForm' was not found. The following locations were searched:
+/Views/Forms/_UpdateForm.cshtml
+/Views/Shared/_UpdateForm.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.RenderPartialCoreAsync(String partialViewName, Object model, ViewDataDictionary viewData, TextWriter writer)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.PartialAsync(String partialViewName, Object model, ViewDataDictionary viewData)
+   at Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.Partial(IHtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   at Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.Partial(IHtmlHelper htmlHelper, String partialViewName, Object model)
+   at AspNetCore.Views_Forms_Edit.ExecuteAsync() in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Views\Forms\Edit.cshtml:line 14
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[14/06/2022 14:56:13 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 14:56:13 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 14:56:13 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 14:56:13 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 14:56:13 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 15:06:54 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 15:06:54 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 15:06:54 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 15:06:54 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 15:06:54 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 15:36:26 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 15:36:26 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 15:36:26 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 15:36:26 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 15:36:26 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 15:47:30 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 15:47:30 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 15:47:30 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 15:47:30 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 15:47:30 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 16:12:34 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 16:12:34 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 16:12:34 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 16:12:34 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 16:12:34 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 16:27:28 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 16:27:28 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 16:27:28 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 16:27:28 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 16:27:28 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 17:20:15 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 17:20:15 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 17:20:15 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 17:20:15 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 17:20:15 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 17:20:26 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetByPage. Error: Procedure or function 'Form_GetByPage' expects parameter '@Status', which was not supplied.
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Repositories\Business\RpsForm.cs:line 58
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Stores\Business\StoreForm.cs:line 44
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 43 
+[14/06/2022 17:20:48 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetByPage. Error: Procedure or function 'Form_GetByPage' expects parameter '@Status', which was not supplied.
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Repositories\Business\RpsForm.cs:line 58
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Stores\Business\StoreForm.cs:line 44
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 43 
+[14/06/2022 17:22:17 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetByPage. Error: Procedure or function 'Form_GetByPage' expects parameter '@Status', which was not supplied.
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Repositories\Business\RpsForm.cs:line 58
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Stores\Business\StoreForm.cs:line 44
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 43 
+[14/06/2022 17:24:01 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetByPage. Error: Name
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 43 
+[14/06/2022 17:25:49 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetByPage. Error: Name
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 43 
+[14/06/2022 17:27:10 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetByPage. Error: Name
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 43 
+[14/06/2022 17:28:03 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetByPage. Error: Name
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 43 
+[14/06/2022 17:29:58 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetByPage. Error: Name
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 43 
+[14/06/2022 17:31:20 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetByPage. Error: Name
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 43 
+[14/06/2022 17:33:17 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetByPage. Error: Name
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 43 
+[14/06/2022 17:35:04 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetByPage. Error: Code
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 43 
+[14/06/2022 17:37:18 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetByPage. Error: Name
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetByPage(IdentityForm filter, Int32 currentPage, Int32 pageSize)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 43 
+[14/06/2022 17:37:25 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+   at System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 49 
+[14/06/2022 17:38:51 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+   at System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 49 
+[14/06/2022 17:41:05 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+   at System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 49 
+[14/06/2022 17:41:11 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetById. Error: TotalCount
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetById(Int32 id)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetById(Int32 id)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 51 
+[14/06/2022 17:41:27 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetById. Error: TotalCount
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetById(Int32 id)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetById(Int32 id)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 51 
+[14/06/2022 17:41:29 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetById. Error: TotalCount
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetById(Int32 id)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetById(Int32 id)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 51 
+[14/06/2022 17:41:29 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not display UserAdmin page because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetById. Error: TotalCount
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetById(Int32 id)
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetById(Int32 id)
+   at VnCompany.WebApp.Controllers.Business.FormsController.Index(FormManageModel model) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 51 
+[14/06/2022 17:44:44 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[14/06/2022 17:44:44 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[14/06/2022 17:44:44 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[14/06/2022 17:44:44 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[14/06/2022 17:44:44 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[14/06/2022 17:49:15 ERR VnCompany.WebApp.Controllers.UsersAdminController] Failed for Edit Form request: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetById. Error: TotalCount
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetById(Int32 id) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Repositories\Business\RpsForm.cs:line 249
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetById(Int32 id) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Stores\Business\StoreForm.cs:line 39
+   at VnCompany.WebApp.Controllers.Business.FormsController.Edit(Int32 id) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 113 
+[14/06/2022 17:50:03 ERR VnCompany.WebApp.Controllers.UsersAdminController] Failed for Edit Form request: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Form_GetById. Error: TotalCount
+   at VnCompany.DataLayer.Repositories.Business.RpsForm.GetById(Int32 id) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Repositories\Business\RpsForm.cs:line 249
+   at VnCompany.DataLayer.Stores.Business.StoreForm.GetById(Int32 id) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Stores\Business\StoreForm.cs:line 39
+   at VnCompany.WebApp.Controllers.Business.FormsController.Edit(Int32 id) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\Business\FormsController.cs:line 113 

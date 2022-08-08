@@ -1,0 +1,29 @@
+﻿@using VnCompany.WebApp.Resources
+@using VnCompany.WebApp.Models
+
+@model VnCompany.WebApp.Models.RoleViewModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLongTitle">
+        @ManagerResource.CONFIRM_DELETE
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-info btn-sm">
+            <i class="fa fa-trash"></i> @ManagerResource.LB_YES
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL
+        </button>       
+    </div>
+}

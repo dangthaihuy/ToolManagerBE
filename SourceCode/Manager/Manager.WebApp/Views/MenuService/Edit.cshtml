@@ -1,0 +1,94 @@
+﻿@using Manager.WebApp.Resources;
+@using Newtonsoft.Json;
+@model Manager.WebApp.Models.MenuServiceCreateOrUpdateViewModel
+
+@{
+    ViewBag.Title = "Menu Service";
+}
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_DefaultModal")
+
+<div class="row pl30 pr30">
+    <div class="col-lg-12">
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            Chỉnh sửa Menu Service
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="data-workflow" value="@(JsonConvert.SerializeObject(@Model.WorkFlows))" />
+            <!--begin::Form-->
+            @using (Html.BeginForm("Edit", "MenuService", FormMethod.Post, new { @class = "m-form m-form--fit", role = "form", id = "editMenuService" }))
+            {
+                @Html.Partial("Partials/_UpdateForm", Model)
+            }
+        </div>
+    </div>
+</div>
+@section PageInlineScripts{
+    <script src="~/Scripts/Workflow/search.js"></script>
+    <script src="~/Scripts/Workflow/main.js"></script>
+    <script src="~/Scripts/Workflow/update.js"></script>
+    <script src="~/Content/Plugins/formio/formio.full.min.js"></script>
+    <script type="text/javascript">
+
+        function changeWorkflow(el) {
+            let workflowId = el.id.replace("detail_", "");
+
+            var workflow = WorkflowControl.SelectedItems.find(c => c.info.Id == workflowId);
+            setTimeout(function() {
+                WorkflowControl.ClearHtml();
+
+                for (let i = 0; i < workflow.info.Forms.length; i++) {
+                    WorkflowControl.GenerateHtmlWorkflowDetail(workflow.info.Forms[i], "formio_id")
+                }
+            }, 100);
+
+            $(".m-wizard__step").each(function() {
+                var ct = $(this);
+                ct.removeClass("m-wizard__step--current")
+            });
+            $("#step_" + workflowId).addClass("m-wizard__step--current");
+        }
+        $("#btnSave").on("click", function() {
+            debugger
+            let workFlowIds = WorkflowControl.SelectedItems.map(c => c.info.Id);
+            let arr = [];
+            for (let i = 0; i < workFlowIds.length; i++) {
+                let menuWorkflow = {
+                    WorkFlowId: workFlowIds[i],
+                    SortOrder: i
+                }
+                arr.push(menuWorkflow);
+            }
+            $("#workflows").val(JSON.stringify(arr));
+            $("#editMenuService").submit();
+        });
+
+        $(function() {
+            let dt = JSON.parse($("#data-workflow").val());
+            if (dt && dt.length > 0) {
+                dt.forEach(item => {
+                    let data = {
+                        info: item
+                    }
+                    WorkflowControl.PushItem(data);
+                });
+                WorkflowControl.GenerateHtmlStep();
+                if (WorkflowControl.SelectedItems[0].Forms && WorkflowControl.SelectedItems[0].Forms.length > 0) {
+                    WorkflowControl.SelectedItems[0].Forms.each(item => {
+                        WorkflowControl.GenerateHtmlWorkflowDetail(item.info, "formio_id");
+                    });
+                }
+            }
+        });
+    </script>
+}

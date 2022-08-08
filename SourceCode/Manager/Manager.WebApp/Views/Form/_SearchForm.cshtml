@@ -1,0 +1,62 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.FormViewModel
+
+
+<form action="/Form" method="get" class="m-form m-form--fit">
+    @Html.HiddenFor(m => m.SearchExec)
+
+    <div class="m-portlet__body">
+        <div class="form-group row">
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control form-control-sm m-input", placeholder = ManagerResource.LB_KEYWORD_SEARCH })
+            </div>
+            <div class="col-md-6">
+                <select class="form-control form-control-sm selectpicker" id="@Html.IdFor(m=>m.SearchStatus)" name="@Html.NameFor(m=>m.SearchStatus)">
+                    @if (Model.SearchStatus == -1)
+                    {
+                        <option value="-1" selected>
+                            @ManagerResource.LB_ALL
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="-1">
+                            @ManagerResource.LB_ALL
+                        </option>
+                    }
+                    @if (Model.SearchStatus == 1)
+                    {
+                        <option value="1" selected>
+                            @ManagerResource.LB_ACTIVATED
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="1">
+                            @ManagerResource.LB_ACTIVATED
+                        </option>
+                    }
+                    @if (Model.SearchStatus == 0)
+                    {
+                        <option value="0" selected>
+                            @ManagerResource.LB_LOCKED
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="0">
+                            @ManagerResource.LB_LOCKED
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-info btn-sm">
+                    <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

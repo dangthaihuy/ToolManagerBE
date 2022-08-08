@@ -1,0 +1,48 @@
+﻿@using VnCompany.WebApp.Resources
+@using VnCompany.SharedLibs;
+@using VnCompany.WebApp.Helpers 
+@model VnCompany.WebApp.Models.UserViewModel
+@{
+    var currentLang = CommonHelpers.GetCurrentLanguageOrDefault();
+}
+<input type="hidden" class="title-search" value="" />
+<div class="form-group m-form__group row">
+    <div class="col-md-6">
+        <select class="form-control selectpicker-search" title="@ManagerResource.LB_SELECT_ROLE" data-live-search="true" name="RoleId" size="8">
+            @if (Model.RoleList != null && Model.RoleList.ToList().Count > 0)
+            {
+                <option value="">@ManagerResource.LB_SELECT_ROLE</option>
+                foreach (var role in Model.RoleList)
+                {
+                    if (Model.RoleId != role.Value)
+                    {
+                        <option value="@role.Value">@role.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@role.Value" selected>@role.Text</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+    <div class="col-md-6">
+        <div class="m-checkbox-inline">
+            <label class="m-checkbox">
+                <input name="@Html.NameFor(m => m.IsLocked)" @((Model.IsLocked == 1) ? "checked" : null) value="1" type="checkbox">
+                @ManagerResource.LB_IS_LOCKED
+                <span></span>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-info float-right btn-sm">
+            <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+        </button>
+        <button type="button" class="btn btn-warning float-left btn-sm mr-3 reset-btn">
+            <i class="fa fa-eraser"></i> @ManagerResource.BT_CLEAR
+        </button>
+    </div>
+</div>

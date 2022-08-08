@@ -1,0 +1,42 @@
+[18/06/2022 08:01:37 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[18/06/2022 08:01:37 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[18/06/2022 08:01:37 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[18/06/2022 08:01:37 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[18/06/2022 08:01:37 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[18/06/2022 08:12:15 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[18/06/2022 08:12:15 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[18/06/2022 08:12:15 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[18/06/2022 08:12:15 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[18/06/2022 08:12:15 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[18/06/2022 10:56:35 ERR StackExchange.Redis.Extensions.Core.Implementations.RedisCacheConnectionPoolManager] Redis connection error restored. 
+[18/06/2022 10:56:35 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[18/06/2022 10:56:35 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[18/06/2022 10:56:35 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[18/06/2022 10:56:35 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[18/06/2022 10:56:35 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[18/06/2022 10:57:38 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not Update User info because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Role_UpdateRoleofUser. Error: Procedure or function 'Role_UpdateRoleofUser' expects parameter '@UserId', which was not supplied.
+   at VnCompany.Datalayer.Repositories.RpsUser.UpdateRoleofUser(String userId, String roleId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Repositories\System\RpsUser.cs:line 733
+   at VnCompany.DataLayer.Stores.StoreUser.UpdateRoleofUser(String userId, String roleId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Stores\System\StoreUser.cs:line 134
+   at VnCompany.WebApp.Controllers.UsersAdminController.Edit(EditUserViewModel editUser, String[] selectedRole) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 450 
+[18/06/2022 10:58:08 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not Update User info because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Role_UpdateRoleofUser. Error: Procedure or function 'Role_UpdateRoleofUser' expects parameter '@UserId', which was not supplied.
+   at VnCompany.Datalayer.Repositories.RpsUser.UpdateRoleofUser(String userId, String roleId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Repositories\System\RpsUser.cs:line 733
+   at VnCompany.DataLayer.Stores.StoreUser.UpdateRoleofUser(String userId, String roleId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Stores\System\StoreUser.cs:line 134
+   at VnCompany.WebApp.Controllers.UsersAdminController.Edit(EditUserViewModel editUser, String[] selectedRole) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 450 
+[18/06/2022 10:58:32 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not Update User info because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Role_UpdateRoleofUser. Error: Procedure or function 'Role_UpdateRoleofUser' expects parameter '@UserId', which was not supplied.
+   at VnCompany.Datalayer.Repositories.RpsUser.UpdateRoleofUser(String userId, String roleId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Repositories\System\RpsUser.cs:line 733
+   at VnCompany.DataLayer.Stores.StoreUser.UpdateRoleofUser(String userId, String roleId) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.Datalayer\Stores\System\StoreUser.cs:line 134
+   at VnCompany.WebApp.Controllers.UsersAdminController.Edit(EditUserViewModel editUser, String[] selectedRole) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 450 
+[18/06/2022 11:00:44 ERR VnCompany.WebApp.Controllers.UsersAdminController] Could not Update User info because: VnCompany.SharedLibs.Extensions.CustomSQLException: Failed to execute Role_UpdateRoleofUser. Error: Procedure or function 'Role_UpdateRoleofUser' expects parameter '@UserId', which was not supplied.
+   at VnCompany.Datalayer.Repositories.RpsUser.UpdateRoleofUser(String userId, String roleId)
+   at VnCompany.DataLayer.Stores.StoreUser.UpdateRoleofUser(String userId, String roleId)
+   at VnCompany.WebApp.Controllers.UsersAdminController.Edit(EditUserViewModel editUser, String[] selectedRole) in E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp\Controllers\System\UsersAdminController.cs:line 450 
+[18/06/2022 15:03:31 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[18/06/2022 15:03:31 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[18/06/2022 15:03:31 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[18/06/2022 15:03:31 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[18/06/2022 15:03:31 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 
+[18/06/2022 16:06:38 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[18/06/2022 16:06:38 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[18/06/2022 16:06:38 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[18/06/2022 16:06:38 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[18/06/2022 16:06:38 INF Microsoft.Hosting.Lifetime] Content root path: E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.WebApp 

@@ -1,0 +1,59 @@
+﻿@using VnCompany.DataLayer
+@using VnCompany.SharedLibs
+@using VnCompany.WebApp.Helpers
+
+@{
+    var allMenus = MenuHelper.GetAdminMenus();
+    IdentityMenu currentMenu = null;
+    List<IdentityMenu> menuParentsList = null;
+
+    var ctrlName = ViewContext.RouteData.Values["controller"].ToString();
+    var actName = ViewContext.RouteData.Values["action"].ToString();
+    if (allMenus.HasData())
+    {
+        currentMenu = allMenus.Where(m => string.Equals(m.Action, actName, StringComparison.CurrentCultureIgnoreCase)
+                     && (string.Equals(m.Controller, ctrlName, StringComparison.CurrentCultureIgnoreCase))).FirstOrDefault();
+
+        if (currentMenu != null)
+        {
+            menuParentsList = allMenus.Where(x => x.Id == currentMenu.ParentId).ToList();
+        }
+    }
+}
+
+
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            @if (currentMenu != null)
+            {
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    @currentMenu.CurrentTitleLang
+                </h3>
+            }
+
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                @if (menuParentsList.HasData())
+                {
+                    foreach (var pmi in menuParentsList)
+                    {
+
+                        var currentAct = !string.IsNullOrEmpty(pmi.Action) && !string.IsNullOrEmpty(pmi.Controller);
+
+                        var itemUrl = currentAct ?
+                                      Url.Action(pmi.Action, pmi.Controller) : "javascript:;";
+                        <li class="m-nav__item">
+                            <a href="@itemUrl" class="m-nav__link" style="@(!currentAct ? "cursor:default;" : "")">
+                                <span class="m-nav__link-text">
+                                    @pmi.CurrentTitleLang
+                                </span>
+                            </a>
+                        </li>
+
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+

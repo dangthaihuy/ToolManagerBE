@@ -1,0 +1,12 @@
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.SharedLibs\bin\Debug\net5.0\VnCompany.SharedLibs.deps.json
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.SharedLibs\bin\Debug\net5.0\VnCompany.SharedLibs.dll
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.SharedLibs\bin\Debug\net5.0\ref\VnCompany.SharedLibs.dll
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.SharedLibs\bin\Debug\net5.0\VnCompany.SharedLibs.pdb
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.SharedLibs\obj\Debug\net5.0\VnCompany.SharedLibs.csproj.AssemblyReference.cache
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.SharedLibs\obj\Debug\net5.0\VnCompany.SharedLibs.GeneratedMSBuildEditorConfig.editorconfig
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.SharedLibs\obj\Debug\net5.0\VnCompany.SharedLibs.AssemblyInfoInputs.cache
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.SharedLibs\obj\Debug\net5.0\VnCompany.SharedLibs.AssemblyInfo.cs
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.SharedLibs\obj\Debug\net5.0\VnCompany.SharedLibs.csproj.CoreCompileInputs.cache
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.SharedLibs\obj\Debug\net5.0\VnCompany.SharedLibs.dll
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.SharedLibs\obj\Debug\net5.0\ref\VnCompany.SharedLibs.dll
+E:\MyJobs\sensei\SourceCode\VnCompany\VnCompany.SharedLibs\obj\Debug\net5.0\VnCompany.SharedLibs.pdb
