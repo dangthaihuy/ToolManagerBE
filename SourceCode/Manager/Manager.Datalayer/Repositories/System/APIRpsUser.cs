@@ -1,6 +1,5 @@
 ﻿
 using Manager.DataLayer.Entities;
-using Manager.DataLayer.Helpers;
 using Manager.SharedLibs;
 using Manager.SharedLibs.Extensions;
 using Microsoft.Extensions.Options;
@@ -20,7 +19,6 @@ namespace Manager.DataLayer.Repositories.System
     public class APIRpsUser
     {
         private readonly string _conStr;
-        private readonly AppSettings _appSettings;
 
         public APIRpsUser(string connectionString)
         {
@@ -33,23 +31,14 @@ namespace Manager.DataLayer.Repositories.System
             
         }
 
-        public APIRpsUser(IOptions<AppSettings> appSettings)
-        {
-            _appSettings = appSettings.Value;
-        }
+       
 
-
-        private List<IdentityUser> _users = new List<IdentityUser>
-        {
-            new IdentityUser { Id = "1", UserName = "test", PasswordHash = "test" }
-        };
 
         
 
-        public IEnumerable<IdentityUser> GetAll()
-        {
-            return _users;
-        }
+        
+
+        
 
 
 
@@ -148,9 +137,43 @@ namespace Manager.DataLayer.Repositories.System
             return listData;
         }
 
-        public IdentityUser GetById(int id)
+        public IdentityUser GetById(string Id)
         {
-            return _users.FirstOrDefault(x => x.Id == Convert.ToString(id));
+            int id = Utils.ConvertToInt32(Id);
+            var info = new IdentityUser();
+
+            if (id <= 0)
+            {
+                return info;
+            }
+
+            var sqlCmd = @"APIUser_GetById";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", id}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            info = ExtractUserData(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return info;
+
         }
 
 
@@ -172,21 +195,7 @@ namespace Manager.DataLayer.Repositories.System
         }
 
 
-        private string generateJwtToken(IdentityUser user)
-        {
-            // generate token that is valid for 7 days
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
-        }
-
+        
 
     }
 }

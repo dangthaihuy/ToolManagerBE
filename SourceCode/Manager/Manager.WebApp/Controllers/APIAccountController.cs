@@ -93,7 +93,10 @@ namespace Manager.WebApp.Controllers
             try
             {
                 var data = storeUser.GetList();
-                return Ok(new { success = true, data = data });
+                if(data != null)
+                {
+                    return Ok(new { success = true, data = data });
+                }
                 
             }
             catch (Exception ex)
@@ -101,6 +104,29 @@ namespace Manager.WebApp.Controllers
                 _logger.LogDebug("Could not login: " + ex.ToString());
             }
 
+            return BadRequest(new { error = new { message = "Not found" } });
+        }
+
+        [HttpGet]
+        [Route("getuser")]
+        public async Task<IActionResult> GetById(string id)
+        {
+            if(id == null)
+            {
+                return BadRequest(new { error = new { message = "Not found" } });
+            }
+            try
+            {
+                var data = storeUser.GetById(id);
+                if(data != null)
+                {
+                    return Ok(new { success = true, data = data });
+                }
+            }
+            catch(Exception ex)
+            {
+                _logger.LogDebug("Could not login: " + ex.ToString());
+            }
             return BadRequest(new { error = new { message = "Not found" } });
         }
 
@@ -122,7 +148,7 @@ namespace Manager.WebApp.Controllers
                 AppConfiguration.GetAppsetting("Jwt:Issuer"),
                 AppConfiguration.GetAppsetting("Jwt:Audience"),
                 claims,
-                expires: DateTime.UtcNow.AddMinutes(10),
+                expires: DateTime.UtcNow.AddMinutes(60),
                 signingCredentials: signIn);
 
             var tokenInstring = new JwtSecurityTokenHandler().WriteToken(token);
