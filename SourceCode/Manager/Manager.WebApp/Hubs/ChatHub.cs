@@ -55,5 +55,12 @@ namespace Manager.WebApp.Hubs
             var users = _connections.Values.Where(c => c.Room == room).Select(c => c.User);
             return Clients.Group(room).SendAsync("UsersInRoom", users);
         }
+
+        [HubMethodName("SendMessageToUser")]
+        public Task DirectMessage(UserConnection userConnection, string message)
+        {
+
+            return Clients.User(userConnection.User).SendAsync("ReceiveMessage", userConnection.User, message);
+        }
     }
 }

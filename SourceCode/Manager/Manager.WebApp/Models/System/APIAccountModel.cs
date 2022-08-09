@@ -1,9 +1,10 @@
-﻿using Manager.WebApp.Resources;
+﻿using Manager.DataLayer.Entities;
+using Manager.WebApp.Resources;
 using System.ComponentModel.DataAnnotations;
 
 namespace Manager.WebApp.Models.System
 {
-    public class APILoginViewModel
+    public class ApiAccountModel
     {
         [Required]
         public string UserName { get; set; }
@@ -18,9 +19,16 @@ namespace Manager.WebApp.Models.System
         public string PhoneNumber { get; set; }
 
         
-        public string Email { get; set; }
-
+        public string Email { get; set; }        
 
     }
 
+    public class ApiLoginModel
+    {
+        [Required]
+        public string UserName { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+    }
 }

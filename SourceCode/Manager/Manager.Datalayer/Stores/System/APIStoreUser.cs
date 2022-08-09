@@ -1,4 +1,5 @@
 ﻿
+
 using Manager.DataLayer.Entities;
 using Manager.DataLayer.Repositories.System;
 using Manager.SharedLibs;
@@ -16,6 +17,8 @@ namespace Manager.DataLayer.Stores.System
         IdentityUser Login(IdentityUser identity);
 
         List<IdentityUser> GetList();
+
+        IdentityUser GetById(int id);
 
     }
     public class APIStoreUser : IAPIStoreUser
@@ -47,6 +50,11 @@ namespace Manager.DataLayer.Stores.System
         public List<IdentityUser> GetList()
         {
             return m.GetList();
+        }
+
+        public IdentityUser GetById(int id)
+        {
+            return m.GetById(id);
         }
     }
 }
