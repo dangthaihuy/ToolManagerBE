@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,24 +31,25 @@ namespace Manager.WebApp.Controllers
 
         }
 
-        //[HttpPost]
-        //[Route("register")]
-        //public async Task<IActionResult> Register(APILoginViewModel model)
-        //{
-        //    if (storeUser.GetList().Any(user => user.UserName == model.UserName))
-        //    {
-        //        return Json(new { success = false, message = "Username " + model.UserName + " is already taken" });
-        //    }
+        [HttpPost]
+        [Route("register")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Register(ApiRegisterModel model)
+        {
+            if (storeUser.GetList().Any(user => user.Email == model.Email))
+            {
+                return Json(new { success = false, message = "Username " + model.Email + " is already taken" });
+            }
 
-        //    var newUser = model.MappingObject<IdentityUser>();
+            var newUser = model.MappingObject<IdentityUser>();
 
-        //    newUser.PasswordHash = Utility.Md5HashingData(model.Password);
+            newUser.PasswordHash = Helpers.Utility.Md5HashingData(model.Password);
 
-        //    var res = storeUser.Register(newUser);
+            var res = storeUser.Register(newUser);
 
-        //    return Json(new { success = true });
+            return Json(new { success = true });
 
-        //}
+        }
 
 
 
@@ -59,13 +61,13 @@ namespace Manager.WebApp.Controllers
         {
             try
             {
-                model.UserName = model.UserName.ToStringNormally();
+                model.Email = model.Email.ToStringNormally();
 
                 var pwd = model.Password.ToStringNormally();
-                pwd = Manager.WebApp.Helpers.Utility.Md5HashingData(pwd);
+                pwd = Helpers.Utility.Md5HashingData(pwd);
 
 
-                var user = storeUser.Login(new IdentityUser { UserName = model.UserName, PasswordHash = pwd });
+                var user = storeUser.Login(new IdentityUser { Email = model.Email, PasswordHash = pwd });
 
                 if (user != null)
                 {
@@ -85,23 +87,14 @@ namespace Manager.WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("detail")]
-        public async Task<IActionResult> Detail(string id)
+        [Route("getlist")]
+        public async Task<IActionResult> GetList()
         {
             try
             {
-                if(id == "245983405")
-                {
-                    var user = new IdentityUser
-                    {
-                        Id = "245983405",
-                        UserName = "admin",
-                        Email = "bangkhmt3@gmail.com",
-                        FullName = "Vũ Lương Bằng"
-                    };
-
-                    return Ok(new { success = true, data = user });
-                }
+                var data = storeUser.GetList();
+                return Ok(new { success = true, data = data });
+                
             }
             catch (Exception ex)
             {
@@ -120,7 +113,6 @@ namespace Manager.WebApp.Controllers
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                         new Claim("UserId", user.Id.ToString()),
                         new Claim("FullName", user.FullName),
-                        new Claim("UserName", user.UserName),
                         new Claim("Email", user.Email)
                     };
 

@@ -60,13 +60,12 @@ namespace Manager.DataLayer.Repositories.System
 
             //For parameters
             var parameters = new Dictionary<string, object>
-            {
-                {"@UserName", identity.UserName },
+            {   
+                {"@Email", identity.Email },
                 {"@PasswordHash", identity.PasswordHash },
                 {"@FullName", identity.FullName },
 
-                {"@PhoneNumber", identity.PhoneNumber },
-                {"@Email", identity.Email }
+                
             };
 
             try
@@ -94,7 +93,7 @@ namespace Manager.DataLayer.Repositories.System
 
             var parameters = new Dictionary<string, object>
             {
-                {"@UserName", identity.UserName},
+                {"@Email", identity.Email},
                 {"@Password", identity.PasswordHash}
             };
 
@@ -165,10 +164,8 @@ namespace Manager.DataLayer.Repositories.System
                 record.TotalCount = Utils.ConvertToInt32(reader["TotalCount"]);
 
             record.Id = reader["Id"].ToString();
-            record.UserName = reader["UserName"].ToString();
             record.Email = reader["Email"].ToString();
             record.FullName = reader["FullName"].ToString();
-            record.PhoneNumber = reader["PhoneNumber"].ToString();
 
             
             return record;
