@@ -56,11 +56,15 @@ namespace Manager.WebApp.Hubs
             return Clients.Group(room).SendAsync("UsersInRoom", users);
         }
 
+
+        // Chat one to one
         [HubMethodName("SendMessageToUser")]
-        public Task DirectMessage(UserConnection userConnection, string message)
+        public Task DirectMessage(UserConnection userConnection,string receiverConnectionId ,string message)
         {
 
-            return Clients.User(userConnection.User).SendAsync("ReceiveMessage", userConnection.User, message);
+            return Clients.Client(userConnection.User).SendAsync("ReceiveMessage", userConnection.User, message);
         }
+
+        public string GetConnectionId() => Context.ConnectionId;
     }
 }
