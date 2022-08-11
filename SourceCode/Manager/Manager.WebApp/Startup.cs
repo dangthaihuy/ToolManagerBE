@@ -43,6 +43,7 @@ namespace Manager.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR();
+            services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
 
             services.AddCors(options =>
             {
@@ -56,6 +57,7 @@ namespace Manager.WebApp
             });
 
             services.AddSingleton<IDictionary<string, UserConnection>>(opts => new Dictionary<string, UserConnection>());
+            
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();
@@ -123,6 +125,14 @@ namespace Manager.WebApp
             {
                 app.UseExceptionHandler("/Home/Index");
             }
+
+
+            var idProvider = new CustomUserIdProvider();
+
+            Microsoft.AspNet.SignalR.GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => idProvider);
+
+            
+
 
             app.UseStaticFiles();
 

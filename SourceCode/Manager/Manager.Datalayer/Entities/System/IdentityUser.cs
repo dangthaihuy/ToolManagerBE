@@ -78,6 +78,8 @@ namespace Manager.DataLayer.Entities
         public string Email { get; set; }
         public string Avatar { get; set; }
         public string Fullname { get; set; }
+
+        
     }
 
     public class IdentityInformationUser
