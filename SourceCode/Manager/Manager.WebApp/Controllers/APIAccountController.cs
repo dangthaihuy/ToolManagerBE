@@ -41,13 +41,13 @@ namespace Manager.WebApp.Controllers
                 return Json(new { success = false, message = "Username " + model.Email + " is already taken" });
             }
 
-            var newUser = model.MappingObject<IdentityUser>();
+            var newUser = model.MappingObject<IdentityInformationUser>();
 
             newUser.PasswordHash = Helpers.Utility.Md5HashingData(model.Password);
 
             var res = storeUser.Register(newUser);
 
-            return Json(new { success = true });
+            return Ok();
 
         }
 
@@ -67,14 +67,14 @@ namespace Manager.WebApp.Controllers
                 pwd = Helpers.Utility.Md5HashingData(pwd);
 
 
-                var user = storeUser.Login(new IdentityUser { Email = model.Email, PasswordHash = pwd });
+                var user = storeUser.Login(new IdentityInformationUser { Email = model.Email, PasswordHash = pwd });
 
                 if (user != null)
                 {
                     var tokenStr = AssignJWTToken(user);
 
 
-                    return Ok(new { success = true, id = user.Id, token = tokenStr });
+                    return Ok(new { id = user.Id, token = tokenStr });
                 }
 
             }
@@ -86,7 +86,7 @@ namespace Manager.WebApp.Controllers
             return BadRequest(new { error = new { message = "Login fail" } });
         }
 
-        [HttpGet]
+        /*[HttpGet]
         [Route("getlist")]
         public async Task<IActionResult> GetList()
         {
@@ -105,10 +105,10 @@ namespace Manager.WebApp.Controllers
             }
 
             return BadRequest(new { error = new { message = "Not found" } });
-        }
+        }*/
 
         [HttpGet]
-        [Route("getuser")]
+        [Route("getcurrentuser")]
         public async Task<IActionResult> GetById(string id)
         {
             if(id == null)
@@ -120,7 +120,7 @@ namespace Manager.WebApp.Controllers
                 var data = storeUser.GetById(id);
                 if(data != null)
                 {
-                    return Ok(new { success = true, data = data });
+                    return Ok(data);
                 }
             }
             catch(Exception ex)
@@ -130,7 +130,7 @@ namespace Manager.WebApp.Controllers
             return BadRequest(new { error = new { message = "Not found" } });
         }
 
-        private string AssignJWTToken(IdentityUser user)
+        private string AssignJWTToken(IdentityInformationUser user)
         {
             //create claims details based on the user information
             var claims = new[] {
@@ -138,7 +138,7 @@ namespace Manager.WebApp.Controllers
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                         new Claim("UserId", user.Id.ToString()),
-                        new Claim("FullName", user.FullName),
+                        new Claim("Fullname", user.Fullname),
                         new Claim("Email", user.Email)
                     };
 

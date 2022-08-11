@@ -13,12 +13,12 @@ namespace Manager.DataLayer.Stores.System
 {
     public interface IAPIStoreUser
     {
-        int Register(IdentityUser identity);
-        IdentityUser Login(IdentityUser identity);
+        int Register(IdentityInformationUser identity);
+        IdentityInformationUser Login(IdentityInformationUser identity);
 
-        List<IdentityUser> GetList();
+        List<IdentityInformationUser> GetList();
 
-        IdentityUser GetById(string id);
+        IdentityCurrentUser GetById(string id);
 
     }
     public class APIStoreUser : IAPIStoreUser
@@ -37,22 +37,22 @@ namespace Manager.DataLayer.Stores.System
             m = new APIRpsUser(_conStr);
         }
 
-        public int Register(IdentityUser identity)
+        public int Register(IdentityInformationUser identity)
         {
             return m.Register(identity);
         }
 
-        public IdentityUser Login(IdentityUser identity)
+        public IdentityInformationUser Login(IdentityInformationUser identity)
         {
             return m.Login(identity);
         }
 
-        public List<IdentityUser> GetList()
+        public List<IdentityInformationUser> GetList()
         {
             return m.GetList();
         }
 
-        public IdentityUser GetById(string id)
+        public IdentityCurrentUser GetById(string id)
         {
             return m.GetById(id);
         }

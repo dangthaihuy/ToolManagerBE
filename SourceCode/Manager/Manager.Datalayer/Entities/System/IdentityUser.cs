@@ -71,6 +71,26 @@ namespace Manager.DataLayer.Entities
         public string ClaimType { get; set; }
         public string ClaimValue { get; set; }
     }
+
+    public class IdentityCurrentUser
+    {
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Avatar { get; set; }
+        public string Fullname { get; set; }
+    }
+
+    public class IdentityInformationUser
+    {
+        public int Id { get; set; }
+
+        public string Email { get; set; }
+        public string Avatar { get; set; }
+        public string Fullname { get; set; }
+        public string PasswordHash { get; set; }
+        public int TotalCount { get; set; }
+    }
+
     public class IdentityStatisticsUserByYear
     {
         public int id { get; set; }

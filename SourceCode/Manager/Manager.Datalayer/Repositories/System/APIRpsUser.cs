@@ -32,17 +32,7 @@ namespace Manager.DataLayer.Repositories.System
         }
 
        
-
-
-        
-
-        
-
-        
-
-
-
-        public int Register(IdentityUser identity)
+        public int Register(IdentityInformationUser identity)
         {
             var sqlCmd = @"APIUser_Insert";
             int newId = 0;
@@ -52,7 +42,7 @@ namespace Manager.DataLayer.Repositories.System
             {   
                 {"@Email", identity.Email },
                 {"@PasswordHash", identity.PasswordHash },
-                {"@FullName", identity.FullName },
+                {"@Fullname", identity.Fullname },
 
                 
             };
@@ -75,9 +65,9 @@ namespace Manager.DataLayer.Repositories.System
             return newId;
         }
 
-        public IdentityUser Login(IdentityUser identity)
+        public IdentityInformationUser Login(IdentityInformationUser identity)
         {
-            IdentityUser info = null;
+            IdentityInformationUser info = null;
             var sqlCmd = @"APIUser_Login";
 
             var parameters = new Dictionary<string, object>
@@ -107,10 +97,10 @@ namespace Manager.DataLayer.Repositories.System
             return info;
         }
 
-        public List<IdentityUser> GetList()
+        public List<IdentityInformationUser> GetList()
         {
             var sqlCmd = @"APIUser_GetList";
-            List<IdentityUser> listData = new List<IdentityUser>();
+            List<IdentityInformationUser> listData = new List<IdentityInformationUser>();
 
             try
             {
@@ -120,7 +110,7 @@ namespace Manager.DataLayer.Repositories.System
                     {
                         while (reader.Read())
                         {
-                            var info = new IdentityUser();
+                            var info = new IdentityInformationUser();
                             info = ExtractUserData(reader);
 
                             listData.Add(info);
@@ -137,17 +127,17 @@ namespace Manager.DataLayer.Repositories.System
             return listData;
         }
 
-        public IdentityUser GetById(string Id)
+        public IdentityCurrentUser GetById(string Id)
         {
             int id = Utils.ConvertToInt32(Id);
-            var info = new IdentityUser();
+            var info = new IdentityCurrentUser();
 
             if (id <= 0)
             {
                 return info;
             }
 
-            var sqlCmd = @"APIUser_GetById";
+            var sqlCmd = @"APIUser_GetCurrentById";
 
             var parameters = new Dictionary<string, object>
             {
@@ -162,7 +152,7 @@ namespace Manager.DataLayer.Repositories.System
                     {
                         while (reader.Read())
                         {
-                            info = ExtractUserData(reader);
+                            info = ExtractCurrentUserData(reader);
                         }
                     }
                 }
@@ -178,24 +168,40 @@ namespace Manager.DataLayer.Repositories.System
 
 
 
-        public static IdentityUser ExtractUserData(IDataReader reader)
+        public static IdentityInformationUser ExtractUserData(IDataReader reader)
         {
-            var record = new IdentityUser();
+            var record = new IdentityInformationUser();
 
             //Seperate properties
             if (reader.HasColumn("TotalCount"))
                 record.TotalCount = Utils.ConvertToInt32(reader["TotalCount"]);
 
-            record.Id = reader["Id"].ToString();
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.Email = reader["Email"].ToString();
-            record.FullName = reader["FullName"].ToString();
+            record.Fullname = reader["FullName"].ToString();
 
             
             return record;
         }
 
+        public static IdentityCurrentUser ExtractCurrentUserData(IDataReader reader)
+        {
+            var record = new IdentityCurrentUser();
 
-        
+            //Seperate properties
+            
+
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
+            record.Email = reader["Email"].ToString();
+            record.Fullname = reader["FullName"].ToString();
+            record.Avatar = reader["Avatar"].ToString();
+
+
+            return record;
+        }
+
+
+
 
     }
 }

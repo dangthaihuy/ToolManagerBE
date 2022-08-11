@@ -12,7 +12,7 @@ namespace Manager.WebApp.Models.System
         [Required]
         public string Password { get; set; }
         
-        public string FullName { get; set; }
+        public string Fullname { get; set; }
 
     }
 
