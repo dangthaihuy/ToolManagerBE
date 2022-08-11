@@ -55,11 +55,12 @@ namespace Manager.WebApp.Hubs
 
             // Chat one to one
         [HubMethodName("SendMessageToUser")]
-        public void DirectMessage(string userId, string message)
+        public async Task DirectMessage(string user, string message)
         {
 
-            Clients.User(userId).SendAsync("ReceiveMessage", message);
+            await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
+        
     }
 }

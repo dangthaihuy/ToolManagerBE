@@ -13,7 +13,6 @@ namespace Manager.WebApp.Hubs
         public string GetUserId(Microsoft.AspNet.SignalR.IRequest request)
         {
             
-
             return "1"; 
         }
     }
