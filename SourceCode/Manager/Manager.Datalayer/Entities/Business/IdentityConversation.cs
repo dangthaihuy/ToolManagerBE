@@ -6,31 +6,19 @@ using System.Threading.Tasks;
 
 namespace Manager.DataLayer.Entities.Business
 {
-    public class IdentityConversation
-    {
-    }
-
-    public class IdentityConversationReply : IdentityCommon
+    public class IdentityConversation 
     {
         public int Id { get; set; }
 
-        public string ConversationId { get; set; }
+        public int UserId1 { get; set; }
 
-        public string Message { get; set; }
+        public int UserId2 { get; set; }
 
-        public int SenderId { get; set; }
-        
+        public int CreateBy { get; set; }
 
-        public int ReceiverId { get; set; }
-        
-
-        public DateTime? CreatedDate { get; set; }
-
-        public int Status { get; set; }
-
-        
-
-        
 
     }
+
+   
+    
 }

@@ -21,7 +21,6 @@
     <PackageReference Include="Google.Apis.Sheets.v4" Version="1.51.0.2272" />
     <PackageReference Include="iTextSharp" Version="5.5.13.2" />
     <PackageReference Include="JWT" Version="8.9.0" />
-    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.4.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.17" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
