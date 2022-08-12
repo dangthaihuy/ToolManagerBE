@@ -17,14 +17,14 @@ namespace Manager.WebApp.Hubs
 
     public class ChatHub : Hub
     {
-        private readonly string _botUser;
+        /*private readonly string _botUser;
         private readonly IDictionary<string, UserConnection> _connections;
         public ChatHub(IDictionary<string, UserConnection> connections)
         {
             _botUser = "Mychat Bot";
             _connections = connections;
         }
-
+*/
         
 
 
@@ -61,6 +61,11 @@ namespace Manager.WebApp.Hubs
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
-        
+        public void Send(string userId, string message)
+        {
+            Clients.User(userId).SendAsync(message);
+        }
+
+
     }
 }

@@ -97,10 +97,10 @@ namespace Manager.DataLayer.Repositories.System
             return info;
         }
 
-        public List<IdentityInformationUser> GetList()
+        public List<IdentityCurrentUser> GetList()
         {
             var sqlCmd = @"APIUser_GetList";
-            List<IdentityInformationUser> listData = new List<IdentityInformationUser>();
+            List<IdentityCurrentUser> listData = new List<IdentityCurrentUser>();
 
             try
             {
@@ -110,8 +110,8 @@ namespace Manager.DataLayer.Repositories.System
                     {
                         while (reader.Read())
                         {
-                            var info = new IdentityInformationUser();
-                            info = ExtractUserData(reader);
+                            var info = new IdentityCurrentUser();
+                            info = ExtractCurrentUserData(reader);
 
                             listData.Add(info);
                         }

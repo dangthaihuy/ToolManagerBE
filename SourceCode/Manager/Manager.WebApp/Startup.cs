@@ -43,7 +43,9 @@ namespace Manager.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR();
-            services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
+
+            var idProvider = new CustomUserIdProvider();
+            GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => idProvider);
 
             services.AddCors(options =>
             {
@@ -127,9 +129,7 @@ namespace Manager.WebApp
             }
 
 
-            var idProvider = new CustomUserIdProvider();
-
-            Microsoft.AspNet.SignalR.GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => idProvider);
+            
 
             
 

@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Manager.WebApp.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/account")]
     [ApiController]
     [Authorize]
     public class APIAccountController : Controller
@@ -86,18 +86,18 @@ namespace Manager.WebApp.Controllers
             return BadRequest(new { error = new { message = "Login fail" } });
         }
 
-        /*[HttpGet]
-        [Route("getlist")]
+        [HttpGet]
+        [Route("getlistuser")]
         public async Task<IActionResult> GetList()
         {
             try
             {
                 var data = storeUser.GetList();
-                if(data != null)
+                if (data != null)
                 {
-                    return Ok(new { success = true, data = data });
+                    return Ok(data);
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -105,7 +105,7 @@ namespace Manager.WebApp.Controllers
             }
 
             return BadRequest(new { error = new { message = "Not found" } });
-        }*/
+        }
 
         [HttpGet]
         [Route("getcurrentuser")]

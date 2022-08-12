@@ -16,7 +16,7 @@ namespace Manager.DataLayer.Stores.System
         int Register(IdentityInformationUser identity);
         IdentityInformationUser Login(IdentityInformationUser identity);
 
-        List<IdentityInformationUser> GetList();
+        List<IdentityCurrentUser> GetList();
 
         IdentityCurrentUser GetById(string id);
 
@@ -47,7 +47,7 @@ namespace Manager.DataLayer.Stores.System
             return m.Login(identity);
         }
 
-        public List<IdentityInformationUser> GetList()
+        public List<IdentityCurrentUser> GetList()
         {
             return m.GetList();
         }
