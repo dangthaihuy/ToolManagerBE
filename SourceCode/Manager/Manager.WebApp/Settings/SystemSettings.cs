@@ -76,6 +76,14 @@ namespace Manager.WebApp.Settings
             }
         }
 
+        public static string DefaultCacheKeyPrefix
+        {
+            get
+            {
+                return AppConfiguration.GetAppsetting("System:DefaultCacheKeyPrefix").ToString();
+            }
+        }
+
         public static string JwtSecretKey
         {
             get

@@ -4,29 +4,17 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Manager.WebApp.Helpers.Business;
+using Manager.WebApp.Hubs.Common;
+using Manager.DataLayer.Entities.Business;
+using Manager.SharedLibs;
 
 namespace Manager.WebApp.Hubs
 {
 
-    /*    public interface IUserIdProvider
-        {
-            string GetUserId(IRequest request);
-        }*/
-    
-
-
-    public class ChatHub : Hub
+    public class ChatHub : BaseMessengerHub
     {
-        /*private readonly string _botUser;
-        private readonly IDictionary<string, UserConnection> _connections;
-        public ChatHub(IDictionary<string, UserConnection> connections)
-        {
-            _botUser = "Mychat Bot";
-            _connections = connections;
-        }
-*/
         
-
 
       /*  public override Task OnDisconnectedAsync(Exception exception)
         {
@@ -53,17 +41,43 @@ namespace Manager.WebApp.Hubs
 
 
 
-            // Chat one to one
-        [HubMethodName("SendMessageToUser")]
-        public async Task DirectMessage(string user, string message)
+        public async Task SendToAll(string user, string message)
         {
 
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
-        public void Send(string userId, string message)
+        
+
+        [HubMethodName("SendToUser")]
+        public void SendRedirect(string SenderId, string ReceiverId, string Message)
         {
-            Clients.User(userId).SendAsync(message);
+            
+            var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
+            //Lấy người gửi trong cache
+            var fromUser = connectedUsers.FirstOrDefault(x => x.Id == Utils.ConvertToInt32(SenderId));
+            //Lấy người nhận trong cache
+            var toUser = connectedUsers.FirstOrDefault(x => x.Id == Utils.ConvertToInt32(ReceiverId));
+            if (connectedUsers != null && connectedUsers.Count > 0)
+            {
+                if (fromUser != null && fromUser.Connections.HasData())
+                {
+                    foreach (var senderConn in fromUser.Connections)
+                    {
+                        Clients.Client(senderConn.ConnectionId).SendAsync(Message);
+                    }
+                }
+
+                if (toUser != null && toUser.Connections.HasData())
+                {
+                    foreach (var receiverConn in toUser.Connections)
+                    {
+                        // Broad cast message
+                        Clients.Client(receiverConn.ConnectionId).SendAsync("ReceiveMessage",Message);
+                    }
+                }
+            }
+
         }
 
 

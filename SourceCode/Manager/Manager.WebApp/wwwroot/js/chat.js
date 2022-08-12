@@ -5,6 +5,7 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/chat").build();
 document.getElementById("sendButton").disabled = true;
 
 connection.on("ReceiveMessage", function (user, message) {
+
     var li = document.createElement("li");
     document.getElementById("messagesList").appendChild(li);
     // We can assign user-supplied strings to an element's textContent because it
@@ -21,9 +22,13 @@ connection.start().then(function () {
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
     var user = document.getElementById("userInput").value;
+    var receiver = document.getElementById("receiverInput").value;
     var message = document.getElementById("messageInput").value;
     console.log();
-    connection.invoke("SendMessageToUser", user, message).catch(function (err) {
+    connection.invoke("Connect", user).catch(function (err) {
+        return console.error(err.toString());
+    });
+    connection.invoke("SendToUser", user, receiver, message).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();
