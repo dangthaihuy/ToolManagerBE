@@ -9,7 +9,11 @@ namespace Manager.DataLayer.Entities.Business
 
     public class IdentityMessageFilter : IdentityMessage
     {
-        public string Keyword;
+        public string Keyword { get; set; }
+
+        public int CurrentPage { get; set; }
+
+        public int PageSize { get; set; }
     }
     public class IdentityMessage
     {

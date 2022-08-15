@@ -28,23 +28,26 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpGet]
-        [Route("getlist")]
-        public async Task<IActionResult> GetList(string ConversationId, string Page, string Keyword)
+        [Route("getbypage")]
+        public async Task<IActionResult> GetByPage(int ConversationId, int Page, string Keyword, int pageSize)
         {
-            int PageSize = 5;
-            List<IdentityMessageFilter> list = new List<IdentityMessageFilter>();
+            int PageSize = pageSize == null ? pageSize : 10 ;
+            int CurrentPage = Page == null ? pageSize : 1;
 
+            List<IdentityMessage> list = new List<IdentityMessage>();
+            var filter = new IdentityMessageFilter();
             try
             {
-                int CurrentPage = Utils.ConvertToInt32(Page);
-                if (CurrentPage == null)
-                {
-                    CurrentPage = 1;
-                }
                 if (Keyword == null)
+                {
                     Keyword = "";
+                }
+                filter.CurrentPage = CurrentPage;
+                filter.PageSize = PageSize;
+                filter.ConversationId = ConversationId;
+                filter.Keyword = Keyword;
 
-                list = storeMessage.GetByPage(Utils.ConvertToInt32(ConversationId), Keyword, CurrentPage, PageSize);
+                list = storeMessage.GetByPage(filter);
             }
             catch(Exception ex)
             {

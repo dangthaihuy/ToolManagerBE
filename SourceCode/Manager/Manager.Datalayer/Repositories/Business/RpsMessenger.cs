@@ -60,20 +60,20 @@ namespace Manager.DataLayer.Repositories.Business
             return newId;
         }
 
-        public List<IdentityMessageFilter> GetByPage(int ConversationId, string Keyword, int CurrentPage, int PageSize)
+        public List<IdentityMessage> GetByPage(IdentityMessageFilter filter)
         {
             var sqlCmd = @"Message_GetByPage";
-            List<IdentityMessageFilter> listData = null;
+            List<IdentityMessage> listData = null;
 
-            int offset = (CurrentPage - 1) * PageSize;
+            int offset = (filter.CurrentPage - 1) * filter.PageSize;
 
             //For parameters
             var parameters = new Dictionary<string, object>
             {
-                {"@ConversationId", ConversationId},
-                {"@Keyword", Keyword},
+                {"@ConversationId", filter.ConversationId},
+                {"@Keyword", filter.Keyword},
                 {"@Offset", offset},
-                {"@PageSize", PageSize},
+                {"@PageSize", filter.PageSize},
 
             };
 
@@ -95,13 +95,13 @@ namespace Manager.DataLayer.Repositories.Business
             return listData;
         }
 
-        private List<IdentityMessageFilter> ParsingListUserFromReader(IDataReader reader)
+        private List<IdentityMessage> ParsingListUserFromReader(IDataReader reader)
         {
-            List<IdentityMessageFilter> listData = new List<IdentityMessageFilter>();
+            List<IdentityMessage> listData = new List<IdentityMessage>();
             while (reader.Read())
             {
                 //Get common information
-                var record = ExtractMessageFilter(reader);
+                var record = ExtractMessage(reader);
 
                 listData.Add(record);
             }
@@ -109,9 +109,9 @@ namespace Manager.DataLayer.Repositories.Business
             return listData;
         }
 
-        public static IdentityMessageFilter ExtractMessageFilter(IDataReader reader)
+        public static IdentityMessage ExtractMessage(IDataReader reader)
         {
-            var record = new IdentityMessageFilter();
+            var record = new IdentityMessage();
 
             //Seperate properties
             
