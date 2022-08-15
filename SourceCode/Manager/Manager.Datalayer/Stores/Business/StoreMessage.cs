@@ -12,6 +12,7 @@ namespace Manager.DataLayer.Stores.Business
     public interface IStoreMessage
     {
         int Insert(IdentityMessage identity);
+        List<IdentityMessageFilter> GetByPage(int ConversationId, string Keyword, int CurrentPage, int PageSize);
     }
     public class StoreMessage : IStoreMessage
     {
@@ -32,5 +33,9 @@ namespace Manager.DataLayer.Stores.Business
             return r.Insert(identity);
         }
 
+        public List<IdentityMessageFilter> GetByPage(int ConversationId, string Keyword, int CurrentPage, int PageSize)
+        {
+            return r.GetByPage(ConversationId, Keyword, CurrentPage, PageSize);
+        }
     }
 }

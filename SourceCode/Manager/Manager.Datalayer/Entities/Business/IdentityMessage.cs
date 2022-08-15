@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace Manager.DataLayer.Entities.Business
 {
+
+    public class IdentityMessageFilter : IdentityMessage
+    {
+        public string Keyword;
+    }
     public class IdentityMessage
     {
         public int Id { get; set; }

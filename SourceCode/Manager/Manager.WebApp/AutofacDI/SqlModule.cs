@@ -26,6 +26,7 @@ namespace Manager.WebApp.AutofacDI
 
             builder.RegisterType<StoreEmployee>().As<IStoreEmployee>();
             builder.RegisterType<StoreConversation>().As<IStoreConversation>();
+            builder.RegisterType<StoreMessage>().As<IStoreMessage>();
             builder.RegisterType<StoreContact>().As<IStoreContact>();
 
             #region Business
