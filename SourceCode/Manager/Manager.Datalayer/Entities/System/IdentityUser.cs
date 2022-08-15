@@ -75,11 +75,13 @@ namespace Manager.DataLayer.Entities
     public class IdentityCurrentUser
     {
         public int Id { get; set; }
+        public int ConversationId { get; set; }
         public string Email { get; set; }
         public string Avatar { get; set; }
         public string Fullname { get; set; }
-
         
+
+
     }
 
     public class IdentityInformationUser

@@ -71,9 +71,7 @@ namespace Manager.DataLayer.Repositories.Business
             var record = new IdentityConversation();
 
             record.Id = Utils.ConvertToInt32(reader["Id"]);
-            record.UserId1 = Utils.ConvertToInt32(reader["UserId1"]);
-            record.UserId2 = Utils.ConvertToInt32(reader["UserId2"]);
-            record.CreateBy = Utils.ConvertToInt32(reader["CreateBy"]);
+            record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
 
             
 

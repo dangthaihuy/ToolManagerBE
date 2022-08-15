@@ -64,7 +64,7 @@ namespace Manager.WebApp.Hubs
                 {
                     foreach (var senderConn in fromUser.Connections)
                     {
-                        Clients.Client(senderConn.ConnectionId).SendAsync(Message);
+                        Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveMessage", Message);
                     }
                 }
 

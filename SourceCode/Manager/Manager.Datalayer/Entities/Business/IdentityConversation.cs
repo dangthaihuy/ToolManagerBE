@@ -10,11 +10,11 @@ namespace Manager.DataLayer.Entities.Business
     {
         public int Id { get; set; }
 
-        public int UserId1 { get; set; }
+        public int ReceiverId { get; set; }
 
-        public int UserId2 { get; set; }
+        public string ReceiverName { get; set; }
 
-        public int CreateBy { get; set; }
+        public string Avatar { get; set; }
 
 
     }

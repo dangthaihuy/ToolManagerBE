@@ -7,7 +7,7 @@ namespace Manager.WebApp.Helpers.Business
 {
     public static class EnumFormatInfoCacheKeys
     {
-            
+        public static string Conversation = "CONVERSATION_{0}";
     }
 
     public static class EnumListCacheKeys
