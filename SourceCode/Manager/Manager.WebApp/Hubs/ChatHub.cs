@@ -17,6 +17,7 @@ namespace Manager.WebApp.Hubs
     public class ChatHub : BaseMessengerHub
     {
         private IStoreConversation storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
+        private IStoreMessage storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
 
         /*  public override Task OnDisconnectedAsync(Exception exception)
           {
@@ -54,8 +55,17 @@ namespace Manager.WebApp.Hubs
         [HubMethodName("SendToUser")]
         public void SendRedirect(string SenderId, string ReceiverId, string Message)
         {
-            var conversation = storeConversation.GetDetail(SenderId, ReceiverId);
+            var Conversation = storeConversation.GetDetail(SenderId, ReceiverId);
 
+            var IdentityMessage = new IdentityMessage();
+            IdentityMessage.ConversationId = Conversation.Id;
+            IdentityMessage.Message = Message;
+            IdentityMessage.SenderId = Utils.ConvertToInt32(SenderId);
+            IdentityMessage.ReceiverId = Utils.ConvertToInt32(ReceiverId);
+            IdentityMessage.CreateDate = DateTime.Now;
+
+
+            var MessageSuccess = storeMessage.Insert(IdentityMessage);
 
             var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
             //Lấy người gửi trong cache
@@ -68,7 +78,7 @@ namespace Manager.WebApp.Hubs
                 {
                     foreach (var senderConn in fromUser.Connections)
                     {
-                        Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveMessage", conversation.Id, Utils.ConvertToInt32(SenderId), Message);
+                        Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveMessage", Conversation.Id, Utils.ConvertToInt32(SenderId), Message);
                     }
                 }
 
@@ -77,7 +87,7 @@ namespace Manager.WebApp.Hubs
                     foreach (var receiverConn in toUser.Connections)
                     {
                         // Broad cast message
-                        Clients.Client(receiverConn.ConnectionId).SendAsync("ReceiveMessage", conversation.Id, Utils.ConvertToInt32(SenderId), Message);
+                        Clients.Client(receiverConn.ConnectionId).SendAsync("ReceiveMessage", Conversation.Id, Utils.ConvertToInt32(SenderId), Message);
                     }
                 }
             }

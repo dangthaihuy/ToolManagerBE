@@ -94,7 +94,7 @@ namespace Manager.DataLayer.Repositories.Business
                     {
                         while (reader.Read())
                         {
-                            listData = ExtractConversation(reader);
+                            listData = ExtractConversationDetail(reader);
                         }
                     }
                 }
@@ -108,17 +108,28 @@ namespace Manager.DataLayer.Repositories.Business
         }
 
 
-            private IdentityConversation ExtractConversation(IDataReader reader)
-            {
-                var record = new IdentityConversation();
+        private IdentityConversation ExtractConversation(IDataReader reader)
+        {
+            var record = new IdentityConversation();
 
-                record.Id = Utils.ConvertToInt32(reader["Id"]);
-                record.SenderId = Utils.ConvertToInt32(reader["SenderId"]);
-                record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
+            record.SenderId = Utils.ConvertToInt32(reader["SenderId"]);
+            record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
 
 
 
-                return record;
-            }
+            return record;
+        }
+
+        private IdentityConversation ExtractConversationDetail(IDataReader reader)
+        {
+            var record = new IdentityConversation();
+
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
+
+
+
+            return record;
+        }
     }
 }
