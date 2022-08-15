@@ -44,7 +44,7 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     foreach(var item in list)
                     {
-                        var ConversationInfo = ConversationHelpers.GetBaseInfo(Convert.ToString(item.ReceiverId));
+                        var ConversationInfo = ConversationHelpers.GetBaseInfo(item);
                         if(ConversationInfo != null)
                         {
                             item.Receiver = ConversationInfo;

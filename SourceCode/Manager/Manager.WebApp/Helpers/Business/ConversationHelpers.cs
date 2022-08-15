@@ -14,9 +14,9 @@ namespace Manager.WebApp.Helpers.Business
     {
         private static readonly ILogger _logger = Log.ForContext(typeof(ConversationHelpers));
 
-        public static IdentityCurrentUser GetBaseInfo(string id)
+        public static IdentityCurrentUser GetBaseInfo(IdentityConversation item)
         {
-            var myKey = string.Format(EnumFormatInfoCacheKeys.Conversation, id);
+            var myKey = string.Format(EnumFormatInfoCacheKeys.Conversation, item.Id);
 
             IdentityCurrentUser info = null;
             try
@@ -29,7 +29,7 @@ namespace Manager.WebApp.Helpers.Business
                 if (info == null)
                 {
                     var myStore = Startup.IocContainer.Resolve<IAPIStoreUser>();
-                    info = myStore.GetById(id)
+                    info = myStore.GetById(Convert.ToString(item.ReceiverId))
 ;
 
                     if (info != null)
