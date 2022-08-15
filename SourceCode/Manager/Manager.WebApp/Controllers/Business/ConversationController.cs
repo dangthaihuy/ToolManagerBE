@@ -39,16 +39,16 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var list = storeConversation.GetById(id);
-                var data = new List<IdentityCurrentUser>();
+                var data = new List<IdentityConversation>();
                 if (list != null)
                 {
                     foreach(var item in list)
                     {
-                        var ConversationInfo = ConversationHelpers.GetBaseInfo(Convert.ToString(item.Id));
+                        var ConversationInfo = ConversationHelpers.GetBaseInfo(Convert.ToString(item.ReceiverId));
                         if(ConversationInfo != null)
                         {
-                            ConversationInfo.ConversationId = Utils.ConvertToInt32(id);
-                            data.Add(ConversationInfo);
+                            item.Receiver = ConversationInfo;
+                            data.Add(item);
                         }
                     }
                 }
