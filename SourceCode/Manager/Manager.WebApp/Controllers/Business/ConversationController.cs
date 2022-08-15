@@ -2,6 +2,7 @@
 using Manager.DataLayer.Entities;
 using Manager.DataLayer.Entities.Business;
 using Manager.DataLayer.Stores.Business;
+using Manager.DataLayer.Stores.System;
 using Manager.SharedLibs;
 using Manager.WebApp.Helpers.Business;
 using Microsoft.AspNetCore.Authorization;
@@ -20,10 +21,13 @@ namespace Manager.WebApp.Controllers.Business
     public class ConversationController : ControllerBase
     {
         private readonly IStoreConversation storeConversation;
+        private readonly IAPIStoreUser storeUser;
         private readonly ILogger<ConversationController> _logger;
         public ConversationController(ILogger<ConversationController> logger)
         {
+
             storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
+            storeUser = Startup.IocContainer.Resolve<IAPIStoreUser>();
             _logger = logger;
 
         }
@@ -44,11 +48,12 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     foreach(var item in list)
                     {
-                        var ConversationInfo = ConversationHelpers.GetBaseInfo(item);
-                        if(ConversationInfo != null)
+                        var Item = item;
+                        var ConversationInfo = storeUser.GetById(Convert.ToString(Item.ReceiverId));
+                        if (ConversationInfo != null)
                         {
-                            item.Receiver = ConversationInfo;
-                            data.Add(item);
+                            Item.Receiver = ConversationInfo;
+                            data.Add(Item);
                         }
                     }
                 }
