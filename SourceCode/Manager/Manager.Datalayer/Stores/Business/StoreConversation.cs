@@ -12,6 +12,7 @@ namespace Manager.DataLayer.Stores.Business
     public interface IStoreConversation
     {
         List<IdentityConversation> GetById(string Id);
+        IdentityConversation GetDetail(string SenderId, string ReceiverId);
     }
 
     public class StoreConversation : IStoreConversation
@@ -31,6 +32,11 @@ namespace Manager.DataLayer.Stores.Business
         public List<IdentityConversation> GetById(string Id)
         {
             return r.GetById(Id);
+        }
+
+        public IdentityConversation GetDetail(string SenderId, string ReceiverId)
+        {
+            return r.GetDetail(SenderId, ReceiverId);
         }
     }
 }

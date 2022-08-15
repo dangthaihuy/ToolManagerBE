@@ -65,18 +65,60 @@ namespace Manager.DataLayer.Repositories.Business
             }
             return listData;
         }
-
-        private IdentityConversation ExtractConversation(IDataReader reader)
+        public IdentityConversation GetDetail(string senderId, string receiverId)
         {
-            var record = new IdentityConversation();
+            var SenderId = Utils.ConvertToInt32(senderId);
+            var ReceiverId = Utils.ConvertToInt32(receiverId);
 
-            record.Id = Utils.ConvertToInt32(reader["Id"]);
-            record.SenderId = Utils.ConvertToInt32(reader["SenderId"]);
-            record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
+            var listData = new IdentityConversation();
 
+            if (SenderId <= 0 || ReceiverId<=0)
+            {
+                return listData;
+            }
 
+            var sqlCmd = @"Conversations_GetDetail";
 
-            return record;
+            var parameters = new Dictionary<string, object>
+            {
+                {"@SenderId", SenderId},
+                {"@ReceiverId", ReceiverId}
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            listData = ExtractConversation(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return listData;
         }
+
+
+            private IdentityConversation ExtractConversation(IDataReader reader)
+            {
+                var record = new IdentityConversation();
+
+                record.Id = Utils.ConvertToInt32(reader["Id"]);
+                record.SenderId = Utils.ConvertToInt32(reader["SenderId"]);
+                record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
+
+
+
+                return record;
+            }
     }
 }

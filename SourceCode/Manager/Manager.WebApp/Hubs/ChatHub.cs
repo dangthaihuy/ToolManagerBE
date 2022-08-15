@@ -8,36 +8,38 @@ using Manager.WebApp.Helpers.Business;
 using Manager.WebApp.Hubs.Common;
 using Manager.DataLayer.Entities.Business;
 using Manager.SharedLibs;
+using Manager.DataLayer.Stores.Business;
+using Autofac;
 
 namespace Manager.WebApp.Hubs
 {
 
     public class ChatHub : BaseMessengerHub
     {
-        
+        private IStoreConversation storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
 
-      /*  public override Task OnDisconnectedAsync(Exception exception)
-        {
-            if(_connections.TryGetValue(Context.ConnectionId, out UserConnection userConnection))
-            {
-                _connections.Remove(Context.ConnectionId);
-                Clients.Group(userConnection.Room)
-                    .SendAsync("ReceiveMessage", _botUser, $"{userConnection.User} has left");
+        /*  public override Task OnDisconnectedAsync(Exception exception)
+          {
+              if(_connections.TryGetValue(Context.ConnectionId, out UserConnection userConnection))
+              {
+                  _connections.Remove(Context.ConnectionId);
+                  Clients.Group(userConnection.Room)
+                      .SendAsync("ReceiveMessage", _botUser, $"{userConnection.User} has left");
 
-            }
-            return base.OnDisconnectedAsync(exception);
-        }
+              }
+              return base.OnDisconnectedAsync(exception);
+          }
 
-        public async Task SendMessage(string message)
-        {
-            if(_connections.TryGetValue(Context.ConnectionId, out UserConnection userConnection))
-            {
-                await Clients.Groups(userConnection.Room)
-                    .SendAsync("ReceiveMessage", userConnection.User, message);
-            }
-        }*/
+          public async Task SendMessage(string message)
+          {
+              if(_connections.TryGetValue(Context.ConnectionId, out UserConnection userConnection))
+              {
+                  await Clients.Groups(userConnection.Room)
+                      .SendAsync("ReceiveMessage", userConnection.User, message);
+              }
+          }*/
 
-        
+
 
 
 
@@ -52,7 +54,9 @@ namespace Manager.WebApp.Hubs
         [HubMethodName("SendToUser")]
         public void SendRedirect(string SenderId, string ReceiverId, string Message)
         {
-            
+            var conversation = storeConversation.GetDetail(SenderId, ReceiverId);
+
+
             var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
             //Lấy người gửi trong cache
             var fromUser = connectedUsers.FirstOrDefault(x => x.Id == Utils.ConvertToInt32(SenderId));
@@ -64,7 +68,7 @@ namespace Manager.WebApp.Hubs
                 {
                     foreach (var senderConn in fromUser.Connections)
                     {
-                        Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveMessage", Message);
+                        Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveMessage", conversation.Id, Utils.ConvertToInt32(SenderId), Message);
                     }
                 }
 
@@ -73,7 +77,7 @@ namespace Manager.WebApp.Hubs
                     foreach (var receiverConn in toUser.Connections)
                     {
                         // Broad cast message
-                        Clients.Client(receiverConn.ConnectionId).SendAsync("ReceiveMessage",Message);
+                        Clients.Client(receiverConn.ConnectionId).SendAsync("ReceiveMessage", conversation.Id, Utils.ConvertToInt32(SenderId), Message);
                     }
                 }
             }
