@@ -40,6 +40,7 @@ namespace Manager.DataLayer.Stores.Business
             return r.GetByPage(filter);
         }
 
+
         public IdentityMessage GetLastMessage(int Id)
         {
             return r.GetLastMessage(Id);

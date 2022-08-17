@@ -95,6 +95,8 @@ namespace Manager.DataLayer.Repositories.Business
             return listData;
         }
 
+        
+
         public IdentityMessage GetLastMessage(int id)
         {
             var info = new IdentityMessage();

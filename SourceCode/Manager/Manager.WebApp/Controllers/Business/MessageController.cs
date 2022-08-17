@@ -29,23 +29,23 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpGet]
         [Route("getbypage")]
-        public async Task<IActionResult> GetByPage(int ConversationId, int Page, string Keyword, int pageSize)
+        public async Task<IActionResult> GetByPage(int conversationId, int page, string keyword, int pageSize)
         {
-            int PageSize = pageSize == null ? pageSize : 10 ;
-            int CurrentPage = Page == null ? pageSize : 1;
+            int PageSize = pageSize != 0 ? pageSize : 50 ;
+            int CurrentPage = page != 0 ? page : 1;
 
             List<IdentityMessage> list = new List<IdentityMessage>();
             var filter = new IdentityMessageFilter();
             try
             {
-                if (Keyword == null)
+                if (keyword == null)
                 {
-                    Keyword = "";
+                    keyword = "";
                 }
                 filter.CurrentPage = CurrentPage;
                 filter.PageSize = PageSize;
-                filter.ConversationId = ConversationId;
-                filter.Keyword = Keyword;
+                filter.ConversationId = conversationId;
+                filter.Keyword = keyword;
 
                 list = storeMessage.GetByPage(filter);
             }
@@ -55,5 +55,8 @@ namespace Manager.WebApp.Controllers.Business
             }
             return Ok(list);
         }
+
+        
+           
     }
 }
