@@ -25,6 +25,38 @@ namespace Manager.DataLayer.Repositories.Business
             _conStr = AppConfiguration.GetAppsetting("MainDBConn");
         }
 
+        public int Insert(IdentityConversationDefault identity)
+        {
+            var sqlCmd = @"Conversations_Insert";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@UserId1", identity.UserId1 },
+                {"@UserId2", identity.UserId2 }
+
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
+
         public List<IdentityConversation> GetById(string id)
         {
             int Id = Utils.ConvertToInt32(id);

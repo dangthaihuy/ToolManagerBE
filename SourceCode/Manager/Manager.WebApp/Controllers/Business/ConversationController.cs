@@ -5,6 +5,7 @@ using Manager.DataLayer.Stores.Business;
 using Manager.DataLayer.Stores.System;
 using Manager.SharedLibs;
 using Manager.WebApp.Helpers.Business;
+using Manager.WebApp.Models.Business;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -65,6 +66,17 @@ namespace Manager.WebApp.Controllers.Business
                 _logger.LogDebug("Could not login: " + ex.ToString());
             }
             return BadRequest(new { error = new { message = "Not found" } });
+        }
+
+        [HttpPost]
+        [Route("insert")]
+        public async Task<IActionResult> Insert(ConversationModel model)
+        {
+            var NewConversation = model.MappingObject<IdentityConversationDefault>();
+
+            var res = storeConversation.Insert(NewConversation);
+
+            return Ok();
         }
     }
 }

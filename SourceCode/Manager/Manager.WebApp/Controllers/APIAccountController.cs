@@ -87,7 +87,7 @@ namespace Manager.WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("getlistuser")]
+        [Route("getlist")]
         public async Task<IActionResult> GetList()
         {
             try

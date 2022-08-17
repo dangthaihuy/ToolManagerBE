@@ -11,6 +11,7 @@ namespace Manager.DataLayer.Stores.Business
 {
     public interface IStoreConversation
     {
+        int Insert(IdentityConversationDefault identity);
         List<IdentityConversation> GetById(string Id);
         IdentityConversation GetDetail(string SenderId, string ReceiverId);
     }
@@ -38,5 +39,11 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetDetail(SenderId, ReceiverId);
         }
+
+        public int Insert(IdentityConversationDefault identity)
+        {
+            return r.Insert(identity);
+        }
+
     }
 }
