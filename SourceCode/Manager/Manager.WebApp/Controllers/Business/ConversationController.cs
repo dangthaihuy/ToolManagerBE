@@ -73,17 +73,17 @@ namespace Manager.WebApp.Controllers.Business
         public async Task<IActionResult> Insert(ConversationModel model)
         {
             var NewConversation = model.MappingObject<IdentityConversationDefault>();
-            int res;
             try
             {
-                res = storeConversation.Insert(NewConversation);
+                var res = storeConversation.Insert(NewConversation);
+                return Ok(new { ConversationId = res });
             }
             catch(Exception ex)
             {
                 _logger.LogDebug("Could not login: " + ex.ToString());
             }
 
-            return Ok();
+            return BadRequest();
         }
     }
 }
