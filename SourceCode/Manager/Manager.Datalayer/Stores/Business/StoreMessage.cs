@@ -13,6 +13,8 @@ namespace Manager.DataLayer.Stores.Business
     {
         int Insert(IdentityMessage identity);
         List<IdentityMessage> GetByPage(IdentityMessageFilter filter);
+        IdentityMessage GetLastMessage(int Id);
+
     }
     public class StoreMessage : IStoreMessage
     {
@@ -36,6 +38,11 @@ namespace Manager.DataLayer.Stores.Business
         public List<IdentityMessage> GetByPage(IdentityMessageFilter filter)
         {
             return r.GetByPage(filter);
+        }
+
+        public IdentityMessage GetLastMessage(int Id)
+        {
+            return r.GetLastMessage(Id);
         }
     }
 }

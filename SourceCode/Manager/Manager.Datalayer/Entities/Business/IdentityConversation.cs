@@ -6,12 +6,23 @@ using System.Threading.Tasks;
 
 namespace Manager.DataLayer.Entities.Business
 {
+    public class IdentityConversationNavbar : IdentityConversation
+    {
+        
+        public string LastMessage { get; set; }
+        public DateTime LastTime { get; set; }
+
+        
+
+
+    }
     public class IdentityConversation 
     {
         public int Id { get; set; }
         public int SenderId { get; set; }
-
         public int ReceiverId { get; set; }
+        public string LastMessage { get; set; }
+        public DateTime LastTime { get; set; }
 
         public IdentityCurrentUser Receiver { get; set; }
 

@@ -95,6 +95,43 @@ namespace Manager.DataLayer.Repositories.Business
             return listData;
         }
 
+        public IdentityMessage GetLastMessage(int id)
+        {
+            var info = new IdentityMessage();
+
+            if (id <= 0)
+            {
+                return null;
+            }
+
+            var sqlCmd = @"Message_GetLastMessage";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", id}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            info = ExtractMessage(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return info;
+        }
+
         private List<IdentityMessage> ParsingListUserFromReader(IDataReader reader)
         {
             List<IdentityMessage> listData = new List<IdentityMessage>();

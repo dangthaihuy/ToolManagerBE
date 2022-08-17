@@ -14,9 +14,9 @@ namespace Manager.WebApp.Helpers.Business
     {
         private static readonly ILogger _logger = Log.ForContext(typeof(ConversationHelpers));
 
-        public static IdentityCurrentUser GetBaseInfo(IdentityConversation item)
+        public static IdentityCurrentUser GetReceiverInfo(IdentityConversation item)
         {
-            var myKey = string.Format(EnumFormatInfoCacheKeys.Conversation, item.Id);
+            var myKey = string.Format(EnumFormatInfoCacheKeys.Conversation, item.SenderId, item.ReceiverId);
 
             IdentityCurrentUser info = null;
             try
@@ -47,7 +47,41 @@ namespace Manager.WebApp.Helpers.Business
             return info;
         }
 
-        public static void ClearCache(int id)
+        public static IdentityMessage GetLastMessage(IdentityConversation item)
+        {
+            var myKey = string.Format(EnumFormatInfoCacheKeys.ConversationLastMessage, item.Id);
+            IdentityMessage info = null;
+
+            try
+            {
+                //Check the cache first (Find the product that has Id equal to id)
+                var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
+
+                info = cacheProvider.Get<IdentityMessage>(myKey);
+
+                if (info == null)
+                {
+                    var myStore = Startup.IocContainer.Resolve<IStoreMessage>();
+                    info = myStore.GetLastMessage(item.Id)
+;
+
+                    if (info != null)
+                    {
+                        //Storage to cache
+                        cacheProvider.Set(myKey, info, SystemSettings.DefaultCachingTimeInMinutes);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Could not GetBaseInfo: " + ex.ToString());
+            }
+
+            return info;
+
+        }
+
+            public static void ClearCache(int id)
         {
             try
             {

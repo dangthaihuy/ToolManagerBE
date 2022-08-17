@@ -49,12 +49,14 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     foreach(var item in list)
                     {
-                        var Item = item;
-                        var ConversationInfo = storeUser.GetById(Convert.ToString(Item.ReceiverId));
-                        if (ConversationInfo != null)
+                        var ReceiverInfo = ConversationHelpers.GetReceiverInfo(item);
+                        var LastMessage = ConversationHelpers.GetLastMessage(item);
+                        if (ReceiverInfo != null)
                         {
-                            Item.Receiver = ConversationInfo;
-                            data.Add(Item);
+                            item.Receiver = ReceiverInfo;
+                            item.LastMessage = LastMessage.Message;
+                            item.LastTime = LastMessage.CreateDate;
+                            data.Add(item);
                         }
                     }
                 }
