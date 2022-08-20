@@ -83,7 +83,7 @@ namespace Manager.DataLayer.Repositories.Business
                 {
                     using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
                     {
-                        listData = ParsingListUserFromReader(reader);
+                        listData = ParsingListMessageFromReader(reader);
                     }
                 }
             }
@@ -134,7 +134,7 @@ namespace Manager.DataLayer.Repositories.Business
             return info;
         }
 
-        private List<IdentityMessage> ParsingListUserFromReader(IDataReader reader)
+        private List<IdentityMessage> ParsingListMessageFromReader(IDataReader reader)
         {
             List<IdentityMessage> listData = new List<IdentityMessage>();
             while (reader.Read())

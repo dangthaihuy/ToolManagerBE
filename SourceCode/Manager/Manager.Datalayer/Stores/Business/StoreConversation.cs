@@ -13,6 +13,7 @@ namespace Manager.DataLayer.Stores.Business
     {
         int Insert(IdentityConversationDefault identity);
         List<IdentityConversation> GetById(string Id);
+        List<IdentityConversation> GetGroupByUserId(string Id);
         IdentityConversation GetDetail(string SenderId, string ReceiverId);
     }
 
@@ -33,6 +34,11 @@ namespace Manager.DataLayer.Stores.Business
         public List<IdentityConversation> GetById(string Id)
         {
             return r.GetById(Id);
+        }
+
+        public List<IdentityConversation> GetGroupByUserId(string Id)
+        {
+            return r.GetGroupByUserId(Id);
         }
 
         public IdentityConversation GetDetail(string SenderId, string ReceiverId)

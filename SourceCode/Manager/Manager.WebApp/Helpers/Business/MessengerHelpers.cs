@@ -12,8 +12,11 @@ namespace Manager.WebApp.Helpers.Business
         private static readonly ILogger _logger = Log.ForContext(typeof(MessengerHelpers));
         private static ICacheProvider _myCache;
         private static string _allUsersCacheKey = string.Format("MESSENGER_USERS");
+        private static string _allGroupsCacheKey = string.Format("MESSENGER_GROUPS");
         private static int _cacheExpiredTime = 10080;
 
+
+        // TIN NHẮN 1-1
         public static List<Connector> GetAllUsersFromCache()
         {
             var strError = string.Empty;
@@ -89,5 +92,27 @@ namespace Manager.WebApp.Helpers.Business
                 _logger.Error("Could not get list type: " + ex.ToString());
             }
         }
+
+        //TIN NHẮN GROUP
+        public static List<Connector> GetAllGroupsFromCache()
+        {
+            var strError = string.Empty;
+            List<Connector> listUser = null;
+
+            try
+            {
+                _myCache = Startup.IocContainer.Resolve<ICacheProvider>();
+                listUser = _myCache.Get<List<Connector>>(_allUsersCacheKey);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Could not get list type: " + ex.ToString());
+            }
+            if (listUser == null)
+                listUser = new List<Connector>();
+            return listUser;
+        }
+
     }
 }

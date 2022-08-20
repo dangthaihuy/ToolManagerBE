@@ -47,6 +47,8 @@ namespace Manager.WebApp.Helpers.Business
             return info;
         }
 
+        
+
         public static IdentityMessage GetLastMessage(IdentityConversation item)
         {
             var myKey = string.Format(EnumFormatInfoCacheKeys.ConversationLastMessage, item.Id);
@@ -81,22 +83,22 @@ namespace Manager.WebApp.Helpers.Business
 
         }
 
-            public static void ClearCache(int id)
+        public static void ClearCache(int id)
         {
-            try
-            {
-                var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
+        try
+        {
+            var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
 
-                var productKey = string.Format(EnumFormatInfoCacheKeys.Conversation);
+            var myKey = string.Format(EnumFormatInfoCacheKeys.ConversationLastMessage, id);
 
 
-                cacheProvider.Clear(productKey);
+            cacheProvider.Clear(myKey);
 
-            }
-            catch (Exception ex)
-            {
-                _logger.Error("Failed to ClearCache: {0}", ex.ToString());
-            }
+        }
+        catch (Exception ex)
+        {
+            _logger.Error("Failed to ClearCache: {0}", ex.ToString());
+        }
         }
     }
 }

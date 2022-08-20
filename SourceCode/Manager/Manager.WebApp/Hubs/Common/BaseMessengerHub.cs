@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SignalR;
 
 using Serilog;
 using System;
+using System.Threading.Tasks;
 
 namespace Manager.WebApp.Hubs.Common
 {
@@ -38,5 +39,7 @@ namespace Manager.WebApp.Hubs.Common
 
             }
         }
+
+        
     }
 }

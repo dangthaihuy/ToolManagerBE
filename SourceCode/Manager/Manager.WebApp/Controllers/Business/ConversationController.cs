@@ -41,17 +41,34 @@ namespace Manager.WebApp.Controllers.Business
             }
             try
             {
-                var list = storeConversation.GetById(id);
+                var listSolo = storeConversation.GetById(id);
                 var data = new List<IdentityConversation>();
-                if (list != null)
+                if (listSolo != null)
                 {
-                    foreach(var item in list)
+                    foreach(var item in listSolo)
                     {
                         var ReceiverInfo = ConversationHelpers.GetReceiverInfo(item);
                         var LastMessage = ConversationHelpers.GetLastMessage(item);
                         if (ReceiverInfo != null)
                         {
                             item.Receiver = ReceiverInfo;
+                            item.LastMessage = LastMessage.Message;
+                            item.LastTime = LastMessage.CreateDate;
+                            data.Add(item);
+                        }
+                    }
+                }
+                var listGroup = storeConversation.GetGroupByUserId(id);
+                if (listGroup != null)
+                {
+                    foreach (var item in listGroup)
+                    {
+                        var GroupInfo = GroupChatHelpers.GetGroupInfo(item);
+                        var LastMessage = ConversationHelpers.GetLastMessage(item);
+
+                        if (GroupInfo != null)
+                        {
+                            item.Group = GroupInfo;
                             item.LastMessage = LastMessage.Message;
                             item.LastTime = LastMessage.CreateDate;
                             data.Add(item);

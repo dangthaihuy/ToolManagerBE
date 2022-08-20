@@ -50,7 +50,13 @@ namespace Manager.WebApp.Hubs
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
-        
+        [HubMethodName("SendToGroup")]
+        public void SendGroup(string SenderId, string GroupId, string Message)
+        {
+
+        }
+
+
 
         [HubMethodName("SendToUser")]
         public void SendRedirect(string SenderId, string ReceiverId, string Message)
@@ -65,7 +71,16 @@ namespace Manager.WebApp.Hubs
             IdentityMessage.CreateDate = DateTime.Now;
 
 
-            var MessageSuccess = storeMessage.Insert(IdentityMessage);
+            try
+            {
+                var MessageSuccess = storeMessage.Insert(IdentityMessage);
+                ConversationHelpers.ClearCache(Conversation.Id);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
 
             var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
             //Lấy người gửi trong cache
