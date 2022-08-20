@@ -35,7 +35,7 @@ namespace Manager.DataLayer.Repositories.Business
                 return info;
             }
 
-            var sqlCmd = @"Group_User_GetGroupById";
+            var sqlCmd = @"Conversations_GetGroupById";
 
             var parameters = new Dictionary<string, object>
             {
@@ -75,6 +75,7 @@ namespace Manager.DataLayer.Repositories.Business
 
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.Name = reader["Name"].ToString();
+            record.Type = Utils.ConvertToInt32(reader["Type"]);
 
 
 
