@@ -52,7 +52,7 @@ namespace Manager.WebApp.Controllers.Business
                         if (ReceiverInfo != null)
                         {
                             item.Receiver = ReceiverInfo;
-                            item.LastMessage = LastMessage.Message;
+                            item.LastMessage = LastMessage.Message; 
                             item.LastTime = LastMessage.CreateDate;
                             data.Add(item);
                         }
