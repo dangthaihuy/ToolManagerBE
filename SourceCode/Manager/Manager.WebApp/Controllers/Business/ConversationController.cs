@@ -71,6 +71,7 @@ namespace Manager.WebApp.Controllers.Business
                             item.Group = GroupInfo;
                             item.LastMessage = LastMessage.Message;
                             item.LastTime = LastMessage.CreateDate;
+                            item.Type = 2;
                             data.Add(item);
                         }
                     }

@@ -189,6 +189,7 @@ namespace Manager.DataLayer.Repositories.Business
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.SenderId = Utils.ConvertToInt32(reader["SenderId"]);
             record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
+            record.Type = Utils.ConvertToInt32(reader["Type"]);
 
 
 
