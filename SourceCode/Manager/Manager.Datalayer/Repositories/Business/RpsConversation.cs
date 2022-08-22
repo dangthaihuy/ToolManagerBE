@@ -34,7 +34,9 @@ namespace Manager.DataLayer.Repositories.Business
             var parameters = new Dictionary<string, object>
             {
                 {"@CreatorId", identity.CreatorId },
-                {"@ReceiverId", identity.ReceiverId }
+                {"@ReceiverId", identity.ReceiverId },
+                {"@Type", identity.Type },
+                {"@Name", identity.Name }
 
 
             };

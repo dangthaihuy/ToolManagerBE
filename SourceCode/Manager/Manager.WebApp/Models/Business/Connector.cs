@@ -5,7 +5,7 @@ namespace Manager.WebApp.Models.Business
     public class Connector : Member
     {
         //public int agency_id { get; set; }
-
+        public List<int> Groups { get; set; }
         public List<ConnectionInfo> Connections { get; set; }
 
         public bool has_logout { get { return false; } set { } }

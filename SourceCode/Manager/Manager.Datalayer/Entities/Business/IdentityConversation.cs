@@ -37,10 +37,10 @@ namespace Manager.DataLayer.Entities.Business
         public int Id { get; set; }
         public int CreatorId { get; set; }
         public int ReceiverId { get; set; }
-        public int CreateBy { get; set; }
         public int DeleteByUser1 { get; set; }
         public int DeleteByUser2 { get; set; }
         public int Type { get; set; }
+        public string Name { get; set; }
     }
 
    

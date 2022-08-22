@@ -12,6 +12,7 @@ namespace Manager.DataLayer.Stores.Business
     public interface IStoreGroup
     {
         IdentityGroup GetById(string id);
+        int Insert(int groupId, int memberId);
     }
     public class StoreGroup : IStoreGroup
     {
@@ -29,6 +30,10 @@ namespace Manager.DataLayer.Stores.Business
         public IdentityGroup GetById(string id)
         {
             return r.GetById(id);
+        }
+        public int Insert(int groupId, int memberId)
+        {
+            return r.Insert(groupId, memberId);
         }
     }
 }

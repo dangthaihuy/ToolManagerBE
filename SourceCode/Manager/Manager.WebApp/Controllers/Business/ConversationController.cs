@@ -21,12 +21,14 @@ namespace Manager.WebApp.Controllers.Business
     {
         private readonly IStoreConversation storeConversation;
         private readonly IAPIStoreUser storeUser;
+        private readonly IStoreGroup storeGroup;
         private readonly ILogger<ConversationController> _logger;
         public ConversationController(ILogger<ConversationController> logger)
         {
 
             storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
             storeUser = Startup.IocContainer.Resolve<IAPIStoreUser>();
+            storeGroup = Startup.IocContainer.Resolve<IStoreGroup>();
             _logger = logger;
 
         }
@@ -96,6 +98,14 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var res = storeConversation.Insert(NewConversation);
+                if (model.MemberGroup.HasData())
+                {
+                    var Creator = storeGroup.Insert(res, model.CreatorId);
+                    foreach(string item in model.MemberGroup)
+                    {
+                        var InsertMember  = storeGroup.Insert(res, Utils.ConvertToInt32(item));
+                    }
+                }
                 return Ok(new { ConversationId = res });
             }
             catch(Exception ex)
