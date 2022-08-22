@@ -93,7 +93,7 @@ namespace Manager.WebApp.Hubs
                 {
                     foreach (var senderConn in fromUser.Connections)
                     {
-                        Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveMessage", Conversation.Id, Utils.ConvertToInt32(SenderId), Message, DateTime.Now);
+                        Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveMessage", Conversation.Id, Utils.ConvertToInt32(SenderId), Message, IdentityMessage.CreateDate);
                     }
                 }
 
@@ -102,7 +102,7 @@ namespace Manager.WebApp.Hubs
                     foreach (var receiverConn in toUser.Connections)
                     {
                         // Broad cast message
-                        Clients.Client(receiverConn.ConnectionId).SendAsync("ReceiveMessage", Conversation.Id, Utils.ConvertToInt32(SenderId), Message, DateTime.Now);
+                        Clients.Client(receiverConn.ConnectionId).SendAsync("ReceiveMessage", Conversation.Id, Utils.ConvertToInt32(SenderId), Message, IdentityMessage.CreateDate);
                     }
                 }
             }
