@@ -1,4 +1,6 @@
-﻿using Manager.SharedLibs;
+﻿using Autofac;
+using Manager.DataLayer.Stores.Business;
+using Manager.SharedLibs;
 using Manager.WebApp.Helpers.Business;
 using Manager.WebApp.Models.Business;
 using Microsoft.AspNetCore.SignalR;
@@ -12,6 +14,7 @@ namespace Manager.WebApp.Hubs.Common
     public class BaseMessengerHub : Hub
     {
         private static readonly ILogger _logger = Log.ForContext(typeof(MessengerHelpers));
+        private static readonly IStoreGroup storeGroup = Startup.IocContainer.Resolve<IStoreGroup>();
         public void Connect(string SenderId)
         {
             int Id = Utils.ConvertToInt32(SenderId);
@@ -24,6 +27,7 @@ namespace Manager.WebApp.Hubs.Common
                 if (SenderId != null)
                 {
                     newConnector.Id = Id;
+                    newConnector.Groups = storeGroup.GetGroupIdByUserId(SenderId);
                     var con = new ConnectionInfo();
                     con.ConnectionId = connectionId;
                     newConnector.Connections.Add(con);

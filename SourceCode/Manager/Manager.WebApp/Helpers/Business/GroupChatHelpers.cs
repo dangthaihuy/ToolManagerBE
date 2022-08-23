@@ -51,7 +51,7 @@ namespace Manager.WebApp.Helpers.Business
             {
                 var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
 
-                var myKey = string.Format(EnumFormatInfoCacheKeys.ConversationLastMessage, id);
+                var myKey = string.Format(EnumFormatInfoCacheKeys.ConversationGroup, id);
 
 
                 cacheProvider.Clear(myKey);

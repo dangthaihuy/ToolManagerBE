@@ -112,6 +112,7 @@ namespace Manager.WebApp.Controllers.Business
                         var InsertMember  = storeGroup.Insert(res, Utils.ConvertToInt32(item));
                     }
                 }
+                MessengerHelpers.ClearCache();
                 return Ok(new { ConversationId = res });
             }
             catch(Exception ex)

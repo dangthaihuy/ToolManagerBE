@@ -114,5 +114,23 @@ namespace Manager.WebApp.Helpers.Business
             return listUser;
         }
 
+        public static void ClearCache()
+        {
+            try
+            {
+                var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
+
+                var myKey = string.Format(_allUsersCacheKey);
+
+
+                cacheProvider.Clear(myKey);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Failed to ClearCache: {0}", ex.ToString());
+            }
+        }
+
     }
 }

@@ -12,6 +12,7 @@ namespace Manager.DataLayer.Stores.Business
 {
     public interface IStoreGroup
     {
+        List<int> GetGroupIdByUserId(string id);
         IdentityGroup GetById(string id);
         List<IdentityCurrentUser> GetUserById(int id);
         int Insert(int groupId, int memberId);
@@ -40,6 +41,11 @@ namespace Manager.DataLayer.Stores.Business
         public List<IdentityCurrentUser> GetUserById(int id)
         {
             return r.GetUserById(id);
+        }
+
+        public List<int> GetGroupIdByUserId(string id)
+        {
+            return r.GetGroupIdByUserId(id);
         }
 
     }
