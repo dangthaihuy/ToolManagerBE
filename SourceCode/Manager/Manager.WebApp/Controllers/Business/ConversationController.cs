@@ -99,7 +99,7 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var res= new int();
-                if (model.MemberGroup.HasData()==null)
+                if (model.MemberGroup == null)
                 {
                     res = storeConversation.Insert(NewConversation);
                 }

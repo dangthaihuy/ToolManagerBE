@@ -29,7 +29,7 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpGet]
         [Route("getbypage")]
-        public async Task<IActionResult> GetByPage(int conversationId, int page, string keyword, int pageSize)
+        public ActionResult GetByPage(int conversationId, int page, string keyword, int pageSize)
         {
             int PageSize = pageSize != 0 ? pageSize : 50 ;
             int CurrentPage = page != 0 ? page : 1;
@@ -56,7 +56,43 @@ namespace Manager.WebApp.Controllers.Business
             return Ok(list);
         }
 
-        
-           
+        [HttpGet]
+        [Route("getimportant")]
+        public ActionResult GetImportant(int conversationId, int page, string keyword, int pageSize)
+        {
+            int PageSize = pageSize != 0 ? pageSize : 50;
+            int CurrentPage = page != 0 ? page : 1;
+
+            List<IdentityMessage> list = new List<IdentityMessage>();
+            var filter = new IdentityMessageFilter();
+            try
+            {
+                if (keyword == null)
+                {
+                    keyword = "";
+                }
+                filter.CurrentPage = CurrentPage;
+                filter.PageSize = PageSize;
+                filter.ConversationId = conversationId;
+                filter.Keyword = keyword;
+
+                list = storeMessage.GetImportant(filter);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not login: " + ex.ToString());
+            }
+            return Ok(list);
+        }
+
+        /*[HttpPost]
+        [Route("changeimportant")]
+        public ActionResult ChangeImportant(int )
+        {
+            
+        }*/
+
+
+
     }
 }

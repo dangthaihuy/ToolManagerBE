@@ -27,6 +27,7 @@ namespace Manager.DataLayer.Entities.Business
 
         public int ReceiverId { get; set; }
         public DateTime CreateDate { get; set; }
+        public int Important { get; set; }
 
     }
 }

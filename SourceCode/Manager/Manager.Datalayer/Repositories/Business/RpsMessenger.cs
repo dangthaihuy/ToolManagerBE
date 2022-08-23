@@ -95,7 +95,40 @@ namespace Manager.DataLayer.Repositories.Business
             return listData;
         }
 
-        
+        public List<IdentityMessage> GetImportant(IdentityMessageFilter filter)
+        {
+            var sqlCmd = @"Message_GetImportant";
+            List<IdentityMessage> listData = null;
+
+            int offset = (filter.CurrentPage - 1) * filter.PageSize;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@ConversationId", filter.ConversationId},
+                {"@Keyword", filter.Keyword},
+                {"@Offset", offset},
+                {"@PageSize", filter.PageSize},
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        listData = ParsingListMessageFromReader(reader);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return listData;
+        }
 
         public IdentityMessage GetLastMessage(int id)
         {

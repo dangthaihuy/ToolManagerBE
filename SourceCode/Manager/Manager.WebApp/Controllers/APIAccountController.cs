@@ -34,18 +34,25 @@ namespace Manager.WebApp.Controllers
         [HttpPost]
         [Route("register")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register(ApiRegisterModel model)
+        public ActionResult Register(ApiRegisterModel model)
         {
-            if (storeUser.GetList().Any(user => user.Email == model.Email))
+            try
             {
-                return Json(new { success = false, message = "Username " + model.Email + " is already taken" });
+                if (storeUser.GetList().Any(user => user.Email == model.Email))
+                {
+                    return Json(new { success = false, message = "Username " + model.Email + " is already taken" });
+                }
+
+                var newUser = model.MappingObject<IdentityInformationUser>();
+
+                newUser.PasswordHash = Helpers.Utility.Md5HashingData(model.Password);
+
+                var res = storeUser.Register(newUser);
             }
-
-            var newUser = model.MappingObject<IdentityInformationUser>();
-
-            newUser.PasswordHash = Helpers.Utility.Md5HashingData(model.Password);
-
-            var res = storeUser.Register(newUser);
+            catch(Exception ex)
+            {
+                _logger.LogDebug("Could not login: " + ex.ToString());
+            }
 
             return Ok();
 
@@ -57,7 +64,7 @@ namespace Manager.WebApp.Controllers
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(ApiLoginModel model)
+        public ActionResult Login(ApiLoginModel model)
         {
             try
             {
@@ -88,7 +95,7 @@ namespace Manager.WebApp.Controllers
 
         [HttpGet]
         [Route("getlist")]
-        public async Task<IActionResult> GetList()
+        public ActionResult GetList()
         {
             try
             {
@@ -109,7 +116,7 @@ namespace Manager.WebApp.Controllers
 
         [HttpGet]
         [Route("getcurrentuser")]
-        public async Task<IActionResult> GetById(string id)
+        public ActionResult GetById(string id)
         {
             if(id == null)
             {

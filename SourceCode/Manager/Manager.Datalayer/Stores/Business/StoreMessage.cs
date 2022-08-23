@@ -13,6 +13,7 @@ namespace Manager.DataLayer.Stores.Business
     {
         int Insert(IdentityMessage identity);
         List<IdentityMessage> GetByPage(IdentityMessageFilter filter);
+        List<IdentityMessage> GetImportant(IdentityMessageFilter filter);
         IdentityMessage GetLastMessage(int Id);
 
     }
@@ -38,6 +39,11 @@ namespace Manager.DataLayer.Stores.Business
         public List<IdentityMessage> GetByPage(IdentityMessageFilter filter)
         {
             return r.GetByPage(filter);
+        }
+
+        public List<IdentityMessage> GetImportant(IdentityMessageFilter filter)
+        {
+            return r.GetImportant(filter);
         }
 
 
