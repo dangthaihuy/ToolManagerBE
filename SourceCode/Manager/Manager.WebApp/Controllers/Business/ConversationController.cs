@@ -97,9 +97,14 @@ namespace Manager.WebApp.Controllers.Business
             var NewConversation = model.MappingObject<IdentityConversationDefault>();
             try
             {
-                var res = storeConversation.Insert(NewConversation);
+                var res= new int();
+                if (model.MemberGroup.HasData()==null)
+                {
+                    res = storeConversation.Insert(NewConversation);
+                }
                 if (model.MemberGroup.HasData())
                 {
+                    res = storeConversation.InsertGroup(NewConversation);
                     var Creator = storeGroup.Insert(res, model.CreatorId);
                     foreach(string item in model.MemberGroup)
                     {

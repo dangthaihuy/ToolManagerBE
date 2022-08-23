@@ -12,6 +12,7 @@ namespace Manager.DataLayer.Stores.Business
     public interface IStoreConversation
     {
         int Insert(IdentityConversationDefault identity);
+        int InsertGroup(IdentityConversationDefault identity);
         List<IdentityConversation> GetById(string Id);
         List<IdentityConversation> GetGroupByUserId(string Id);
         IdentityConversation GetDetail(string SenderId, string ReceiverId);
@@ -49,6 +50,10 @@ namespace Manager.DataLayer.Stores.Business
         public int Insert(IdentityConversationDefault identity)
         {
             return r.Insert(identity);
+        }
+        public int InsertGroup(IdentityConversationDefault identity)
+        {
+            return r.InsertGroup(identity);
         }
 
     }
