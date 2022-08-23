@@ -1,4 +1,5 @@
-﻿using Manager.DataLayer.Entities.Business;
+﻿using Manager.DataLayer.Entities;
+using Manager.DataLayer.Entities.Business;
 using Manager.DataLayer.Repositories.Business;
 using Manager.SharedLibs;
 using System;
@@ -12,6 +13,7 @@ namespace Manager.DataLayer.Stores.Business
     public interface IStoreGroup
     {
         IdentityGroup GetById(string id);
+        List<IdentityCurrentUser> GetUserById(int id);
         int Insert(int groupId, int memberId);
     }
     public class StoreGroup : IStoreGroup
@@ -35,5 +37,10 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.Insert(groupId, memberId);
         }
+        public List<IdentityCurrentUser> GetUserById(int id)
+        {
+            return r.GetUserById(id);
+        }
+
     }
 }

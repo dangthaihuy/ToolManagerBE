@@ -1,4 +1,5 @@
-﻿using Manager.DataLayer.Entities.Business;
+﻿using Manager.DataLayer.Entities;
+using Manager.DataLayer.Entities.Business;
 using Manager.SharedLibs;
 using Manager.SharedLibs.Extensions;
 using System;
@@ -63,6 +64,49 @@ namespace Manager.DataLayer.Repositories.Business
             return info;
         }
 
+        public List<IdentityCurrentUser> GetUserById(int Id)
+        {
+            var listData = new List<IdentityCurrentUser>();
+            
+            if (Id <= 0)
+            {
+                return listData;
+            }
+
+            var sqlCmd = @"Group_User_GetUserById";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", Id}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var info = new IdentityCurrentUser();
+                            info = ExtractCurrentUser(reader);
+
+                            listData.Add(info);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return listData;
+        }
+
+
+
+
         public int Insert(int groupId, int memberId)
         {
             var sqlCmd = @"Group_User_Insert";
@@ -96,18 +140,28 @@ namespace Manager.DataLayer.Repositories.Business
         }
 
 
-        public static IdentityGroup ExtractGroup(IDataReader reader)
+        private static IdentityGroup ExtractGroup(IDataReader reader)
         {
             var record = new IdentityGroup();
 
             //Seperate properties
 
-
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.Name = reader["Name"].ToString();
 
+            return record;
+        }
 
+        private static IdentityCurrentUser ExtractCurrentUser(IDataReader reader)
+        {
+            var record = new IdentityCurrentUser();
 
+            //Seperate properties
+
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
+            record.Email = reader["Email"].ToString();
+            record.Avatar = reader["Avatar"].ToString();
+            record.Fullname = reader["Fullname"].ToString();
 
             return record;
         }

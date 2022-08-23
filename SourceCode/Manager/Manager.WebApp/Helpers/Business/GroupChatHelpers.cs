@@ -28,7 +28,7 @@ namespace Manager.WebApp.Helpers.Business
                 {
                     var myStore = Startup.IocContainer.Resolve<IStoreGroup>();
                     info = myStore.GetById(Convert.ToString(item.Id))
-;
+;                   info.Member = myStore.GetUserById(item.Id);
 
                     if (info != null)
                     {
