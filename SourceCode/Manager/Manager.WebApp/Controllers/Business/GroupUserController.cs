@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Manager.DataLayer.Stores.Business;
 using Manager.SharedLibs;
+using Manager.WebApp.Helpers.Business;
 using Manager.WebApp.Models.Business;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -35,7 +36,10 @@ namespace Manager.WebApp.Controllers.Business
                 foreach(string item in model.UsersId)
                 {
                     var Res = storeGroup.Insert(model.GroupId, Utils.ConvertToInt32(item));
+                    
+
                 }
+                GroupChatHelpers.ClearCache(model.GroupId);
             }
             catch(Exception ex)
             {

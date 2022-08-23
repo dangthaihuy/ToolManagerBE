@@ -14,7 +14,7 @@ namespace Manager.WebApp.Helpers.Business
 
         public static IdentityGroup GetGroupInfo(IdentityConversation item)
         {
-            var myKey = string.Format(EnumFormatInfoCacheKeys.ConversationGroup, item.SenderId, item.Id);
+            var myKey = string.Format(EnumFormatInfoCacheKeys.ConversationGroup, item.Id);
 
             IdentityGroup info = null;
             try
@@ -43,6 +43,24 @@ namespace Manager.WebApp.Helpers.Business
             }
 
             return info;
+        }
+
+        public static void ClearCache(int id)
+        {
+            try
+            {
+                var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
+
+                var myKey = string.Format(EnumFormatInfoCacheKeys.ConversationLastMessage, id);
+
+
+                cacheProvider.Clear(myKey);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Failed to ClearCache: {0}", ex.ToString());
+            }
         }
     }
 }
