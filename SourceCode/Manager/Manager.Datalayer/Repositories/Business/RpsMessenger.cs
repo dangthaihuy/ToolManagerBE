@@ -227,6 +227,7 @@ namespace Manager.DataLayer.Repositories.Business
             record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
 
             record.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
+            record.Important = Utils.ConvertToInt32(reader["Important"]);
 
 
             return record;

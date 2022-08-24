@@ -49,5 +49,12 @@ namespace Manager.WebApp.Controllers.Business
             return Ok();
         }
 
+        /*[HttpPost]
+        [Route("delete")]
+        public ActionResult Delete(GroupUserModel model)
+        {
+            
+        }*/
+
     }
 }
