@@ -11,6 +11,7 @@ namespace Manager.WebApp.Helpers.Business
         public static string ConversationGroup = "CONVERSATION_GROUP_{0}";
         public static string ConversationLastMessage = "CONVERSATIONLASTMESSAGE_{0}";
         public static string GroupOfUser = "GROUPOFUSER_{0}";
+        public static string UsersInGroup = "USERSINGROUP_{0}";
     }
 
     public static class EnumListCacheKeys

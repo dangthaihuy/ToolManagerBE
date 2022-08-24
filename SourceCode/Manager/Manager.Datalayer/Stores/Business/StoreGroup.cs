@@ -16,6 +16,7 @@ namespace Manager.DataLayer.Stores.Business
         IdentityGroup GetById(string id);
         List<IdentityCurrentUser> GetUserById(int id);
         int Insert(int groupId, int memberId);
+        int Delete(int groupId, int memberId);
     }
     public class StoreGroup : IStoreGroup
     {
@@ -37,6 +38,10 @@ namespace Manager.DataLayer.Stores.Business
         public int Insert(int groupId, int memberId)
         {
             return r.Insert(groupId, memberId);
+        }
+        public int Delete(int groupId, int memberId)
+        {
+            return r.Delete(groupId, memberId);
         }
         public List<IdentityCurrentUser> GetUserById(int id)
         {

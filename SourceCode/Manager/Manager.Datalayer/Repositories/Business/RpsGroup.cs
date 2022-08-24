@@ -157,8 +157,36 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 {"@GroupId", groupId },
                 {"@UserId", memberId },
+            };
 
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
 
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
+
+        public int Delete(int groupId, int memberId)
+        {
+            var sqlCmd = @"Group_User_Delete";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@GroupId", groupId },
+                {"@UserId", memberId },
             };
 
             try

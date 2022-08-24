@@ -73,33 +73,23 @@ namespace Manager.WebApp.Hubs
             }
 
             var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
-
-            //Lấy người gửi trong cache
-            var fromUser = connectedUsers.FirstOrDefault(x => x.Id == Utils.ConvertToInt32(SenderId));
-            //Lấy người nhận trong cache
-            var toUsers = connectedUsers.FindAll(x => x.Groups.FirstOrDefault(Group => Group == GroupId) != null);
-            if (connectedUsers != null && connectedUsers.Count > 0)
+            var listUserInGroup = MessengerHelpers.GetBaseGroupInfo(GroupId);
+            foreach (var user in listUserInGroup)
             {
-                if (fromUser != null && fromUser.Connections.HasData())
+                var userConnect = connectedUsers.FirstOrDefault(x => x.Id == user.Id);
+                if(userConnect != null)
                 {
-                    foreach (var senderConn in fromUser.Connections)
+                    foreach (var senderConn in userConnect.Connections)
                     {
                         Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveMessage", GroupId, SenderId, Message, IdentityMessage.CreateDate);
                     }
                 }
 
-                if (toUsers != null && toUsers.HasData())
-                {
-                    foreach (var toUser in toUsers)
-                    {
-                        foreach (var receiverConn in toUser.Connections)
-                        {
-                            // Broad cast message
-                            Clients.Client(receiverConn.ConnectionId).SendAsync("ReceiveMessage", GroupId, SenderId, Message, IdentityMessage.CreateDate);
-                        }
-                    }
-                }
             }
+
+
+            //Lấy người gửi trong cache
+
         }
 
 

@@ -21,7 +21,6 @@ namespace Manager.WebApp.Models.Business
         public string Fullname { get; set; }
 
         //public string Avatar { get; set; }
-        public List<int> Groups { get; set; }
         public string ConnectionId { get; set; }
         
     }

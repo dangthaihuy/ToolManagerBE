@@ -27,7 +27,7 @@ namespace Manager.WebApp.Hubs.Common
                 if (SenderId != null)
                 {
                     newConnector.Id = Id;
-                    newConnector.Groups = storeGroup.GetGroupIdByUserId(SenderId);
+                    
                     var con = new ConnectionInfo();
                     con.ConnectionId = connectionId;
                     newConnector.Connections.Add(con);

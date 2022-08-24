@@ -39,7 +39,7 @@ namespace Manager.WebApp.Controllers.Business
                     
 
                 }
-                GroupChatHelpers.ClearCache(model.GroupId);
+                MessengerHelpers.ClearCacheUsersInGroup(model.GroupId);
             }
             catch(Exception ex)
             {
@@ -49,12 +49,27 @@ namespace Manager.WebApp.Controllers.Business
             return Ok();
         }
 
-        /*[HttpPost]
+        [HttpPost]
         [Route("delete")]
         public ActionResult Delete(GroupUserModel model)
         {
-            
-        }*/
+            try
+            {
+                foreach (string item in model.UsersId)
+                {
+                    var Res = storeGroup.Delete(model.GroupId, Utils.ConvertToInt32(item));
+
+
+                }
+                MessengerHelpers.ClearCacheUsersInGroup(model.GroupId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not login: " + ex.ToString());
+            }
+
+            return Ok();
+        }
 
     }
 }
