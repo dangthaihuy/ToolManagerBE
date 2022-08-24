@@ -16,6 +16,8 @@ namespace Manager.DataLayer.Stores.Business
         List<IdentityMessage> GetImportant(IdentityMessageFilter filter);
         IdentityMessage GetLastMessage(int Id);
 
+        int ChangeImportant(int Id, int important);
+
     }
     public class StoreMessage : IStoreMessage
     {
@@ -44,6 +46,11 @@ namespace Manager.DataLayer.Stores.Business
         public List<IdentityMessage> GetImportant(IdentityMessageFilter filter)
         {
             return r.GetImportant(filter);
+        }
+
+        public int ChangeImportant(int Id, int important)
+        {
+            return r.ChangeImportant(Id, important);
         }
 
 

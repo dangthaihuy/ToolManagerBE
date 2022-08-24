@@ -85,12 +85,30 @@ namespace Manager.WebApp.Controllers.Business
             return Ok(list);
         }
 
-        /*[HttpPost]
+        [HttpPost]
         [Route("changeimportant")]
-        public ActionResult ChangeImportant(int )
+        public ActionResult ChangeImportant(MessageCheckImportantModel model)
         {
-            
-        }*/
+            if(model.Id == 0)
+            {
+                return BadRequest("Message is empty");
+            }
+            else
+            {
+                try
+                {
+                    var res = storeMessage.ChangeImportant(model.Id, model.Important);
+
+                    
+                }
+                catch(Exception ex)
+                {
+                    _logger.LogDebug("Could not login: " + ex.ToString());
+                }
+            }
+
+            return Ok();
+        }
 
 
 

@@ -60,6 +60,37 @@ namespace Manager.DataLayer.Repositories.Business
             return newId;
         }
 
+        public int ChangeImportant(int Id, int important)
+        {
+            var sqlCmd = @"Message_ChangeImportant";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", Id },
+                {"@Important", important }
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
+
         public List<IdentityMessage> GetByPage(IdentityMessageFilter filter)
         {
             var sqlCmd = @"Message_GetByPage";

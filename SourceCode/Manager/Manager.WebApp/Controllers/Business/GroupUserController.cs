@@ -29,7 +29,7 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpPost]
         [Route("insert")]
-        public async Task<IActionResult> Insert(GroupUserModel model)
+        public ActionResult Insert(GroupUserModel model)
         {
             try
             {

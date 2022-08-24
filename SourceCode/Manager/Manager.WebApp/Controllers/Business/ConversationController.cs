@@ -35,7 +35,7 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpGet]
         [Route("getbyid")]
-        public async Task<IActionResult> GetById(string id)
+        public ActionResult GetById(string id)
         {
             if (id == null)
             {
@@ -93,7 +93,7 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpPost]
         [Route("insert")]
-        public async Task<IActionResult> Insert(ConversationModel model)
+        public ActionResult Insert(ConversationModel model)
         {
             var NewConversation = model.MappingObject<IdentityConversationDefault>();
             try
