@@ -1,0 +1,230 @@
+﻿@using Manager.DataLayer
+@using Manager.SharedLibs
+@using Manager.WebApp.Resources
+@using Manager.WebApp.Helpers
+
+@{
+    var menuItems = ViewBag.AdminNavMenu as IEnumerable<IdentityMenu>;
+    var pageTitle = string.Empty;
+    var hasData = (menuItems != null && menuItems.Count() > 0);
+    var ctrlName = ViewContext.RouteData.Values["controller"].ToString();
+    var actName = ViewContext.RouteData.Values["action"].ToString();
+
+    if (hasData)
+    {
+        menuItems = MenuHelper.GetCurrentListMenuByLang(menuItems.ToList());
+    }
+
+    if (hasData)
+    {
+        var matchedMenu = menuItems.Where(m => string.Equals(m.Action, actName, StringComparison.CurrentCultureIgnoreCase)
+         && (string.Equals(m.Controller, ctrlName, StringComparison.CurrentCultureIgnoreCase))).FirstOrDefault();
+
+        if (matchedMenu == null)
+        {
+            foreach (var item in menuItems)
+            {
+                if (item.SubMenu.HasData())
+                {
+                    matchedMenu = item.SubMenu.Where(m => string.Equals(m.Action, actName, StringComparison.CurrentCultureIgnoreCase)
+                    && (string.Equals(m.Controller, ctrlName, StringComparison.CurrentCultureIgnoreCase))).FirstOrDefault();
+
+                    if (matchedMenu != null)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (matchedMenu != null)
+        {
+            pageTitle = matchedMenu.CurrentTitleLang;
+        }
+    }
+
+    <div style="display:none;" class="CurrentPageTitle">@pageTitle</div>
+}
+
+@functions
+{
+    private void RenderTopMenuItem(IdentityMenu mi, string cssOpen)
+    {
+        var controller = ViewContext.RouteData.Values["controller"].ToString();
+        var action = ViewContext.RouteData.Values["action"].ToString();
+
+        var cssParent = mi.HasVisbleChildren ? "m-menu__item--submenu" : "";
+        var cssLink = mi.HasVisbleChildren ? "m-menu__toggle" : "";
+        var itemUrl = !string.IsNullOrEmpty(mi.Action) && !string.IsNullOrEmpty(mi.Controller) ?
+                            Url.Action(mi.Action, mi.Controller) : "javascript:;";
+
+        var activeClass = string.Empty;
+        var parentCtrl = ViewBag.ParentController != null ? ViewBag.ParentController : string.Empty;
+        var parentAct = ViewBag.ParentAction != null ? ViewBag.ParentAction : string.Empty;
+
+        if (!string.IsNullOrEmpty(parentCtrl))
+        {
+            if (string.Equals(mi.Controller, parentCtrl, StringComparison.CurrentCultureIgnoreCase) &&
+            string.Equals(mi.Action, parentAct, StringComparison.CurrentCultureIgnoreCase))
+            {
+                activeClass = "active";
+            }
+        }
+
+        <li class="m-menu__item @cssParent @cssOpen @activeClass" aria-haspopup="true" m-menu-submenu-toggle="hover">
+            <a href="@itemUrl" title="@mi.CurrentTitleLang" class="m-menu__link @cssLink">
+                <i class="m-menu__link-icon @mi.IconCss"></i>
+                <span class="m-menu__link-text"> @mi.CurrentTitleLang </span>
+
+                @if (mi.HasVisbleChildren)
+                {
+                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                }
+            </a>
+
+            @if (mi.HasVisbleChildren)
+            {
+                <div class="m-menu__submenu">
+                    <span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+
+                        @foreach (var smi in mi.SubMenu)
+                        {
+                            if (smi.Visible)
+                            {
+                                var cssActive = string.Empty;
+
+                                if (string.Equals(smi.Controller, controller, StringComparison.CurrentCultureIgnoreCase) &&
+                                string.Equals(smi.Action, action, StringComparison.CurrentCultureIgnoreCase))
+                                {
+                                    cssActive = "m-menu__item--active";
+                                }
+
+                                RenderSubMenuItem(smi, cssActive);
+                            }
+                        }
+
+                    </ul>
+                </div>
+
+            }
+
+        </li>
+    }
+
+    private void RenderSubMenuItem(IdentityMenu mi, string cssActive)
+    {
+        var cssLink = mi.HasVisbleChildren ? "m-menu__toggle" : "";
+
+        var itemUrl = !string.IsNullOrEmpty(mi.Action) && !string.IsNullOrEmpty(mi.Controller) ? Url.Action(mi.Action, mi.Controller) : "javascript:;";
+
+        if (string.IsNullOrEmpty(cssActive))
+        {
+            var parentCtrl = ViewBag.ParentController != null ? ViewBag.ParentController : string.Empty;
+            var parentAct = ViewBag.ParentAction != null ? ViewBag.ParentAction : string.Empty;
+
+            if (!string.IsNullOrEmpty(parentCtrl))
+            {
+                if (string.Equals(mi.Controller, parentCtrl, StringComparison.CurrentCultureIgnoreCase) &&
+                string.Equals(mi.Action, parentAct, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    cssActive = "m-menu__item--active";
+                }
+            }
+        }
+
+        <li class="m-menu__item @cssActive" aria-haspopup="true">
+            <a href="@itemUrl" class="m-menu__link @cssLink" title="@mi.CurrentTitleLang">
+                <i class="m-menu__link-bullet @(!string.IsNullOrEmpty(mi.IconCss) ? mi.IconCss : "m-menu__link-bullet--dot")">
+                    <span></span>
+                </i>
+                <span class="m-menu__link-text">
+                    @mi.CurrentTitleLang
+                </span>
+
+                @if (mi.HasVisbleChildren)
+                {
+                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                }
+            </a>
+            @if (mi.HasVisbleChildren)
+            {
+                <div class="m-menu__submenu">
+                    <ul class="m-menu__subnav">
+                        @foreach (var smi in mi.SubMenu)
+                        {
+                            if (smi.Visible)
+                            {
+                                RenderSubMenuItem(smi, cssActive);
+                            }
+                        }
+                    </ul>
+                </div>
+            }
+        </li>
+    }
+}
+
+
+<button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
+    <i class="la la-close"></i>
+</button>
+
+<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark">
+    <div id="m_ver_menu"
+         class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark "
+         m-menu-vertical="1"
+         m-menu-scrollable="0" m-menu-dropdown-timeout="500">
+
+        <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow">
+            @{
+                var homeActiveClass = "";
+                if (ctrlName == "Home" && actName == "Index")
+                {
+                    homeActiveClass = "m-menu__item--open m-menu__item--single";
+                }
+            }
+            <li class="m-menu__item @homeActiveClass">
+                <a href="/" title="@ManagerResource.LB_DASHBOARD" class="m-menu__link">
+                    <i class="m-menu__link-icon fa fa-home"></i>
+                    <span class="m-menu__link-text"> @ManagerResource.LB_DASHBOARD </span>
+                </a>
+            </li>
+
+            @if (menuItems != null)
+            {
+                var hasMenuActive = false;
+                foreach (var mi in menuItems)
+                {
+                    if (mi.Visible && (mi.HasChildren || (!string.IsNullOrEmpty(mi.Action) && !string.IsNullOrEmpty(mi.Controller)))
+                        )
+                    {
+                        var cssOpen = string.Empty;
+                        if (!mi.HasChildren)
+                        {
+                            cssOpen = " m-menu__item--single";
+                        }
+
+                        if (hasMenuActive == false)
+                        {
+                            if (MenuHelper.CheckCurrentGroupCustom(mi, actName, ctrlName))
+                            {
+                                hasMenuActive = true;
+                                cssOpen += " m-menu__item--open";
+                            }
+                        }
+
+                        RenderTopMenuItem(mi, cssOpen);
+                    }
+                }
+            }
+
+            <li class="m-menu__item m-menu__item--submenu " aria-haspopup="true" m-menu-submenu-toggle="hover">
+                @*<a href="https://intro.nihon-work.com/help" title="@ManagerResource.LB_DOCUMENTATION" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon fa fa-book"></i>
+                <span class="m-menu__link-text"> @ManagerResource.LB_DOCUMENTATION </span>
+            </a>*@
+            </li>
+        </ul>
+    </div>
+</div>

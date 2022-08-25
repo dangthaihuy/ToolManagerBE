@@ -1,0 +1,194 @@
+[05/08/2022 08:01:28 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 08:01:28 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 08:01:28 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 08:01:28 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 08:01:28 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 08:02:03 ERR Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor] The view '405' was not found. Searched locations: ["/Views/Error/405.cshtml","/Views/Shared/405.cshtml"] 
+[05/08/2022 08:02:03 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: The view '405' was not found. The following locations were searched:
+/Views/Error/405.cshtml
+/Views/Shared/405.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[05/08/2022 08:02:23 ERR Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor] The view '405' was not found. Searched locations: ["/Views/Error/405.cshtml","/Views/Shared/405.cshtml"] 
+[05/08/2022 08:02:23 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: The view '405' was not found. The following locations were searched:
+/Views/Error/405.cshtml
+/Views/Shared/405.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[05/08/2022 08:02:54 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 08:02:54 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 08:02:54 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 08:02:54 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 08:02:54 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 08:03:21 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 08:03:21 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 08:03:21 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 08:03:21 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 08:03:21 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 08:35:27 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 08:35:27 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 08:35:27 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 08:35:27 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 08:35:27 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 08:37:27 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 08:37:27 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 08:37:27 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 08:37:27 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 08:37:27 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 08:38:50 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 08:38:50 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 08:38:50 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 08:38:50 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 08:38:50 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 08:39:34 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 08:39:34 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 08:39:34 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 08:39:34 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 08:39:34 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 09:58:56 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 09:58:56 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 09:58:56 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 09:58:56 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 09:58:56 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 10:21:10 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 10:21:10 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 10:21:10 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 10:21:10 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 10:21:10 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 10:21:57 ERR Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor] The view '405' was not found. Searched locations: ["/Views/Error/405.cshtml","/Views/Shared/405.cshtml"] 
+[05/08/2022 10:21:57 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: The view '405' was not found. The following locations were searched:
+/Views/Error/405.cshtml
+/Views/Shared/405.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[05/08/2022 13:56:37 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 13:56:37 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 13:56:37 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 13:56:37 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 13:56:37 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 13:57:18 ERR Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor] The view '405' was not found. Searched locations: ["/Views/Error/405.cshtml","/Views/Shared/405.cshtml"] 
+[05/08/2022 13:57:18 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: The view '405' was not found. The following locations were searched:
+/Views/Error/405.cshtml
+/Views/Shared/405.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[05/08/2022 14:14:30 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 14:14:30 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 14:14:30 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 14:14:30 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 14:14:30 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 14:15:05 ERR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request. 
+Manager.SharedLibs.Extensions.CustomSQLException: Failed to execute APIUser_GetList. Error: Could not find stored procedure 'APIUser_GetList'.
+   at Manager.DataLayer.Repositories.System.APIRpsUser.GetList() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Repositories\System\APIRpsUser.cs:line 84
+   at Manager.DataLayer.Stores.System.APIStoreUser.GetList() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Stores\System\APIStoreUser.cs:line 43
+   at Manager.WebApp.Controllers.APIAccountController.Register(APILoginViewModel model) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\APIAccountController.cs:line 37
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[05/08/2022 14:20:08 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 14:20:08 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 14:20:08 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 14:20:08 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 14:20:08 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 14:29:23 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 14:29:23 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 14:29:23 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 14:29:23 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 14:29:23 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 14:46:16 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 14:46:16 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 14:46:16 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 14:46:16 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 14:46:16 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[05/08/2022 14:47:27 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[05/08/2022 14:47:27 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[05/08/2022 14:47:27 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[05/08/2022 14:47:27 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[05/08/2022 14:47:27 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 

@@ -1,0 +1,457 @@
+[25/08/2022 08:13:06 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 08:13:06 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 08:13:06 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 08:13:06 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 08:13:06 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 08:18:57 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 08:18:57 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 08:18:57 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 08:18:57 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 08:18:57 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 08:32:51 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 08:32:51 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 08:32:51 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 08:32:51 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 08:32:51 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 11:33:48 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 11:33:48 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 11:33:48 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 11:33:48 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 11:33:48 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 11:34:21 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 14:48:27 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 14:51:13 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 14:51:13 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 14:51:13 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 14:51:13 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 14:53:30 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.AggregateException: One or more errors occurred. (One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.))
+ ---> System.AggregateException: One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.)
+ ---> Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json)
+   at Microsoft.AspNet.SignalR.Client.Transports.TransportHelper.<>c.<GetNegotiationResponse>b__0_1(String raw)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass31_0`2.<Then>b__0(Task`1 t)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection.<.ctor>b__5_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 238
+   at Microsoft.AspNet.SignalR.Client.Connection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.HubConnection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.Connection.Disconnect()
+   at Microsoft.AspNet.SignalR.Client.Connection.<>c__DisplayClass153_0.<Negotiate>b__3()
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass19_1.<ContinueWithNotComplete>b__0(Task t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection..ctor() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 243
+   at Manager.WebApp.SignalrConnection.<>c.<.cctor>b__13_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 219
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Manager.WebApp.SignalrConnection.get_Instance() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 259
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(String senderId, String receiverId, String message, Int32 conversationId) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 218 
+[25/08/2022 14:59:27 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 14:59:27 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 14:59:27 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 14:59:27 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 14:59:27 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:02:31 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:02:31 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:02:31 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:02:31 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:02:31 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:03:31 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.AggregateException: One or more errors occurred. (One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.))
+ ---> System.AggregateException: One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.)
+ ---> Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json)
+   at Microsoft.AspNet.SignalR.Client.Transports.TransportHelper.<>c.<GetNegotiationResponse>b__0_1(String raw)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass31_0`2.<Then>b__0(Task`1 t)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection.<.ctor>b__5_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 238
+   at Microsoft.AspNet.SignalR.Client.Connection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.HubConnection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.Connection.Disconnect()
+   at Microsoft.AspNet.SignalR.Client.Connection.<>c__DisplayClass153_0.<Negotiate>b__3()
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass19_1.<ContinueWithNotComplete>b__0(Task t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection..ctor() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 243
+   at Manager.WebApp.SignalrConnection.<>c.<.cctor>b__13_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 219
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.get_Value()
+   at Manager.WebApp.SignalrConnection.get_Instance() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 259
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 192 
+[25/08/2022 15:04:46 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:04:46 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:04:46 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:04:46 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:04:46 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:05:40 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.AggregateException: One or more errors occurred. (One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.))
+ ---> System.AggregateException: One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.)
+ ---> Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json)
+   at Microsoft.AspNet.SignalR.Client.Transports.TransportHelper.<>c.<GetNegotiationResponse>b__0_1(String raw)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass31_0`2.<Then>b__0(Task`1 t)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection.<.ctor>b__5_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 238
+   at Microsoft.AspNet.SignalR.Client.Connection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.HubConnection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.Connection.Disconnect()
+   at Microsoft.AspNet.SignalR.Client.Connection.<>c__DisplayClass153_0.<Negotiate>b__3()
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass19_1.<ContinueWithNotComplete>b__0(Task t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection..ctor() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 243
+   at Manager.WebApp.SignalrConnection.<>c.<.cctor>b__13_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 219
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.get_Value()
+   at Manager.WebApp.SignalrConnection.get_Instance() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 259
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 192 
+[25/08/2022 15:10:27 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:10:27 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:10:27 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:10:27 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:10:27 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:12:51 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:12:51 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:12:51 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:12:51 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:12:51 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:14:37 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.AggregateException: One or more errors occurred. (One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.))
+ ---> System.AggregateException: One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.)
+ ---> Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json)
+   at Microsoft.AspNet.SignalR.Client.Transports.TransportHelper.<>c.<GetNegotiationResponse>b__0_1(String raw)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass31_0`2.<Then>b__0(Task`1 t)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection.<.ctor>b__5_0()
+   at Microsoft.AspNet.SignalR.Client.Connection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.HubConnection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.Connection.Disconnect()
+   at Microsoft.AspNet.SignalR.Client.Connection.<>c__DisplayClass153_0.<Negotiate>b__3()
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass19_1.<ContinueWithNotComplete>b__0(Task t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection..ctor()
+   at Manager.WebApp.SignalrConnection.<>c.<.cctor>b__13_0()
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Manager.WebApp.SignalrConnection.get_Instance()
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) 
+[25/08/2022 15:15:13 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:15:13 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:15:13 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:15:13 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:15:13 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:15:57 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.AggregateException: One or more errors occurred. (One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.))
+ ---> System.AggregateException: One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.)
+ ---> Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json)
+   at Microsoft.AspNet.SignalR.Client.Transports.TransportHelper.<>c.<GetNegotiationResponse>b__0_1(String raw)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass31_0`2.<Then>b__0(Task`1 t)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection.<.ctor>b__5_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 238
+   at Microsoft.AspNet.SignalR.Client.Connection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.HubConnection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.Connection.Disconnect()
+   at Microsoft.AspNet.SignalR.Client.Connection.<>c__DisplayClass153_0.<Negotiate>b__3()
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass19_1.<ContinueWithNotComplete>b__0(Task t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection..ctor() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 243
+   at Manager.WebApp.SignalrConnection.<>c.<.cctor>b__13_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 219
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.get_Value()
+   at Manager.WebApp.SignalrConnection.get_Instance() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 260
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 192 
+[25/08/2022 15:16:01 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.AggregateException: One or more errors occurred. (One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.))
+ ---> System.AggregateException: One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.)
+ ---> Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json)
+   at Microsoft.AspNet.SignalR.Client.Transports.TransportHelper.<>c.<GetNegotiationResponse>b__0_1(String raw)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass31_0`2.<Then>b__0(Task`1 t)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection.<.ctor>b__5_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 238
+   at Microsoft.AspNet.SignalR.Client.Connection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.HubConnection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.Connection.Disconnect()
+   at Microsoft.AspNet.SignalR.Client.Connection.<>c__DisplayClass153_0.<Negotiate>b__3()
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass19_1.<ContinueWithNotComplete>b__0(Task t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection..ctor() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 243
+   at Manager.WebApp.SignalrConnection.<>c.<.cctor>b__13_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 219
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Manager.WebApp.SignalrConnection.get_Instance() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 260
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 192 
+[25/08/2022 15:16:16 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:16:16 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:16:16 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:16:16 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:16:16 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:17:00 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.AggregateException: One or more errors occurred. (One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.))
+ ---> System.AggregateException: One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.)
+ ---> Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json)
+   at Microsoft.AspNet.SignalR.Client.Transports.TransportHelper.<>c.<GetNegotiationResponse>b__0_1(String raw)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass31_0`2.<Then>b__0(Task`1 t)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection.<.ctor>b__5_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 238
+   at Microsoft.AspNet.SignalR.Client.Connection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.HubConnection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.Connection.Disconnect()
+   at Microsoft.AspNet.SignalR.Client.Connection.<>c__DisplayClass153_0.<Negotiate>b__3()
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass19_1.<ContinueWithNotComplete>b__0(Task t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.SignalrConnection..ctor() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 243
+   at Manager.WebApp.SignalrConnection.<>c.<.cctor>b__13_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 219
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.get_Value()
+   at Manager.WebApp.SignalrConnection.get_Instance() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 260
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 192 
+[25/08/2022 15:22:08 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:22:08 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:22:08 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:22:08 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:22:08 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:22:51 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.Threading.ThreadAbortException: System error.
+   at System.Net.Http.HttpClient.SendAsyncCore(HttpRequestMessage request, HttpCompletionOption completionOption, Boolean async, Boolean emitTelemetryStartStop, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.Http.HttpClient.SendAsyncCore(HttpRequestMessage request, HttpCompletionOption completionOption, Boolean async, Boolean emitTelemetryStartStop, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.SendAsync(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationToken cancellationToken)
+   at Microsoft.AspNet.SignalR.Client.Http.DefaultHttpClient.Get(String url, Action`1 prepareRequest, Boolean isLongRunning)
+   at Microsoft.AspNet.SignalR.Client.Transports.TransportHelper.GetNegotiationResponse(IHttpClient httpClient, IConnection connection, String connectionData)
+   at Microsoft.AspNet.SignalR.Client.Transports.AutoTransport.GetNegotiateResponse(IConnection connection, String connectionData)
+   at Microsoft.AspNet.SignalR.Client.Transports.AutoTransport.Negotiate(IConnection connection, String connectionData)
+   at Microsoft.AspNet.SignalR.Client.Connection.<>c__DisplayClass153_0.<Negotiate>g__StartNegotiation|1()
+   at Microsoft.AspNet.SignalR.Client.Connection.Negotiate(IClientTransport transport)
+   at Microsoft.AspNet.SignalR.Client.Connection.Start(IClientTransport transport)
+   at Microsoft.AspNet.SignalR.Client.Connection.Start(IHttpClient httpClient)
+   at Microsoft.AspNet.SignalR.Client.Connection.Start()
+   at Manager.WebApp.SignalrConnection..ctor() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 243
+   at Manager.WebApp.SignalrConnection.<>c.<.cctor>b__13_0() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 219
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Manager.WebApp.SignalrConnection.get_Instance() in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Startup.cs:line 260
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 192 
+[25/08/2022 15:22:58 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.Threading.ThreadAbortException: System error.
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 190 
+[25/08/2022 15:22:58 ERR Manager.WebApp.Controllers.Business.MessageController] Could not SendToUser: System.Threading.ThreadAbortException: System error.
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 199
+   at Manager.WebApp.Controllers.Business.MessageController.SendPrivateMessage(SendPrivateMessageModel model) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 177 
+[25/08/2022 15:22:58 ERR Microsoft.AspNetCore.Server.Kestrel] Connection id "0HMK6EBJDBMPT", Request id "0HMK6EBJDBMPT:00000003": An unhandled exception was thrown by the application. 
+System.Threading.ThreadAbortException: System error.
+   at Microsoft.AspNetCore.Builder.Extensions.MapWhenMiddleware.Invoke(HttpContext context)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Builder.Extensions.MapWhenMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Hosting.HostingApplication.ProcessRequestAsync(Context context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+[25/08/2022 15:22:58 WRN Microsoft.AspNetCore.Server.Kestrel] Connection processing ended abnormally. 
+System.Threading.ThreadAbortException: System error.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)
+[25/08/2022 15:26:53 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:26:53 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:26:53 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:26:53 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:26:53 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:27:56 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:27:56 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:27:56 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:27:56 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:27:56 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:28:47 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:28:47 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:28:47 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:28:47 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:28:47 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:28:49 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.AggregateException: One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.)
+ ---> Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json)
+   at Microsoft.AspNet.SignalR.Client.Transports.TransportHelper.<>c.<GetNegotiationResponse>b__0_1(String raw)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass31_0`2.<Then>b__0(Task`1 t)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 202 
+[25/08/2022 15:29:21 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:29:21 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:29:21 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:29:21 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:29:21 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:29:30 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.AggregateException: One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.)
+ ---> Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json)
+   at Microsoft.AspNet.SignalR.Client.Transports.TransportHelper.<>c.<GetNegotiationResponse>b__0_1(String raw)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass31_0`2.<Then>b__0(Task`1 t)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 202 
+[25/08/2022 15:33:29 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:33:29 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:33:29 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:33:29 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:33:29 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:33:42 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.AggregateException: One or more errors occurred. (Unexpected character encountered while parsing value: <. Path '', line 0, position 0.)
+ ---> Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json)
+   at Microsoft.AspNet.SignalR.Client.Transports.TransportHelper.<>c.<GetNegotiationResponse>b__0_1(String raw)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass31_0`2.<Then>b__0(Task`1 t)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 202 
+[25/08/2022 15:36:08 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:36:08 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:36:08 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:36:08 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:36:08 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[25/08/2022 15:36:39 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.InvalidOperationException: The connection has not been established.
+   at Microsoft.AspNet.SignalR.Client.Connection.Send(String data)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[TResult,TProgress](String method, Action`1 onProgress, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[T](String method, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke(String method, Object[] args)
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 214 
+[25/08/2022 15:36:47 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.InvalidOperationException: The connection has not been established.
+   at Microsoft.AspNet.SignalR.Client.Connection.Send(String data)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[TResult,TProgress](String method, Action`1 onProgress, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[T](String method, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke(String method, Object[] args)
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Controllers\Business\MessageController.cs:line 214 
+[25/08/2022 15:39:02 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:39:02 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:39:02 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:39:02 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:39:02 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp 
+[25/08/2022 15:43:23 INF Microsoft.Hosting.Lifetime] Application is shutting down... 
+[25/08/2022 15:43:31 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 15:43:31 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 15:43:31 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 15:43:31 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 15:43:31 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp 
+[25/08/2022 16:24:47 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 16:24:47 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 16:24:47 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 16:24:47 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 16:24:47 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp 
+[25/08/2022 16:40:20 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.InvalidOperationException: The connection has not been established.
+   at Microsoft.AspNet.SignalR.Client.Connection.Send(String data)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[TResult,TProgress](String method, Action`1 onProgress, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[T](String method, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke(String method, Object[] args)
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp\Controllers\Business\MessageController.cs:line 214 
+[25/08/2022 16:41:46 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.InvalidOperationException: The connection has not been established.
+   at Microsoft.AspNet.SignalR.Client.Connection.Send(String data)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[TResult,TProgress](String method, Action`1 onProgress, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[T](String method, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke(String method, Object[] args)
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp\Controllers\Business\MessageController.cs:line 214 
+[25/08/2022 16:41:50 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.InvalidOperationException: The connection has not been established.
+   at Microsoft.AspNet.SignalR.Client.Connection.Send(String data)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[TResult,TProgress](String method, Action`1 onProgress, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[T](String method, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke(String method, Object[] args)
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp\Controllers\Business\MessageController.cs:line 214 
+[25/08/2022 16:42:03 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.InvalidOperationException: The connection has not been established.
+   at Microsoft.AspNet.SignalR.Client.Connection.Send(String data)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[TResult,TProgress](String method, Action`1 onProgress, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[T](String method, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke(String method, Object[] args)
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp\Controllers\Business\MessageController.cs:line 214 
+[25/08/2022 16:42:21 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.InvalidOperationException: The connection has not been established.
+   at Microsoft.AspNet.SignalR.Client.Connection.Send(String data)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[TResult,TProgress](String method, Action`1 onProgress, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke[T](String method, Object[] args)
+   at Microsoft.AspNet.SignalR.Client.Hubs.HubProxy.Invoke(String method, Object[] args)
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp\Controllers\Business\MessageController.cs:line 214 
+[25/08/2022 16:56:09 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 16:56:09 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 16:56:09 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 16:56:09 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 16:56:09 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp 
+[25/08/2022 17:06:55 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 17:06:55 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 17:06:55 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 17:06:55 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 17:06:55 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp 
+[25/08/2022 17:08:36 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 17:08:36 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 17:08:36 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 17:08:36 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 17:08:36 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp 
+[25/08/2022 17:33:26 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[25/08/2022 17:33:26 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[25/08/2022 17:33:26 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[25/08/2022 17:33:26 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[25/08/2022 17:33:26 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp 

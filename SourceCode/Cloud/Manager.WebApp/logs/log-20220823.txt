@@ -1,0 +1,219 @@
+[23/08/2022 07:59:50 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 07:59:50 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 07:59:50 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 07:59:50 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 07:59:50 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 08:21:03 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 08:21:03 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 08:21:03 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 08:21:03 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 08:21:03 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 08:33:01 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 08:33:01 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 08:33:01 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 08:33:01 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 08:33:01 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 08:46:50 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 08:46:50 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 08:46:50 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 08:46:50 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 08:46:50 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 08:55:43 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 08:55:43 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 08:55:43 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 08:55:43 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 08:55:43 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 08:55:57 ERR Manager.WebApp.Helpers.Business.ConversationHelpers] Could not GetBaseInfo: Manager.SharedLibs.Extensions.CustomSQLException: Failed to execute Group_User_GetUserById. Error: Email
+   at Manager.DataLayer.Repositories.Business.RpsGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Repositories\Business\RpsGroup.cs:line 102
+   at Manager.DataLayer.Stores.Business.StoreGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Stores\Business\StoreGroup.cs:line 42
+   at Manager.WebApp.Helpers.Business.GroupChatHelpers.GetGroupInfo(IdentityConversation item) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Helpers\Business\GroupChatHelpers.cs:line 31 
+[23/08/2022 08:55:57 ERR Manager.WebApp.Helpers.Business.ConversationHelpers] Could not GetBaseInfo: Manager.SharedLibs.Extensions.CustomSQLException: Failed to execute Group_User_GetUserById. Error: Email
+   at Manager.DataLayer.Repositories.Business.RpsGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Repositories\Business\RpsGroup.cs:line 102
+   at Manager.DataLayer.Stores.Business.StoreGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Stores\Business\StoreGroup.cs:line 42
+   at Manager.WebApp.Helpers.Business.GroupChatHelpers.GetGroupInfo(IdentityConversation item) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Helpers\Business\GroupChatHelpers.cs:line 31 
+[23/08/2022 08:55:57 ERR Manager.WebApp.Helpers.Business.ConversationHelpers] Could not GetBaseInfo: Manager.SharedLibs.Extensions.CustomSQLException: Failed to execute Group_User_GetUserById. Error: Email
+   at Manager.DataLayer.Repositories.Business.RpsGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Repositories\Business\RpsGroup.cs:line 102
+   at Manager.DataLayer.Stores.Business.StoreGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Stores\Business\StoreGroup.cs:line 42
+   at Manager.WebApp.Helpers.Business.GroupChatHelpers.GetGroupInfo(IdentityConversation item) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Helpers\Business\GroupChatHelpers.cs:line 31 
+[23/08/2022 08:57:17 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 08:57:17 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 08:57:17 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 08:57:17 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 08:57:17 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 09:02:58 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 09:02:58 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 09:02:58 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 09:02:58 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 09:02:58 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 09:03:03 ERR Manager.WebApp.Helpers.Business.ConversationHelpers] Could not GetBaseInfo: Manager.SharedLibs.Extensions.CustomSQLException: Failed to execute Group_User_GetUserById. Error: Id
+   at Manager.DataLayer.Repositories.Business.RpsGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Repositories\Business\RpsGroup.cs:line 102
+   at Manager.DataLayer.Stores.Business.StoreGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Stores\Business\StoreGroup.cs:line 42
+   at Manager.WebApp.Helpers.Business.GroupChatHelpers.GetGroupInfo(IdentityConversation item) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Helpers\Business\GroupChatHelpers.cs:line 31 
+[23/08/2022 09:03:03 ERR Manager.WebApp.Helpers.Business.ConversationHelpers] Could not GetBaseInfo: Manager.SharedLibs.Extensions.CustomSQLException: Failed to execute Group_User_GetUserById. Error: Id
+   at Manager.DataLayer.Repositories.Business.RpsGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Repositories\Business\RpsGroup.cs:line 102
+   at Manager.DataLayer.Stores.Business.StoreGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Stores\Business\StoreGroup.cs:line 42
+   at Manager.WebApp.Helpers.Business.GroupChatHelpers.GetGroupInfo(IdentityConversation item) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Helpers\Business\GroupChatHelpers.cs:line 31 
+[23/08/2022 09:03:03 ERR Manager.WebApp.Helpers.Business.ConversationHelpers] Could not GetBaseInfo: Manager.SharedLibs.Extensions.CustomSQLException: Failed to execute Group_User_GetUserById. Error: Id
+   at Manager.DataLayer.Repositories.Business.RpsGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Repositories\Business\RpsGroup.cs:line 102
+   at Manager.DataLayer.Stores.Business.StoreGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Stores\Business\StoreGroup.cs:line 42
+   at Manager.WebApp.Helpers.Business.GroupChatHelpers.GetGroupInfo(IdentityConversation item) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Helpers\Business\GroupChatHelpers.cs:line 31 
+[23/08/2022 09:03:35 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 09:03:35 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 09:03:35 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 09:03:35 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 09:03:35 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 09:05:56 ERR Manager.WebApp.Helpers.Business.ConversationHelpers] Could not GetBaseInfo: Manager.SharedLibs.Extensions.CustomSQLException: Failed to execute Group_User_GetUserById. Error: Id
+   at Manager.DataLayer.Repositories.Business.RpsGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Repositories\Business\RpsGroup.cs:line 102
+   at Manager.DataLayer.Stores.Business.StoreGroup.GetUserById(String id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Stores\Business\StoreGroup.cs:line 42
+   at Manager.WebApp.Helpers.Business.GroupChatHelpers.GetGroupInfo(IdentityConversation item) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Helpers\Business\GroupChatHelpers.cs:line 31 
+[23/08/2022 09:07:24 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 09:07:24 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 09:07:24 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 09:07:24 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 09:07:24 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 09:08:18 ERR Manager.WebApp.Helpers.Business.ConversationHelpers] Could not GetBaseInfo: Manager.SharedLibs.Extensions.CustomSQLException: Failed to execute Group_User_GetUserById. Error: Id
+   at Manager.DataLayer.Repositories.Business.RpsGroup.GetUserById(Int32 Id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Repositories\Business\RpsGroup.cs:line 102
+   at Manager.DataLayer.Stores.Business.StoreGroup.GetUserById(Int32 id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Stores\Business\StoreGroup.cs:line 42
+   at Manager.WebApp.Helpers.Business.GroupChatHelpers.GetGroupInfo(IdentityConversation item) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Helpers\Business\GroupChatHelpers.cs:line 31 
+[23/08/2022 09:08:24 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 09:08:24 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 09:08:24 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 09:08:24 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 09:08:24 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 09:08:28 ERR Manager.WebApp.Helpers.Business.ConversationHelpers] Could not GetBaseInfo: Manager.SharedLibs.Extensions.CustomSQLException: Failed to execute Group_User_GetUserById. Error: Id
+   at Manager.DataLayer.Repositories.Business.RpsGroup.GetUserById(Int32 Id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Repositories\Business\RpsGroup.cs:line 102
+   at Manager.DataLayer.Stores.Business.StoreGroup.GetUserById(Int32 id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Stores\Business\StoreGroup.cs:line 42
+   at Manager.WebApp.Helpers.Business.GroupChatHelpers.GetGroupInfo(IdentityConversation item) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Helpers\Business\GroupChatHelpers.cs:line 31 
+[23/08/2022 09:08:28 ERR Manager.WebApp.Helpers.Business.ConversationHelpers] Could not GetBaseInfo: Manager.SharedLibs.Extensions.CustomSQLException: Failed to execute Group_User_GetUserById. Error: Id
+   at Manager.DataLayer.Repositories.Business.RpsGroup.GetUserById(Int32 Id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Repositories\Business\RpsGroup.cs:line 102
+   at Manager.DataLayer.Stores.Business.StoreGroup.GetUserById(Int32 id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Stores\Business\StoreGroup.cs:line 42
+   at Manager.WebApp.Helpers.Business.GroupChatHelpers.GetGroupInfo(IdentityConversation item) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Helpers\Business\GroupChatHelpers.cs:line 31 
+[23/08/2022 09:08:28 ERR Manager.WebApp.Helpers.Business.ConversationHelpers] Could not GetBaseInfo: Manager.SharedLibs.Extensions.CustomSQLException: Failed to execute Group_User_GetUserById. Error: Id
+   at Manager.DataLayer.Repositories.Business.RpsGroup.GetUserById(Int32 Id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Repositories\Business\RpsGroup.cs:line 102
+   at Manager.DataLayer.Stores.Business.StoreGroup.GetUserById(Int32 id) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.Datalayer\Stores\Business\StoreGroup.cs:line 42
+   at Manager.WebApp.Helpers.Business.GroupChatHelpers.GetGroupInfo(IdentityConversation item) in D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp\Helpers\Business\GroupChatHelpers.cs:line 31 
+[23/08/2022 09:10:05 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 09:10:05 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 09:10:05 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 09:10:05 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 09:10:05 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 09:10:42 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 09:10:42 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 09:10:42 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 09:10:42 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 09:10:42 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 09:11:22 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 09:11:22 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 09:11:22 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 09:11:22 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 09:11:22 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 09:22:26 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 09:22:26 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 09:22:26 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 09:22:26 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 09:22:26 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 09:25:13 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 09:25:13 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 09:25:13 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 09:25:13 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 09:25:13 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 10:11:39 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 10:11:39 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 10:11:39 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 10:11:39 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 10:11:39 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 10:33:35 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 10:33:35 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 10:33:35 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 10:33:35 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 10:33:35 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 10:40:35 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 10:40:35 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 10:40:35 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 10:40:35 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 10:40:35 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 10:41:43 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 10:41:43 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 10:41:43 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 10:41:43 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 10:41:43 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 10:43:06 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 10:43:06 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 10:43:06 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 10:43:06 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 10:43:06 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 10:43:44 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 10:43:44 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 10:43:44 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 10:43:44 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 10:43:44 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 10:46:34 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 10:46:34 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 10:46:34 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 10:46:34 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 10:46:34 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 10:53:42 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 10:53:42 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 10:53:42 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 10:53:42 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 10:53:42 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 10:55:09 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 10:55:09 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 10:55:09 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 10:55:09 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 10:55:09 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 11:19:16 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 11:19:16 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 11:19:16 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 11:19:16 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 11:19:16 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 11:30:23 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 11:30:23 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 11:30:23 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 11:30:23 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 11:30:23 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 11:34:15 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 11:34:15 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 11:34:15 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 11:34:15 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 11:34:15 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 11:37:25 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 11:37:25 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 11:37:25 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 11:37:25 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 11:37:25 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 14:42:11 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 14:42:11 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 14:42:11 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 14:42:11 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 14:42:11 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 15:12:17 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 15:12:17 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 15:12:17 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 15:12:17 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 15:12:17 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 15:25:01 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 15:25:01 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 15:25:01 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 15:25:01 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 15:25:01 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 15:49:27 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 15:49:27 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 15:49:27 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 15:49:27 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 15:49:27 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 15:54:48 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 15:54:48 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 15:54:48 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 15:54:48 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 15:54:48 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 15:57:12 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 15:57:12 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 15:57:12 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 15:57:12 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 15:57:12 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[23/08/2022 16:01:49 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[23/08/2022 16:01:49 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[23/08/2022 16:01:49 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[23/08/2022 16:01:49 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[23/08/2022 16:01:49 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 

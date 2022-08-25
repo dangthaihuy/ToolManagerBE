@@ -1,0 +1,64 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Helpers;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.UserViewModel
+@{
+    var currentLang = CommonHelpers.GetCurrentLanguageOrDefault();
+}
+
+<form action="/UsersAdmin" method="get" class="m-form m-form--fit">
+    @Html.HiddenFor(m => m.SearchExec)
+
+    <div class="m-portlet__body">
+        <div class="form-group row">
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control form-control-sm m-input", placeholder = ManagerResource.LB_KEYWORD_SEARCH })
+            </div>
+
+            <div class="col-md-4">
+                <select class="form-control form-control-sm" title="@ManagerResource.LB_SELECT_ROLE" data-live-search="true" name="RoleId">
+                    <option value="">@ManagerResource.LB_SELECT_ROLE</option>
+@*                    @if (Model.RoleList != null && Model.RoleList.ToList().Count > 0)
+                    {                        
+                        foreach (var role in Model.RoleList)
+                        {
+                            if (Model.RoleId != role.Value)
+                            {
+                                <option value="@role.Value">@role.Text</option>
+                            }
+                            else
+                            {
+                                <option value="@role.Value" selected>@role.Text</option>
+                            }
+                        }
+                    }*@
+
+                    @if (Model.AllRoles.HasData())
+                    {
+                        foreach (var role in Model.AllRoles)
+                        {
+                            <option value="@role.Id">@role.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <div class="m-checkbox-inline">
+                    <label class="m-checkbox">
+                        <input name="@Html.NameFor(m => m.IsLocked)" @((Model.IsLocked == 1) ? "checked" : null) value="1" type="checkbox">
+                        @ManagerResource.LB_IS_LOCKED
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-info btn-sm">
+                    <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

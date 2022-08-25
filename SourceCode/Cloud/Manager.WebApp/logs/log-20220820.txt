@@ -1,0 +1,35 @@
+[20/08/2022 08:31:51 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[20/08/2022 08:31:51 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[20/08/2022 08:31:51 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[20/08/2022 08:31:51 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[20/08/2022 08:31:51 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[20/08/2022 09:11:06 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[20/08/2022 09:11:06 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[20/08/2022 09:11:06 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[20/08/2022 09:11:06 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[20/08/2022 09:11:06 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[20/08/2022 09:23:20 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[20/08/2022 09:23:20 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[20/08/2022 09:23:20 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[20/08/2022 09:23:20 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[20/08/2022 09:23:20 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[20/08/2022 09:46:20 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[20/08/2022 09:46:20 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[20/08/2022 09:46:20 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[20/08/2022 09:46:20 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[20/08/2022 09:46:20 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[20/08/2022 09:48:17 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[20/08/2022 09:48:17 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[20/08/2022 09:48:17 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[20/08/2022 09:48:17 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[20/08/2022 09:48:17 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[20/08/2022 10:01:20 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[20/08/2022 10:01:20 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[20/08/2022 10:01:20 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[20/08/2022 10:01:20 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[20/08/2022 10:01:20 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 
+[20/08/2022 10:26:29 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[20/08/2022 10:26:29 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[20/08/2022 10:26:29 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[20/08/2022 10:26:29 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[20/08/2022 10:26:29 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.WebApp 

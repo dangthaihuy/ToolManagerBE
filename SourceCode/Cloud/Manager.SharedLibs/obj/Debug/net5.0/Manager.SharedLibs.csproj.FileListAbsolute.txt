@@ -1,0 +1,12 @@
+D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.SharedLibs\bin\Debug\net5.0\Manager.SharedLibs.deps.json
+D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.SharedLibs\bin\Debug\net5.0\Manager.SharedLibs.dll
+D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.SharedLibs\bin\Debug\net5.0\Manager.SharedLibs.pdb
+D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.SharedLibs\obj\Debug\net5.0\Manager.SharedLibs.csproj.AssemblyReference.cache
+D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.SharedLibs\obj\Debug\net5.0\Manager.SharedLibs.GeneratedMSBuildEditorConfig.editorconfig
+D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.SharedLibs\obj\Debug\net5.0\Manager.SharedLibs.AssemblyInfoInputs.cache
+D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.SharedLibs\obj\Debug\net5.0\Manager.SharedLibs.AssemblyInfo.cs
+D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.SharedLibs\obj\Debug\net5.0\Manager.SharedLibs.csproj.CoreCompileInputs.cache
+D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.SharedLibs\obj\Debug\net5.0\Manager.SharedLibs.dll
+D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.SharedLibs\obj\Debug\net5.0\refint\Manager.SharedLibs.dll
+D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.SharedLibs\obj\Debug\net5.0\Manager.SharedLibs.pdb
+D:\Huy Đặng\ToolManager\SourceCode\Manager\Manager.SharedLibs\obj\Debug\net5.0\ref\Manager.SharedLibs.dll
