@@ -62,6 +62,9 @@ namespace Manager.WebApp.Hubs
             IdentityMessage.SenderId = SenderId;
             IdentityMessage.CreateDate = DateTime.Now;
 
+            var IdentityConversation = new IdentityConversation();
+            IdentityConversation.Id = GroupId;
+
             try
             {
                 var MessageSuccess = storeMessage.Insert(IdentityMessage);
@@ -72,9 +75,11 @@ namespace Manager.WebApp.Hubs
                 _logger.Error("Could not GetBaseInfo: " + ex.ToString());
             }
 
+
+
             var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
-            var listUserInGroup = MessengerHelpers.GetBaseGroupInfo(GroupId);
-            foreach (var user in listUserInGroup)
+            var listUserInGroup = GroupChatHelpers.GetGroupInfo(IdentityConversation);
+            foreach (var user in listUserInGroup.Member)
             {
                 var userConnect = connectedUsers.FirstOrDefault(x => x.Id == user.Id);
                 if(userConnect != null)

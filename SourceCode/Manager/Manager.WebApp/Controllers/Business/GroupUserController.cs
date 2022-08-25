@@ -39,7 +39,7 @@ namespace Manager.WebApp.Controllers.Business
                     
 
                 }
-                MessengerHelpers.ClearCacheUsersInGroup(model.GroupId);
+                GroupChatHelpers.ClearCache(model.GroupId);
             }
             catch(Exception ex)
             {
@@ -61,7 +61,7 @@ namespace Manager.WebApp.Controllers.Business
 
 
                 }
-                MessengerHelpers.ClearCacheUsersInGroup(model.GroupId);
+                GroupChatHelpers.ClearCache(model.GroupId);
             }
             catch (Exception ex)
             {

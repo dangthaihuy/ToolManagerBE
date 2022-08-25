@@ -95,40 +95,7 @@ namespace Manager.WebApp.Helpers.Business
             }
         }
 
-        //TIN NHẮN GROUP
-        public static List<IdentityCurrentUser> GetBaseGroupInfo(int groupId)
-        {
-            var myKey = string.Format(EnumFormatInfoCacheKeys.UsersInGroup, groupId);
-
-            List<IdentityCurrentUser> info = null;
-            try
-            {
-                //Check the cache first (Find the product that has Id equal to id)
-                var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
-
-                info = cacheProvider.Get<List<IdentityCurrentUser>>(myKey);
-
-                if (info == null)
-                {
-                    var myStore = Startup.IocContainer.Resolve<IStoreGroup>();
-                    info = myStore.GetUserById(groupId);
-;
-
-                    if (info != null)
-                    {
-                        //Storage to cache
-                        cacheProvider.Set(myKey, info, SystemSettings.DefaultCachingTimeInMinutes);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.Error("Could not GetBaseInfo: " + ex.ToString());
-            }
-
-            return info;
-        }
-
+        
         public static void ClearCache()
         {
             try
@@ -147,23 +114,6 @@ namespace Manager.WebApp.Helpers.Business
             }
         }
 
-        public static void ClearCacheUsersInGroup(int id)
-        {
-            try
-            {
-                var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
-
-                var myKey = string.Format(EnumFormatInfoCacheKeys.UsersInGroup, id);
-
-
-                cacheProvider.Clear(myKey);
-
-            }
-            catch (Exception ex)
-            {
-                _logger.Error("Failed to ClearCache: {0}", ex.ToString());
-            }
-        }
 
 
     }
