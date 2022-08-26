@@ -49,6 +49,28 @@ namespace Manager.DataLayer.Repositories.Business
                     var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
 
                     newId = Convert.ToInt32(returnObj);
+
+                    if(newId > 0)
+                    {
+                        if (identity.Attachments.HasData())
+                        {
+                            foreach (var att in identity.Attachments)
+                            {
+                                if (string.IsNullOrEmpty(att.Path))
+                                    continue;
+
+                                //For attachment parameters
+                                var attParms = new Dictionary<string, object>
+                                {
+                                    {"@ConversationId", identity.ConversationId },
+                                    {"@MessageId", newId },
+                                    {"@Path", att.Path}
+                                };
+
+                                MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, @"Message_InsertAttachment", attParms);
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)

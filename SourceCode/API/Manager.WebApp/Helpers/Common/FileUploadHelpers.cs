@@ -237,7 +237,7 @@ namespace Manager.WebApp.Helpers
             return absolutePath;
         }
 
-        public static string UploadFileAsync(IFormFile file, string folderName, bool includeDatePath = false)
+        public static string UploadFile(IFormFile file, string folderName, bool includeDatePath = false)
         {
             if (includeDatePath)
                 folderName = folderName + "/" + DateTime.Now.ToString("yyyy/MM/dd");
@@ -250,11 +250,9 @@ namespace Manager.WebApp.Helpers
             // Make sure the file has content
             if (!(file.Length > 0)) return "";
 
-            var dtInt = EpochTime.GetIntDate(DateTime.Now);
-            var generatedFileName = Utility.Md5HashingData(dtInt.ToString());
+            var generatedFileName = Utility.Md5HashingData(Guid.NewGuid().ToString());
 
             var fileExt = Path.GetExtension(file.FileName);
-            var fileName = TextHelpers.ConvertToUrlFriendly(Path.GetFileNameWithoutExtension(file.FileName), dtInt.ToString());
 
             var newFileName = generatedFileName + fileExt;
             var absolutePath = "/Media/" + folderName + "/" + newFileName;

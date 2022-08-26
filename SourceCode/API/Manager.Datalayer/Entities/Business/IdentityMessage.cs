@@ -29,6 +29,8 @@ namespace Manager.DataLayer.Entities.Business
         public DateTime CreateDate { get; set; }
         public int Important { get; set; }
 
+
+        public List<IdentityMessageAttachment> Attachments { get; set; }
     }
 
     public class IdentityMessageAttachment

@@ -216,38 +216,49 @@ namespace Manager.WebApp.Controllers.Business
         public async void SendFileMessage([FromForm] SendMessageModel model)
         {
             try
-            {
-                long size = model.Files.Sum(f => f.Length);
-
-                foreach (var formFile in model.Files)
+            {                
+                if (model.Files.HasData())
                 {
-                    if (formFile.Length > 0)
+                    IdentityMessage msg = new IdentityMessage();
+                    msg.ConversationId = model.ConversationId;
+                    msg.SenderId = model.SenderId;
+                    msg.ReceiverId = model.ReceiverId;
+                    msg.Type = 2;
+                    msg.CreateDate = DateTime.Now;
+                    msg.Attachments = new List<IdentityMessageAttachment>();
+
+                    foreach (var formFile in model.Files)
                     {
-                        IdentityMessage msg = new IdentityMessage();
-                        msg.ConversationId = model.ConversationId;
-                        msg.SenderId = model.SenderId;
-                        msg.ReceiverId = model.ReceiverId;
-                        msg.Type = 2;
-                        msg.CreateDate = DateTime.Now;
-                        msg.Id = storeMessage.Insert(msg);
+                        if (formFile.Length > 0)
+                        {
+                            var attachmentFolder = string.Format("Message/Attachments/{0}", msg.ConversationId);
 
-                        var attachmentFolder = string.Format("Message/Attachments/{0}", msg.ConversationId);
+                            var filePath = FileUploadHelper.UploadFile(formFile, attachmentFolder);
 
-                        var filePath = FileUploadHelper.UploadFileAsync(formFile, attachmentFolder);
+                            await Task.FromResult(filePath);
 
-                        await Task.FromResult(filePath);
+                            if (!string.IsNullOrEmpty(filePath))
+                            {
+                                var msgAttach = new IdentityMessageAttachment();
+                                msgAttach.MessageId = msg.Id;
+                                msgAttach.Path = filePath;
 
-                        var msgAttach = new IdentityMessageAttachment();
-                        msgAttach.MessageId = msg.Id;
-                        msgAttach.Path = filePath;
-
-                        //Clear cache last message
-                        ConversationHelpers.ClearCache(model.ConversationId);
-
-                        //Send notification to user
-                        NotifNewGroupMessage(msg);
+                                //Add attachment to list
+                                msg.Attachments.Add(msgAttach);
+                            }
+                        }
                     }
+
+                    //Insert message
+                    msg.Id = storeMessage.Insert(msg);
+
+                    //Clear cache last message
+                    ConversationHelpers.ClearCache(model.ConversationId);
+
+                    //Send notification to user
+                    NotifNewGroupMessage(msg);
                 }
+                
             }
             catch (Exception ex)
             {
