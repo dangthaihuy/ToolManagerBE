@@ -207,7 +207,7 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
-                _logger.LogError("Could not SendToUser: " + ex.ToString());
+                _logger.LogError("Could not SendGroupMessage: " + ex.ToString());
             }
         }
 
@@ -262,7 +262,7 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
-                _logger.LogError("Could not SendToUser: " + ex.ToString());
+                _logger.LogError("Could not SendFileMessage: " + ex.ToString());
             }
         }
 
