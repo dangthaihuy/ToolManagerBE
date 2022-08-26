@@ -22,6 +22,7 @@ namespace Manager.WebApp.Models.Business
         public int ReceiverId { get; set; }
         public int MessageId { get; set; }
         public string Message { get; set; }
+
         public DateTime CreateDate { get; set; }
     }
 }

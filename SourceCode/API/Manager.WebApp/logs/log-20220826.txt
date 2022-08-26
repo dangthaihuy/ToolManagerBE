@@ -38,3 +38,18 @@
 [26/08/2022 08:56:35 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
 [26/08/2022 08:56:35 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
 [26/08/2022 08:56:35 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\API\Manager.WebApp 
+[26/08/2022 09:08:06 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 09:08:06 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5003 
+[26/08/2022 09:08:06 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 09:08:06 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 09:08:06 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManagerBE(Huy)\SourceCode\API\Manager.WebApp 
+[26/08/2022 09:11:59 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 09:11:59 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5003 
+[26/08/2022 09:11:59 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 09:11:59 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 09:11:59 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManagerBE(Huy)\SourceCode\API\Manager.WebApp 
+[26/08/2022 09:13:30 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 09:13:30 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5003 
+[26/08/2022 09:13:30 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 09:13:30 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 09:13:30 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManagerBE(Huy)\SourceCode\API\Manager.WebApp 

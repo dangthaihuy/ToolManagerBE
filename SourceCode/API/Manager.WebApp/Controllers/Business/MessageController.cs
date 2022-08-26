@@ -167,7 +167,7 @@ namespace Manager.WebApp.Controllers.Business
                 msg.Message = model.Message;
                 msg.SenderId = Utils.ConvertToInt32(model.SenderId);
                 msg.ReceiverId = Utils.ConvertToInt32(model.ReceiverId);
-                msg.CreateDate = DateTime.UtcNow;
+                msg.CreateDate = DateTime.Now;
                 msg.MessageId = storeMessage.Insert(msg);
                 ConversationHelpers.ClearCache(con.Id);
 
@@ -183,6 +183,34 @@ namespace Manager.WebApp.Controllers.Business
         [HttpPost]
         [Route("SendGroupMessage")]
         public void SendGroupMessage(SendMessageModel model)
+        {
+            try
+            {
+
+                var msg = new IdentityMessage();
+                msg.ConversationId = model.ConversationId;
+                msg.Message = model.Message;
+                msg.SenderId = model.SenderId;
+                msg.CreateDate = DateTime.Now;
+                msg.MessageId = storeMessage.Insert(msg);
+
+                var IdentityConversation = new IdentityConversation();
+                IdentityConversation.Id = model.ConversationId;
+                
+                ConversationHelpers.ClearCache(model.ConversationId);
+
+                //Send notification to user
+                NotifNewGroupMessage(msg);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not SendToUser: " + ex.ToString());
+            }
+        }
+
+        [HttpPost]
+        [Route("SendFileMessage")]
+        public void SendFileMessage(SendMessageModel model)
         {
             try
             {
@@ -247,7 +275,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 var apiGroupMsg = new SendMessageModel();
                 apiGroupMsg = msg.MappingObject<SendMessageModel>();
-                apiGroupMsg.CreateDate = DateTime.UtcNow;
+                apiGroupMsg.CreateDate = DateTime.Now;
 
                 var connBuilder = new HubConnectionBuilder();
                 connBuilder.WithUrl(string.Format("{0}/chat", SystemSettings.MessengerCloud));
