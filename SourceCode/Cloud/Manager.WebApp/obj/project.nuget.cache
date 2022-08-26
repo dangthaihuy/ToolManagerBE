@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UKPAOh+XAfwTtpnu7tbuWyFVxG5VwW00KSrfRs1c2XRyozdytlF3AiMU4FR5EZ6qEK6SwTcDjsBmJ+2BVdx/DQ==",
+  "dgSpecHash": "t1vQo3bVP0Ul3Vmy+HrPQn2a8ZXaq1quYVs1qT9wr9aaJlf2zOnlxLJfW01s46ADitKRISrm1y8T4fSBo2I+lA==",
   "success": true,
-  "projectFilePath": "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\Cloud\\Manager.WebApp\\Manager.WebApp.csproj",
+  "projectFilePath": "D:\\Huy Đặng\\ToolManager\\SourceCode\\Cloud\\Manager.WebApp\\Manager.WebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\COMPUTER\\.nuget\\packages\\autofac\\6.2.0\\autofac.6.2.0.nupkg.sha512",
     "C:\\Users\\COMPUTER\\.nuget\\packages\\bootstrap\\4.0.0\\bootstrap.4.0.0.nupkg.sha512",

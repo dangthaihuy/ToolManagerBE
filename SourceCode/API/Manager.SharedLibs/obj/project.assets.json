@@ -493,11 +493,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\API\\Manager.SharedLibs\\Manager.SharedLibs.csproj",
+      "projectUniqueName": "D:\\HuyDang\\ToolManager\\SourceCode\\API\\Manager.SharedLibs\\Manager.SharedLibs.csproj",
       "projectName": "Manager.SharedLibs",
-      "projectPath": "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\API\\Manager.SharedLibs\\Manager.SharedLibs.csproj",
+      "projectPath": "D:\\HuyDang\\ToolManager\\SourceCode\\API\\Manager.SharedLibs\\Manager.SharedLibs.csproj",
       "packagesPath": "C:\\Users\\COMPUTER\\.nuget\\packages\\",
-      "outputPath": "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\API\\Manager.SharedLibs\\obj\\",
+      "outputPath": "D:\\HuyDang\\ToolManager\\SourceCode\\API\\Manager.SharedLibs\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\COMPUTER\\AppData\\Roaming\\NuGet\\NuGet.Config",

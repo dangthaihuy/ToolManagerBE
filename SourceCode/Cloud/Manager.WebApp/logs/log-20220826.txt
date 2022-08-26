@@ -33,3 +33,9 @@
 [26/08/2022 09:49:53 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
 [26/08/2022 09:49:53 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
 [26/08/2022 09:49:53 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManagerBE(Huy)\SourceCode\Cloud\Manager.WebApp 
+[26/08/2022 11:00:33 ERR StackExchange.Redis.Extensions.Core.Implementations.RedisCacheConnectionPoolManager] Redis connection error restored. 
+[26/08/2022 11:00:34 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 11:00:34 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:5000 
+[26/08/2022 11:00:34 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 11:00:34 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 11:00:34 INF Microsoft.Hosting.Lifetime] Content root path: D:\Huy Đặng\ToolManager\SourceCode\Cloud\Manager.WebApp 

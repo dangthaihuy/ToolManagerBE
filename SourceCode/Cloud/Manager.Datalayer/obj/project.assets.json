@@ -1341,11 +1341,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\Cloud\\Manager.Datalayer\\Manager.DataLayer.csproj",
+      "projectUniqueName": "D:\\Huy Đặng\\ToolManager\\SourceCode\\Cloud\\Manager.Datalayer\\Manager.DataLayer.csproj",
       "projectName": "Manager.DataLayer",
-      "projectPath": "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\Cloud\\Manager.Datalayer\\Manager.DataLayer.csproj",
+      "projectPath": "D:\\Huy Đặng\\ToolManager\\SourceCode\\Cloud\\Manager.Datalayer\\Manager.DataLayer.csproj",
       "packagesPath": "C:\\Users\\COMPUTER\\.nuget\\packages\\",
-      "outputPath": "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\Cloud\\Manager.Datalayer\\obj\\",
+      "outputPath": "D:\\Huy Đặng\\ToolManager\\SourceCode\\Cloud\\Manager.Datalayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\COMPUTER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1362,8 +1362,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\Cloud\\Manager.SharedLibs\\Manager.SharedLibs.csproj": {
-              "projectPath": "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\Cloud\\Manager.SharedLibs\\Manager.SharedLibs.csproj"
+            "D:\\Huy Đặng\\ToolManager\\SourceCode\\Cloud\\Manager.SharedLibs\\Manager.SharedLibs.csproj": {
+              "projectPath": "D:\\Huy Đặng\\ToolManager\\SourceCode\\Cloud\\Manager.SharedLibs\\Manager.SharedLibs.csproj"
             }
           }
         }

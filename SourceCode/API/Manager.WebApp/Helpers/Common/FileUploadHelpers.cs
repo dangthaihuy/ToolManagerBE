@@ -237,6 +237,61 @@ namespace Manager.WebApp.Helpers
             return absolutePath;
         }
 
+        public static string UploadFileAsync(IFormFile file, string folderName, bool includeDatePath = false)
+        {
+            if (includeDatePath)
+                folderName = folderName + "/" + DateTime.Now.ToString("yyyy/MM/dd");
+
+            //var folderPath = HttpContext.Current.Server.MapPath("~\\Media" + DirSeparator + folderName);
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot" + DirSeparator + "Media" + DirSeparator + folderName);
+
+            // Check if we have a file
+            if (null == file) return "";
+            // Make sure the file has content
+            if (!(file.Length > 0)) return "";
+
+            var dtInt = EpochTime.GetIntDate(DateTime.Now);
+            var generatedFileName = Utility.Md5HashingData(dtInt.ToString());
+
+            var fileExt = Path.GetExtension(file.FileName);
+            var fileName = TextHelpers.ConvertToUrlFriendly(Path.GetFileNameWithoutExtension(file.FileName), dtInt.ToString());
+
+            var newFileName = generatedFileName + fileExt;
+            var absolutePath = "/Media/" + folderName + "/" + newFileName;
+
+            // Make sure we were able to determine a proper extension
+            if (null == fileExt) return "";
+
+            // Check if the directory we are saving to exists
+            if (!Directory.Exists(folderPath))
+            {
+                // If it doesn't exist, create the directory
+                Directory.CreateDirectory(folderPath);
+            }
+
+            // Set our full path for saving
+            string path = folderPath + DirSeparator + newFileName;
+
+            // Save our file
+            try
+            {
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed for UploadFileAsync: {0}", ex.ToString());
+                _logger.Error(strError);
+
+                return string.Empty;
+            }
+
+            // Return the filename
+            return absolutePath;
+        }
+
         private static Image AddWatermark(Image image, string position = "top-left")
         {
             var x = 0;

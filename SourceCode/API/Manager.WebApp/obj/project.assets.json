@@ -10147,11 +10147,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\API\\Manager.WebApp\\Manager.WebApp.csproj",
+      "projectUniqueName": "D:\\HuyDang\\ToolManager\\SourceCode\\API\\Manager.WebApp\\Manager.WebApp.csproj",
       "projectName": "Manager.WebApp",
-      "projectPath": "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\API\\Manager.WebApp\\Manager.WebApp.csproj",
+      "projectPath": "D:\\HuyDang\\ToolManager\\SourceCode\\API\\Manager.WebApp\\Manager.WebApp.csproj",
       "packagesPath": "C:\\Users\\COMPUTER\\.nuget\\packages\\",
-      "outputPath": "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\API\\Manager.WebApp\\obj\\",
+      "outputPath": "D:\\HuyDang\\ToolManager\\SourceCode\\API\\Manager.WebApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\COMPUTER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10168,8 +10168,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\API\\Manager.Datalayer\\Manager.DataLayer.csproj": {
-              "projectPath": "D:\\Huy Đặng\\ToolManagerBE(Huy)\\SourceCode\\API\\Manager.Datalayer\\Manager.DataLayer.csproj"
+            "D:\\HuyDang\\ToolManager\\SourceCode\\API\\Manager.Datalayer\\Manager.DataLayer.csproj": {
+              "projectPath": "D:\\HuyDang\\ToolManager\\SourceCode\\API\\Manager.Datalayer\\Manager.DataLayer.csproj"
             }
           }
         }

@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Manager.WebApp.Controllers.Business
 {
@@ -36,7 +37,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getbypage")]
         public ActionResult GetByPage(int conversationId, int page, string keyword, int pageSize)
         {
-            int PageSize = pageSize != 0 ? pageSize : 50 ;
+            int PageSize = pageSize != 0 ? pageSize : 50;
             int CurrentPage = page != 0 ? page : 1;
 
             List<IdentityMessage> list = new List<IdentityMessage>();
@@ -54,7 +55,7 @@ namespace Manager.WebApp.Controllers.Business
 
                 list = storeMessage.GetByPage(filter);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogDebug("Could not login: " + ex.ToString());
             }
@@ -94,7 +95,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("changeimportant")]
         public ActionResult ChangeImportant(MessageCheckImportantModel model)
         {
-            if(model.Id == 0)
+            if (model.Id == 0)
             {
                 return BadRequest("Message is empty");
             }
@@ -104,9 +105,9 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     var res = storeMessage.ChangeImportant(model.Id, model.Important);
 
-                    
+
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     _logger.LogDebug("Could not login: " + ex.ToString());
                 }
@@ -198,7 +199,7 @@ namespace Manager.WebApp.Controllers.Business
 
                 var IdentityConversation = new IdentityConversation();
                 IdentityConversation.Id = model.ConversationId;
-                
+
                 ConversationHelpers.ClearCache(model.ConversationId);
 
                 //Send notification to user
@@ -211,8 +212,8 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpPost]
-        [Route("SendFileMessage")]
-        public async void SendFileMessage(SendMessageModel model)
+        [Route("sendfilemessage")]
+        public async void SendFileMessage([FromForm] SendMessageModel model)
         {
             try
             {
@@ -228,27 +229,25 @@ namespace Manager.WebApp.Controllers.Business
                         msg.ReceiverId = model.ReceiverId;
                         msg.Type = 2;
                         msg.CreateDate = DateTime.Now;
-                        msg.Id =  storeMessage.Insert(msg);
+                        msg.Id = storeMessage.Insert(msg);
 
-                        var filePath = Path.GetTempFileName();
+                        var attachmentFolder = string.Format("Message/Attachments/{0}", msg.ConversationId);
+
+                        var filePath = FileUploadHelper.UploadFileAsync(formFile, attachmentFolder);
+
+                        await Task.FromResult(filePath);
 
                         var msgAttach = new IdentityMessageAttachment();
                         msgAttach.MessageId = msg.Id;
-
-                        /*var res = storeMessageAttachment.Insert();*/
-
-                        using (var stream = System.IO.File.Create(filePath))
-                        {
-                            await formFile.CopyToAsync(stream);
-                        }
+                        msgAttach.Path = filePath;
 
                         //Clear cache last message
                         ConversationHelpers.ClearCache(model.ConversationId);
+
                         //Send notification to user
                         NotifNewGroupMessage(msg);
                     }
                 }
- 
             }
             catch (Exception ex)
             {
