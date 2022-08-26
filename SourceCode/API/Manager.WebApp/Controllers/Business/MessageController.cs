@@ -118,7 +118,7 @@ namespace Manager.WebApp.Controllers.Business
 
 
         [HttpPost]
-        [Route("SendToGroup")]
+        [Route("sendtogroup")]
         public void SendGroup(int SenderId, int GroupId, string Message)
         {
             var IdentityMessage = new IdentityMessage();
@@ -158,7 +158,7 @@ namespace Manager.WebApp.Controllers.Business
 
 
         [HttpPost]
-        [Route("SendPrivateMessage")]
+        [Route("sendprivatemessage")]
         public void SendPrivateMessage(SendMessageModel model)
         {
             try
@@ -184,7 +184,7 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpPost]
-        [Route("SendGroupMessage")]
+        [Route("sendgroupmessage")]
         public void SendGroupMessage(SendMessageModel model)
         {
             try
@@ -255,8 +255,16 @@ namespace Manager.WebApp.Controllers.Business
                     //Clear cache last message
                     ConversationHelpers.ClearCache(model.ConversationId);
 
-                    //Send notification to user
-                    NotifNewGroupMessage(msg);
+                    //Send notification
+                    if(model.ReceiverId == 0)
+                    {
+                        NotifNewGroupMessage(msg);
+                    }
+                    else if(model.ConversationId == 0)
+                    {
+                        NotifNewPrivateMessage(msg);
+                    }
+                    
                 }
                 
             }
@@ -330,6 +338,8 @@ namespace Manager.WebApp.Controllers.Business
                 _logger.LogError(strError);
             }
         }
+
+        
 
         #endregion
     }

@@ -1771,3 +1771,28 @@ System.Net.Sockets.SocketException (10013): An attempt was made to access a sock
    at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context)
    at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
    at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+[26/08/2022 16:02:07 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 16:02:07 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:6001 
+[26/08/2022 16:02:07 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 16:02:07 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 16:02:07 INF Microsoft.Hosting.Lifetime] Content root path: D:\Jinzai tech project\ToolManagerBE\SourceCode\API\Manager.WebApp 
+[26/08/2022 16:03:57 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 16:03:57 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:6001 
+[26/08/2022 16:03:57 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 16:03:57 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 16:03:57 INF Microsoft.Hosting.Lifetime] Content root path: D:\Jinzai tech project\ToolManagerBE\SourceCode\API\Manager.WebApp 
+[26/08/2022 16:06:10 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 16:06:10 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:6001 
+[26/08/2022 16:06:10 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 16:06:10 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 16:06:10 INF Microsoft.Hosting.Lifetime] Content root path: D:\Jinzai tech project\ToolManagerBE\SourceCode\API\Manager.WebApp 
+[26/08/2022 16:06:37 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 16:06:37 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:6001 
+[26/08/2022 16:06:37 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 16:06:37 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 16:06:37 INF Microsoft.Hosting.Lifetime] Content root path: D:\Jinzai tech project\ToolManagerBE\SourceCode\API\Manager.WebApp 
+[26/08/2022 16:14:51 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 16:14:51 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:6001 
+[26/08/2022 16:14:51 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 16:14:51 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 16:14:51 INF Microsoft.Hosting.Lifetime] Content root path: D:\Jinzai tech project\ToolManagerBE\SourceCode\API\Manager.WebApp 
