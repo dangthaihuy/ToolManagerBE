@@ -28,21 +28,28 @@ namespace Manager.WebApp.Hubs
         
 
         [HubMethodName("SendToGroup")]
-        public void SendGroup(int SenderId, int GroupId, string Message )
+        public void SendGroup(SendMessageModel model)
         {
-            var IdentityMessage = new IdentityMessage();
-            IdentityMessage.ConversationId = GroupId;
-            IdentityMessage.Message = Message;
-            IdentityMessage.SenderId = SenderId;
-            IdentityMessage.CreateDate = DateTime.Now;
-
-            var IdentityConversation = new IdentityConversation();
-            IdentityConversation.Id = GroupId;
-
             try
             {
-                var MessageSuccess = storeMessage.Insert(IdentityMessage);
-                ConversationHelpers.ClearCache(GroupId);
+                IdentityConversation idenConversation = new IdentityConversation();
+                idenConversation.Id = model.ConversationId;
+                ConversationHelpers.ClearCache(model.ConversationId);
+
+                var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
+                var listUserInGroup = GroupChatHelpers.GetGroupInfo(idenConversation);
+                foreach (var user in listUserInGroup.Member)
+                {
+                    var userConnect = connectedUsers.FirstOrDefault(x => x.Id == user.Id);
+                    if (userConnect != null)
+                    {
+                        foreach (var senderConn in userConnect.Connections)
+                        {
+                            Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveMessage", model);
+                        }
+                    }
+
+                }
             }
             catch (Exception ex)
             {
@@ -51,20 +58,7 @@ namespace Manager.WebApp.Hubs
 
 
 
-            var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
-            var listUserInGroup = GroupChatHelpers.GetGroupInfo(IdentityConversation);
-            foreach (var user in listUserInGroup.Member)
-            {
-                var userConnect = connectedUsers.FirstOrDefault(x => x.Id == user.Id);
-                if (userConnect != null)
-                {
-                    foreach (var senderConn in userConnect.Connections)
-                    {
-                        Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveMessage", GroupId, SenderId, Message, IdentityMessage.CreateDate);
-                    }
-                }
-
-            }
+            
 
 
             //Lấy người gửi trong cache
@@ -127,7 +121,7 @@ namespace Manager.WebApp.Hubs
         //}
 
         [HubMethodName("SendToUser")]
-        public void SendToUser(SendPrivateMessageModel model)
+        public void SendToUser(SendMessageModel model)
         {
             try
             {

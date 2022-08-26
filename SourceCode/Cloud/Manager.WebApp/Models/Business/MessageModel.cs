@@ -15,12 +15,13 @@ namespace Manager.WebApp.Models.Business
         public int Important { get; set; }
     }
 
-    public class SendPrivateMessageModel
+    public class SendMessageModel
     {
         public int SenderId { get; set; }
         public int ReceiverId { get; set; }
         public int ConversationId { get; set; }
         public string Message { get; set; }
+        public int MessageId { get; set; }
         public DateTime CreateDate { get; set; }
     }
 }
