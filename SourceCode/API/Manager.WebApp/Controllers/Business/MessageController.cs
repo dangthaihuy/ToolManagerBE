@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Manager.WebApp.Controllers.Business
 {
@@ -168,7 +170,7 @@ namespace Manager.WebApp.Controllers.Business
                 msg.SenderId = Utils.ConvertToInt32(model.SenderId);
                 msg.ReceiverId = Utils.ConvertToInt32(model.ReceiverId);
                 msg.CreateDate = DateTime.Now;
-                msg.MessageId = storeMessage.Insert(msg);
+                msg.Id = storeMessage.Insert(msg);
                 ConversationHelpers.ClearCache(con.Id);
 
                 //Send notification to user
@@ -192,7 +194,7 @@ namespace Manager.WebApp.Controllers.Business
                 msg.Message = model.Message;
                 msg.SenderId = model.SenderId;
                 msg.CreateDate = DateTime.Now;
-                msg.MessageId = storeMessage.Insert(msg);
+                msg.Id = storeMessage.Insert(msg);
 
                 var IdentityConversation = new IdentityConversation();
                 IdentityConversation.Id = model.ConversationId;
@@ -210,24 +212,43 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpPost]
         [Route("SendFileMessage")]
-        public void SendFileMessage(SendMessageModel model)
+        public async void SendFileMessage(SendMessageModel model)
         {
             try
             {
+                long size = model.Files.Sum(f => f.Length);
 
-                var msg = new IdentityMessage();
-                msg.ConversationId = model.ConversationId;
-                msg.Message = model.Message;
-                msg.SenderId = model.SenderId;
-                msg.CreateDate = DateTime.Now;
+                foreach (var formFile in model.Files)
+                {
+                    if (formFile.Length > 0)
+                    {
+                        IdentityMessage msg = new IdentityMessage();
+                        msg.ConversationId = model.ConversationId;
+                        msg.SenderId = model.SenderId;
+                        msg.ReceiverId = model.ReceiverId;
+                        msg.Type = 2;
+                        msg.CreateDate = DateTime.Now;
+                        msg.Id =  storeMessage.Insert(msg);
 
-                var IdentityConversation = new IdentityConversation();
-                IdentityConversation.Id = model.ConversationId;
-                var MessageSuccess = storeMessage.Insert(msg);
-                ConversationHelpers.ClearCache(model.ConversationId);
+                        var filePath = Path.GetTempFileName();
 
-                //Send notification to user
-                NotifNewGroupMessage(msg);
+                        var msgAttach = new IdentityMessageAttachment();
+                        msgAttach.MessageId = msg.Id;
+
+                        /*var res = storeMessageAttachment.Insert();*/
+
+                        using (var stream = System.IO.File.Create(filePath))
+                        {
+                            await formFile.CopyToAsync(stream);
+                        }
+
+                        //Clear cache last message
+                        ConversationHelpers.ClearCache(model.ConversationId);
+                        //Send notification to user
+                        NotifNewGroupMessage(msg);
+                    }
+                }
+ 
             }
             catch (Exception ex)
             {

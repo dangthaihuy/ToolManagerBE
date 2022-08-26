@@ -21,7 +21,6 @@ namespace Manager.DataLayer.Entities.Business
 
         public int ConversationId { get; set; }
         public int Type { get; set; }
-        public int MessageId { get; set; }
 
         public string Message { get; set; }
 
@@ -30,5 +29,12 @@ namespace Manager.DataLayer.Entities.Business
         public DateTime CreateDate { get; set; }
         public int Important { get; set; }
 
+    }
+
+    public class IdentityMessageAttachment
+    {
+        public int Id { get; set; }
+        public int MessageId { get; set; }
+        public string Path { get; set; }
     }
 }
