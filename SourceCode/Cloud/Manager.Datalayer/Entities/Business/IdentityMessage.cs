@@ -29,6 +29,13 @@ namespace Manager.DataLayer.Entities.Business
         public int ReceiverId { get; set; }
         public DateTime CreateDate { get; set; }
         public int Important { get; set; }
+        public List<IdentityMessageAttachment> Attachments { get; set; }
 
+    }
+    public class IdentityMessageAttachment
+    {
+        public int Id { get; set; }
+        public int MessageId { get; set; }
+        public string Path { get; set; }
     }
 }

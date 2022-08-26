@@ -39,7 +39,7 @@ namespace Manager.WebApp.Hubs.Common
             }
             catch(Exception ex)
             {
-                _logger.Error("Could not get list type: " + ex.ToString());
+                _logger.Error("Could not connect: " + ex.ToString());
 
             }
         }

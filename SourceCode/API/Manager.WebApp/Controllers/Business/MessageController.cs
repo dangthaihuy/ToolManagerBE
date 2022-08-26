@@ -57,7 +57,7 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
-                _logger.LogDebug("Could not login: " + ex.ToString());
+                _logger.LogDebug("Could not getbypage: " + ex.ToString());
             }
             return Ok(list);
         }
@@ -86,7 +86,7 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
-                _logger.LogDebug("Could not login: " + ex.ToString());
+                _logger.LogDebug("Could not getimportant: " + ex.ToString());
             }
             return Ok(list);
         }
@@ -109,7 +109,7 @@ namespace Manager.WebApp.Controllers.Business
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogDebug("Could not login: " + ex.ToString());
+                    _logger.LogDebug("Could not changeimportant: " + ex.ToString());
                 }
             }
 

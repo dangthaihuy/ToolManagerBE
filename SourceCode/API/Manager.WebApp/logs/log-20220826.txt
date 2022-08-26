@@ -1796,3 +1796,67 @@ System.Net.Sockets.SocketException (10013): An attempt was made to access a sock
 [26/08/2022 16:14:51 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
 [26/08/2022 16:14:51 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
 [26/08/2022 16:14:51 INF Microsoft.Hosting.Lifetime] Content root path: D:\Jinzai tech project\ToolManagerBE\SourceCode\API\Manager.WebApp 
+[26/08/2022 17:31:44 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 17:31:44 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:6001 
+[26/08/2022 17:31:44 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 17:31:44 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 17:31:44 INF Microsoft.Hosting.Lifetime] Content root path: D:\HuyDang\ToolManager\SourceCode\API\Manager.WebApp 
+[26/08/2022 17:35:32 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 17:35:32 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:6001 
+[26/08/2022 17:35:32 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 17:35:32 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 17:35:32 INF Microsoft.Hosting.Lifetime] Content root path: D:\HuyDang\ToolManager\SourceCode\API\Manager.WebApp 
+[26/08/2022 17:38:59 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 17:38:59 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:6001 
+[26/08/2022 17:38:59 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 17:38:59 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 17:38:59 INF Microsoft.Hosting.Lifetime] Content root path: D:\HuyDang\ToolManager\SourceCode\API\Manager.WebApp 
+[26/08/2022 17:41:50 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 17:41:50 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:6001 
+[26/08/2022 17:41:50 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 17:41:50 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 17:41:50 INF Microsoft.Hosting.Lifetime] Content root path: D:\HuyDang\ToolManager\SourceCode\API\Manager.WebApp 
+[26/08/2022 17:42:31 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 17:42:31 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:6001 
+[26/08/2022 17:42:31 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 17:42:31 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 17:42:31 INF Microsoft.Hosting.Lifetime] Content root path: D:\HuyDang\ToolManager\SourceCode\API\Manager.WebApp 
+[26/08/2022 17:43:34 ERR Manager.WebApp.Controllers.Business.MessageController] Failed to NotifNewPrivateMessage because: System.AggregateException: One or more errors occurred. (An error occurred while sending the request.)
+ ---> System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host..
+ ---> System.Net.Sockets.SocketException (10054): An existing connection was forcibly closed by the remote host.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.FillAsync(Boolean async)
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean async, Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.Connections.Client.Internal.AccessTokenHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.Connections.Client.Internal.LoggingHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.SendAsyncCore(HttpRequestMessage request, HttpCompletionOption completionOption, Boolean async, Boolean emitTelemetryStartStop, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.Connections.Client.HttpConnection.NegotiateAsync(Uri url, HttpClient httpClient, ILogger logger, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.Connections.Client.HttpConnection.GetNegotiationResponseAsync(Uri uri, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.Connections.Client.HttpConnection.SelectAndStartTransport(TransferFormat transferFormat, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.Connections.Client.HttpConnection.StartAsyncCore(TransferFormat transferFormat, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ForceAsyncAwaiter.GetResult()
+   at Microsoft.AspNetCore.Http.Connections.Client.HttpConnection.StartAsync(TransferFormat transferFormat, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionFactory.ConnectAsync(EndPoint endPoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionFactory.ConnectAsync(EndPoint endPoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.SignalR.Client.HubConnection.StartAsyncCore(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.SignalR.Client.HubConnection.StartAsyncInner(CancellationToken cancellationToken)
+   at System.Threading.Tasks.ForceAsyncAwaiter.GetResult()
+   at Microsoft.AspNetCore.SignalR.Client.HubConnection.StartAsync(CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Manager.WebApp.Controllers.Business.MessageController.NotifNewPrivateMessage(IdentityMessage msg) in D:\HuyDang\ToolManager\SourceCode\API\Manager.WebApp\Controllers\Business\MessageController.cs:line 298 
+[26/08/2022 17:44:06 WRN Microsoft.AspNetCore.Server.Kestrel] Overriding address(es) 'http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead. 
+[26/08/2022 17:44:06 INF Microsoft.Hosting.Lifetime] Now listening on: http://[::]:6001 
+[26/08/2022 17:44:06 INF Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down. 
+[26/08/2022 17:44:06 INF Microsoft.Hosting.Lifetime] Hosting environment: Development 
+[26/08/2022 17:44:06 INF Microsoft.Hosting.Lifetime] Content root path: D:\HuyDang\ToolManager\SourceCode\API\Manager.WebApp 
