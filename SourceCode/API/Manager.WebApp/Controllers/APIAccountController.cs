@@ -51,7 +51,7 @@ namespace Manager.WebApp.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogDebug("Could not login: " + ex.ToString());
+                _logger.LogDebug("Could not register: " + ex.ToString());
             }
 
             return Ok();
@@ -108,7 +108,7 @@ namespace Manager.WebApp.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogDebug("Could not login: " + ex.ToString());
+                _logger.LogDebug("Could not getlist user: " + ex.ToString());
             }
 
             return BadRequest(new { error = new { message = "Not found" } });
@@ -132,7 +132,7 @@ namespace Manager.WebApp.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogDebug("Could not login: " + ex.ToString());
+                _logger.LogDebug("Could not get currentuser: " + ex.ToString());
             }
             return BadRequest(new { error = new { message = "Not found" } });
         }

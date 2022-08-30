@@ -23,6 +23,8 @@ namespace Manager.WebApp.Controllers.Business
         private readonly IStoreConversation storeConversation;
         private readonly IAPIStoreUser storeUser;
         private readonly IStoreGroup storeGroup;
+        private readonly IStoreMessage storeMessage;
+        private readonly IStoreMessageAttachment storeMessageAttachment;
         private readonly ILogger<ConversationController> _logger;
         public ConversationController(ILogger<ConversationController> logger)
         {
@@ -30,6 +32,8 @@ namespace Manager.WebApp.Controllers.Business
             storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
             storeUser = Startup.IocContainer.Resolve<IAPIStoreUser>();
             storeGroup = Startup.IocContainer.Resolve<IStoreGroup>();
+            storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
+            storeMessageAttachment = Startup.IocContainer.Resolve<IStoreMessageAttachment>();
             _logger = logger;
 
         }
@@ -50,11 +54,11 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     foreach(var item in listSolo)
                     {
-                        var ReceiverInfo = ConversationHelpers.GetReceiverInfo(item);
+                        var receiverInfo = ConversationHelpers.GetReceiverInfo(item);
                         var LastMessage = ConversationHelpers.GetLastMessage(item);
-                        if (ReceiverInfo != null)
+                        if (receiverInfo != null)
                         {
-                            item.Receiver = ReceiverInfo;
+                            item.Receiver = receiverInfo;
                             item.LastMessage = LastMessage.Message; 
                             item.LastTime = LastMessage.CreateDate;
                             data.Add(item);
@@ -80,14 +84,11 @@ namespace Manager.WebApp.Controllers.Business
                     }
 
                 }
-
-
-
                 return Ok(data);
             }
             catch (Exception ex)
             {
-                _logger.LogDebug("Could not login: " + ex.ToString());
+                _logger.LogDebug("Could not get message: " + ex.ToString());
             }
             return BadRequest(new { error = new { message = "Not found" } });
         }
@@ -118,9 +119,30 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch(Exception ex)
             {
-                _logger.LogDebug("Could not login: " + ex.ToString());
+                _logger.LogDebug("Could not insert conversation: " + ex.ToString());
             }
 
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [Route("delete")]
+        public ActionResult Delete(ConversationModel model)
+        {
+            var identity = model.MappingObject<IdentityConversationDefault>();
+            try
+            {
+                var deleteConversation = storeConversation.Delete(identity.Id);
+                var deleteGroupUser = storeGroup.DeleteByGrpId(identity.Id);
+                var deleteMessage = storeMessage.DeleteByConId(identity.Id);
+                var deleteMessageAttachment = storeMessageAttachment.DeleteByConId(identity.Id);
+
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogDebug("Could not delete conversation: " + ex.ToString());
+            }
             return BadRequest();
         }
     }

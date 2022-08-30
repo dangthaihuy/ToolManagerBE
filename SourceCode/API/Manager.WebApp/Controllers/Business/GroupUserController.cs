@@ -43,7 +43,7 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch(Exception ex)
             {
-                _logger.LogDebug("Could not login: " + ex.ToString());
+                _logger.LogDebug("Could not insert group-user: " + ex.ToString());
             }
 
             return Ok();
@@ -65,7 +65,7 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
-                _logger.LogDebug("Could not login: " + ex.ToString());
+                _logger.LogDebug("Could not delete user from group: " + ex.ToString());
             }
 
             return Ok();

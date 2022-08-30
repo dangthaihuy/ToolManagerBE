@@ -15,6 +15,7 @@ namespace Manager.DataLayer.Stores.Business
         List<IdentityMessage> GetByPage(IdentityMessageFilter filter);
         List<IdentityMessage> GetImportant(IdentityMessageFilter filter);
         IdentityMessage GetLastMessage(int Id);
+        int DeleteByConId(int conversationId);
 
         int ChangeImportant(int Id, int important);
 
@@ -58,5 +59,11 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetLastMessage(Id);
         }
+
+        public int DeleteByConId(int conversationId)
+        {
+            return r.DeleteByConId(conversationId);
+        }
+
     }
 }

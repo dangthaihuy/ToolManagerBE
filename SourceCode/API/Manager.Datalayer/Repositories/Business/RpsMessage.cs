@@ -63,6 +63,7 @@ namespace Manager.DataLayer.Repositories.Business
                                 //For attachment parameters
                                 var attParms = new Dictionary<string, object>
                                 {
+                                    {"@Name", att.Name },
                                     {"@ConversationId", identity.ConversationId },
                                     {"@MessageId", newId },
                                     {"@Path", att.Path}
@@ -219,6 +220,35 @@ namespace Manager.DataLayer.Repositories.Business
                 throw new CustomSQLException(strError);
             }
             return info;
+        }
+
+        public int DeleteByConId(int conversationId)
+        {
+            var sqlCmd = @"Message_DeleteByConId";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@ConversationId", conversationId },
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
         }
 
         private List<IdentityMessage> ParsingListMessageFromReader(IDataReader reader)

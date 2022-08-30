@@ -213,7 +213,34 @@ namespace Manager.DataLayer.Repositories.Business
             return listData;
         }
 
+        public int Delete(int id)
+        {
+            var sqlCmd = @"Conversations_Delete";
+            int newId = 0;
 
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", id }
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
         private IdentityConversation ExtractConversation(IDataReader reader)
         {
             var record = new IdentityConversation();

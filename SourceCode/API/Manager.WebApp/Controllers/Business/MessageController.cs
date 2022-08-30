@@ -173,7 +173,6 @@ namespace Manager.WebApp.Controllers.Business
         {
             try
             {
-                _logger.LogError("Begin SendPrivateMessage");
 
                 var con = storeConversation.GetDetail(model.SenderId, model.ReceiverId);
 
@@ -255,6 +254,7 @@ namespace Manager.WebApp.Controllers.Business
                             if (!string.IsNullOrEmpty(filePath))
                             {
                                 var msgAttach = new IdentityMessageAttachment();
+                                msgAttach.Name = formFile.FileName;
                                 msgAttach.MessageId = msg.Id;
                                 msgAttach.Path = filePath;
 
