@@ -108,6 +108,7 @@ namespace Manager.DataLayer.Repositories.Business
 
 
             record.Id = Utils.ConvertToInt32(reader["Id"]);
+            record.Name = reader["Name"].ToString();
             record.ConversationId = Utils.ConvertToInt32(reader["ConversationId"]);
             record.MessageId = Utils.ConvertToInt32(reader["MessageId"]);
             record.Path = reader["Path"].ToString();
