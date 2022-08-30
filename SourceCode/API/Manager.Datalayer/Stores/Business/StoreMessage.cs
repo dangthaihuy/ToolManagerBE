@@ -22,7 +22,7 @@ namespace Manager.DataLayer.Stores.Business
     public class StoreMessage : IStoreMessage
     {
         private readonly string _conStr;
-        private RpsMessenger r;
+        private RpsMessage r;
         public StoreMessage() : this("MainDBConn")
         {
         }
@@ -30,7 +30,7 @@ namespace Manager.DataLayer.Stores.Business
         public StoreMessage(string connectionStringName)
         {
             _conStr = AppConfiguration.GetAppsetting("MainDBConn");
-            r = new RpsMessenger(_conStr);
+            r = new RpsMessage(_conStr);
         }
 
         public int Insert(IdentityMessage identity)

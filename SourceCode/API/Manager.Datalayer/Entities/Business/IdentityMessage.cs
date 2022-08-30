@@ -34,6 +34,7 @@ namespace Manager.DataLayer.Entities.Business
     public class IdentityMessageAttachment
     {
         public int Id { get; set; }
+        public int ConversationId { get; set; }
         public int MessageId { get; set; }
         public string Path { get; set; }
     }

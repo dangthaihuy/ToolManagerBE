@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace Manager.DataLayer.Repositories.Business
 {
-    public class RpsMessenger
+    public class RpsMessage
     {
         private readonly string _conStr;
 
-        public RpsMessenger(string connectionString)
+        public RpsMessage(string connectionString)
         {
             _conStr = connectionString;
         }
 
-        public RpsMessenger()
+        public RpsMessage()
         {
             _conStr = AppConfiguration.GetAppsetting("MainDBConn");
         }
@@ -35,6 +35,7 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 {"@ConversationId", identity.ConversationId },
                 {"@Message", identity.Message },
+                {"@Type", identity.Type },
 
                 {"@SenderId", identity.SenderId },
                 {"@ReceiverId", identity.ReceiverId },
@@ -244,6 +245,7 @@ namespace Manager.DataLayer.Repositories.Business
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.ConversationId = Utils.ConvertToInt32(reader["ConversationId"]);
             record.Message = reader["Message"].ToString();
+            record.Type = Utils.ConvertToInt32(reader["Type"]);
 
             record.SenderId = Utils.ConvertToInt32(reader["SenderId"]);
             record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);

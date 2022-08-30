@@ -23,12 +23,14 @@ namespace Manager.WebApp.Controllers.Business
     public class MessageController : ControllerBase
     {
         private readonly IStoreMessage storeMessage;
+        private readonly IStoreMessageAttachment storeMessageAttachment;
         private readonly IStoreConversation storeConversation;
         private readonly ILogger<MessageController> _logger;
         public MessageController(ILogger<MessageController> logger)
         {
             storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
             storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
+            storeMessageAttachment = Startup.IocContainer.Resolve<IStoreMessageAttachment>();
             _logger = logger;
 
         }
@@ -54,6 +56,14 @@ namespace Manager.WebApp.Controllers.Business
                 filter.Keyword = keyword;
 
                 list = storeMessage.GetByPage(filter);
+
+                foreach(var item in list)
+                {
+                    if(item.Type == 2)
+                    {
+                        item.Attachments = storeMessageAttachment.GetByMessageId(item.Id);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -163,11 +173,14 @@ namespace Manager.WebApp.Controllers.Business
         {
             try
             {
+                _logger.LogError("Begin SendPrivateMessage");
+
                 var con = storeConversation.GetDetail(model.SenderId, model.ReceiverId);
 
                 var msg = new IdentityMessage();
                 msg.ConversationId = con.Id;
                 msg.Message = model.Message;
+                msg.Type = 1;
                 msg.SenderId = Utils.ConvertToInt32(model.SenderId);
                 msg.ReceiverId = Utils.ConvertToInt32(model.ReceiverId);
                 msg.CreateDate = DateTime.Now;
@@ -193,6 +206,7 @@ namespace Manager.WebApp.Controllers.Business
                 var msg = new IdentityMessage();
                 msg.ConversationId = model.ConversationId;
                 msg.Message = model.Message;
+                msg.Type = 1;
                 msg.SenderId = model.SenderId;
                 msg.CreateDate = DateTime.Now;
                 msg.Id = storeMessage.Insert(msg);
@@ -223,6 +237,7 @@ namespace Manager.WebApp.Controllers.Business
                     msg.ConversationId = model.ConversationId;
                     msg.SenderId = model.SenderId;
                     msg.ReceiverId = model.ReceiverId;
+                    msg.Message = "";
                     msg.Type = 2;
                     msg.CreateDate = DateTime.Now;
                     msg.Attachments = new List<IdentityMessageAttachment>();
@@ -260,7 +275,7 @@ namespace Manager.WebApp.Controllers.Business
                     {
                         NotifNewGroupMessage(msg);
                     }
-                    else if(model.ConversationId == 0)
+                    else
                     {
                         NotifNewPrivateMessage(msg);
                     }
@@ -296,6 +311,8 @@ namespace Manager.WebApp.Controllers.Business
 
                 //Wait for the connection to complete
                 t.Wait();
+
+                _logger.LogError("Begin Invoke SendToUser");
 
                 //Make your call - but in this case don't wait for a response 
                 conn.InvokeAsync("SendToUser", apiPrivateMsg);

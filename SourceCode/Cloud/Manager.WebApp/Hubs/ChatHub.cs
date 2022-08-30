@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using Manager.WebApp.Helpers;
 using Manager.WebApp.Models.Business;
+using Newtonsoft.Json;
 
 namespace Manager.WebApp.Hubs
 {
@@ -22,7 +23,7 @@ namespace Manager.WebApp.Hubs
     {
         private IStoreConversation storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
         private IStoreMessage storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
-
+        
         private ILogger _logger = Log.ForContext(typeof(ConversationHelpers));
 
         
@@ -125,6 +126,8 @@ namespace Manager.WebApp.Hubs
         {
             try
             {
+                _logger.Error("Begin SendToUser");
+
                 var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
 
                 model.CreateDate = DateTime.Now;
@@ -137,6 +140,8 @@ namespace Manager.WebApp.Hubs
                 var conversationId = Utils.ConvertToInt32(model.ConversationId);
                 if (connectedUsers != null && connectedUsers.Count > 0)
                 {
+                    _logger.Error("SendToUsers: " + JsonConvert.SerializeObject(connectedUsers));
+
                     if (fromUser != null && fromUser.Connections.HasData())
                     {
                         foreach (var senderConn in fromUser.Connections)

@@ -50,7 +50,7 @@ namespace Manager.WebApp
                 {
                     webBuilder.UseStartup<Startup>();
                     //webBuilder.UseUrls("http://localhost");
-                    //webBuilder.UseKestrel();
+                    webBuilder.UseKestrel();
                 });
     }
 }

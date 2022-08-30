@@ -58,8 +58,6 @@ namespace Manager.WebApp
                     .AllowCredentials();
                 });
             });
-
-            services.AddSingleton<IDictionary<string, UserConnection>>(opts => new Dictionary<string, UserConnection>());
             
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
