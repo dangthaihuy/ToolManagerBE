@@ -1,4 +1,4 @@
-using Autofac;
+﻿using Autofac;
 using Manager.SharedLibs;
 using Manager.WebApp.AutofacDI;
 using Manager.WebApp.Connection;
@@ -59,8 +59,11 @@ namespace Manager.WebApp
                 });
             });
 
-            services.AddSingleton<IDictionary<string, UserConnection>>(opts => new Dictionary<string, UserConnection>());
-            
+            //Cài đặt để hub trả api PascalCase
+            services.AddSignalR().AddJsonProtocol(options =>
+            {
+                options.PayloadSerializerOptions.PropertyNamingPolicy = null;
+            });
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();

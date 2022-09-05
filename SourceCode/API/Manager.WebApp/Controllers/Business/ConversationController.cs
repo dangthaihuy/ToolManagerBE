@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Manager.WebApp.Controllers.Business
@@ -55,12 +56,12 @@ namespace Manager.WebApp.Controllers.Business
                     foreach(var item in listSolo)
                     {
                         var receiverInfo = ConversationHelpers.GetReceiverInfo(item);
-                        var LastMessage = ConversationHelpers.GetLastMessage(item);
+                        var lastMessage = ConversationHelpers.GetLastMessage(item);
                         if (receiverInfo != null)
                         {
                             item.Receiver = receiverInfo;
-                            item.LastMessage = LastMessage.Message; 
-                            item.LastTime = LastMessage.CreateDate;
+                            item.LastMessage = lastMessage.Message; 
+                            item.LastTime = lastMessage.CreateDate;
                             data.Add(item);
                         }
                     }
@@ -70,14 +71,14 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     foreach (var item in listGroup)
                     {
-                        var GroupInfo = GroupChatHelpers.GetGroupInfo(item);
-                        var LastMessage = ConversationHelpers.GetLastMessage(item);
+                        var groupInfo = GroupChatHelpers.GetGroupInfo(item);
+                        var lastMessage = ConversationHelpers.GetLastMessage(item);
 
-                        if (GroupInfo != null)
+                        if (groupInfo != null)
                         {
-                            item.Group = GroupInfo;
-                            item.LastMessage = LastMessage.Message;
-                            item.LastTime = LastMessage.CreateDate;
+                            item.Group = groupInfo;
+                            item.LastMessage = lastMessage.Message;
+                            item.LastTime = lastMessage.CreateDate;
                             item.Type = 2;
                             data.Add(item);
                         }
@@ -88,7 +89,7 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
-                _logger.LogDebug("Could not get message: " + ex.ToString());
+                _logger.LogDebug("Could not getbyid conversation: " + ex.ToString());
             }
             return BadRequest(new { error = new { message = "Not found" } });
         }
@@ -97,21 +98,21 @@ namespace Manager.WebApp.Controllers.Business
         [Route("insert")]
         public ActionResult Insert(ConversationModel model)
         {
-            var NewConversation = model.MappingObject<IdentityConversationDefault>();
+            var newConversation = model.MappingObject<IdentityConversationDefault>();
             try
             {
                 var res= new int();
                 if (model.MemberGroup == null)
                 {
-                    res = storeConversation.Insert(NewConversation);
+                    res = storeConversation.Insert(newConversation);
                 }
                 if (model.MemberGroup.HasData())
                 {
-                    res = storeConversation.InsertGroup(NewConversation);
-                    var Creator = storeGroup.Insert(res, model.CreatorId);
+                    res = storeConversation.InsertGroup(newConversation);
+                    var creator = storeGroup.Insert(res, model.CreatorId);
                     foreach(string item in model.MemberGroup)
                     {
-                        var InsertMember  = storeGroup.Insert(res, Utils.ConvertToInt32(item));
+                        var insertMember  = storeGroup.Insert(res, Utils.ConvertToInt32(item));
                     }
                 }
                 MessengerHelpers.ClearCache();
@@ -130,12 +131,16 @@ namespace Manager.WebApp.Controllers.Business
         public ActionResult Delete(ConversationModel model)
         {
             var identity = model.MappingObject<IdentityConversationDefault>();
+            string filePath = "wwwroot\\Media\\Message\\Attachments\\";
             try
             {
                 var deleteConversation = storeConversation.Delete(identity.Id);
                 var deleteGroupUser = storeGroup.DeleteByGrpId(identity.Id);
                 var deleteMessage = storeMessage.DeleteByConId(identity.Id);
                 var deleteMessageAttachment = storeMessageAttachment.DeleteByConId(identity.Id);
+
+                Directory.Delete(String.Concat(filePath, Convert.ToString(model.Id)));
+                
 
                 return Ok();
             }

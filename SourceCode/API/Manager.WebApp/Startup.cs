@@ -58,6 +58,7 @@ namespace Manager.WebApp
                     .AllowCredentials();
                 });
             });
+
             
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();

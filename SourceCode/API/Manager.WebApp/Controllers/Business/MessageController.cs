@@ -61,7 +61,7 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     if(item.Type == 2)
                     {
-                        item.Attachments = storeMessageAttachment.GetByMessageId(item.Id);
+                        item.Attachments = storeMessageAttachment.GetByMessageId(item);
                     }
                 }
             }
@@ -78,6 +78,11 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var identity = model.MappingObject<IdentityMessage>();
+                var attachments = storeMessageAttachment.GetByMessageId(identity);
+                foreach(var item in attachments)
+                {
+                    System.IO.File.Delete(String.Concat("wwwroot", item.Path));
+                }
                 var res = storeMessage.DeleteMessage(identity);
             }
             catch(Exception ex)
@@ -146,21 +151,21 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpPost]
         [Route("sendtogroup")]
-        public void SendGroup(int SenderId, int GroupId, string Message)
+        public void SendGroup(SendMessageModel model)
         {
             
             try
             {
                 var IdentityMessage = new IdentityMessage();
-                IdentityMessage.ConversationId = GroupId;
-                IdentityMessage.Message = Message;
-                IdentityMessage.SenderId = SenderId;
+                IdentityMessage.ConversationId = model.GroupId;
+                IdentityMessage.Message = model.Message;
+                IdentityMessage.SenderId = model.SenderId;
                 IdentityMessage.CreateDate = DateTime.Now;
 
                 var con = new IdentityConversation();
-                con.Id = GroupId;
+                con.Id = model.GroupId;
                 var MessageSuccess = storeMessage.Insert(IdentityMessage);
-                ConversationHelpers.ClearCache(GroupId);
+                ConversationHelpers.ClearCache(model.GroupId);
 
                 //var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
                 //var listUserInGroup = GroupChatHelpers.GetGroupInfo(con);

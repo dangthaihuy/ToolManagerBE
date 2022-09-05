@@ -25,7 +25,7 @@ namespace Manager.DataLayer.Repositories.Business
             _conStr = AppConfiguration.GetAppsetting("MainDBConn");
         }
 
-        public List<IdentityMessageAttachment> GetByMessageId(int messageId)
+        public List<IdentityMessageAttachment> GetByMessageId(IdentityMessage identity)
         {
             var sqlCmd = @"MessageAttachment_GetByMessageId";
             List<IdentityMessageAttachment> listData = null;
@@ -35,7 +35,7 @@ namespace Manager.DataLayer.Repositories.Business
             //For parameters
             var parameters = new Dictionary<string, object>
             {
-                {"@MessageId", messageId}
+                {"@MessageId", identity.Id}
 
             };
 

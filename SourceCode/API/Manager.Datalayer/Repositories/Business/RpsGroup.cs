@@ -64,11 +64,11 @@ namespace Manager.DataLayer.Repositories.Business
             return info;
         }
 
-        public List<IdentityCurrentUser> GetUserById(int Id)
+        public List<IdentityCurrentUser> GetUserById(int id)
         {
             var listData = new List<IdentityCurrentUser>();
             
-            if (Id <= 0)
+            if (id <= 0)
             {
                 return listData;
             }
@@ -77,7 +77,7 @@ namespace Manager.DataLayer.Repositories.Business
 
             var parameters = new Dictionary<string, object>
             {
-                {"@Id", Id}
+                {"@Id", id}
             };
 
             try
@@ -108,9 +108,9 @@ namespace Manager.DataLayer.Repositories.Business
         {
             var listData = new List<int>();
 
-            var Id = Utils.ConvertToInt32(id);
+            var userId = Utils.ConvertToInt32(id);
 
-            if (Id <= 0)
+            if (userId <= 0)
             {
                 return listData;
             }
@@ -119,7 +119,7 @@ namespace Manager.DataLayer.Repositories.Business
 
             var parameters = new Dictionary<string, object>
             {
-                {"@Id", Id}
+                {"@Id", userId}
             };
 
             try

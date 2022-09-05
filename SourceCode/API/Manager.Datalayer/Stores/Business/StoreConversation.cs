@@ -13,8 +13,8 @@ namespace Manager.DataLayer.Stores.Business
     {
         int Insert(IdentityConversationDefault identity);
         int InsertGroup(IdentityConversationDefault identity);
-        List<IdentityConversation> GetById(string Id);
-        List<IdentityConversation> GetGroupByUserId(string Id);
+        List<IdentityConversation> GetById(string id);
+        List<IdentityConversation> GetGroupByUserId(string id);
         IdentityConversation GetDetail(int senderId, int receiverId);
         int Delete(int id);
     }
@@ -33,14 +33,14 @@ namespace Manager.DataLayer.Stores.Business
             r = new RpsConversation(_conStr);
         }
 
-        public List<IdentityConversation> GetById(string Id)
+        public List<IdentityConversation> GetById(string id)
         {
-            return r.GetById(Id);
+            return r.GetById(id);
         }
 
-        public List<IdentityConversation> GetGroupByUserId(string Id)
+        public List<IdentityConversation> GetGroupByUserId(string id)
         {
-            return r.GetGroupByUserId(Id);
+            return r.GetGroupByUserId(id);
         }
 
         public IdentityConversation GetDetail(int senderId, int receiverId)

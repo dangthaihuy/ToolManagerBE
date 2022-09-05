@@ -94,10 +94,10 @@ namespace Manager.DataLayer.Repositories.Business
 
         public List<IdentityConversation> GetById(string id)
         {
-            int Id = Utils.ConvertToInt32(id);
+            int conId = Utils.ConvertToInt32(id);
             var listData = new List<IdentityConversation>();
 
-            if (Id <= 0)
+            if (conId <= 0)
             {
                 return listData;
             }
@@ -106,7 +106,7 @@ namespace Manager.DataLayer.Repositories.Business
 
             var parameters = new Dictionary<string, object>
             {
-                {"@Id", Id}
+                {"@Id", conId}
             };
 
             try
@@ -135,10 +135,10 @@ namespace Manager.DataLayer.Repositories.Business
 
         public List<IdentityConversation> GetGroupByUserId(string id)
         {
-            int Id = Utils.ConvertToInt32(id);
+            int conId = Utils.ConvertToInt32(id);
             var listData = new List<IdentityConversation>();
 
-            if (Id <= 0)
+            if (conId <= 0)
             {
                 return listData;
             }
@@ -147,7 +147,7 @@ namespace Manager.DataLayer.Repositories.Business
 
             var parameters = new Dictionary<string, object>
             {
-                {"@Id", Id}
+                {"@Id", conId}
             };
 
             try

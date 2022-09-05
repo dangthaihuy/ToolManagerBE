@@ -1,5 +1,6 @@
 ﻿using Manager.DataLayer.Entities.Business;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -20,6 +21,7 @@ namespace Manager.WebApp.Models.Business
 
     public class SendMessageModel
     {
+        [JsonProperty("Id")]
         public int Id { get; set; }
         public int SenderId { get; set; }
         public int ReceiverId { get; set; }

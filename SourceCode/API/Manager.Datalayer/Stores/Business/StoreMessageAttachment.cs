@@ -11,7 +11,7 @@ namespace Manager.DataLayer.Stores.Business
 {
     public interface IStoreMessageAttachment
     {
-        List<IdentityMessageAttachment> GetByMessageId(int messageId);
+        List<IdentityMessageAttachment> GetByMessageId(IdentityMessage identity);
         int DeleteByConId(int conversationId);
     }
     public class StoreMessageAttachment : IStoreMessageAttachment
@@ -27,9 +27,9 @@ namespace Manager.DataLayer.Stores.Business
             r = new RpsMessageAttachment(_conStr);
         }
 
-        public List<IdentityMessageAttachment> GetByMessageId(int messageId)
+        public List<IdentityMessageAttachment> GetByMessageId(IdentityMessage identity)
         {
-            return r.GetByMessageId(messageId);
+            return r.GetByMessageId(identity);
         }
         public int DeleteByConId(int conversationId)
         {

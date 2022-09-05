@@ -35,7 +35,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 foreach(string item in model.UsersId)
                 {
-                    var Res = storeGroup.Insert(model.GroupId, Utils.ConvertToInt32(item));
+                    var res = storeGroup.Insert(model.GroupId, Utils.ConvertToInt32(item));
                     
 
                 }
@@ -57,7 +57,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 foreach (string item in model.UsersId)
                 {
-                    var Res = storeGroup.Delete(model.GroupId, Utils.ConvertToInt32(item));
+                    var res = storeGroup.Delete(model.GroupId, Utils.ConvertToInt32(item));
 
 
                 }
