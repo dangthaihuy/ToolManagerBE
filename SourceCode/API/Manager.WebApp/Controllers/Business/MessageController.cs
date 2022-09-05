@@ -71,6 +71,23 @@ namespace Manager.WebApp.Controllers.Business
             }
             return Ok(list);
         }
+        [HttpPost]
+        [Route("delete")]
+        public ActionResult DeleteMessage(MessageModel model)
+        {
+            try
+            {
+                var identity = model.MappingObject<IdentityMessage>();
+                var res = storeMessage.DeleteMessage(identity);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogDebug("Could not deletemessage: " + ex.ToString());
+            }
+            return Ok();
+        }
+
+
 
         [HttpGet]
         [Route("getimportant")]
@@ -131,17 +148,17 @@ namespace Manager.WebApp.Controllers.Business
         [Route("sendtogroup")]
         public void SendGroup(int SenderId, int GroupId, string Message)
         {
-            var IdentityMessage = new IdentityMessage();
-            IdentityMessage.ConversationId = GroupId;
-            IdentityMessage.Message = Message;
-            IdentityMessage.SenderId = SenderId;
-            IdentityMessage.CreateDate = DateTime.Now;
-
-            var con = new IdentityConversation();
-            con.Id = GroupId;
-
+            
             try
             {
+                var IdentityMessage = new IdentityMessage();
+                IdentityMessage.ConversationId = GroupId;
+                IdentityMessage.Message = Message;
+                IdentityMessage.SenderId = SenderId;
+                IdentityMessage.CreateDate = DateTime.Now;
+
+                var con = new IdentityConversation();
+                con.Id = GroupId;
                 var MessageSuccess = storeMessage.Insert(IdentityMessage);
                 ConversationHelpers.ClearCache(GroupId);
 
