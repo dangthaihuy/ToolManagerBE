@@ -39,8 +39,8 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getbypage")]
         public ActionResult GetByPage(int conversationId, int page, string keyword, int pageSize)
         {
-            int PageSize = pageSize != 0 ? pageSize : 50;
-            int CurrentPage = page != 0 ? page : 1;
+            pageSize = pageSize != 0 ? pageSize : 50;
+            int currentPage = page != 0 ? page : 1;
 
             List<IdentityMessage> list = new List<IdentityMessage>();
             var filter = new IdentityMessageFilter();
@@ -50,8 +50,8 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     keyword = "";
                 }
-                filter.CurrentPage = CurrentPage;
-                filter.PageSize = PageSize;
+                filter.CurrentPage = currentPage;
+                filter.PageSize = pageSize;
                 filter.ConversationId = conversationId;
                 filter.Keyword = keyword;
 
@@ -98,8 +98,8 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getimportant")]
         public ActionResult GetImportant(int conversationId, int page, string keyword, int pageSize)
         {
-            int PageSize = pageSize != 0 ? pageSize : 50;
-            int CurrentPage = page != 0 ? page : 1;
+            pageSize = pageSize != 0 ? pageSize : 50;
+            var currentPage = page != 0 ? page : 1;
 
             List<IdentityMessage> list = new List<IdentityMessage>();
             var filter = new IdentityMessageFilter();
@@ -109,8 +109,8 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     keyword = "";
                 }
-                filter.CurrentPage = CurrentPage;
-                filter.PageSize = PageSize;
+                filter.CurrentPage = currentPage;
+                filter.PageSize = pageSize;
                 filter.ConversationId = conversationId;
                 filter.Keyword = keyword;
 
@@ -148,6 +148,7 @@ namespace Manager.WebApp.Controllers.Business
             return Ok();
         }
 
+        
 
         [HttpPost]
         [Route("sendtogroup")]
@@ -156,15 +157,15 @@ namespace Manager.WebApp.Controllers.Business
             
             try
             {
-                var IdentityMessage = new IdentityMessage();
-                IdentityMessage.ConversationId = model.GroupId;
-                IdentityMessage.Message = model.Message;
-                IdentityMessage.SenderId = model.SenderId;
-                IdentityMessage.CreateDate = DateTime.Now;
+                var identityMessage = new IdentityMessage();
+                identityMessage.ConversationId = model.GroupId;
+                identityMessage.Message = model.Message;
+                identityMessage.SenderId = model.SenderId;
+                identityMessage.CreateDate = DateTime.Now;
 
                 var con = new IdentityConversation();
                 con.Id = model.GroupId;
-                var MessageSuccess = storeMessage.Insert(IdentityMessage);
+                var messageSuccess = storeMessage.Insert(identityMessage);
                 ConversationHelpers.ClearCache(model.GroupId);
 
                 //var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
@@ -232,8 +233,8 @@ namespace Manager.WebApp.Controllers.Business
                 msg.CreateDate = DateTime.Now;
                 msg.Id = storeMessage.Insert(msg);
 
-                var IdentityConversation = new IdentityConversation();
-                IdentityConversation.Id = model.ConversationId;
+                var identityConversation = new IdentityConversation();
+                identityConversation.Id = model.ConversationId;
 
                 ConversationHelpers.ClearCache(model.ConversationId);
 

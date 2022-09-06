@@ -57,6 +57,40 @@ namespace Manager.DataLayer.Repositories.Business
             return listData;
         }
 
+        public List<IdentityMessageAttachment> GetByConId(IdentityMessageFilter filter)
+        {
+            var sqlCmd = @"MessageAttachment_GetByConId";
+            List<IdentityMessageAttachment> listData = null;
+
+            int offset = (filter.CurrentPage - 1) * filter.PageSize;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@ConversationId", filter.ConversationId},
+                {"@Offset", offset},
+                {"@PageSize", filter.PageSize},
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        listData = ParsingListMessageFromReader(reader);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return listData;
+        }
+
         public int DeleteByConId(int conversationId)
         {
             var sqlCmd = @"MessageAttachment_DeleteByConId";

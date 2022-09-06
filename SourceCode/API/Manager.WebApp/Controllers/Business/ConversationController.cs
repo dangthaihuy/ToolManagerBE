@@ -150,5 +150,29 @@ namespace Manager.WebApp.Controllers.Business
             }
             return BadRequest();
         }
+
+        [HttpGet]
+        [Route("getfile")]
+        public ActionResult GetFile(int conversationId, int page, int pageSize)
+        {
+            var list = new List<IdentityMessageAttachment>();
+            var filter = new IdentityMessageFilter();
+            try
+            {
+                pageSize = pageSize != 0 ? pageSize : 20;
+                var currentPage = page != 0 ? page : 1;
+
+                filter.CurrentPage = currentPage;
+                filter.PageSize = pageSize;
+                filter.ConversationId = conversationId;
+
+                list = storeMessageAttachment.GetByConId(filter);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not Get file by conid: " + ex.ToString());
+            }
+            return Ok(list);
+        }
     }
 }

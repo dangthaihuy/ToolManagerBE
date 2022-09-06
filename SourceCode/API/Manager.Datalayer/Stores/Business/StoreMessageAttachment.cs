@@ -13,6 +13,7 @@ namespace Manager.DataLayer.Stores.Business
     {
         List<IdentityMessageAttachment> GetByMessageId(IdentityMessage identity);
         int DeleteByConId(int conversationId);
+        List<IdentityMessageAttachment> GetByConId(IdentityMessageFilter filter);
     }
     public class StoreMessageAttachment : IStoreMessageAttachment
     {
@@ -30,6 +31,10 @@ namespace Manager.DataLayer.Stores.Business
         public List<IdentityMessageAttachment> GetByMessageId(IdentityMessage identity)
         {
             return r.GetByMessageId(identity);
+        }
+        public List<IdentityMessageAttachment> GetByConId(IdentityMessageFilter filter)
+        {
+            return r.GetByConId(filter);
         }
         public int DeleteByConId(int conversationId)
         {
