@@ -142,7 +142,7 @@ namespace Manager.WebApp.Controllers.Business
                 Directory.Delete(String.Concat(filePath, Convert.ToString(model.Id)));
                 
 
-                return Ok();
+                return Ok(model.Id);
             }
             catch(Exception ex)
             {

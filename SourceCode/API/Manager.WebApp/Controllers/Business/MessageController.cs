@@ -89,7 +89,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not deletemessage: " + ex.ToString());
             }
-            return Ok();
+            return Ok(model.Id);
         }
 
 
