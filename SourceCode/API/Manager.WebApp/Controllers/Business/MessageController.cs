@@ -233,8 +233,8 @@ namespace Manager.WebApp.Controllers.Business
                 msg.CreateDate = DateTime.Now;
                 msg.Id = storeMessage.Insert(msg);
 
-                var identityConversation = new IdentityConversation();
-                identityConversation.Id = model.ConversationId;
+                var identityCon = new IdentityConversation();
+                identityCon.Id = model.ConversationId;
 
                 ConversationHelpers.ClearCache(model.ConversationId);
 

@@ -127,10 +127,10 @@ namespace Manager.DataLayer.Repositories.System
             return listData;
         }
 
-        public IdentityCurrentUser GetById(string Id)
+        public IdentityInformationUser GetById(string Id)
         {
             int id = Utils.ConvertToInt32(Id);
-            var info = new IdentityCurrentUser();
+            var info = new IdentityInformationUser();
 
             if (id <= 0)
             {
@@ -152,7 +152,7 @@ namespace Manager.DataLayer.Repositories.System
                     {
                         while (reader.Read())
                         {
-                            info = ExtractCurrentUserData(reader);
+                            info = ExtractUserData(reader);
                         }
                     }
                 }
@@ -179,8 +179,8 @@ namespace Manager.DataLayer.Repositories.System
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.Email = reader["Email"].ToString();
             record.Fullname = reader["FullName"].ToString();
+            record.Avatar = reader["Avatar"].ToString();
 
-            
             return record;
         }
 

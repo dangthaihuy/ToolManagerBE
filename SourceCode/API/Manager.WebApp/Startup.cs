@@ -1,20 +1,14 @@
 using Autofac;
 using Manager.SharedLibs;
 using Manager.WebApp.AutofacDI;
-using Manager.WebApp.Connection;
-using Manager.WebApp.Hubs;
-using Manager.WebApp.Settings;
-using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using StackExchange.Redis.Extensions.Core.Abstractions;
@@ -63,12 +57,32 @@ namespace Manager.WebApp
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();
+            
+
 
             // Add Autofac
             var autofacBuilder = new ContainerBuilder();
             autofacBuilder.RegisterModule<SqlModule>();
             autofacBuilder.RegisterModule<ServiceModule>();
             IocContainer = autofacBuilder.Build();
+
+
+            //Token
+            var tokenValidationParams = new TokenValidationParameters()
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.GetAppsetting("Jwt:Key"))),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = true,
+                RequireExpirationTime = false,
+                ClockSkew = TimeSpan.Zero,
+                ValidAudience = AppConfiguration.GetAppsetting("Jwt:Audience"),
+                ValidIssuer = AppConfiguration.GetAppsetting("Jwt:Issuer"),
+                
+            };
+
+            services.AddSingleton(tokenValidationParams);
 
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -83,14 +97,7 @@ namespace Manager.WebApp
             {
                 options.RequireHttpsMetadata = false;
                 options.SaveToken = true;
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = AppConfiguration.GetAppsetting("Jwt:Audience"),
-                    ValidIssuer = AppConfiguration.GetAppsetting("Jwt:Issuer"),
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.GetAppsetting("Jwt:Key")))
-                };
+                options.TokenValidationParameters = tokenValidationParams;
             });
 
 

@@ -15,17 +15,17 @@ namespace Manager.WebApp.Helpers
     {
         private static readonly ILogger _logger = Log.ForContext(typeof(ConversationHelpers));
 
-        public static IdentityCurrentUser GetReceiverInfo(IdentityConversation item)
+        public static IdentityInformationUser GetReceiverInfo(IdentityConversation item)
         {
             var myKey = string.Format(EnumFormatInfoCacheKeys.Conversation, item.SenderId, item.ReceiverId);
 
-            IdentityCurrentUser info = null;
+            IdentityInformationUser info = null;
             try
             {
                 //Check the cache first (Find the product that has Id equal to id)
                 var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
 
-                info = cacheProvider.Get<IdentityCurrentUser>(myKey);
+                info = cacheProvider.Get<IdentityInformationUser>(myKey);
 
                 if (info == null)
                 {

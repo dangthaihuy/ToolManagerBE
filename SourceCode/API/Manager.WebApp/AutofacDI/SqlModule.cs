@@ -29,6 +29,7 @@ namespace Manager.WebApp.AutofacDI
             builder.RegisterType<StoreMessage>().As<IStoreMessage>();
             builder.RegisterType<StoreMessageAttachment>().As<IStoreMessageAttachment>();
             builder.RegisterType<StoreGroup>().As<IStoreGroup>();
+            builder.RegisterType<StoreToken>().As<IStoreToken>();
             builder.RegisterType<StoreContact>().As<IStoreContact>();
 
             #region Business

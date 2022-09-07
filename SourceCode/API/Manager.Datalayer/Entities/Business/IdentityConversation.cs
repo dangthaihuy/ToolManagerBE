@@ -26,7 +26,7 @@ namespace Manager.DataLayer.Entities.Business
         public string LastMessage { get; set; }
         public DateTime LastTime { get; set; }
 
-        public IdentityCurrentUser Receiver { get; set; }
+        public IdentityInformationUser Receiver { get; set; }
         public IdentityGroup Group { get; set; }
 
 

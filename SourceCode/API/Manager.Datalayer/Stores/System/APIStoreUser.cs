@@ -18,7 +18,7 @@ namespace Manager.DataLayer.Stores.System
 
         List<IdentityCurrentUser> GetList();
 
-        IdentityCurrentUser GetById(string id);
+        IdentityInformationUser GetById(string id);
 
     }
     public class APIStoreUser : IAPIStoreUser
@@ -52,7 +52,7 @@ namespace Manager.DataLayer.Stores.System
             return m.GetList();
         }
 
-        public IdentityCurrentUser GetById(string id)
+        public IdentityInformationUser GetById(string id)
         {
             return m.GetById(id);
         }
