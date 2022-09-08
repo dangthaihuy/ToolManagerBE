@@ -137,7 +137,9 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     var res = storeMessage.ChangeImportant(model.Id, model.Important);
 
+                    var message = storeMessage.GetById(model.Id);
 
+                    return Ok(message);
                 }
                 catch (Exception ex)
                 {
@@ -145,7 +147,7 @@ namespace Manager.WebApp.Controllers.Business
                 }
             }
 
-            return Ok();
+            return BadRequest();
         }
 
         

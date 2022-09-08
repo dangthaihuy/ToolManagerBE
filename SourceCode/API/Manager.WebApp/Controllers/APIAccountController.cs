@@ -87,7 +87,7 @@ namespace Manager.WebApp.Controllers
                     
 
 
-                    return Ok(new{ id= user.Id , token = token.Token, refreshToken = token.RefreshToken});
+                    return Ok(new{ Id= user.Id , Token = token.Token, RefreshToken = token.RefreshToken});
                 }
 
             }
