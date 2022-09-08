@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Manager.DataLayer.Entities.Business;
 using Manager.DataLayer.Stores.Business;
-using Manager.DataLayer.Stores.System;
 using Manager.SharedLibs;
 using Manager.WebApp.Helpers;
 using Manager.WebApp.Helpers.Business;
@@ -12,7 +11,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace Manager.WebApp.Controllers.Business
 {
@@ -22,18 +20,14 @@ namespace Manager.WebApp.Controllers.Business
     public class ConversationController : ControllerBase
     {
         private readonly IStoreConversation storeConversation;
-        private readonly IAPIStoreUser storeUser;
         private readonly IStoreGroup storeGroup;
-        private readonly IStoreMessage storeMessage;
         private readonly IStoreMessageAttachment storeMessageAttachment;
         private readonly ILogger<ConversationController> _logger;
         public ConversationController(ILogger<ConversationController> logger)
         {
 
             storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
-            storeUser = Startup.IocContainer.Resolve<IAPIStoreUser>();
             storeGroup = Startup.IocContainer.Resolve<IStoreGroup>();
-            storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
             storeMessageAttachment = Startup.IocContainer.Resolve<IStoreMessageAttachment>();
             _logger = logger;
 
@@ -135,9 +129,6 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var deleteConversation = storeConversation.Delete(identity.Id);
-                var deleteGroupUser = storeGroup.DeleteByGrpId(identity.Id);
-                var deleteMessage = storeMessage.DeleteByConId(identity.Id);
-                var deleteMessageAttachment = storeMessageAttachment.DeleteByConId(identity.Id);
 
                 Directory.Delete(String.Concat(filePath, Convert.ToString(model.Id)));
                 
@@ -159,8 +150,8 @@ namespace Manager.WebApp.Controllers.Business
             var filter = new IdentityMessageFilter();
             try
             {
-                pageSize = pageSize != 0 ? pageSize : 20;
-                var currentPage = page != 0 ? page : 1;
+                pageSize = pageSize > 0 ? pageSize : 20;
+                var currentPage = page > 0 ? page : 1;
 
                 filter.CurrentPage = currentPage;
                 filter.PageSize = pageSize;

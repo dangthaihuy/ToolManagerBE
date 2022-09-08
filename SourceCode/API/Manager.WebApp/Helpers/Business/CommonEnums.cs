@@ -9,6 +9,7 @@ namespace Manager.WebApp.Helpers
     {
         public static string Conversation = "CONVERSATION_{0}_{1}";
         public static string ConversationGroup = "CONVERSATION_GROUP_{0}";
+        public static string Message = "MESSAGE_{0}";
         public static string ConversationLastMessage = "CONVERSATIONLASTMESSAGE_{0}";
         public static string GroupOfUser = "GROUPOFUSER_{0}";
         public static string UsersInGroup = "USERSINGROUP_{0}";
@@ -30,5 +31,11 @@ namespace Manager.WebApp.Helpers
         public static int Success = 1;
         public static int Error = -1;
         public static int Error_Info_NotFound = -2;
+    }
+
+    public static class EnumMessageType
+    {
+        public static int Text = 1;
+        public static int Attachment = 2;
     }
 }

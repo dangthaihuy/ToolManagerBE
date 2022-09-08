@@ -118,7 +118,7 @@ namespace Manager.DataLayer.Repositories.Business
         public List<IdentityMessage> GetByPage(IdentityMessageFilter filter)
         {
             var sqlCmd = @"Message_GetByPage";
-            List<IdentityMessage> listData = null;
+            List<IdentityMessage> listData = new List<IdentityMessage>();
 
             int offset = (filter.CurrentPage - 1) * filter.PageSize;
 
@@ -138,7 +138,15 @@ namespace Manager.DataLayer.Repositories.Business
                 {
                     using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
                     {
-                        listData = ParsingListMessageFromReader(reader);
+                        while (reader.Read())
+                        {
+                            IdentityMessage info = new IdentityMessage();
+
+                            info.Id = Convert.ToInt32(reader["Id"]);
+                            info.TotalCount = Convert.ToInt32(reader["TotalCount"]);
+
+                            listData.Add(info);
+                        }
                     }
                 }
             }
@@ -172,9 +180,24 @@ namespace Manager.DataLayer.Repositories.Business
                 {
                     using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
                     {
-                        while (reader.Read())
+                        if (reader.Read())
                         {
                             info = ExtractMessage(reader);
+                        }
+
+                        if(info != null && reader.NextResult())
+                        {
+                            while (reader.Read())
+                            {
+                                var record = ExtractMessageAttachment(reader);
+
+                                if(info.Attachments == null)
+                                {
+                                    info.Attachments = new List<IdentityMessageAttachment>();
+                                }
+
+                                info.Attachments.Add(record);
+                            }
                         }
                     }
                 }
@@ -348,6 +371,24 @@ namespace Manager.DataLayer.Repositories.Business
 
             record.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
             record.Important = Utils.ConvertToInt32(reader["Important"]);
+
+
+            return record;
+        }
+
+        public static IdentityMessageAttachment ExtractMessageAttachment(IDataReader reader)
+        {
+            var record = new IdentityMessageAttachment();
+
+            //Seperate properties
+
+
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
+            record.Name = reader["Name"].ToString();
+            record.ConversationId = Utils.ConvertToInt32(reader["ConversationId"]);
+            record.MessageId = Utils.ConvertToInt32(reader["MessageId"]);
+            record.Path = reader["Path"].ToString();
+
 
 
             return record;

@@ -3,6 +3,7 @@ using Manager.DataLayer.Entities.Business;
 using Manager.DataLayer.Stores.Business;
 using Manager.SharedLibs;
 using Manager.WebApp.Helpers;
+using Manager.WebApp.Helpers.Business;
 using Manager.WebApp.Models.Business;
 using Manager.WebApp.Settings;
 using Microsoft.AspNetCore.Authorization;
@@ -39,29 +40,30 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getbypage")]
         public ActionResult GetByPage(int conversationId, int page, string keyword, int pageSize)
         {
-            pageSize = pageSize != 0 ? pageSize : 50;
-            int currentPage = page != 0 ? page : 1;
+            pageSize = pageSize > 0 ? pageSize : 50;
+            int currentPage = page > 0 ? page : 1;
 
-            List<IdentityMessage> list = new List<IdentityMessage>();
+            var returnList = new List<IdentityMessage>();
             var filter = new IdentityMessageFilter();
             try
             {
-                if (keyword == null)
-                {
-                    keyword = "";
-                }
                 filter.CurrentPage = currentPage;
                 filter.PageSize = pageSize;
                 filter.ConversationId = conversationId;
                 filter.Keyword = keyword;
 
-                list = storeMessage.GetByPage(filter);
+                var list = storeMessage.GetByPage(filter);
 
-                foreach(var item in list)
+                if (list.HasData())
                 {
-                    if(item.Type == 2)
+                    foreach (var item in list)
                     {
-                        item.Attachments = storeMessageAttachment.GetByMessageId(item);
+                        var message = MessengerHelpers.GetBaseInfo(item.Id);
+
+                        if (message != null)
+                        {
+                            returnList.Add(message);
+                        }
                     }
                 }
             }
@@ -69,7 +71,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not getbypage: " + ex.ToString());
             }
-            return Ok(list);
+            return Ok(returnList);
         }
         [HttpPost]
         [Route("delete")]
@@ -84,8 +86,10 @@ namespace Manager.WebApp.Controllers.Business
                     System.IO.File.Delete(String.Concat("wwwroot", item.Path));
                 }
                 var res = storeMessage.DeleteMessage(identity);
+                MessengerHelpers.ClearCacheBaseInfo(model.Id);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogDebug("Could not deletemessage: " + ex.ToString());
             }

@@ -2,6 +2,7 @@
 using Manager.DataLayer.Entities;
 using Manager.DataLayer.Entities.Business;
 using Manager.DataLayer.Stores.Business;
+using Manager.SharedLibs;
 using Manager.WebApp.Models.Business;
 using Manager.WebApp.Settings;
 using Serilog;
@@ -95,7 +96,38 @@ namespace Manager.WebApp.Helpers.Business
             }
         }
 
-        
+        public static IdentityMessage GetBaseInfo(int id)
+        {
+            var myKey = string.Format(EnumFormatInfoCacheKeys.Message, id);
+
+            IdentityMessage info = null;
+            try
+            {
+                //Check the cache first (Find the product that has Id equal to id)
+                var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
+
+                info = cacheProvider.Get<IdentityMessage>(myKey);
+
+                if (info == null)
+                {
+                    var myStore = Startup.IocContainer.Resolve<IStoreMessage>();
+                    info = myStore.GetById(id); 
+
+                    if (info != null)
+                    {
+                        //Storage to cache
+                        cacheProvider.Set(myKey, info, SystemSettings.DefaultCachingTimeInMinutes);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Could not GetBaseInfo: " + ex.ToString());
+            }
+
+            return info;
+        }
+
         public static void ClearCache()
         {
             try
@@ -103,6 +135,24 @@ namespace Manager.WebApp.Helpers.Business
                 var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
 
                 var myKey = string.Format(_allUsersCacheKey);
+
+
+                cacheProvider.Clear(myKey);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Failed to ClearCache: {0}", ex.ToString());
+            }
+        }
+
+        public static void ClearCacheBaseInfo(int id)
+        {
+            try
+            {
+                var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
+
+                var myKey = string.Format(EnumFormatInfoCacheKeys.Message, id);
 
 
                 cacheProvider.Clear(myKey);
