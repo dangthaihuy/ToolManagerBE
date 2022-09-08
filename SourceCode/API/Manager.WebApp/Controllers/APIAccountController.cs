@@ -104,17 +104,24 @@ namespace Manager.WebApp.Controllers
         [AllowAnonymous]
         public ActionResult RefreshToken([FromBody] TokenRequest tokenRequest)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var result = ((JsonResult)VerifyAndGenerateToken(tokenRequest)).Value;
-                if (result == null)
+                if (ModelState.IsValid)
                 {
-                    return BadRequest();
+                    var result = ((JsonResult)VerifyAndGenerateToken(tokenRequest)).Value;
+                    if (result == null)
+                    {
+                        return BadRequest();
+                    }
+
+
+
+                    return Ok(result);
                 }
-
-                
-
-                return Ok(result);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogDebug("Could not refresh token: " + ex.ToString());
             }
             return BadRequest();
         }
@@ -268,7 +275,7 @@ namespace Manager.WebApp.Controllers
                             "Token does not exist"
                         }
                     });
-                }
+                }*/
 
                 // Validation 5 - validate if used
                 if (storedToken.IsUsed)
@@ -283,7 +290,7 @@ namespace Manager.WebApp.Controllers
                 }
 
                 // Validation 6 - validate if revoked
-                if (storedToken.IsRevorked)
+                /*if (storedToken.IsRevorked)
                 {
                     return Json(new
                     {
@@ -318,19 +325,17 @@ namespace Manager.WebApp.Controllers
                             "Refresh token has expired"
                         }
                     });
-                }*/
-
+                }
+*/
 
                 // update current token 
-
                 storedToken.IsUsed = true;
-
                 storeToken.UpdateRefToken(storedToken);
-                
 
                 // Generate a new token
                 var dbUser = storeUser.GetById(Convert.ToString(storedToken.UserId));
-                return  AssignJWTToken(dbUser);
+
+                return AssignJWTToken(dbUser);
 
             }
             catch (Exception ex)
