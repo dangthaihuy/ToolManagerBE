@@ -39,7 +39,7 @@ namespace Manager.WebApp.Controllers.Business
         {
             if (id == null)
             {
-                return BadRequest(new { error = new { message = "Not found" } });
+                return BadRequest(new { error = new { message = "Not found id" } });
             }
             try
             {
@@ -84,8 +84,10 @@ namespace Manager.WebApp.Controllers.Business
             catch (Exception ex)
             {
                 _logger.LogDebug("Could not getbyid conversation: " + ex.ToString());
+
+                return StatusCode(500);
             }
-            return BadRequest(new { error = new { message = "Not found" } });
+            return BadRequest(new { error = new { message = "Get by id fail" } });
         }
 
         [HttpPost]
@@ -115,9 +117,11 @@ namespace Manager.WebApp.Controllers.Business
             catch(Exception ex)
             {
                 _logger.LogDebug("Could not insert conversation: " + ex.ToString());
+
+                return StatusCode(500);
             }
 
-            return BadRequest();
+            return BadRequest(new { error = new { message = "Insert fail" } });
         }
 
         [HttpPost]
@@ -138,8 +142,10 @@ namespace Manager.WebApp.Controllers.Business
             catch(Exception ex)
             {
                 _logger.LogDebug("Could not delete conversation: " + ex.ToString());
+
+                return StatusCode(500);
             }
-            return BadRequest();
+            return BadRequest(new { error = new { message = "Delete fail" } });
         }
 
         [HttpGet]
@@ -162,6 +168,8 @@ namespace Manager.WebApp.Controllers.Business
             catch (Exception ex)
             {
                 _logger.LogError("Could not Get file by conid: " + ex.ToString());
+
+                return StatusCode(500);
             }
             return Ok(list);
         }

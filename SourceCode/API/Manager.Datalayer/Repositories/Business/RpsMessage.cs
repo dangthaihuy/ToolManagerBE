@@ -126,8 +126,10 @@ namespace Manager.DataLayer.Repositories.Business
             var parameters = new Dictionary<string, object>
             {
                 {"@ConversationId", filter.ConversationId},
-                {"@Keyword", filter.Keyword},
                 {"@Offset", offset},
+                {"@Id", filter.Id},
+                {"@Direction", filter.Direction},
+
                 {"@PageSize", filter.PageSize},
 
             };
@@ -138,7 +140,7 @@ namespace Manager.DataLayer.Repositories.Business
                 {
                     using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
                     {
-                        while (reader.Read())
+                        while (filter.Id == 0 && reader.Read())
                         {
                             IdentityMessage info = new IdentityMessage();
 
@@ -146,6 +148,18 @@ namespace Manager.DataLayer.Repositories.Business
                             info.TotalCount = Convert.ToInt32(reader["TotalCount"]);
 
                             listData.Add(info);
+                        }
+                        if(filter.Id > 0 && reader.NextResult() != null)
+                        {
+                            while (reader.Read())
+                            {
+                                IdentityMessage info = new IdentityMessage();
+
+                                info.Id = Convert.ToInt32(reader["Id"]);
+                                info.TotalCount = Convert.ToInt32(reader["TotalCount"]);
+
+                                listData.Add(info);
+                            }
                         }
                     }
                 }

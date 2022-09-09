@@ -44,9 +44,11 @@ namespace Manager.WebApp.Controllers.Business
             catch(Exception ex)
             {
                 _logger.LogDebug("Could not insert group-user: " + ex.ToString());
+
+                return StatusCode(500);
             }
 
-            return Ok();
+            return Ok(new {success = true});
         }
 
         [HttpPost]
@@ -66,9 +68,11 @@ namespace Manager.WebApp.Controllers.Business
             catch (Exception ex)
             {
                 _logger.LogDebug("Could not delete user from group: " + ex.ToString());
+
+                return StatusCode(500);
             }
 
-            return Ok();
+            return Ok(new { success = true });
         }
 
     }

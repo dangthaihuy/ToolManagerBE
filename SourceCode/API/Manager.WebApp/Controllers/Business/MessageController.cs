@@ -38,19 +38,19 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpGet]
         [Route("getbypage")]
-        public ActionResult GetByPage(int conversationId, int page, string keyword, int pageSize)
+        public ActionResult GetByPage(int conversationId, int messageId, int pageSize, int direction)
         {
             pageSize = pageSize > 0 ? pageSize : 50;
-            int currentPage = page > 0 ? page : 1;
-
+            var currentPage = 1;
             var returnList = new List<IdentityMessage>();
             var filter = new IdentityMessageFilter();
             try
             {
-                filter.CurrentPage = currentPage;
+                filter.Id = messageId;
                 filter.PageSize = pageSize;
+                filter.CurrentPage = currentPage;
+                filter.Direction = direction;
                 filter.ConversationId = conversationId;
-                filter.Keyword = keyword;
 
                 var list = storeMessage.GetByPage(filter);
 

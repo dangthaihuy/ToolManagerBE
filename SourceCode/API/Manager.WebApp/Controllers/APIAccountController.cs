@@ -43,9 +43,14 @@ namespace Manager.WebApp.Controllers
         {
             try
             {
+                
                 if (storeUser.GetList().Any(user => user.Email == model.Email))
                 {
-                    return Json(new { success = false, message = "Username " + model.Email + " is already taken" });
+                    return BadRequest(new { success = false, message = "Username " + model.Email + " is already taken" });
+                }
+                if (model.Password.Length < 8)
+                {
+                    return BadRequest(new { success = false, message = "Use a stronger password" });
                 }
 
                 var newUser = model.MappingObject<IdentityInformationUser>();
@@ -57,9 +62,11 @@ namespace Manager.WebApp.Controllers
             catch(Exception ex)
             {
                 _logger.LogDebug("Could not register: " + ex.ToString());
+
+                return StatusCode(500);
             }
 
-            return Ok();
+            return Ok(new { success = true, message = "Register success" });
 
         }
 
@@ -85,18 +92,22 @@ namespace Manager.WebApp.Controllers
                 {
                     dynamic token = ((JsonResult)AssignJWTToken(user)).Value;
                     
-
-
                     return Ok(new{ Id= user.Id , Token = token.Token, RefreshToken = token.RefreshToken});
+                } 
+                else
+                {
+                    return BadRequest(new { error = new { message = "Invalid email or password." } });
                 }
 
             }
             catch (Exception ex)
             {
                 _logger.LogDebug("Could not login: " + ex.ToString());
+
+                return StatusCode(500);
             }
 
-            return BadRequest(new { error = new { message = "Login fail" } });
+            return BadRequest(new { error = new { message = "Login fail." } });
         }
 
         [HttpPost]
@@ -111,10 +122,8 @@ namespace Manager.WebApp.Controllers
                     var result = ((JsonResult)VerifyAndGenerateToken(tokenRequest)).Value;
                     if (result == null)
                     {
-                        return BadRequest();
+                        return BadRequest(new { error = new { message = "Refresh token fail." } });
                     }
-
-
 
                     return Ok(result);
                 }
@@ -122,8 +131,10 @@ namespace Manager.WebApp.Controllers
             catch(Exception ex)
             {
                 _logger.LogDebug("Could not refresh token: " + ex.ToString());
+
+                return StatusCode(500);
             }
-            return BadRequest();
+            return BadRequest(new { error = new { message = "Refresh token fail." } });
         }
 
 
@@ -144,9 +155,11 @@ namespace Manager.WebApp.Controllers
             catch (Exception ex)
             {
                 _logger.LogDebug("Could not getlist user: " + ex.ToString());
+
+                return StatusCode(500);
             }
 
-            return BadRequest(new { error = new { message = "Not found" } });
+            return BadRequest(new { error = new { message = "Get list message fail" } });
         }
 
         [HttpGet]
@@ -155,7 +168,7 @@ namespace Manager.WebApp.Controllers
         {
             if(id == null)
             {
-                return BadRequest(new { error = new { message = "Not found" } });
+                return BadRequest(new { error = new { message = "Not found current id" } });
             }
             try
             {
@@ -168,8 +181,10 @@ namespace Manager.WebApp.Controllers
             catch(Exception ex)
             {
                 _logger.LogDebug("Could not get currentuser: " + ex.ToString());
+
+                return StatusCode(500);
             }
-            return BadRequest(new { error = new { message = "Not found" } });
+            return BadRequest(new { error = new { message = "Get current user fail" } });
         }
 
         private ActionResult AssignJWTToken(IdentityInformationUser user)

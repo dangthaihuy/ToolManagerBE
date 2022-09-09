@@ -10,6 +10,7 @@ namespace Manager.DataLayer.Entities.Business
     public class IdentityMessageFilter : IdentityMessage
     {
         public string Keyword { get; set; }
+        public int Direction { get; set; }
 
         public int CurrentPage { get; set; }
 
