@@ -39,17 +39,13 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getbypage")]
         public ActionResult GetByPage(int conversationId, int page, string keyword, int pageSize)
         {
-            pageSize = pageSize != 0 ? pageSize : 50;
-            int currentPage = page != 0 ? page : 1;
+            pageSize = pageSize > 0 ? pageSize : 50;
+            int currentPage = page > 0 ? page : 1;
 
             List<IdentityMessage> list = new List<IdentityMessage>();
             var filter = new IdentityMessageFilter();
             try
             {
-                if (keyword == null)
-                {
-                    keyword = "";
-                }
                 filter.CurrentPage = currentPage;
                 filter.PageSize = pageSize;
                 filter.ConversationId = conversationId;
@@ -71,6 +67,37 @@ namespace Manager.WebApp.Controllers.Business
             }
             return Ok(list);
         }
+
+        [HttpGet]
+        [Route("getbysearch")]
+        public ActionResult GetBySearch(int conversationId, string keyword)
+        {
+
+            List<IdentityMessage> list = new List<IdentityMessage>();
+            var filter = new IdentityMessageFilter();
+            try
+            {
+                filter.ConversationId = conversationId;
+                filter.Keyword = keyword;
+                filter.PageSize = 50;
+
+                list = storeMessage.GetBySearch(filter);
+
+                foreach (var item in list)
+                {
+                    if (item.Type == 2)
+                    {
+                        item.Attachments = storeMessageAttachment.GetByMessageId(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not getbypage: " + ex.ToString());
+            }
+            return Ok(list);
+        }
+
         [HttpPost]
         [Route("delete")]
         public ActionResult DeleteMessage(MessageModel model)
