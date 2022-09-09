@@ -28,7 +28,11 @@ namespace Manager.DataLayer.Entities.Business
         public int ReceiverId { get; set; }
         public DateTime CreateDate { get; set; }
         public int Important { get; set; }
+
         public int TotalCount { get; set; }
+
+        public int PageIndex { get; set; }
+
         public List<IdentityMessageAttachment> Attachments { get; set; }
     }
 

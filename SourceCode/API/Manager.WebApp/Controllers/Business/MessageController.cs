@@ -73,6 +73,37 @@ namespace Manager.WebApp.Controllers.Business
             }
             return Ok(returnList);
         }
+
+        [HttpGet]
+        [Route("getbysearch")]
+        public ActionResult GetBySearch(int conversationId, string keyword)
+        {
+
+            List<IdentityMessage> list = new List<IdentityMessage>();
+            var filter = new IdentityMessageFilter();
+            try
+            {
+                filter.ConversationId = conversationId;
+                filter.Keyword = keyword;
+                filter.PageSize = 50;
+
+                list = storeMessage.GetBySearch(filter);
+
+                foreach (var item in list)
+                {
+                    if (item.Type == 2)
+                    {
+                        item.Attachments = storeMessageAttachment.GetByMessageId(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not getbypage: " + ex.ToString());
+            }
+            return Ok(list);
+        }
+
         [HttpPost]
         [Route("delete")]
         public ActionResult DeleteMessage(MessageModel model)
