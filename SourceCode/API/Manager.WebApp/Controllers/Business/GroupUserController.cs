@@ -25,12 +25,14 @@ namespace Manager.WebApp.Controllers.Business
     {
         private readonly IStoreGroup storeGroup;
         private readonly IAPIStoreUser storeUser;
+        private readonly IStoreMessage storeMessage;
         private readonly ILogger<GroupUserController> _logger;
         public GroupUserController(ILogger<GroupUserController> logger)
         {
 
             storeGroup = Startup.IocContainer.Resolve<IStoreGroup>();
             storeUser = Startup.IocContainer.Resolve<IAPIStoreUser>();
+            storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
             _logger = logger;
 
         }
@@ -46,6 +48,7 @@ namespace Manager.WebApp.Controllers.Business
 
                 idenMessage.ConversationId = model.GroupId;
                 idenMessage.Type = EnumMessageType.Noti;
+                idenMessage.CreateDate = DateTime.Now;
 
                 int check = 0;
 
@@ -70,6 +73,7 @@ namespace Manager.WebApp.Controllers.Business
                 idenMessage.Message += "được thêm vào nhóm";
                 NotifNewGroupMessage(idenMessage);
 
+                var res = storeMessage.Insert(idenMessage);
                 GroupChatHelpers.ClearCache(model.GroupId);
             }
             catch(Exception ex)
@@ -93,6 +97,7 @@ namespace Manager.WebApp.Controllers.Business
 
                 idenMessage.ConversationId = model.GroupId;
                 idenMessage.Type = EnumMessageType.Noti;
+                idenMessage.CreateDate = DateTime.Now;
 
                 int check = 0;
 
@@ -118,6 +123,8 @@ namespace Manager.WebApp.Controllers.Business
                 idenMessage.Message += "đã bị xóa khỏi nhóm";
                 NotifNewGroupMessage(idenMessage);
 
+
+                var res = storeMessage.Insert(idenMessage);
                 GroupChatHelpers.ClearCache(model.GroupId);
             }
             catch (Exception ex)
