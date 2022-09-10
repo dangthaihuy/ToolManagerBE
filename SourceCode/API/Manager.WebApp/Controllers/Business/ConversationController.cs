@@ -23,6 +23,7 @@ namespace Manager.WebApp.Controllers.Business
     {
         private readonly IStoreConversation storeConversation;
         private readonly IStoreGroup storeGroup;
+        private readonly IStoreMessage storeMessage;
         private readonly IStoreMessageAttachment storeMessageAttachment;
         private readonly ILogger<ConversationController> _logger;
         public ConversationController(ILogger<ConversationController> logger)
@@ -30,6 +31,7 @@ namespace Manager.WebApp.Controllers.Business
 
             storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
             storeGroup = Startup.IocContainer.Resolve<IStoreGroup>();
+            storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
             storeMessageAttachment = Startup.IocContainer.Resolve<IStoreMessageAttachment>();
             _logger = logger;
 
@@ -97,8 +99,10 @@ namespace Manager.WebApp.Controllers.Business
         public ActionResult Insert(ConversationModel model)
         {
             var newConversation = model.MappingObject<IdentityConversationDefault>();
+            
             try
             {
+
                 var res= new int();
                 if (model.MemberGroup == null)
                 {
@@ -107,7 +111,18 @@ namespace Manager.WebApp.Controllers.Business
                 if (model.MemberGroup.HasData())
                 {
                     res = storeConversation.InsertGroup(newConversation);
+
+                    var idenMessage = new IdentityMessage();
+                    idenMessage.ConversationId = res;
+                    idenMessage.Type = EnumMessageType.Noti;
+                    idenMessage.CreateDate = DateTime.Now;
+                    idenMessage.Message = "Nhóm mới đã được tạo";
+
                     var creator = storeGroup.Insert(res, model.CreatorId);
+                    var insertMess = storeMessage.Insert(idenMessage);
+
+                    MessengerHelpers.NotifNewGroupMessage(idenMessage);
+
                     foreach(string item in model.MemberGroup)
                     {
                         var insertMember  = storeGroup.Insert(res, Utils.ConvertToInt32(item));
@@ -177,35 +192,6 @@ namespace Manager.WebApp.Controllers.Business
             return Ok(list);
         }
 
-        private void NotifNewGroupMessage(IdentityMessage msg)
-        {
-            try
-            {
-                var apiGroupMsg = new SendMessageModel();
-                apiGroupMsg = msg.MappingObject<SendMessageModel>();
-                apiGroupMsg.CreateDate = DateTime.Now;
-
-                var connBuilder = new HubConnectionBuilder();
-                connBuilder.WithUrl(string.Format("{0}/chat", SystemSettings.MessengerCloud));
-                connBuilder.WithAutomaticReconnect(); //I don't think this is totally required, but can't hurt either
-
-                var conn = connBuilder.Build();
-
-                //Start the connection
-                var t = conn.StartAsync();
-
-                //Wait for the connection to complete
-                t.Wait();
-
-                //Make your call - but in this case don't wait for a response 
-                conn.InvokeAsync("SendToGroup", apiGroupMsg);
-
-            }
-            catch (Exception ex)
-            {
-                var strError = string.Format("Failed to NotifNewGroupMessage because: {0}", ex.ToString());
-                _logger.LogError(strError);
-            }
-        }
+        
     }
 }

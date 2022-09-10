@@ -248,7 +248,7 @@ namespace Manager.WebApp.Controllers.Business
                     msg.Id = storeMessage.Insert(msg);
 
                     //Send notification to user
-                    NotifNewPrivateMessage(msg);
+                    MessengerHelpers.NotifNewPrivateMessage(msg);
                 }
                 
                 ConversationHelpers.ClearCache(con.Id);
@@ -279,7 +279,7 @@ namespace Manager.WebApp.Controllers.Business
                     ConversationHelpers.ClearCache(model.ConversationId);
 
                     //Send notification to user
-                    NotifNewGroupMessage(msg);
+                    MessengerHelpers.NotifNewGroupMessage(msg);
                 }
             }
             catch (Exception ex)
@@ -338,11 +338,11 @@ namespace Manager.WebApp.Controllers.Business
                     //Send notification
                     if(model.ReceiverId == 0)
                     {
-                        NotifNewGroupMessage(msg);
+                        MessengerHelpers.NotifNewGroupMessage(msg);
                     }
                     else
                     {
-                        NotifNewPrivateMessage(msg);
+                        MessengerHelpers.NotifNewPrivateMessage(msg);
                     }
                     
                 }
@@ -355,74 +355,6 @@ namespace Manager.WebApp.Controllers.Business
         }
 
 
-        #region Helpers
-
-        private void NotifNewPrivateMessage(IdentityMessage msg)
-        {
-            try
-            {
-                var apiPrivateMsg = new SendMessageModel();
-                apiPrivateMsg = msg.MappingObject<SendMessageModel>();
-                apiPrivateMsg.CreateDate = DateTime.Now;
-
-                var connBuilder = new HubConnectionBuilder();
-                connBuilder.WithUrl(string.Format("{0}/chat", SystemSettings.MessengerCloud));
-                connBuilder.WithAutomaticReconnect(); //I don't think this is totally required, but can't hurt either
-
-                var conn = connBuilder.Build();
-
-                //Start the connection
-                var t = conn.StartAsync();
-
-                //Wait for the connection to complete
-                t.Wait();
-
-                _logger.LogError("Begin Invoke SendToUser");
-
-                //Make your call - but in this case don't wait for a response 
-                conn.InvokeAsync("SendToUser", apiPrivateMsg);
-
-            }
-            catch (Exception ex)
-            {
-                var strError = string.Format("Failed to NotifNewPrivateMessage because: {0}", ex.ToString());
-                _logger.LogError(strError);
-            }
-        }
-
-        private void NotifNewGroupMessage(IdentityMessage msg)
-        {
-            try
-            {
-                var apiGroupMsg = new SendMessageModel();
-                apiGroupMsg = msg.MappingObject<SendMessageModel>();
-                apiGroupMsg.CreateDate = DateTime.Now;
-
-                var connBuilder = new HubConnectionBuilder();
-                connBuilder.WithUrl(string.Format("{0}/chat", SystemSettings.MessengerCloud));
-                connBuilder.WithAutomaticReconnect(); //I don't think this is totally required, but can't hurt either
-
-                var conn = connBuilder.Build();
-
-                //Start the connection
-                var t = conn.StartAsync();
-
-                //Wait for the connection to complete
-                t.Wait();
-
-                //Make your call - but in this case don't wait for a response 
-                conn.InvokeAsync("SendToGroup", apiGroupMsg);
-
-            }
-            catch (Exception ex)
-            {
-                var strError = string.Format("Failed to NotifNewGroupMessage because: {0}", ex.ToString());
-                _logger.LogError(strError);
-            }
-        }
-
         
-
-        #endregion
     }
 }

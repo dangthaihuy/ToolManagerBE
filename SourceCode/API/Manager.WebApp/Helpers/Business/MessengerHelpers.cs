@@ -5,6 +5,7 @@ using Manager.DataLayer.Stores.Business;
 using Manager.SharedLibs;
 using Manager.WebApp.Models.Business;
 using Manager.WebApp.Settings;
+using Microsoft.AspNetCore.SignalR.Client;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -165,6 +166,68 @@ namespace Manager.WebApp.Helpers.Business
         }
 
 
+        public static void NotifNewGroupMessage(IdentityMessage msg)
+        {
+            try
+            {
+                var apiGroupMsg = new SendMessageModel();
+                apiGroupMsg = msg.MappingObject<SendMessageModel>();
+                apiGroupMsg.CreateDate = DateTime.Now;
 
+                var connBuilder = new HubConnectionBuilder();
+                connBuilder.WithUrl(string.Format("{0}/chat", SystemSettings.MessengerCloud));
+                connBuilder.WithAutomaticReconnect(); //I don't think this is totally required, but can't hurt either
+
+                var conn = connBuilder.Build();
+
+                //Start the connection
+                var t = conn.StartAsync();
+
+                //Wait for the connection to complete
+                t.Wait();
+
+                //Make your call - but in this case don't wait for a response 
+                conn.InvokeAsync("SendToGroup", apiGroupMsg);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Could not NotifNewGroupMessage: " + ex.ToString());
+
+            }
+        }
+
+        public static void NotifNewPrivateMessage(IdentityMessage msg)
+        {
+            try
+            {
+                var apiPrivateMsg = new SendMessageModel();
+                apiPrivateMsg = msg.MappingObject<SendMessageModel>();
+                apiPrivateMsg.CreateDate = DateTime.Now;
+
+                var connBuilder = new HubConnectionBuilder();
+                connBuilder.WithUrl(string.Format("{0}/chat", SystemSettings.MessengerCloud));
+                connBuilder.WithAutomaticReconnect(); //I don't think this is totally required, but can't hurt either
+
+                var conn = connBuilder.Build();
+
+                //Start the connection
+                var t = conn.StartAsync();
+
+                //Wait for the connection to complete
+                t.Wait();
+
+                _logger.Error("Begin Invoke SendToUser");
+
+                //Make your call - but in this case don't wait for a response 
+                conn.InvokeAsync("SendToUser", apiPrivateMsg);
+
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to NotifNewPrivateMessage because: {0}", ex.ToString());
+                _logger.Error(strError);
+            }
+        }
     }
 }
