@@ -37,6 +37,7 @@ namespace Manager.WebApp.Helpers
     {
         public static int Text = 1;
         public static int Attachment = 2;
+        public static int Noti = 3;
     }
 
     

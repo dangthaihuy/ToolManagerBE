@@ -4,6 +4,7 @@ using Manager.DataLayer.Entities.Business;
 using Manager.DataLayer.Stores.Business;
 using Manager.DataLayer.Stores.System;
 using Manager.SharedLibs;
+using Manager.WebApp.Helpers;
 using Manager.WebApp.Helpers.Business;
 using Manager.WebApp.Models.Business;
 using Manager.WebApp.Settings;
@@ -40,12 +41,35 @@ namespace Manager.WebApp.Controllers.Business
         {
             try
             {
-                foreach(string item in model.UsersId)
+                var idenMessage = new IdentityMessage();
+                idenMessage.Users = new List<IdentityInformationUser>();
+
+                idenMessage.ConversationId = model.GroupId;
+                idenMessage.Type = EnumMessageType.Noti;
+
+                int check = 0;
+
+                foreach (string item in model.UsersId)
                 {
-                    var res = storeGroup.Insert(model.GroupId, Utils.ConvertToInt32(item));
-                    
+                    check++;
+                    /*var res = storeGroup.Insert(model.GroupId, Utils.ConvertToInt32(item));*/
+                    var user = storeUser.GetById(item);
+
+                    idenMessage.Users.Add(user);
+                    if (check != model.UsersId.Count)
+                    {
+                        idenMessage.Message = idenMessage.Message + user.Fullname + ", ";
+                    }
+                    else
+                    {
+                        idenMessage.Message = idenMessage.Message + user.Fullname + " ";
+                    }
 
                 }
+
+                idenMessage.Message += "được thêm vào nhóm";
+                NotifNewGroupMessage(idenMessage);
+
                 GroupChatHelpers.ClearCache(model.GroupId);
             }
             catch(Exception ex)
@@ -68,6 +92,8 @@ namespace Manager.WebApp.Controllers.Business
                 idenMessage.Users = new List<IdentityInformationUser>();
 
                 idenMessage.ConversationId = model.GroupId;
+                idenMessage.Type = EnumMessageType.Noti;
+
                 int check = 0;
 
                 foreach (string item in model.UsersId)
