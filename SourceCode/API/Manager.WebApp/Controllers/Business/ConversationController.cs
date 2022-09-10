@@ -89,7 +89,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not getbyid conversation: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Get by id" });
+                return StatusCode(500 ,new { apiMessage = new { type = "error", code = "common001" } });
 
             }
         }
@@ -138,7 +138,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not insert conversation: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Insert" });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
 
             }
 
@@ -161,7 +161,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not delete conversation: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Delete" });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
 
             }
         }
@@ -187,7 +187,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogError("Could not Get file by conid: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Get file" });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
 
             }
             return Ok(list);

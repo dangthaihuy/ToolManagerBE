@@ -46,12 +46,9 @@ namespace Manager.WebApp.Controllers
                 
                 if (storeUser.GetList().Any(user => user.Email == model.Email))
                 {
-                    return BadRequest(new { success = false, message = "Username " + model.Email + " is already taken" });
+                    return Ok(new { apiMessage = new { type = "error", code = "auth002" } });
                 }
-                if (model.Password.Length < 8)
-                {
-                    return BadRequest(new { success = false, message = "Use a stronger password" });
-                }
+                
 
                 var newUser = model.MappingObject<IdentityInformationUser>();
 
@@ -96,7 +93,7 @@ namespace Manager.WebApp.Controllers
                 } 
                 else
                 {
-                    return BadRequest(new { error = new { message = "The Email or Password is incorrect." } });
+                    return Ok(new { apiMessage = new { type = "error", code = "auth001" } });
                 }
 
             }
@@ -122,7 +119,7 @@ namespace Manager.WebApp.Controllers
                     var result = ((JsonResult)VerifyAndGenerateToken(tokenRequest)).Value;
                     if (result == null)
                     {
-                        return BadRequest(new { error = new { message = "Refresh token fail." } });
+                        return Ok(new { apiMessage = new { type = "error", code = "auth003" } });
                     }
 
                     return Ok(result);
@@ -135,7 +132,7 @@ namespace Manager.WebApp.Controllers
                 return StatusCode(500, new { message = "Server error: Refresh token" });
 
             }
-            return BadRequest(new { error = new { message = "Refresh token fail." } });
+            return Ok(new { apiMessage = new { type = "error", code = "auth003" } });
         }
 
 
@@ -161,7 +158,7 @@ namespace Manager.WebApp.Controllers
 
             }
 
-            return BadRequest(new { error = new { message = "Get list message fail" } });
+            return Ok(new { apiMessage = new { type = "error", code = "getdata001" } });
         }
 
         [HttpGet]
@@ -187,7 +184,7 @@ namespace Manager.WebApp.Controllers
                 return StatusCode(500, new { message = "Server error: Get current user" });
 
             }
-            return BadRequest(new { error = new { message = "Get current user fail" } });
+            return Ok(new { apiMessage = new { type = "error", code = "getdata001" } });
         }
 
         private ActionResult AssignJWTToken(IdentityInformationUser user)
@@ -359,8 +356,10 @@ namespace Manager.WebApp.Controllers
             catch (Exception ex)
             {
                 _logger.LogDebug("Could not refresh token: " + ex.ToString());
+
+                return StatusCode(500, new { message = "Server error: Refresh token" });
             }
-            return BadRequest(new {message = "Invalid verify and generate token" });
+            return Ok(new { apiMessage = new { type = "error", code = "common001" } });
         }
 
 

@@ -42,7 +42,7 @@ namespace Manager.WebApp.Controllers.Business
         {
             if(conversationId <= 0)
             {
-                return BadRequest(new { message = "Invalid conversation id" });
+                return BadRequest(new { apiMessage = new { type = "error", code = "getdata001" } });
             }
 
             pageSize = pageSize > 0 ? pageSize : SystemSettings.DefaultPageSize;
@@ -76,7 +76,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not getbypage: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Get by page" });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
             }
             return Ok(returnList);
         }
@@ -112,7 +112,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not getbypage: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Get by search" });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
             }
             return Ok(list);
         }
@@ -137,7 +137,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not deletemessage: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Delete" });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
             }
             return Ok(model.Id);
         }
@@ -166,7 +166,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not getimportant: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Get important" });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
             }
             return Ok(list);
         }
@@ -177,7 +177,7 @@ namespace Manager.WebApp.Controllers.Business
         {
             if (model.Id == 0)
             {
-                return BadRequest("Message is empty");
+                return BadRequest(new { apiMessage = new { type = "error", code = "common001" } });
             }
             else
             {
@@ -193,11 +193,11 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     _logger.LogDebug("Could not changeimportant: " + ex.ToString());
 
-                    return StatusCode(500, new { message = "Server error: Change important" });
+                    return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
                 }
             }
 
-            return BadRequest();
+            return Ok(new { apiMessage = new { type = "error", code = "common002" } });
         }
 
         
