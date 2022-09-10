@@ -85,9 +85,9 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not getbyid conversation: " + ex.ToString());
 
-                return StatusCode(500);
+                return StatusCode(500, new { message = "Server error: Get by id" });
+
             }
-            return BadRequest(new { error = new { message = "Get by id fail" } });
         }
 
         [HttpPost]
@@ -118,10 +118,10 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not insert conversation: " + ex.ToString());
 
-                return StatusCode(500);
+                return StatusCode(500, new { message = "Server error: Insert" });
+
             }
 
-            return BadRequest(new { error = new { message = "Insert fail" } });
         }
 
         [HttpPost]
@@ -143,9 +143,9 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not delete conversation: " + ex.ToString());
 
-                return StatusCode(500);
+                return StatusCode(500, new { message = "Server error: Delete" });
+
             }
-            return BadRequest(new { error = new { message = "Delete fail" } });
         }
 
         [HttpGet]
@@ -169,7 +169,8 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogError("Could not Get file by conid: " + ex.ToString());
 
-                return StatusCode(500);
+                return StatusCode(500, new { message = "Server error: Get file" });
+
             }
             return Ok(list);
         }

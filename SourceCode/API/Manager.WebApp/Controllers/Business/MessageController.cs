@@ -40,7 +40,12 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getbypage")]
         public ActionResult GetByPage(int conversationId, int messageId, int pageSize, int direction)
         {
-            pageSize = pageSize > 0 ? pageSize : 50;
+            if(conversationId <= 0)
+            {
+                return BadRequest(new { message = "Invalid conversation id" });
+            }
+
+            pageSize = pageSize > 0 ? pageSize : SystemSettings.DefaultPageSize;
             var currentPage = 1;
             var returnList = new List<IdentityMessage>();
             var filter = new IdentityMessageFilter();
@@ -70,6 +75,8 @@ namespace Manager.WebApp.Controllers.Business
             catch (Exception ex)
             {
                 _logger.LogDebug("Could not getbypage: " + ex.ToString());
+
+                return StatusCode(500, new { message = "Server error: Get by page" });
             }
             return Ok(returnList);
         }
@@ -78,6 +85,10 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getbysearch")]
         public ActionResult GetBySearch(int conversationId, string keyword)
         {
+            if (conversationId <= 0)
+            {
+                return BadRequest(new { message = "Invalid conversation id" });
+            }
 
             List<IdentityMessage> list = new List<IdentityMessage>();
             var filter = new IdentityMessageFilter();
@@ -91,7 +102,7 @@ namespace Manager.WebApp.Controllers.Business
 
                 foreach (var item in list)
                 {
-                    if (item.Type == 2)
+                    if (item.Type == EnumMessageType.Attachment)
                     {
                         item.Attachments = storeMessageAttachment.GetByMessageId(item);
                     }
@@ -100,6 +111,8 @@ namespace Manager.WebApp.Controllers.Business
             catch (Exception ex)
             {
                 _logger.LogDebug("Could not getbypage: " + ex.ToString());
+
+                return StatusCode(500, new { message = "Server error: Get by search" });
             }
             return Ok(list);
         }
@@ -123,6 +136,8 @@ namespace Manager.WebApp.Controllers.Business
             catch (Exception ex)
             {
                 _logger.LogDebug("Could not deletemessage: " + ex.ToString());
+
+                return StatusCode(500, new { message = "Server error: Delete" });
             }
             return Ok(model.Id);
         }
@@ -140,10 +155,6 @@ namespace Manager.WebApp.Controllers.Business
             var filter = new IdentityMessageFilter();
             try
             {
-                if (keyword == null)
-                {
-                    keyword = "";
-                }
                 filter.CurrentPage = currentPage;
                 filter.PageSize = pageSize;
                 filter.ConversationId = conversationId;
@@ -154,6 +165,8 @@ namespace Manager.WebApp.Controllers.Business
             catch (Exception ex)
             {
                 _logger.LogDebug("Could not getimportant: " + ex.ToString());
+
+                return StatusCode(500, new { message = "Server error: Get important" });
             }
             return Ok(list);
         }
@@ -179,6 +192,8 @@ namespace Manager.WebApp.Controllers.Business
                 catch (Exception ex)
                 {
                     _logger.LogDebug("Could not changeimportant: " + ex.ToString());
+
+                    return StatusCode(500, new { message = "Server error: Change important" });
                 }
             }
 
@@ -194,35 +209,21 @@ namespace Manager.WebApp.Controllers.Business
             
             try
             {
-                var identityMessage = new IdentityMessage();
+                var identityMessage = model.MappingObject<IdentityMessage>();
                 identityMessage.ConversationId = model.GroupId;
-                identityMessage.Message = model.Message;
-                identityMessage.SenderId = model.SenderId;
                 identityMessage.CreateDate = DateTime.Now;
 
                 var con = new IdentityConversation();
                 con.Id = model.GroupId;
+
                 var messageSuccess = storeMessage.Insert(identityMessage);
                 ConversationHelpers.ClearCache(model.GroupId);
 
-                //var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
-                //var listUserInGroup = GroupChatHelpers.GetGroupInfo(con);
-                //foreach (var user in listUserInGroup.Member)
-                //{
-                //    var userConnect = connectedUsers.FirstOrDefault(x => x.Id == user.Id);
-                //    if (userConnect != null)
-                //    {
-                //        foreach (var senderConn in userConnect.Connections)
-                //        {
-                //            //Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveMessage", GroupId, SenderId, Message, IdentityMessage.CreateDate);
-                //        }
-                //    }
-
-                //}
             }
             catch (Exception ex)
             {
                 _logger.LogError("Could not SendGroup: " + ex.ToString());
+
             }
         }
 
@@ -236,22 +237,27 @@ namespace Manager.WebApp.Controllers.Business
 
                 var con = storeConversation.GetDetail(model.SenderId, model.ReceiverId);
 
-                var msg = new IdentityMessage();
-                msg.ConversationId = con.Id;
-                msg.Message = model.Message;
-                msg.Type = 1;
-                msg.SenderId = Utils.ConvertToInt32(model.SenderId);
-                msg.ReceiverId = Utils.ConvertToInt32(model.ReceiverId);
-                msg.CreateDate = DateTime.Now;
-                msg.Id = storeMessage.Insert(msg);
-                ConversationHelpers.ClearCache(con.Id);
+                var msg = model.MappingObject<IdentityMessage>();
 
-                //Send notification to user
-                NotifNewPrivateMessage(msg);
+                if(msg != null)
+                {
+                    msg.ConversationId = con.Id;
+                    msg.Type = EnumMessageType.Text;
+                    msg.CreateDate = DateTime.Now;
+
+                    msg.Id = storeMessage.Insert(msg);
+
+                    //Send notification to user
+                    NotifNewPrivateMessage(msg);
+                }
+                
+                ConversationHelpers.ClearCache(con.Id);
             }
             catch (Exception ex)
             {
                 _logger.LogError("Could not SendToUser: " + ex.ToString());
+
+
             }
         }
 
@@ -262,25 +268,25 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
 
-                var msg = new IdentityMessage();
-                msg.ConversationId = model.ConversationId;
-                msg.Message = model.Message;
-                msg.Type = 1;
-                msg.SenderId = model.SenderId;
-                msg.CreateDate = DateTime.Now;
-                msg.Id = storeMessage.Insert(msg);
+                var msg = model.MappingObject<IdentityMessage>();
+                if(msg != null)
+                {
+                    msg.Type = EnumMessageType.Text;
+                    msg.CreateDate = DateTime.Now;
 
-                var identityCon = new IdentityConversation();
-                identityCon.Id = model.ConversationId;
+                    msg.Id = storeMessage.Insert(msg);
 
-                ConversationHelpers.ClearCache(model.ConversationId);
+                    ConversationHelpers.ClearCache(model.ConversationId);
 
-                //Send notification to user
-                NotifNewGroupMessage(msg);
+                    //Send notification to user
+                    NotifNewGroupMessage(msg);
+                }
             }
             catch (Exception ex)
             {
                 _logger.LogError("Could not SendGroupMessage: " + ex.ToString());
+
+
             }
         }
 
@@ -292,12 +298,11 @@ namespace Manager.WebApp.Controllers.Business
             {                
                 if (model.Files.HasData())
                 {
-                    IdentityMessage msg = new IdentityMessage();
-                    msg.ConversationId = model.ConversationId;
-                    msg.SenderId = model.SenderId;
-                    msg.ReceiverId = model.ReceiverId;
+
+                    IdentityMessage msg = model.MappingObject<IdentityMessage>();
+                    
                     msg.Message = "";
-                    msg.Type = 2;
+                    msg.Type = EnumMessageType.Attachment;
                     msg.CreateDate = DateTime.Now;
                     msg.Attachments = new List<IdentityMessageAttachment>();
 

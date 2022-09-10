@@ -35,6 +35,7 @@ namespace Manager.DataLayer.Entities.Business
         public int PageIndex { get; set; }
 
         public List<IdentityMessageAttachment> Attachments { get; set; }
+        public List<IdentityInformationUser> Users { get; set; }
     }
 
     public class IdentityMessageAttachment

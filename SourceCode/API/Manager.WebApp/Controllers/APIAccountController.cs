@@ -63,7 +63,7 @@ namespace Manager.WebApp.Controllers
             {
                 _logger.LogDebug("Could not register: " + ex.ToString());
 
-                return StatusCode(500);
+                return StatusCode(500, new {message = "Server error: Register"});
             }
 
             return Ok(new { success = true, message = "Register success" });
@@ -96,7 +96,7 @@ namespace Manager.WebApp.Controllers
                 } 
                 else
                 {
-                    return BadRequest(new { error = new { message = "Invalid email or password." } });
+                    return BadRequest(new { error = new { message = "The Email or Password is incorrect." } });
                 }
 
             }
@@ -104,10 +104,10 @@ namespace Manager.WebApp.Controllers
             {
                 _logger.LogDebug("Could not login: " + ex.ToString());
 
-                return StatusCode(500);
+                return StatusCode(500, new { message = "Server error: Login" });
+
             }
 
-            return BadRequest(new { error = new { message = "Login fail." } });
         }
 
         [HttpPost]
@@ -132,7 +132,8 @@ namespace Manager.WebApp.Controllers
             {
                 _logger.LogDebug("Could not refresh token: " + ex.ToString());
 
-                return StatusCode(500);
+                return StatusCode(500, new { message = "Server error: Refresh token" });
+
             }
             return BadRequest(new { error = new { message = "Refresh token fail." } });
         }
@@ -156,7 +157,8 @@ namespace Manager.WebApp.Controllers
             {
                 _logger.LogDebug("Could not getlist user: " + ex.ToString());
 
-                return StatusCode(500);
+                return StatusCode(500, new { message = "Server error: Get list" });
+
             }
 
             return BadRequest(new { error = new { message = "Get list message fail" } });
@@ -182,7 +184,8 @@ namespace Manager.WebApp.Controllers
             {
                 _logger.LogDebug("Could not get currentuser: " + ex.ToString());
 
-                return StatusCode(500);
+                return StatusCode(500, new { message = "Server error: Get current user" });
+
             }
             return BadRequest(new { error = new { message = "Get current user fail" } });
         }
@@ -205,7 +208,7 @@ namespace Manager.WebApp.Controllers
                 AppConfiguration.GetAppsetting("Jwt:Issuer"),
                 AppConfiguration.GetAppsetting("Jwt:Audience"),
                 claims,
-                expires: DateTime.UtcNow.AddMinutes(30),
+                expires: DateTime.UtcNow.AddHours(1),
                 signingCredentials: signIn);
 
             var tokenInstring = new JwtSecurityTokenHandler().WriteToken(token);
@@ -357,7 +360,7 @@ namespace Manager.WebApp.Controllers
             {
                 _logger.LogDebug("Could not refresh token: " + ex.ToString());
             }
-            return BadRequest();
+            return BadRequest(new {message = "Invalid verify and generate token" });
         }
 
 
