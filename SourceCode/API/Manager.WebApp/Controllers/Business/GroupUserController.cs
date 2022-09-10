@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Manager.WebApp.Controllers.Business
 {
@@ -55,7 +54,7 @@ namespace Manager.WebApp.Controllers.Business
                 foreach (string item in model.UsersId)
                 {
                     check++;
-                    /*var res = storeGroup.Insert(model.GroupId, Utils.ConvertToInt32(item));*/
+                    var res = storeGroup.Insert(model.GroupId, Utils.ConvertToInt32(item));
                     var user = storeUser.GetById(item);
 
                     idenMessage.Users.Add(user);
@@ -73,7 +72,7 @@ namespace Manager.WebApp.Controllers.Business
                 idenMessage.Message += "được thêm vào nhóm";
                 NotifNewGroupMessage(idenMessage);
 
-                var res = storeMessage.Insert(idenMessage);
+                var insertMess = storeMessage.Insert(idenMessage);
                 GroupChatHelpers.ClearCache(model.GroupId);
             }
             catch(Exception ex)
@@ -105,7 +104,7 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     check++;
 
-                    /*var res = storeGroup.Delete(model.GroupId, Utils.ConvertToInt32(item));*/
+                    var res = storeGroup.Delete(model.GroupId, Utils.ConvertToInt32(item));
                     var user = storeUser.GetById(item);
 
                     idenMessage.Users.Add(user);
@@ -124,7 +123,7 @@ namespace Manager.WebApp.Controllers.Business
                 NotifNewGroupMessage(idenMessage);
 
 
-                var res = storeMessage.Insert(idenMessage);
+                var insertMess = storeMessage.Insert(idenMessage);
                 GroupChatHelpers.ClearCache(model.GroupId);
             }
             catch (Exception ex)

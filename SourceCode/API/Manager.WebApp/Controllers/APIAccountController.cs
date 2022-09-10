@@ -196,7 +196,7 @@ namespace Manager.WebApp.Controllers
             var claims = new[] {
                         new Claim(JwtRegisteredClaimNames.Sub, AppConfiguration.GetAppsetting("Jwt:Subject")),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                        new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+                        new Claim(JwtRegisteredClaimNames.Iat, DateTime.Now.ToString()),
                         new Claim("UserId", user.Id.ToString()),
                         new Claim("Fullname", user.Fullname),
                         new Claim("Email", user.Email)
@@ -208,7 +208,7 @@ namespace Manager.WebApp.Controllers
                 AppConfiguration.GetAppsetting("Jwt:Issuer"),
                 AppConfiguration.GetAppsetting("Jwt:Audience"),
                 claims,
-                expires: DateTime.UtcNow.AddHours(1),
+                expires: DateTime.Now.AddHours(1),
                 signingCredentials: signIn);
 
             var tokenInstring = new JwtSecurityTokenHandler().WriteToken(token);
@@ -219,8 +219,8 @@ namespace Manager.WebApp.Controllers
                 IsUsed = false,
                 IsRevorked = false,
                 UserId = user.Id,
-                AddedDate = DateTime.UtcNow,
-                ExpiryDate = DateTime.UtcNow.AddMonths(6),
+                AddedDate = DateTime.Now,
+                ExpiryDate = DateTime.Now.AddMonths(6),
                 Token = RandomString(35) + Guid.NewGuid()
             };
 

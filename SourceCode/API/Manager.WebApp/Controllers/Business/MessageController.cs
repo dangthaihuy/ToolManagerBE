@@ -363,7 +363,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 var apiPrivateMsg = new SendMessageModel();
                 apiPrivateMsg = msg.MappingObject<SendMessageModel>();
-                apiPrivateMsg.CreateDate = DateTime.UtcNow;
+                apiPrivateMsg.CreateDate = DateTime.Now;
 
                 var connBuilder = new HubConnectionBuilder();
                 connBuilder.WithUrl(string.Format("{0}/chat", SystemSettings.MessengerCloud));
