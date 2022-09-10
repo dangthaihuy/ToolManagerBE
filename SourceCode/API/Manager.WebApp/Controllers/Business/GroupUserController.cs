@@ -70,9 +70,9 @@ namespace Manager.WebApp.Controllers.Business
                 }
 
                 idenMessage.Message += "được thêm vào nhóm";
-                MessengerHelpers.NotifNewGroupMessage(idenMessage);
+                idenMessage.Id = storeMessage.Insert(idenMessage);
 
-                var insertMess = storeMessage.Insert(idenMessage);
+                MessengerHelpers.NotifNewGroupMessage(idenMessage);
                 GroupChatHelpers.ClearCache(model.GroupId);
             }
             catch(Exception ex)
@@ -120,10 +120,9 @@ namespace Manager.WebApp.Controllers.Business
                 }
 
                 idenMessage.Message += "đã bị xóa khỏi nhóm";
+                idenMessage.Id = storeMessage.Insert(idenMessage);
+
                 MessengerHelpers.NotifNewGroupMessage(idenMessage);
-
-
-                var insertMess = storeMessage.Insert(idenMessage);
                 GroupChatHelpers.ClearCache(model.GroupId);
             }
             catch (Exception ex)

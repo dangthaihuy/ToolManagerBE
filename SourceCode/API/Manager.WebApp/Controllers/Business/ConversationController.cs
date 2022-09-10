@@ -100,6 +100,7 @@ namespace Manager.WebApp.Controllers.Business
         {
             var newConversation = model.MappingObject<IdentityConversationDefault>();
             
+
             try
             {
 
@@ -107,10 +108,14 @@ namespace Manager.WebApp.Controllers.Business
                 if (model.MemberGroup == null)
                 {
                     res = storeConversation.Insert(newConversation);
+
+                    var files = Directory.CreateDirectory(String.Concat("wwwroot\\Media\\Message\\Attachments\\", res));
                 }
                 if (model.MemberGroup.HasData())
                 {
                     res = storeConversation.InsertGroup(newConversation);
+
+                    var files = Directory.CreateDirectory(String.Concat("wwwroot\\Media\\Message\\Attachments\\", res));
 
                     var idenMessage = new IdentityMessage();
                     idenMessage.ConversationId = res;
@@ -121,14 +126,12 @@ namespace Manager.WebApp.Controllers.Business
                     var creator = storeGroup.Insert(res, model.CreatorId);
                     var insertMess = storeMessage.Insert(idenMessage);
 
-                    MessengerHelpers.NotifNewGroupMessage(idenMessage);
 
                     foreach(string item in model.MemberGroup)
                     {
                         var insertMember  = storeGroup.Insert(res, Utils.ConvertToInt32(item));
                     }
                 }
-                MessengerHelpers.ClearCache();
                 return Ok(new { ConversationId = res });
             }
             catch(Exception ex)
@@ -150,10 +153,8 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var deleteConversation = storeConversation.Delete(identity.Id);
-
                 Directory.Delete(String.Concat(filePath, Convert.ToString(model.Id)));
                 
-
                 return Ok(model.Id);
             }
             catch(Exception ex)
