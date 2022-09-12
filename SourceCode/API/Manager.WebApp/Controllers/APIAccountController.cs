@@ -109,7 +109,7 @@ namespace Manager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Route("RefreshToken")]
+        [Route("refreshtoken")]
         [AllowAnonymous]
         public ActionResult RefreshToken([FromBody] TokenRequest tokenRequest)
         {
@@ -136,6 +136,40 @@ namespace Manager.WebApp.Controllers
             return Ok(new { apiMessage = new { type = "error", code = "auth003" } });
         }
 
+        [HttpPost]
+        [Route("changepassword")]
+        [AllowAnonymous]
+        public ActionResult ChangePassword(ChangePasswordModel model)
+        {
+            try
+            {
+                
+                var user = storeUser.GetById(model.Id.ToString());
+                if (user != null)
+                {
+                    var passwordHash = Helpers.Utility.Md5HashingData(model.Password);
+                    if (user.PasswordHash == passwordHash)
+                    {
+                        var identity = new IdentityInformationUser();
+                        identity.Id = model.Id;
+                        identity.PasswordHash = Helpers.Utility.Md5HashingData(model.NewPassword);
+
+                        var res = storeUser.Update(identity);
+                        return Ok(new { apiMessage = new { type = "success" } });
+                    }
+                    
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                _logger.LogDebug("Could not refresh token: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+
+            return Ok(new { apiMessage = new { type = "error", code = "auth004" } });
+        }
 
 
         [HttpGet]

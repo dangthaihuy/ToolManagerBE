@@ -31,4 +31,11 @@ namespace Manager.WebApp.Models.System
 
         public IFormFile Avatar { get; set; }
     }
+
+    public class ChangePasswordModel
+    {
+        public int Id { get; set; }
+        public string Password { get; set; }
+        public string NewPassword { get; set; }
+    }
 }

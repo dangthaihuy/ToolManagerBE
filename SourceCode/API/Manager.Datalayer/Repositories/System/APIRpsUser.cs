@@ -175,6 +175,8 @@ namespace Manager.DataLayer.Repositories.System
             var parameters = new Dictionary<string, object>
             {
                 {"@Id", identity.Id},
+                {"@NewPassword", identity.PasswordHash},
+
                 {"@Avatar", identity.Avatar },
             };
 
@@ -205,6 +207,7 @@ namespace Manager.DataLayer.Repositories.System
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.Email = reader["Email"].ToString();
             record.Fullname = reader["FullName"].ToString();
+            record.PasswordHash = reader["PasswordHash"].ToString();
             record.Avatar = reader["Avatar"].ToString();
 
             return record;

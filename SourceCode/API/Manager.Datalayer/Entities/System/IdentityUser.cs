@@ -58,7 +58,6 @@ namespace Manager.DataLayer.Entities
         public string RoleId { get; set; }
         public IdentityRole Role { get; set; }
     }
-
     public sealed class IdentityUserLogin
     {
         public string Id { get; set; }
@@ -66,13 +65,36 @@ namespace Manager.DataLayer.Entities
         public string Provider { get; set; }
         public string ProviderKey { get; set; }
     }
-
     public class IdentityUserClaim
     {
         public string ClaimType { get; set; }
         public string ClaimValue { get; set; }
     }
+    public class IdentityStatisticsUserByYear
+    {
+        public int id { get; set; }
+        public int AgencyId { get; set; }
+        public int year { get; set; }
+        public int month_1 { get; set; }
+        public int month_2 { get; set; }
+        public int month_3 { get; set; }
+        public int month_4 { get; set; }
+        public int month_5 { get; set; }
+        public int month_6 { get; set; }
+        public int month_7 { get; set; }
+        public int month_8 { get; set; }
+        public int month_9 { get; set; }
+        public int month_10 { get; set; }
+        public int month_11 { get; set; }
+        public int month_12 { get; set; }
 
+        public DateTime? AgencyRegisteredDate { get; set; }
+    }
+
+
+
+
+    // Code Api Huy Đặng
     public class IdentityCurrentUser
     {
         public int Id { get; set; }
@@ -96,24 +118,5 @@ namespace Manager.DataLayer.Entities
         public int TotalCount { get; set; }
     }
 
-    public class IdentityStatisticsUserByYear
-    {
-        public int id { get; set; }
-        public int AgencyId { get; set; }
-        public int year { get; set; }
-        public int month_1 { get; set; }
-        public int month_2 { get; set; }
-        public int month_3 { get; set; }
-        public int month_4 { get; set; }
-        public int month_5 { get; set; }
-        public int month_6 { get; set; }
-        public int month_7 { get; set; }
-        public int month_8 { get; set; }
-        public int month_9 { get; set; }
-        public int month_10 { get; set; }
-        public int month_11 { get; set; }
-        public int month_12 { get; set; }
-
-        public DateTime? AgencyRegisteredDate { get; set; }
-    }
+   
 }
