@@ -43,7 +43,7 @@ namespace Manager.WebApp.Controllers.Business
         {
             if (id == null)
             {
-                return BadRequest(new { error = new { message = "Not found id" } });
+                return BadRequest(new { apiMessage = new { type = "error", message = "getdata001" } });
             }
             try
             {
@@ -89,7 +89,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not getbyid conversation: " + ex.ToString());
 
-                return StatusCode(500 ,new { apiMessage = new { type = "error", code = "common001" } });
+                return StatusCode(500 ,new { apiMessage = new { type = "error", code = "server001" } });
 
             }
         }
@@ -100,10 +100,8 @@ namespace Manager.WebApp.Controllers.Business
         {
             var newConversation = model.MappingObject<IdentityConversationDefault>();
             
-
             try
             {
-
                 var res= new int();
                 if (model.MemberGroup == null)
                 {
@@ -138,7 +136,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not insert conversation: " + ex.ToString());
 
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
 
             }
 
@@ -161,7 +159,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not delete conversation: " + ex.ToString());
 
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
 
             }
         }
@@ -170,6 +168,10 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getfile")]
         public ActionResult GetFile(int conversationId, int page, int pageSize)
         {
+            if(conversationId <= 0)
+            {
+                return BadRequest(new { apiMessage = new { type = "error", message = "getdata001" } });
+            }
             var list = new List<IdentityMessageAttachment>();
             var filter = new IdentityMessageFilter();
             try
@@ -187,7 +189,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogError("Could not Get file by conid: " + ex.ToString());
 
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
 
             }
             return Ok(list);

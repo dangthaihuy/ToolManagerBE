@@ -20,6 +20,8 @@ namespace Manager.DataLayer.Stores.System
 
         IdentityInformationUser GetById(string id);
 
+        bool Update(IdentityInformationUser identity);
+
     }
     public class APIStoreUser : IAPIStoreUser
     {
@@ -55,6 +57,11 @@ namespace Manager.DataLayer.Stores.System
         public IdentityInformationUser GetById(string id)
         {
             return m.GetById(id);
+        }
+
+        public bool Update(IdentityInformationUser identity)
+        {
+            return m.Update(identity);
         }
     }
 }

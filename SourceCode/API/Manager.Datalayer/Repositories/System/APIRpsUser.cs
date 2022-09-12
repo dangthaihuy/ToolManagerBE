@@ -166,7 +166,33 @@ namespace Manager.DataLayer.Repositories.System
 
         }
 
+        public bool Update(IdentityInformationUser identity)
+        {
+            //Common syntax
+            var sqlCmd = @"APIUser_Update";
 
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", identity.Id},
+                {"@Avatar", identity.Avatar },
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    MsSqlHelper.ExecuteNonQuery(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return true;
+        }
 
         public static IdentityInformationUser ExtractUserData(IDataReader reader)
         {

@@ -4,6 +4,7 @@ using Manager.DataLayer.Entities.Business;
 using Manager.DataLayer.Stores.Business;
 using Manager.DataLayer.Stores.System;
 using Manager.SharedLibs;
+using Manager.WebApp.Helpers;
 using Manager.WebApp.Models.Business;
 using Manager.WebApp.Models.System;
 using Microsoft.AspNetCore.Authorization;
@@ -39,7 +40,7 @@ namespace Manager.WebApp.Controllers
         [HttpPost]
         [Route("register")]
         [AllowAnonymous]
-        public ActionResult Register(ApiRegisterModel model)
+        public ActionResult Register([FromForm] ApiRegisterModel model)
         {
             try
             {
@@ -60,7 +61,7 @@ namespace Manager.WebApp.Controllers
             {
                 _logger.LogDebug("Could not register: " + ex.ToString());
 
-                return StatusCode(500, new {message = "Server error: Register"});
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
             return Ok(new { success = true, message = "Register success" });
@@ -101,7 +102,7 @@ namespace Manager.WebApp.Controllers
             {
                 _logger.LogDebug("Could not login: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Login" });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
 
             }
 
@@ -129,7 +130,7 @@ namespace Manager.WebApp.Controllers
             {
                 _logger.LogDebug("Could not refresh token: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Refresh token" });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
 
             }
             return Ok(new { apiMessage = new { type = "error", code = "auth003" } });
@@ -154,7 +155,7 @@ namespace Manager.WebApp.Controllers
             {
                 _logger.LogDebug("Could not getlist user: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Get list" });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
 
             }
 
@@ -167,8 +168,9 @@ namespace Manager.WebApp.Controllers
         {
             if(id == null)
             {
-                return BadRequest(new { error = new { message = "Not found current id" } });
+                return BadRequest(new { apiMessage = new { type = "error", message = "getdata001" } });
             }
+             
             try
             {
                 var data = storeUser.GetById(id);
@@ -181,11 +183,55 @@ namespace Manager.WebApp.Controllers
             {
                 _logger.LogDebug("Could not get currentuser: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Get current user" });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
 
             }
             return Ok(new { apiMessage = new { type = "error", code = "getdata001" } });
         }
+
+        [HttpPost]
+        [Route("update")]
+        public async Task<ActionResult> Update([FromForm] UserModel model)
+        {
+            
+
+            try
+            {
+                var identity = new IdentityInformationUser();
+                identity.Id = model.Id;
+
+                /*var identity = model.MappingObject<IdentityInformationUser>();*/
+
+                if (model.Avatar.Length > 0)
+                {
+                    var attachmentFolder = string.Format("Avatars/{0}", identity.Id);
+
+                    var filePath = FileUploadHelper.UploadFile(model.Avatar, attachmentFolder);
+
+                    await Task.FromResult(filePath);
+
+                    if (!string.IsNullOrEmpty(filePath))
+                    {
+
+                        identity.Avatar = filePath;
+                    }
+
+                    var update = storeUser.Update(identity);
+
+                    return Ok(new { apiMessage = new { type = "success", avatar = filePath } });
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                _logger.LogDebug("Could not get currentuser: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+
+            return Ok(new { apiMessage = new { type = "error", code = "user001" } });
+        }
+
 
         private ActionResult AssignJWTToken(IdentityInformationUser user)
         {
@@ -359,7 +405,6 @@ namespace Manager.WebApp.Controllers
 
                 return StatusCode(500, new { message = "Server error: Refresh token" });
             }
-            return Ok(new { apiMessage = new { type = "error", code = "common001" } });
         }
 
 

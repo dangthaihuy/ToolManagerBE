@@ -76,7 +76,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not getbypage: " + ex.ToString());
 
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
             return Ok(returnList);
         }
@@ -87,7 +87,7 @@ namespace Manager.WebApp.Controllers.Business
         {
             if (conversationId <= 0)
             {
-                return BadRequest(new { message = "Invalid conversation id" });
+                return BadRequest(new { apiMessage = new { type = "error", code = "getdata001" } });
             }
 
             List<IdentityMessage> list = new List<IdentityMessage>();
@@ -112,7 +112,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not getbypage: " + ex.ToString());
 
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
             return Ok(list);
         }
@@ -137,7 +137,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not deletemessage: " + ex.ToString());
 
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
             return Ok(model.Id);
         }
@@ -148,6 +148,11 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getimportant")]
         public ActionResult GetImportant(int conversationId, int page, string keyword, int pageSize)
         {
+            if (conversationId <= 0)
+            {
+                return BadRequest(new { apiMessage = new { type = "error", code = "getdata001" } });
+            }
+
             pageSize = pageSize != 0 ? pageSize : 50;
             var currentPage = page != 0 ? page : 1;
 
@@ -166,7 +171,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not getimportant: " + ex.ToString());
 
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
             return Ok(list);
         }
@@ -193,11 +198,10 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     _logger.LogDebug("Could not changeimportant: " + ex.ToString());
 
-                    return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
+                    return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
                 }
             }
 
-            return Ok(new { apiMessage = new { type = "error", code = "common002" } });
         }
 
         

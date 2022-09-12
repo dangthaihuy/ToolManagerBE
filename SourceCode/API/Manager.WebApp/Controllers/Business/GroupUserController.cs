@@ -79,7 +79,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not insert group-user: " + ex.ToString());
 
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
             return Ok(new {success = true});
@@ -129,7 +129,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not delete user from group: " + ex.ToString());
 
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "common001" } });
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
             return Ok(new { success = true });
