@@ -64,7 +64,7 @@ namespace Manager.WebApp.Controllers
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
-            return Ok(new { success = true, message = "Register success" });
+            return Ok(new { apiMessage = new { type = "success", code = "auth000" } });
 
         }
 
@@ -155,7 +155,7 @@ namespace Manager.WebApp.Controllers
                         identity.PasswordHash = Helpers.Utility.Md5HashingData(model.NewPassword);
 
                         var res = storeUser.Update(identity);
-                        return Ok(new { apiMessage = new { type = "success" } });
+                        return Ok(new { apiMessage = new { type = "success", code = "profile002" } });
                     }
                     
                 }
@@ -252,7 +252,7 @@ namespace Manager.WebApp.Controllers
 
                     var update = storeUser.Update(identity);
 
-                    return Ok(new { apiMessage = new { type = "success", avatar = filePath } });
+                    return Ok(new { Avatar = filePath, apiMessage = new { type = "success", code = "profile001" } });
                 }
                 
             }
