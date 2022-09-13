@@ -215,6 +215,9 @@ namespace Manager.DataLayer.Repositories.System
                 {"@Id", identity.Id},
                 {"@NewPassword", identity.PasswordHash},
 
+                {"@Fullname", identity.Fullname},
+                {"@Phone", identity.Phone},
+
                 {"@Avatar", identity.Avatar },
             };
 

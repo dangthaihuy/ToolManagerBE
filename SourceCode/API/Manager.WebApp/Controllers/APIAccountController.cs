@@ -260,10 +260,12 @@ namespace Manager.WebApp.Controllers
             {
                 var identity = new IdentityInformationUser();
                 identity.Id = model.Id;
+                identity.Fullname = model.Fullname;
+                identity.Phone = model.Phone;
 
                 /*var identity = model.MappingObject<IdentityInformationUser>();*/
 
-                if (model.Avatar.Length > 0)
+                if (model != null)
                 {
                     var attachmentFolder = string.Format("Avatars/{0}", identity.Id);
 
@@ -279,7 +281,7 @@ namespace Manager.WebApp.Controllers
 
                     var update = storeUser.Update(identity);
 
-                    return Ok(new { Avatar = filePath, apiMessage = new { type = "success", code = "profile001" } });
+                    return Ok(new { userProfile = identity, apiMessage = new { type = "success", code = "profile001" } });
                 }
                 
             }

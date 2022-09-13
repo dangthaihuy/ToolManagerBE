@@ -28,6 +28,8 @@ namespace Manager.WebApp.Models.System
     public class UserModel
     {
         public int Id { get; set; }
+        public string Fullname { get; set; }
+        public string Phone { get; set; }
 
         public IFormFile Avatar { get; set; }
     }

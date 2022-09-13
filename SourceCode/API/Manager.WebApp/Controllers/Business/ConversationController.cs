@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Manager.DataLayer.Entities.Business;
 using Manager.DataLayer.Stores.Business;
+using Manager.DataLayer.Stores.System;
 using Manager.SharedLibs;
 using Manager.WebApp.Helpers;
 using Manager.WebApp.Helpers.Business;
@@ -21,6 +22,7 @@ namespace Manager.WebApp.Controllers.Business
     [Authorize]
     public class ConversationController : ControllerBase
     {
+        private readonly IAPIStoreUser storeUser;
         private readonly IStoreConversation storeConversation;
         private readonly IStoreGroup storeGroup;
         private readonly IStoreMessage storeMessage;
@@ -29,6 +31,7 @@ namespace Manager.WebApp.Controllers.Business
         public ConversationController(ILogger<ConversationController> logger)
         {
 
+            storeUser= Startup.IocContainer.Resolve<IAPIStoreUser>();
             storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
             storeGroup = Startup.IocContainer.Resolve<IStoreGroup>();
             storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
@@ -53,7 +56,7 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     foreach(var item in listSolo)
                     {
-                        var receiverInfo = ConversationHelpers.GetReceiverInfo(item);
+                        var receiverInfo = storeUser.GetById(Convert.ToString(item.ReceiverId));
                         var lastMessage = ConversationHelpers.GetLastMessage(item);
                         if (receiverInfo != null)
                         {
