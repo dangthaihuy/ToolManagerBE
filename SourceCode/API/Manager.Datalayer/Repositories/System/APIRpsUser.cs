@@ -127,9 +127,47 @@ namespace Manager.DataLayer.Repositories.System
             return listData;
         }
 
-        public IdentityInformationUser GetById(string Id)
+        public IdentityInformationUser GetById(string id)
         {
-            int id = Utils.ConvertToInt32(Id);
+            int userid = Utils.ConvertToInt32(id);
+            var info = new IdentityInformationUser();
+
+            if (userid <= 0)
+            {
+                return info;
+            }
+
+            var sqlCmd = @"APIUser_GetCurrentById";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", userid}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            info = ExtractUserData(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return info;
+
+        }
+
+        public IdentityInformationUser GetInforUser(int id)
+        {
             var info = new IdentityInformationUser();
 
             if (id <= 0)
@@ -137,7 +175,7 @@ namespace Manager.DataLayer.Repositories.System
                 return info;
             }
 
-            var sqlCmd = @"APIUser_GetCurrentById";
+            var sqlCmd = @"APIUser_GetInforUser";
 
             var parameters = new Dictionary<string, object>
             {
@@ -207,8 +245,8 @@ namespace Manager.DataLayer.Repositories.System
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.Email = reader["Email"].ToString();
             record.Fullname = reader["FullName"].ToString();
-            record.PasswordHash = reader["PasswordHash"].ToString();
             record.Avatar = reader["Avatar"].ToString();
+            record.Phone = reader["Phone"].ToString();
 
             return record;
         }

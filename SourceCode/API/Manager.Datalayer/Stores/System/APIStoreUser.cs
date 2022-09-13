@@ -19,6 +19,7 @@ namespace Manager.DataLayer.Stores.System
         List<IdentityCurrentUser> GetList();
 
         IdentityInformationUser GetById(string id);
+        IdentityInformationUser GetInforUser(int id);
 
         bool Update(IdentityInformationUser identity);
 
@@ -57,6 +58,11 @@ namespace Manager.DataLayer.Stores.System
         public IdentityInformationUser GetById(string id)
         {
             return m.GetById(id);
+        }
+
+        public IdentityInformationUser GetInforUser(int id)
+        {
+            return m.GetInforUser(id);
         }
 
         public bool Update(IdentityInformationUser identity)

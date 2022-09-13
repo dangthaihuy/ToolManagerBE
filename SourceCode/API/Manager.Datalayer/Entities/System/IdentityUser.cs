@@ -115,6 +115,7 @@ namespace Manager.DataLayer.Entities
         public string Avatar { get; set; }
         public string Fullname { get; set; }
         public string PasswordHash { get; set; }
+        public string Phone { get; set; }
         public int TotalCount { get; set; }
     }
 

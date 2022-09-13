@@ -40,7 +40,7 @@ namespace Manager.WebApp.Controllers
         [HttpPost]
         [Route("register")]
         [AllowAnonymous]
-        public ActionResult Register([FromForm] ApiRegisterModel model)
+        public ActionResult Register(ApiRegisterModel model)
         {
             try
             {
@@ -198,7 +198,7 @@ namespace Manager.WebApp.Controllers
 
         [HttpGet]
         [Route("getcurrentuser")]
-        public ActionResult GetById(string id)
+        public ActionResult GetCurrentById(string id)
         {
             if(id == null)
             {
@@ -214,6 +214,33 @@ namespace Manager.WebApp.Controllers
                 }
             }
             catch(Exception ex)
+            {
+                _logger.LogDebug("Could not get currentuser: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+
+            }
+            return Ok(new { apiMessage = new { type = "error", code = "getdata001" } });
+        }
+
+        [HttpGet]
+        [Route("getinforuser")]
+        public ActionResult GetInforUser(int id)
+        {
+            if (id == null)
+            {
+                return BadRequest(new { apiMessage = new { type = "error", message = "getdata001" } });
+            }
+
+            try
+            {
+                var data = storeUser.GetInforUser(id);
+                if (data != null)
+                {
+                    return Ok(data);
+                }
+            }
+            catch (Exception ex)
             {
                 _logger.LogDebug("Could not get currentuser: " + ex.ToString());
 
