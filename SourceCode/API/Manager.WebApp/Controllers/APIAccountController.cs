@@ -5,6 +5,7 @@ using Manager.DataLayer.Stores.Business;
 using Manager.DataLayer.Stores.System;
 using Manager.SharedLibs;
 using Manager.WebApp.Helpers;
+using Manager.WebApp.Helpers.Business;
 using Manager.WebApp.Models.Business;
 using Manager.WebApp.Models.System;
 using Microsoft.AspNetCore.Authorization;
@@ -172,16 +173,28 @@ namespace Manager.WebApp.Controllers
 
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("resetpassword")]
         [AllowAnonymous]
-        public ActionResult ResetPassword()
+        public ActionResult ResetPassword(string id)
         {
+            if (id == null)
+            {
+                return Ok(new { apiMessage = new { type = "error", code = "account105" } });
+            }
             try
             {
+                var user = storeUser.GetById(id);
 
-                
+                var emailModel = new EmailModel();
+                emailModel.Sender = "dangthaihuy2002@gmail.com";
+                emailModel.SenderPwd = "huydeptrai";
+                emailModel.Subject = "huy đẹp trai";
+                emailModel.SenderName = "2se";
 
+                emailModel.Receiver = user.Email;
+
+                UserHelpers.SendEmail(emailModel);
             }
             catch (Exception ex)
             {
@@ -190,7 +203,7 @@ namespace Manager.WebApp.Controllers
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
-            return Ok(new { apiMessage = new { type = "error", code = "auth005" } });
+            return Ok(new { apiMessage = new { type = "success", code = "auth005" } });
         }
 
 
