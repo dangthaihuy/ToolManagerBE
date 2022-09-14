@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,6 @@ namespace Manager.DataLayer.Entities.Business
         
         public string LastMessage { get; set; }
         public DateTime LastTime { get; set; }
-
-        
 
 
     }
@@ -29,7 +28,6 @@ namespace Manager.DataLayer.Entities.Business
         public IdentityInformationUser Receiver { get; set; }
         public IdentityGroup Group { get; set; }
 
-
     }
 
     public class IdentityConversationDefault
@@ -41,8 +39,15 @@ namespace Manager.DataLayer.Entities.Business
         public int DeleteByUser2 { get; set; }
         public int Type { get; set; }
         public string Name { get; set; }
+        public string Avatar { get; set; }
     }
 
-   
-    
+   public class IdentityConversationUpdate
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Avatar { get; set; }
+
+    }
+
 }

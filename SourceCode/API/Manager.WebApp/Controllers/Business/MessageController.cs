@@ -42,7 +42,7 @@ namespace Manager.WebApp.Controllers.Business
         {
             if(conversationId <= 0)
             {
-                return BadRequest(new { apiMessage = new { type = "error", code = "getdata001" } });
+                return BadRequest(new { apiMessage = new { type = "error", code = "message101" } });
             }
 
             pageSize = pageSize > 0 ? pageSize : SystemSettings.DefaultPageSize;
@@ -87,7 +87,7 @@ namespace Manager.WebApp.Controllers.Business
         {
             if (conversationId <= 0)
             {
-                return BadRequest(new { apiMessage = new { type = "error", code = "getdata001" } });
+                return BadRequest(new { apiMessage = new { type = "error", code = "message102" } });
             }
 
             List<IdentityMessage> list = new List<IdentityMessage>();
@@ -150,7 +150,7 @@ namespace Manager.WebApp.Controllers.Business
         {
             if (conversationId <= 0)
             {
-                return BadRequest(new { apiMessage = new { type = "error", code = "getdata001" } });
+                return BadRequest(new { apiMessage = new { type = "error", code = "message103" } });
             }
 
             pageSize = pageSize != 0 ? pageSize : 50;
@@ -182,7 +182,7 @@ namespace Manager.WebApp.Controllers.Business
         {
             if (model.Id == 0)
             {
-                return BadRequest(new { apiMessage = new { type = "error", code = "common001" } });
+                return BadRequest(new { apiMessage = new { type = "error", code = "message104" } });
             }
             else
             {
@@ -206,33 +206,26 @@ namespace Manager.WebApp.Controllers.Business
 
         
 
-        [HttpPost]
-        [Route("sendtogroup")]
-        public void SendGroup(SendMessageModel model)
-        {
-            
-            try
-            {
-                var identityMessage = model.MappingObject<IdentityMessage>();
-                identityMessage.ConversationId = model.GroupId;
-                identityMessage.CreateDate = DateTime.Now;
-
-                var con = new IdentityConversation();
-                con.Id = model.GroupId;
-
-                var messageSuccess = storeMessage.Insert(identityMessage);
-                ConversationHelpers.ClearCache(model.GroupId);
-
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("Could not SendGroup: " + ex.ToString());
-
-            }
-        }
 
 
-        [HttpPost]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //API chat real time
+
+            [HttpPost]
         [Route("sendprivatemessage")]
         public void SendPrivateMessage(SendMessageModel model)
         {

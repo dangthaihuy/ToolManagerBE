@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Manager.WebApp.Controllers.Business
 {
@@ -46,7 +47,7 @@ namespace Manager.WebApp.Controllers.Business
         {
             if (id == null)
             {
-                return BadRequest(new { apiMessage = new { type = "error", message = "getdata001" } });
+                return BadRequest(new { apiMessage = new { type = "error", message = "conversation101" } });
             }
             try
             {
@@ -72,7 +73,8 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     foreach (var item in listGroup)
                     {
-                        var groupInfo = GroupChatHelpers.GetGroupInfo(item);
+                        IdentityGroup groupInfo = storeGroup.GetById(Convert.ToString(item.Id));
+                        groupInfo.Member = storeGroup.GetUserById(item.Id);
                         var lastMessage = ConversationHelpers.GetLastMessage(item);
 
                         if (groupInfo != null)
@@ -80,7 +82,7 @@ namespace Manager.WebApp.Controllers.Business
                             item.Group = groupInfo;
                             item.LastMessage = lastMessage.Message;
                             item.LastTime = lastMessage.CreateDate;
-                            item.Type = 2;
+                            item.Type = EnumMessageType.Attachment;
                             data.Add(item);
                         }
                     }
@@ -173,7 +175,7 @@ namespace Manager.WebApp.Controllers.Business
         {
             if(conversationId <= 0)
             {
-                return BadRequest(new { apiMessage = new { type = "error", message = "getdata001" } });
+                return BadRequest(new { apiMessage = new { type = "error", message = "conversation002" } });
             }
             var list = new List<IdentityMessageAttachment>();
             var filter = new IdentityMessageFilter();
@@ -198,6 +200,46 @@ namespace Manager.WebApp.Controllers.Business
             return Ok(list);
         }
 
-        
+        [HttpPost]
+        [Route("update")]
+        public async Task<ActionResult> Update([FromForm] ConversationUpdateModel model)
+        {
+            try
+            {
+                var identity = model.MappingObject<IdentityConversationUpdate>();
+                
+
+                if (model != null)
+                {
+                    
+                    if (Request.Form.Files.Count > 0)
+                    {
+                        var file = Request.Form.Files[0];
+                        var attachmentFolder = string.Format("Avatars/Conversations/{0}", identity.Id);
+                        var filePath = FileUploadHelper.UploadFile(file, attachmentFolder);
+
+                        await Task.FromResult(filePath);
+
+                        if (!string.IsNullOrEmpty(filePath))
+                        {
+
+                            identity.Avatar = filePath;
+                        }
+                    }
+
+                    var updateConversation = storeConversation.Update(identity);
+
+                    return Ok(new {conversation = updateConversation, apiMessage = new { type = "success", code = "conversation003" } });
+                }
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("Could not update: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+
+            return Ok(new { apiMessage = new { type = "error", code = "conversation103" } });
+        }
     }
 }

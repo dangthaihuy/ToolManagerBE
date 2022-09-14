@@ -15,40 +15,7 @@ namespace Manager.WebApp.Helpers
     {
         private static readonly ILogger _logger = Log.ForContext(typeof(ConversationHelpers));
 
-        public static IdentityInformationUser GetReceiverInfo(IdentityConversation item)
-        {
-            var myKey = string.Format(EnumFormatInfoCacheKeys.Conversation, item.SenderId, item.ReceiverId);
-
-            IdentityInformationUser info = null;
-            try
-            {
-                //Check the cache first (Find the product that has Id equal to id)
-                var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
-
-                info = cacheProvider.Get<IdentityInformationUser>(myKey);
-
-                if (info == null)
-                {
-                    var myStore = Startup.IocContainer.Resolve<IAPIStoreUser>();
-                    info = myStore.GetById(Convert.ToString(item.ReceiverId))
-;
-
-                    if (info != null)
-                    {
-                        //Storage to cache
-                        cacheProvider.Set(myKey, info, SystemSettings.DefaultCachingTimeInMinutes);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.Error("Could not GetBaseInfo: " + ex.ToString());
-            }
-
-            return info;
-        }
-
-        
+               
 
         public static IdentityMessage GetLastMessage(IdentityConversation item)
         {

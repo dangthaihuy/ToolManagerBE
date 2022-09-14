@@ -241,6 +241,47 @@ namespace Manager.DataLayer.Repositories.Business
 
             return newId;
         }
+
+        public IdentityConversationDefault Update(IdentityConversationUpdate identity)
+        {
+            var info = new IdentityConversationDefault();
+
+            //Common syntax
+            var sqlCmd = @"Conversations_Update";
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", identity.Id},
+                {"@Name", identity.Name},
+
+                {"@Avatar", identity.Avatar },
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            info = ExtractConversationDefault(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return info;
+        }
+
+
+
         private IdentityConversation ExtractConversation(IDataReader reader)
         {
             var record = new IdentityConversation();
@@ -254,6 +295,23 @@ namespace Manager.DataLayer.Repositories.Business
 
             return record;
         }
+
+        private IdentityConversationDefault ExtractConversationDefault(IDataReader reader)
+        {
+            var record = new IdentityConversationDefault();
+
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
+            record.CreatorId = Utils.ConvertToInt32(reader["CreatorId"]);
+            record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
+            record.Type = Utils.ConvertToInt32(reader["Type"]);
+            record.Name = reader["Name"].ToString();
+            record.Avatar = reader["Avatar"].ToString();
+
+
+
+            return record;
+        }
+
 
         private IdentityConversation ExtractGroup(IDataReader reader)
         {

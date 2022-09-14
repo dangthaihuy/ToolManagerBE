@@ -21,12 +21,7 @@ namespace Manager.WebApp.Hubs
 
     public class ChatHub : BaseMessengerHub
     {
-        private IStoreConversation storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
-        private IStoreMessage storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
-        
         private ILogger _logger = Log.ForContext(typeof(ConversationHelpers));
-
-        
 
         [HubMethodName("SendToGroup")]
         public void SendGroup(SendMessageModel model)

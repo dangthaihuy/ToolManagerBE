@@ -47,7 +47,7 @@ namespace Manager.WebApp.Controllers
                 
                 if (storeUser.GetList().Any(user => user.Email == model.Email))
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "auth002" } });
+                    return Ok(new { apiMessage = new { type = "error", code = "account101" } });
                 }
                 
 
@@ -64,12 +64,9 @@ namespace Manager.WebApp.Controllers
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
-            return Ok(new { apiMessage = new { type = "success", code = "auth000" } });
+            return Ok(new { apiMessage = new { type = "success", code = "account001" } });
 
         }
-
-
-
 
         [HttpPost]
         [Route("login")]
@@ -94,7 +91,7 @@ namespace Manager.WebApp.Controllers
                 } 
                 else
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "auth001" } });
+                    return Ok(new { apiMessage = new { type = "error", code = "account102" } });
                 }
 
             }
@@ -120,7 +117,7 @@ namespace Manager.WebApp.Controllers
                     var result = ((JsonResult)VerifyAndGenerateToken(tokenRequest)).Value;
                     if (result == null)
                     {
-                        return Ok(new { apiMessage = new { type = "error", code = "auth003" } });
+                        return Ok(new { apiMessage = new { type = "error", code = "account103" } });
                     }
 
                     return Ok(result);
@@ -133,7 +130,7 @@ namespace Manager.WebApp.Controllers
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
 
             }
-            return Ok(new { apiMessage = new { type = "error", code = "auth003" } });
+            return Ok(new { apiMessage = new { type = "error", code = "account103" } });
         }
 
         [HttpPost]
@@ -155,20 +152,45 @@ namespace Manager.WebApp.Controllers
                         identity.PasswordHash = Helpers.Utility.Md5HashingData(model.NewPassword);
 
                         var res = storeUser.Update(identity);
-                        return Ok(new { apiMessage = new { type = "success", code = "profile002" } });
+                        return Ok(new { apiMessage = new { type = "success", code = "account004" } });
+                    }
+                    else
+                    {
+                        return Ok(new { apiMessage = new { type = "error", code = "account104_1" } });
                     }
                     
                 }
-                
+                return Ok(new { apiMessage = new { type = "error", code = "account114_2" } });
+
             }
             catch(Exception ex)
             {
-                _logger.LogDebug("Could not refresh token: " + ex.ToString());
+                _logger.LogDebug("Could not change password: " + ex.ToString());
 
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
-            return Ok(new { apiMessage = new { type = "error", code = "auth004" } });
+        }
+
+        [HttpPost]
+        [Route("resetpassword")]
+        [AllowAnonymous]
+        public ActionResult ResetPassword()
+        {
+            try
+            {
+
+                
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not reset password: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+
+            return Ok(new { apiMessage = new { type = "error", code = "auth005" } });
         }
 
 
@@ -193,7 +215,7 @@ namespace Manager.WebApp.Controllers
 
             }
 
-            return Ok(new { apiMessage = new { type = "error", code = "getdata001" } });
+            return Ok(new { apiMessage = new { type = "error", code = "account106" } });
         }
 
         [HttpGet]
@@ -202,7 +224,7 @@ namespace Manager.WebApp.Controllers
         {
             if(id == null)
             {
-                return BadRequest(new { apiMessage = new { type = "error", message = "getdata001" } });
+                return BadRequest(new { apiMessage = new { type = "error", message = "account107_1" } });
             }
              
             try
@@ -220,7 +242,7 @@ namespace Manager.WebApp.Controllers
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
 
             }
-            return Ok(new { apiMessage = new { type = "error", code = "getdata001" } });
+            return Ok(new { apiMessage = new { type = "error", code = "account107_2" } });
         }
 
         [HttpGet]
@@ -229,7 +251,7 @@ namespace Manager.WebApp.Controllers
         {
             if (id == null)
             {
-                return BadRequest(new { apiMessage = new { type = "error", message = "getdata001" } });
+                return BadRequest(new { apiMessage = new { type = "error", message = "account108_1" } });
             }
 
             try
@@ -247,7 +269,7 @@ namespace Manager.WebApp.Controllers
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
 
             }
-            return Ok(new { apiMessage = new { type = "error", code = "getdata001" } });
+            return Ok(new { apiMessage = new { type = "error", code = "getdata108_2" } });
         }
 
         [HttpPost]
@@ -267,21 +289,24 @@ namespace Manager.WebApp.Controllers
 
                 if (model != null)
                 {
-                    var attachmentFolder = string.Format("Avatars/{0}", identity.Id);
-
-                    var filePath = FileUploadHelper.UploadFile(model.Avatar, attachmentFolder);
-
-                    await Task.FromResult(filePath);
-
-                    if (!string.IsNullOrEmpty(filePath))
+                    if(model.Avatar != null)
                     {
+                        var attachmentFolder = string.Format("Avatars/Users/{0}", identity.Id);
 
-                        identity.Avatar = filePath;
+                        var filePath = FileUploadHelper.UploadFile(model.Avatar, attachmentFolder);
+
+                        await Task.FromResult(filePath);
+
+                        if (!string.IsNullOrEmpty(filePath))
+                        {
+
+                            identity.Avatar = filePath;
+                        }
                     }
 
-                    var update = storeUser.Update(identity);
+                    var updateUser = storeUser.Update(identity);
 
-                    return Ok(new { userProfile = identity, apiMessage = new { type = "success", code = "profile001" } });
+                    return Ok(new { userProfile = updateUser, apiMessage = new { type = "success", code = "account009" } });
                 }
                 
             }
@@ -292,7 +317,7 @@ namespace Manager.WebApp.Controllers
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
-            return Ok(new { apiMessage = new { type = "error", code = "user001" } });
+            return Ok(new { apiMessage = new { type = "error", code = "account109" } });
         }
 
 

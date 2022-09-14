@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace Manager.WebApp.Models.Business
 {
@@ -14,5 +15,12 @@ namespace Manager.WebApp.Models.Business
         public int Type { get; set; }
         public string Name { get; set; }
 
+    }
+
+    public class ConversationUpdateModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        // public IFormFile File { get; set; }
     }
 }

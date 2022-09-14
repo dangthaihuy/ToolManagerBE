@@ -82,7 +82,7 @@ namespace Manager.WebApp.Controllers.Business
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
-            return Ok(new {success = true});
+            return Ok(new { apiMessage = new { type = "success", code = "groupuser001" } });
         }
 
         [HttpPost]
@@ -132,7 +132,7 @@ namespace Manager.WebApp.Controllers.Business
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
-            return Ok(new { success = true });
+            return Ok(new { apiMessage = new { type = "success", code = "groupuser002" } });
         }
 
 

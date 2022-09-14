@@ -204,8 +204,10 @@ namespace Manager.DataLayer.Repositories.System
 
         }
 
-        public bool Update(IdentityInformationUser identity)
+        public IdentityInformationUser Update(IdentityInformationUser identity)
         {
+            var info = new IdentityInformationUser();
+
             //Common syntax
             var sqlCmd = @"APIUser_Update";
 
@@ -225,7 +227,13 @@ namespace Manager.DataLayer.Repositories.System
             {
                 using (var conn = new SqlConnection(_conStr))
                 {
-                    MsSqlHelper.ExecuteNonQuery(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            info = ExtractUserData(reader);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -234,7 +242,7 @@ namespace Manager.DataLayer.Repositories.System
                 throw new CustomSQLException(strError);
             }
 
-            return true;
+            return info;
         }
 
         public static IdentityInformationUser ExtractUserData(IDataReader reader)

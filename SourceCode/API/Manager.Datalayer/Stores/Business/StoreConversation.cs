@@ -17,6 +17,7 @@ namespace Manager.DataLayer.Stores.Business
         List<IdentityConversation> GetGroupByUserId(string id);
         IdentityConversation GetDetail(int senderId, int receiverId);
         int Delete(int id);
+        IdentityConversationDefault Update(IdentityConversationUpdate identity);
     }
 
     public class StoreConversation : IStoreConversation
@@ -60,6 +61,12 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.Delete(id);
         }
+
+        public IdentityConversationDefault Update(IdentityConversationUpdate identity)
+        {
+            return r.Update(identity);
+        }
+
 
     }
 }

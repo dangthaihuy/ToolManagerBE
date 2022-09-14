@@ -21,7 +21,7 @@ namespace Manager.DataLayer.Stores.System
         IdentityInformationUser GetById(string id);
         IdentityInformationUser GetInforUser(int id);
 
-        bool Update(IdentityInformationUser identity);
+        IdentityInformationUser Update(IdentityInformationUser identity);
 
     }
     public class APIStoreUser : IAPIStoreUser
@@ -65,7 +65,7 @@ namespace Manager.DataLayer.Stores.System
             return m.GetInforUser(id);
         }
 
-        public bool Update(IdentityInformationUser identity)
+        public IdentityInformationUser Update(IdentityInformationUser identity)
         {
             return m.Update(identity);
         }
