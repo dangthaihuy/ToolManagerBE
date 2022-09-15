@@ -166,6 +166,44 @@ namespace Manager.DataLayer.Repositories.System
 
         }
 
+        public IdentityInformationUser GetByEmail(string email)
+        {
+            var info = new IdentityInformationUser();
+
+            if (email == null)
+            {
+                return info;
+            }
+
+            var sqlCmd = @"APIUser_GetCurrentByEmail";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Email", email}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            info = ExtractUserData(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return info;
+
+        }
+
         public IdentityInformationUser GetInforUser(int id)
         {
             var info = new IdentityInformationUser();

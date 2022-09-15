@@ -40,7 +40,6 @@ namespace Manager.WebApp
         {
             services.AddSignalR();
 
-            
 
             services.AddCors(options =>
             {
@@ -148,6 +147,7 @@ namespace Manager.WebApp
 
             app.UseEndpoints(endpoints =>
             {
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

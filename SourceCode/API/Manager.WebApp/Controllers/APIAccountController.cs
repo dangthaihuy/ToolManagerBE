@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -161,7 +162,7 @@ namespace Manager.WebApp.Controllers
                     }
                     
                 }
-                return Ok(new { apiMessage = new { type = "error", code = "account114_2" } });
+                return Ok(new { apiMessage = new { type = "error", code = "account104_2" } });
 
             }
             catch(Exception ex)
@@ -174,31 +175,43 @@ namespace Manager.WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("resetpassword")]
+        [Route("forgetpassword")]
         [AllowAnonymous]
-        public ActionResult ResetPassword(string id)
+        public ActionResult ResetPassword(string email)
         {
-            if (id == null)
+            if (email == null)
             {
-                return Ok(new { apiMessage = new { type = "error", code = "account105" } });
+                return Ok(new { apiMessage = new { type = "error", code = "account105_1" } });
             }
             try
             {
-                var user = storeUser.GetById(id);
+                var user = storeUser.GetByEmail(email);
+                if(user == null)
+                {
+                    return Ok(new { apiMessage = new { type = "error", code = "account105_2" } });
+                }
+
+                dynamic token = ((JsonResult)AssignJWTToken(user)).Value;
+
+                
+
+                var url = $"{Request.Host.Value}/resetpassword?email={email}&token={token.Token}";
 
                 var emailModel = new EmailModel();
                 emailModel.Sender = "dangthaihuy2002@gmail.com";
-                emailModel.SenderPwd = "huydeptrai";
+                emailModel.SenderPwd = "vfdlwiuxvxzqjnjw";
                 emailModel.Subject = "huy đẹp trai";
                 emailModel.SenderName = "2se";
 
-                emailModel.Receiver = user.Email;
 
-                UserHelpers.SendEmail(emailModel);
+                emailModel.Receiver = email;
+                emailModel.Body = $"Ha ha đồ ngốc bấm vào đây đi: {url}";
+
+                EmailHelpers.SendEmail(emailModel);
             }
             catch (Exception ex)
             {
-                _logger.LogDebug("Could not reset password: " + ex.ToString());
+                _logger.LogDebug("Could not forget password: " + ex.ToString());
 
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
@@ -332,6 +345,43 @@ namespace Manager.WebApp.Controllers
 
             return Ok(new { apiMessage = new { type = "error", code = "account109" } });
         }
+
+        [HttpPost]
+        [Route("resetpassword")]
+        [AllowAnonymous]
+        public ActionResult ResetPassword(ChangePasswordModel model)
+        {
+            try
+            {
+                var user = storeUser.GetByEmail(model.Email);
+
+                if(user == null)
+                {
+                    return Ok(new { apiMessage = new { type = "error", code = "account110" } });
+                }
+
+                var identity = model.MappingObject<IdentityInformationUser>();
+                identity.PasswordHash = Helpers.Utility.Md5HashingData(model.NewPassword);
+
+                var res = storeUser.Update(identity);
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not reset password: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+            
+
+
+            
+            return Ok();
+        }
+
+
+
 
 
         private ActionResult AssignJWTToken(IdentityInformationUser user)
@@ -507,9 +557,6 @@ namespace Manager.WebApp.Controllers
                 return StatusCode(500, new { message = "Server error: Refresh token" });
             }
         }
-
-
-
 
         private DateTime UnixTimeStampToDateTime(long unixTimeStamp)
         {

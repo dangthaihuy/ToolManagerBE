@@ -19,6 +19,7 @@ namespace Manager.DataLayer.Stores.System
         List<IdentityCurrentUser> GetList();
 
         IdentityInformationUser GetById(string id);
+        IdentityInformationUser GetByEmail(string email);
         IdentityInformationUser GetInforUser(int id);
 
         IdentityInformationUser Update(IdentityInformationUser identity);
@@ -58,6 +59,11 @@ namespace Manager.DataLayer.Stores.System
         public IdentityInformationUser GetById(string id)
         {
             return m.GetById(id);
+        }
+
+        public IdentityInformationUser GetByEmail(string email)
+        {
+            return m.GetByEmail(email);
         }
 
         public IdentityInformationUser GetInforUser(int id)

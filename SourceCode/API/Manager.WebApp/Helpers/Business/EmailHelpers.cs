@@ -1,4 +1,5 @@
-﻿using Manager.WebApp.Models.System;
+﻿using Manager.SharedLibs;
+using Manager.WebApp.Models.System;
 using Manager.WebApp.Settings;
 using Serilog;
 using System;
@@ -7,9 +8,9 @@ using System.Net.Mail;
 
 namespace Manager.WebApp.Helpers.Business
 {
-    public class UserHelpers
+    public class EmailHelpers
     {
-        private static readonly ILogger _logger = Log.ForContext(typeof(UserHelpers));
+        private static readonly ILogger _logger = Log.ForContext(typeof(EmailHelpers));
         private static ICacheProvider _myCache;
         private static int _cacheExpiredTime = 10080;
 
@@ -18,7 +19,7 @@ namespace Manager.WebApp.Helpers.Business
             try
             {
                 MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient(SystemSettings.EmailHost);
+                SmtpClient SmtpServer = new SmtpClient(AppConfiguration.GetAppsetting("SystemSetting:SmtpGmail:Host"));
 
                 mail.From = new MailAddress(model.Sender);
 
@@ -33,11 +34,11 @@ namespace Manager.WebApp.Helpers.Business
                 mail.BodyEncoding = System.Text.Encoding.GetEncoding("utf-8");
 
                 mail.IsBodyHtml = true;
-                SmtpServer.Port = Convert.ToInt32(SystemSettings.EmailServerPort);
+                SmtpServer.Port = Convert.ToInt32(AppConfiguration.GetAppsetting("SystemSetting:SmtpGmail:Port"));
                 SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
                 SmtpServer.UseDefaultCredentials = false;
-                SmtpServer.Credentials = new System.Net.NetworkCredential(model.Sender, model.SenderPwd);
-                SmtpServer.EnableSsl = SystemSettings.EmailIsUseSSL;
+                SmtpServer.Credentials = new NetworkCredential(model.Sender, model.SenderPwd);
+                SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
             }

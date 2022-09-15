@@ -1,0 +1,46 @@
+﻿@page
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>Reset your password</h1>
+        <form action="/api/account/resetpassword" method="post">
+            
+            <table>
+                <tr>
+                    <td>
+                        New Password
+                    </td>
+                    <td>
+                        <input type="password" name="NewPassword" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Confirm Password
+                    </td>
+                    <td>
+                        <input type="password" name="ConfirmPassword" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Reset"/>
+                    </td>
+                    
+                </tr>
+            </table>
+        </form>
+</body>
+</html>
+
+
+
