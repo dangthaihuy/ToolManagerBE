@@ -177,25 +177,22 @@ namespace Manager.WebApp.Controllers
         [HttpGet]
         [Route("forgetpassword")]
         [AllowAnonymous]
-        public ActionResult ResetPassword(string email)
+        public ActionResult ForgetPassword(ChangePasswordModel model)
         {
-            if (email == null)
-            {
-                return Ok(new { apiMessage = new { type = "error", code = "account105_1" } });
-            }
+            
             try
             {
-                var user = storeUser.GetByEmail(email);
+                var user = storeUser.GetByEmail(model.Email);
                 if(user == null)
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "account105_2" } });
+                    return Ok(new { apiMessage = new { type = "error", code = "account105" } });
                 }
 
                 dynamic token = ((JsonResult)AssignJWTToken(user)).Value;
 
                 
 
-                var url = $"{Request.Host.Value}/resetpassword?email={email}&token={token.Token}";
+                var url = $"http://localhost:3000/resetpassword?email={model.Email}&token={token.Token}";
 
                 var emailModel = new EmailModel();
                 emailModel.Sender = "dangthaihuy2002@gmail.com";
@@ -204,7 +201,7 @@ namespace Manager.WebApp.Controllers
                 emailModel.SenderName = "2se";
 
 
-                emailModel.Receiver = email;
+                emailModel.Receiver = model.Email;
                 emailModel.Body = $"Ha ha đồ ngốc bấm vào đây đi: {url}";
 
                 EmailHelpers.SendEmail(emailModel);
@@ -216,7 +213,7 @@ namespace Manager.WebApp.Controllers
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
-            return Ok(new { apiMessage = new { type = "success", code = "auth005" } });
+            return Ok(new { apiMessage = new { type = "success", code = "account005" } });
         }
 
 
@@ -275,7 +272,7 @@ namespace Manager.WebApp.Controllers
         [Route("getinforuser")]
         public ActionResult GetInforUser(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return BadRequest(new { apiMessage = new { type = "error", message = "account108_1" } });
             }
@@ -377,7 +374,7 @@ namespace Manager.WebApp.Controllers
 
 
             
-            return Ok();
+            return Ok(new { apiMessage = new { type = "success", code = "account010" } });
         }
 
 
