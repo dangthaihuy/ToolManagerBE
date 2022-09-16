@@ -38,14 +38,14 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpGet]
         [Route("getbypage")]
-        public ActionResult GetByPage(int conversationId, int messageId, int pageSize, int direction)
+        public ActionResult GetByPage(int conversationId, int messageId, int pageSize, int direction, bool isMore = false)
         {
             if(conversationId <= 0)
             {
                 return BadRequest(new { apiMessage = new { type = "error", code = "message101" } });
             }
 
-            pageSize = pageSize > 0 ? pageSize : SystemSettings.DefaultPageSize;
+            pageSize = pageSize > 0 ? pageSize : 20;
             var currentPage = 1;
             var returnList = new List<IdentityMessage>();
             var filter = new IdentityMessageFilter();
@@ -56,6 +56,7 @@ namespace Manager.WebApp.Controllers.Business
                 filter.CurrentPage = currentPage;
                 filter.Direction = direction;
                 filter.ConversationId = conversationId;
+                filter.IsMore = isMore;
 
                 var list = storeMessage.GetByPage(filter);
 
@@ -64,6 +65,7 @@ namespace Manager.WebApp.Controllers.Business
                     foreach (var item in list)
                     {
                         var message = MessengerHelpers.GetBaseInfo(item.Id);
+                        message.PageIndex = item.PageIndex;
 
                         if (message != null)
                         {
@@ -96,7 +98,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 filter.ConversationId = conversationId;
                 filter.Keyword = keyword;
-                filter.PageSize = 50;
+                filter.PageSize = 20;
 
                 list = storeMessage.GetBySearch(filter);
 

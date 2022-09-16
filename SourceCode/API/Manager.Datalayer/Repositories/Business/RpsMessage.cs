@@ -129,7 +129,7 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@Offset", offset},
                 {"@Id", filter.Id},
                 {"@Direction", filter.Direction},
-
+                {"@IsMore", filter.IsMore},
                 {"@PageSize", filter.PageSize},
 
             };
@@ -140,16 +140,17 @@ namespace Manager.DataLayer.Repositories.Business
                 {
                     using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
                     {
-                        while (filter.Id == 0 && reader.Read())
+                        while (reader.Read())
                         {
                             IdentityMessage info = new IdentityMessage();
 
                             info.Id = Convert.ToInt32(reader["Id"]);
+                            info.PageIndex = Convert.ToInt32(reader["PageIndex"]);
                             info.TotalCount = Convert.ToInt32(reader["TotalCount"]);
 
                             listData.Add(info);
                         }
-                        if(filter.Id > 0 && reader.NextResult() != null)
+                        /*if(filter.Id > 0 && reader.NextResult())
                         {
                             while (reader.Read())
                             {
@@ -160,7 +161,7 @@ namespace Manager.DataLayer.Repositories.Business
 
                                 listData.Add(info);
                             }
-                        }
+                        }*/
                     }
                 }
             }

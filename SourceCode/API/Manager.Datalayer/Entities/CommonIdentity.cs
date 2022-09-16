@@ -24,5 +24,9 @@ namespace Manager.DataLayer.Entities
         [ObjectDictionaryIgnore]
         public int PageSize { get; set; }
 
+        [JsonIgnore]
+        [ObjectDictionaryIgnore]
+        public int CurrentPage { get; set; }
+
     }
 }
