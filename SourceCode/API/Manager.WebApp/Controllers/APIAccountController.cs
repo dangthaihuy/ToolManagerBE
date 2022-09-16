@@ -142,27 +142,23 @@ namespace Manager.WebApp.Controllers
         {
             try
             {
-                
-                var user = storeUser.GetById(model.Id.ToString());
+                var identityChangePw = model.MappingObject<IdentityInformationUser>();
+                identityChangePw.Password = Helpers.Utility.Md5HashingData(model.Password);
+
+                var user = storeUser.GetByPass(identityChangePw);
                 if (user != null)
                 {
-                    var passwordHash = Helpers.Utility.Md5HashingData(model.Password);
-                    if (user.PasswordHash == passwordHash)
-                    {
-                        var identity = new IdentityInformationUser();
-                        identity.Id = model.Id;
-                        identity.PasswordHash = Helpers.Utility.Md5HashingData(model.NewPassword);
+                    var identity = new IdentityInformationUser();
+                    identity.Id = model.Id;
+                    identity.PasswordHash = Helpers.Utility.Md5HashingData(model.NewPassword);
 
-                        var res = storeUser.Update(identity);
-                        return Ok(new { apiMessage = new { type = "success", code = "account004" } });
-                    }
-                    else
-                    {
-                        return Ok(new { apiMessage = new { type = "error", code = "account104_1" } });
-                    }
-                    
+                    var res = storeUser.Update(identity);
+
+                    return Ok(new { apiMessage = new { type = "success", code = "account004" } });
+                                        
                 }
-                return Ok(new { apiMessage = new { type = "error", code = "account104_2" } });
+                
+                return Ok(new { apiMessage = new { type = "error", code = "account104" } });
 
             }
             catch(Exception ex)
@@ -174,7 +170,7 @@ namespace Manager.WebApp.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("forgetpassword")]
         [AllowAnonymous]
         public ActionResult ForgetPassword(ChangePasswordModel model)

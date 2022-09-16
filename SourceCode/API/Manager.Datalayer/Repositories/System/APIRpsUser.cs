@@ -166,6 +166,40 @@ namespace Manager.DataLayer.Repositories.System
 
         }
 
+        public IdentityInformationUser GetByPass(IdentityInformationUser identity)
+        {
+            var info = new IdentityInformationUser();
+
+            var sqlCmd = @"APIUser_GetByPass";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", identity.Id},
+                {"@PasswordHash", identity.Password}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            info = ExtractUserData(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return info;
+
+        }
+
         public IdentityInformationUser GetByEmail(string email)
         {
             var info = new IdentityInformationUser();
