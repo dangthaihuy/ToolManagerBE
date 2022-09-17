@@ -20,4 +20,6 @@ namespace Manager.DataLayer.Entities.Business
         public int FolderId { get; set; }
         public string Path { get; set; }
     }
+
+    
 }

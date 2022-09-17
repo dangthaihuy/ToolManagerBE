@@ -55,6 +55,7 @@ namespace Manager.DataLayer.Repositories.Business
             return newId;
         }
 
+        
         public int DeleteFolder(IdentityFolder identity)
         {
             var sqlCmd = @"Folder_Delete";
@@ -158,6 +159,134 @@ namespace Manager.DataLayer.Repositories.Business
             return info;
         }
 
+        public int InsertFile(IdentityFile identity)
+        {
+            var sqlCmd = @"File_Insert";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Name", identity.Name },
+                {"@FolderId", identity.FolderId },
+                {"@Path", identity.Path }
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
+
+        public int DeleteFile(IdentityFile identity)
+        {
+            var sqlCmd = @"File_Delete";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", identity.Id }
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
+
+        public IdentityFile GetFileById(IdentityFile identity)
+        {
+            var listData = new IdentityFile();
+                        
+            var sqlCmd = @"File_GetById";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", identity.Id}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            listData = ExtractFile(reader);
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return listData;
+        }
+
+        public List<IdentityFile> GetFileByFolderId(IdentityFolder identity)
+        {
+            var listData = new List<IdentityFile>();
+
+            var sqlCmd = @"File_GetByFolderId";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", identity.Id}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var file = ExtractFile(reader);
+                            listData.Add(file);
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return listData;
+        }
+
         private IdentityFolder ExtractFolder(IDataReader reader)
         {
             var record = new IdentityFolder();
@@ -166,9 +295,21 @@ namespace Manager.DataLayer.Repositories.Business
             record.Name = reader["Name"].ToString();
             record.ParentId = Utils.ConvertToInt32(reader["ParentId"]);
 
+            return record;
+        }
 
+        private IdentityFile ExtractFile(IDataReader reader)
+        {
+            var record = new IdentityFile();
+
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
+            record.Name = reader["Name"].ToString();
+            record.FolderId = Utils.ConvertToInt32(reader["FolderId"]);
+            record.Path = reader["Path"].ToString();
 
             return record;
         }
+
+
     }
 }

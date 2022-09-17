@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Manager.WebApp.Controllers.Business
@@ -104,14 +105,14 @@ namespace Manager.WebApp.Controllers.Business
 
 
 
-        // XỬ LÝ FOLDER
+        // XỬ LÝ FILE
         [HttpPost]
         [Route("insertfile")]
         public async Task<ActionResult> InsertFile([FromForm] FileModel model)
         {
             try
             {
-                var identity = model.MappingObject<IdentityFile>();
+                var listFile = new List<IdentityFile>();
                              
                 if (Request.Form.Files.Count > 0)
                 {
@@ -124,18 +125,21 @@ namespace Manager.WebApp.Controllers.Business
 
                         if (!string.IsNullOrEmpty(filePath))
                         {
+                            var identity = new IdentityFile();
+
                             identity.Name = file.FileName;
                             identity.Path = filePath;
+                            identity.FolderId = model.FolderId;
+
+                            identity.Id = storeFileManagement.InsertFile(identity);
+                            listFile.Add(identity);
                         }
 
-                        /*var updateFile = storeFileManagement.InsertFile(identity);*/
                     }
 
-                    return Ok(new { apiMessage = new { type = "success", code = "file001" } });
+                    return Ok(new {listFile= listFile, apiMessage = new { type = "success", code = "file001" } });
                 }
-                    
-
-                
+                  
             }
             catch(Exception ex)
             {
@@ -146,6 +150,35 @@ namespace Manager.WebApp.Controllers.Business
 
             return Ok(new { apiMessage = new { type = "error", code = "file101" } });
         }
+
+        [HttpPost]
+        [Route("deletefile")]
+        public ActionResult DeleteFile(FileModel model)
+        {
+            try
+            {
+                var identity = model.MappingObject<IdentityFile>();
+                var file = storeFileManagement.GetFileById(identity);
+
+                var res = storeFileManagement.DeleteFile(identity);
+
+                if(file.Path != null)
+                {
+                    System.IO.File.Delete(String.Concat("wwwroot", file.Path));
+                }
+
+                return Ok(new { apiMessage = new { type = "success", code = "file002" } });
+            }
+            catch(Exception ex)
+            {
+                _logger.LogDebug("Could not delete folder: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+
+            return Ok(new { apiMessage = new { type = "error", code = "file102" } });
+        }
+
 
         private void DeleteChild(IdentityFolder parent)
         {
@@ -160,8 +193,16 @@ namespace Manager.WebApp.Controllers.Business
                         DeleteChild(item);
                     }
                 }
-
+                var listFile = storeFileManagement.GetFileByFolderId(parent);
                 var res = storeFileManagement.DeleteFolder(parent);
+
+                if (listFile.HasData())
+                {
+                    foreach (var file in listFile)
+                    {
+                        System.IO.File.Delete(String.Concat("wwwroot", file.Path));
+                    }
+                }
             }
             catch (Exception ex)
             {
