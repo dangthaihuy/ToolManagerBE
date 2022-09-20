@@ -354,7 +354,8 @@ namespace Manager.WebApp.Controllers.Api
                 }
 
                 var identity = model.MappingObject<IdentityInformationUser>();
-                identity.PasswordHash = Helpers.Utility.Md5HashingData(model.NewPassword);
+                identity.Id = user.Id;
+                identity.PasswordHash = Helpers.Utility.Md5HashingData(model.Password);
 
                 var res = storeUser.Update(identity);
 

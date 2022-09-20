@@ -127,7 +127,7 @@ namespace Manager.WebApp.Controllers.Business
                     idenMessage.Type = EnumMessageType.Noti;
                     idenMessage.Message = "Nhóm mới đã được tạo";
 
-                    var creator = storeGroup.Insert(res, model.CreatorId);
+                    var creator = storeGroup.Insert(res, model.CreatedBy);
                     var insertMess = storeMessage.Insert(idenMessage);
 
 

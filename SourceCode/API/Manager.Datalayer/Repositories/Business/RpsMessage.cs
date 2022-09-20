@@ -39,7 +39,6 @@ namespace Manager.DataLayer.Repositories.Business
 
                 {"@SenderId", identity.SenderId },
                 {"@ReceiverId", identity.ReceiverId },
-                {"@CreatedDate", identity.CreatedDate },
 
             };
 

@@ -65,10 +65,10 @@ namespace Manager.WebApp.Controllers.Business
                     foreach (var item in list)
                     {
                         var message = MessengerHelpers.GetBaseInfo(item.Id);
-                        message.PageIndex = item.PageIndex;
-
+                        
                         if (message != null)
                         {
+                            message.PageIndex = item.PageIndex;
                             returnList.Add(message);
                         }
                     }

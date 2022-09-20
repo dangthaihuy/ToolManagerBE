@@ -33,7 +33,7 @@ namespace Manager.DataLayer.Repositories.Business
             //For parameters
             var parameters = new Dictionary<string, object>
             {
-                {"@CreatorId", identity.CreatorId },
+                {"@CreatedBy", identity.CreatedBy },
                 {"@ReceiverId", identity.ReceiverId },
                 {"@Type", identity.Type },
                 {"@Name", identity.Name }
@@ -67,7 +67,7 @@ namespace Manager.DataLayer.Repositories.Business
             //For parameters
             var parameters = new Dictionary<string, object>
             {
-                {"@CreatorId", identity.CreatorId },
+                {"@CreatedBy", identity.CreatedBy },
                 {"@Type", identity.Type },
                 {"@Name", identity.Name }
 
@@ -187,7 +187,7 @@ namespace Manager.DataLayer.Repositories.Business
 
             var parameters = new Dictionary<string, object>
             {
-                {"@CreatorId", senderId},
+                {"@CreatedBy", senderId},
                 {"@ReceiverId", receiverId}
 
             };
@@ -301,7 +301,7 @@ namespace Manager.DataLayer.Repositories.Business
             var record = new IdentityConversationDefault();
 
             record.Id = Utils.ConvertToInt32(reader["Id"]);
-            record.CreatorId = Utils.ConvertToInt32(reader["CreatorId"]);
+            record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
             record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
             record.Type = Utils.ConvertToInt32(reader["Type"]);
             record.Name = reader["Name"].ToString();

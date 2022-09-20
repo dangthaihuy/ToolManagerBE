@@ -242,7 +242,7 @@ namespace Manager.DataLayer.Repositories.Business
             //Seperate properties
 
             record.Id = Utils.ConvertToInt32(reader["Id"]);
-            record.CreatorId = Utils.ConvertToInt32(reader["CreatorId"]);
+            record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
             record.Name = reader["Name"].ToString();
 
             return record;
