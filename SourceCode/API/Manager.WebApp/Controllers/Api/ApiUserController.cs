@@ -21,22 +21,22 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Manager.WebApp.Controllers
+namespace Manager.WebApp.Controllers.Api
 {
-    [Route("api/account")]
+    [Route("api/user")]
     [ApiController]
     [Authorize]
-    public class APIAccountController : Controller
+    public class ApiUserController : Controller
     {
         private readonly IAPIStoreUser storeUser;
         private readonly IStoreToken storeToken;
-        private readonly ILogger<APIAccountController> _logger;
+        private readonly ILogger<ApiUserController> _logger;
 
-        public APIAccountController(ILogger<APIAccountController> logger)
+        public ApiUserController(ILogger<ApiUserController> logger)
         {
             storeUser = Startup.IocContainer.Resolve<IAPIStoreUser>();
             storeToken = Startup.IocContainer.Resolve<IStoreToken>();
-            _logger = logger;            
+            _logger = logger;
         }
 
         [HttpPost]
@@ -46,12 +46,12 @@ namespace Manager.WebApp.Controllers
         {
             try
             {
-                
-                if (storeUser.GetList().Any(user => user.Email == model.Email))
+
+                if (storeUser.GetByEmail(model.Email).Email != null)
                 {
                     return Ok(new { apiMessage = new { type = "error", code = "account101" } });
                 }
-                
+
 
                 var newUser = model.MappingObject<IdentityInformationUser>();
 
@@ -59,7 +59,7 @@ namespace Manager.WebApp.Controllers
 
                 var res = storeUser.Register(newUser);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogDebug("Could not register: " + ex.ToString());
 
@@ -88,9 +88,9 @@ namespace Manager.WebApp.Controllers
                 if (user != null)
                 {
                     dynamic token = ((JsonResult)AssignJWTToken(user)).Value;
-                    
-                    return Ok(new{ Id= user.Id , Token = token.Token, RefreshToken = token.RefreshToken});
-                } 
+
+                    return Ok(new { user.Id, token.Token, token.RefreshToken });
+                }
                 else
                 {
                     return Ok(new { apiMessage = new { type = "error", code = "account102" } });
@@ -108,7 +108,7 @@ namespace Manager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Route("refreshtoken")]
+        [Route("refresh_token")]
         [AllowAnonymous]
         public ActionResult RefreshToken([FromBody] TokenRequest tokenRequest)
         {
@@ -125,7 +125,7 @@ namespace Manager.WebApp.Controllers
                     return Ok(result);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogDebug("Could not refresh token: " + ex.ToString());
 
@@ -136,7 +136,7 @@ namespace Manager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Route("changepassword")]
+        [Route("change_password")]
         [AllowAnonymous]
         public ActionResult ChangePassword(ChangePasswordModel model)
         {
@@ -145,7 +145,7 @@ namespace Manager.WebApp.Controllers
                 var identityChangePw = model.MappingObject<IdentityInformationUser>();
                 identityChangePw.Password = Helpers.Utility.Md5HashingData(model.Password);
 
-                var user = storeUser.GetByPass(identityChangePw);
+                var user = storeUser.GetByPassword(identityChangePw);
                 if (user != null)
                 {
                     var identity = new IdentityInformationUser();
@@ -155,13 +155,13 @@ namespace Manager.WebApp.Controllers
                     var res = storeUser.Update(identity);
 
                     return Ok(new { apiMessage = new { type = "success", code = "account004" } });
-                                        
+
                 }
-                
+
                 return Ok(new { apiMessage = new { type = "error", code = "account104" } });
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogDebug("Could not change password: " + ex.ToString());
 
@@ -171,24 +171,24 @@ namespace Manager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Route("forgetpassword")]
+        [Route("forget_password")]
         [AllowAnonymous]
         public ActionResult ForgetPassword(ChangePasswordModel model)
         {
-            
+
             try
             {
                 var user = storeUser.GetByEmail(model.Email);
-                if(user == null)
+                if (user == null)
                 {
                     return Ok(new { apiMessage = new { type = "error", code = "account105" } });
                 }
 
                 dynamic token = ((JsonResult)AssignJWTToken(user)).Value;
 
-                
 
-                var url = $"http://localhost:3000/resetpassword?email={model.Email}&token={token.Token}";
+
+                var url = $"{AppConfiguration.GetAppsetting("SystemSetting:ClientHost")}/resetpassword?email={model.Email}&token={token.Token}";
 
                 var emailModel = new EmailModel();
                 emailModel.Sender = "dangthaihuy2002@gmail.com";
@@ -238,23 +238,23 @@ namespace Manager.WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("getcurrentuser")]
+        [Route("get_currentuser")]
         public ActionResult GetCurrentById(string id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return BadRequest(new { apiMessage = new { type = "error", message = "account107_1" } });
             }
-             
+
             try
             {
                 var data = storeUser.GetById(id);
-                if(data != null)
+                if (data != null)
                 {
                     return Ok(data);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogDebug("Could not get currentuser: " + ex.ToString());
 
@@ -265,7 +265,7 @@ namespace Manager.WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("getinforuser")]
+        [Route("get_inforuser")]
         public ActionResult GetInforUser(int id)
         {
             if (id == 0)
@@ -295,7 +295,7 @@ namespace Manager.WebApp.Controllers
         [Route("update")]
         public async Task<ActionResult> Update([FromForm] UserModel model)
         {
-            
+
 
             try
             {
@@ -308,7 +308,7 @@ namespace Manager.WebApp.Controllers
 
                 if (model != null)
                 {
-                    if(model.Avatar != null)
+                    if (model.Avatar != null)
                     {
                         var attachmentFolder = string.Format("Avatars/Users/{0}", identity.Id);
 
@@ -327,9 +327,9 @@ namespace Manager.WebApp.Controllers
 
                     return Ok(new { userProfile = updateUser, apiMessage = new { type = "success", code = "account009" } });
                 }
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogDebug("Could not get currentuser: " + ex.ToString());
 
@@ -340,7 +340,7 @@ namespace Manager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Route("resetpassword")]
+        [Route("reset_password")]
         [AllowAnonymous]
         public ActionResult ResetPassword(ChangePasswordModel model)
         {
@@ -348,7 +348,7 @@ namespace Manager.WebApp.Controllers
             {
                 var user = storeUser.GetByEmail(model.Email);
 
-                if(user == null)
+                if (user == null)
                 {
                     return Ok(new { apiMessage = new { type = "error", code = "account110" } });
                 }
@@ -366,10 +366,10 @@ namespace Manager.WebApp.Controllers
 
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
-            
 
 
-            
+
+
             return Ok(new { apiMessage = new { type = "success", code = "account010" } });
         }
 
@@ -414,7 +414,7 @@ namespace Manager.WebApp.Controllers
             var result = storeToken.Insert(refreshToken);
 
 
-            return Json(new {Token = tokenInstring, RefreshToken = refreshToken.Token });
+            return Json(new { Token = tokenInstring, RefreshToken = refreshToken.Token });
         }
 
         private ActionResult VerifyAndGenerateToken(TokenRequest tokenRequest)

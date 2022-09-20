@@ -33,7 +33,10 @@ namespace Manager.DataLayer.Repositories.Business
             var parameters = new Dictionary<string, object>
             {
                 {"@Name", identity.Name },
-                {"@ParentId", identity.ParentId }
+                {"@ParentId", identity.ParentId },
+                {"@CreateById", identity.CreateById },
+                {"@CreatedDate", identity.CreatedDate },
+
 
             };
 

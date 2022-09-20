@@ -34,7 +34,7 @@ namespace Manager.DataLayer.Repositories.System
        
         public int Register(IdentityInformationUser identity)
         {
-            var sqlCmd = @"APIUser_Insert";
+            var sqlCmd = @"ApiUser_Insert";
             int newId = 0;
 
             //For parameters
@@ -68,7 +68,7 @@ namespace Manager.DataLayer.Repositories.System
         public IdentityInformationUser Login(IdentityInformationUser identity)
         {
             IdentityInformationUser info = null;
-            var sqlCmd = @"APIUser_Login";
+            var sqlCmd = @"ApiUser_Login";
 
             var parameters = new Dictionary<string, object>
             {
@@ -99,7 +99,7 @@ namespace Manager.DataLayer.Repositories.System
 
         public List<IdentityCurrentUser> GetList()
         {
-            var sqlCmd = @"APIUser_GetList";
+            var sqlCmd = @"ApiUser_GetList";
             List<IdentityCurrentUser> listData = new List<IdentityCurrentUser>();
 
             try
@@ -137,7 +137,7 @@ namespace Manager.DataLayer.Repositories.System
                 return info;
             }
 
-            var sqlCmd = @"APIUser_GetCurrentById";
+            var sqlCmd = @"ApiUser_GetCurrentById";
 
             var parameters = new Dictionary<string, object>
             {
@@ -166,11 +166,11 @@ namespace Manager.DataLayer.Repositories.System
 
         }
 
-        public IdentityInformationUser GetByPass(IdentityInformationUser identity)
+        public IdentityInformationUser GetByPassword(IdentityInformationUser identity)
         {
             var info = new IdentityInformationUser();
 
-            var sqlCmd = @"APIUser_GetByPass";
+            var sqlCmd = @"ApiUser_GetByPassword";
 
             var parameters = new Dictionary<string, object>
             {
@@ -209,7 +209,7 @@ namespace Manager.DataLayer.Repositories.System
                 return info;
             }
 
-            var sqlCmd = @"APIUser_GetCurrentByEmail";
+            var sqlCmd = @"ApiUser_GetCurrentByEmail";
 
             var parameters = new Dictionary<string, object>
             {
@@ -247,7 +247,7 @@ namespace Manager.DataLayer.Repositories.System
                 return info;
             }
 
-            var sqlCmd = @"APIUser_GetInforUser";
+            var sqlCmd = @"ApiUser_GetInforUser";
 
             var parameters = new Dictionary<string, object>
             {
@@ -281,7 +281,7 @@ namespace Manager.DataLayer.Repositories.System
             var info = new IdentityInformationUser();
 
             //Common syntax
-            var sqlCmd = @"APIUser_Update";
+            var sqlCmd = @"ApiUser_Update";
 
             //For parameters
             var parameters = new Dictionary<string, object>

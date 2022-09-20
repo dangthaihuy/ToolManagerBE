@@ -39,7 +39,7 @@ namespace Manager.DataLayer.Repositories.Business
 
                 {"@SenderId", identity.SenderId },
                 {"@ReceiverId", identity.ReceiverId },
-                {"@CreateDate", identity.CreateDate },
+                {"@CreatedDate", identity.CreatedDate },
 
             };
 
@@ -246,6 +246,23 @@ namespace Manager.DataLayer.Repositories.Business
                                 info.Attachments.Add(record);
                             }
                         }
+                        if(info != null && reader.NextResult())
+                        {
+                            if (reader.Read())
+                            {
+                                var replyMessage = new IdentityMessageReply();
+                                replyMessage.Id = Utils.ConvertToInt32(reader["Id"]);
+                                replyMessage.Message = reader["Message"].ToString();
+                                replyMessage.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
+
+                                if (info.Attachments == null)
+                                {
+                                    info.Attachments = new List<IdentityMessageAttachment>();
+                                }
+
+                                info.ReplyMessage = replyMessage;
+                            }
+                        }
                     }
                 }
             }
@@ -416,8 +433,10 @@ namespace Manager.DataLayer.Repositories.Business
             record.SenderId = Utils.ConvertToInt32(reader["SenderId"]);
             record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
 
-            record.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
+            record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
             record.Important = Utils.ConvertToInt32(reader["Important"]);
+
+            record.ReplyMessageId = Utils.ConvertToInt32(reader["ReplyMessageId"]);
 
             if (reader.HasColumn("PageIndex"))
             {

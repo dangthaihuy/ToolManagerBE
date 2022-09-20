@@ -62,8 +62,9 @@ namespace Manager.WebApp.Controllers.Business
                         if (receiverInfo != null)
                         {
                             item.Receiver = receiverInfo;
-                            item.LastMessage = lastMessage.Message; 
-                            item.LastTime = lastMessage.CreateDate;
+                            item.LastMessageId = lastMessage.Id; 
+                            item.LastMessage = lastMessage.Message;
+                            item.LastTime = lastMessage.CreatedDate;
                             data.Add(item);
                         }
                     }
@@ -80,8 +81,9 @@ namespace Manager.WebApp.Controllers.Business
                         if (groupInfo != null)
                         {
                             item.Group = groupInfo;
+                            item.LastMessageId = lastMessage.Id;
                             item.LastMessage = lastMessage.Message;
-                            item.LastTime = lastMessage.CreateDate;
+                            item.LastTime = lastMessage.CreatedDate;
                             item.Type = EnumMessageType.Attachment;
                             data.Add(item);
                         }
@@ -123,7 +125,6 @@ namespace Manager.WebApp.Controllers.Business
                     var idenMessage = new IdentityMessage();
                     idenMessage.ConversationId = res;
                     idenMessage.Type = EnumMessageType.Noti;
-                    idenMessage.CreateDate = DateTime.Now;
                     idenMessage.Message = "Nhóm mới đã được tạo";
 
                     var creator = storeGroup.Insert(res, model.CreatorId);

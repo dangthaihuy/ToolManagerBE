@@ -147,7 +147,7 @@ namespace Manager.WebApp.Controllers.Business
 
 
         [HttpGet]
-        [Route("getimportant")]
+        [Route("get_important")]
         public ActionResult GetImportant(int conversationId, int page, string keyword, int pageSize)
         {
             if (conversationId <= 0)
@@ -179,7 +179,7 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpPost]
-        [Route("changeimportant")]
+        [Route("change_important")]
         public ActionResult ChangeImportant(MessageCheckImportantModel model)
         {
             if (model.Id == 0)
@@ -227,8 +227,8 @@ namespace Manager.WebApp.Controllers.Business
 
             //API chat real time
 
-            [HttpPost]
-        [Route("sendprivatemessage")]
+        [HttpPost]
+        [Route("send_private_message")]
         public void SendPrivateMessage(SendMessageModel model)
         {
             try
@@ -242,7 +242,6 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     msg.ConversationId = con.Id;
                     msg.Type = EnumMessageType.Text;
-                    msg.CreateDate = DateTime.Now;
 
                     msg.Id = storeMessage.Insert(msg);
 
@@ -261,7 +260,7 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpPost]
-        [Route("sendgroupmessage")]
+        [Route("send_group_message")]
         public void SendGroupMessage(SendMessageModel model)
         {
             try
@@ -271,7 +270,6 @@ namespace Manager.WebApp.Controllers.Business
                 if(msg != null)
                 {
                     msg.Type = EnumMessageType.Text;
-                    msg.CreateDate = DateTime.Now;
 
                     msg.Id = storeMessage.Insert(msg);
 
@@ -290,7 +288,7 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpPost]
-        [Route("sendfilemessage")]
+        [Route("send_file_message")]
         public async void SendFileMessage([FromForm] SendMessageModel model)
         {
             try
@@ -302,7 +300,6 @@ namespace Manager.WebApp.Controllers.Business
                     
                     msg.Message = "";
                     msg.Type = EnumMessageType.Attachment;
-                    msg.CreateDate = DateTime.Now;
                     msg.Attachments = new List<IdentityMessageAttachment>();
 
                     foreach (var formFile in model.Files)

@@ -47,7 +47,6 @@ namespace Manager.WebApp.Controllers.Business
 
                 idenMessage.ConversationId = model.GroupId;
                 idenMessage.Type = EnumMessageType.Noti;
-                idenMessage.CreateDate = DateTime.Now;
 
                 int check = 0;
 
@@ -96,7 +95,6 @@ namespace Manager.WebApp.Controllers.Business
 
                 idenMessage.ConversationId = model.GroupId;
                 idenMessage.Type = EnumMessageType.Noti;
-                idenMessage.CreateDate = DateTime.Now;
 
                 int check = 0;
 

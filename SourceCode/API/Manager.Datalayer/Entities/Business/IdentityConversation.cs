@@ -22,6 +22,7 @@ namespace Manager.DataLayer.Entities.Business
         public int ReceiverId { get; set; }
         public int Type { get; set; }
 
+        public int LastMessageId { get; set; }
         public string LastMessage { get; set; }
         public DateTime LastTime { get; set; }
 

@@ -36,7 +36,7 @@ namespace Manager.WebApp.Controllers.Business
         // XỬ LÝ FOLDER
 
         [HttpPost]
-        [Route("insertfolder")]
+        [Route("insert_folder")]
         public ActionResult InsertFolder(FolderModel model)
         {
             try
@@ -61,7 +61,7 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpPost]
-        [Route("deletefolder")]
+        [Route("delete_folder")]
         public ActionResult DeleteFolder(FolderModel model)
         {
             try
@@ -82,7 +82,7 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpPost]
-        [Route("updatefolder")]
+        [Route("update_folder")]
         public ActionResult UpdateFolder(FolderModel model)
         {
             try
@@ -107,7 +107,7 @@ namespace Manager.WebApp.Controllers.Business
 
         // XỬ LÝ FILE
         [HttpPost]
-        [Route("insertfile")]
+        [Route("insert_file")]
         public async Task<ActionResult> InsertFile([FromForm] FileModel model)
         {
             try
@@ -152,7 +152,7 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpPost]
-        [Route("deletefile")]
+        [Route("delete_file")]
         public ActionResult DeleteFile(FileModel model)
         {
             try

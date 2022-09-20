@@ -19,7 +19,7 @@ namespace Manager.DataLayer.Stores.System
         List<IdentityCurrentUser> GetList();
 
         IdentityInformationUser GetById(string id);
-        IdentityInformationUser GetByPass(IdentityInformationUser identity);
+        IdentityInformationUser GetByPassword(IdentityInformationUser identity);
         IdentityInformationUser GetByEmail(string email);
         IdentityInformationUser GetInforUser(int id);
 
@@ -62,9 +62,9 @@ namespace Manager.DataLayer.Stores.System
             return m.GetById(id);
         }
 
-        public IdentityInformationUser GetByPass(IdentityInformationUser identity)
+        public IdentityInformationUser GetByPassword(IdentityInformationUser identity)
         {
-            return m.GetByPass(identity);
+            return m.GetByPassword(identity);
         }
 
         public IdentityInformationUser GetByEmail(string email)

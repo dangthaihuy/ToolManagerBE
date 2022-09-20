@@ -31,6 +31,6 @@ namespace Manager.WebApp.Models.Business
         public List<IFormFile> Files { get; set; }
         public List<IdentityMessageAttachment> Attachments { get; set; }
 
-        public DateTime CreateDate { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

@@ -172,7 +172,7 @@ namespace Manager.WebApp.Helpers.Business
             {
                 var apiGroupMsg = new SendMessageModel();
                 apiGroupMsg = msg.MappingObject<SendMessageModel>();
-                apiGroupMsg.CreateDate = DateTime.Now;
+                apiGroupMsg.CreatedDate = DateTime.Now;
 
                 var connBuilder = new HubConnectionBuilder();
                 connBuilder.WithUrl(string.Format("{0}/chat", SystemSettings.MessengerCloud));
@@ -203,7 +203,7 @@ namespace Manager.WebApp.Helpers.Business
             {
                 var apiPrivateMsg = new SendMessageModel();
                 apiPrivateMsg = msg.MappingObject<SendMessageModel>();
-                apiPrivateMsg.CreateDate = DateTime.Now;
+                apiPrivateMsg.CreatedDate = DateTime.Now;
 
                 var connBuilder = new HubConnectionBuilder();
                 connBuilder.WithUrl(string.Format("{0}/chat", SystemSettings.MessengerCloud));
