@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Manager.DataLayer.Stores.System
 {
-    public interface IAPIStoreUser
+    public interface IApiStoreUser
     {
         int Register(IdentityInformationUser identity);
         IdentityInformationUser Login(IdentityInformationUser identity);
@@ -21,22 +21,23 @@ namespace Manager.DataLayer.Stores.System
         IdentityInformationUser GetById(string id);
         IdentityInformationUser GetByPassword(IdentityInformationUser identity);
         IdentityInformationUser GetByEmail(string email);
+        IdentityInformationUser GetByRefreshToken(string refreshToken);
         IdentityInformationUser GetInforUser(int id);
 
         IdentityInformationUser Update(IdentityInformationUser identity);
 
     }
-    public class APIStoreUser : IAPIStoreUser
+    public class ApiStoreUser : IApiStoreUser
     {
         private readonly string _conStr;
         private APIRpsUser m;
 
-        public APIStoreUser() : this("MainDBConn")
+        public ApiStoreUser() : this("MainDBConn")
         {
 
         }
 
-        public APIStoreUser(string connectionStringName)
+        public ApiStoreUser(string connectionStringName)
         {
             _conStr = AppConfiguration.GetAppsetting("MainDBConn");
             m = new APIRpsUser(_conStr);
@@ -71,6 +72,13 @@ namespace Manager.DataLayer.Stores.System
         {
             return m.GetByEmail(email);
         }
+
+        public IdentityInformationUser GetByRefreshToken(string refreshToken)
+        {
+            return m.GetByRefreshToken(refreshToken);
+
+        }
+
 
         public IdentityInformationUser GetInforUser(int id)
         {

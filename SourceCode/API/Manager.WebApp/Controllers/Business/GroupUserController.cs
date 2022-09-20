@@ -23,14 +23,14 @@ namespace Manager.WebApp.Controllers.Business
     public class GroupUserController : ControllerBase
     {
         private readonly IStoreGroup storeGroup;
-        private readonly IAPIStoreUser storeUser;
+        private readonly IApiStoreUser storeUser;
         private readonly IStoreMessage storeMessage;
         private readonly ILogger<GroupUserController> _logger;
         public GroupUserController(ILogger<GroupUserController> logger)
         {
 
             storeGroup = Startup.IocContainer.Resolve<IStoreGroup>();
-            storeUser = Startup.IocContainer.Resolve<IAPIStoreUser>();
+            storeUser = Startup.IocContainer.Resolve<IApiStoreUser>();
             storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
             _logger = logger;
 

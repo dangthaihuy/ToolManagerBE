@@ -23,7 +23,7 @@ namespace Manager.WebApp.Controllers.Business
     [Authorize]
     public class ConversationController : ControllerBase
     {
-        private readonly IAPIStoreUser storeUser;
+        private readonly IApiStoreUser storeUser;
         private readonly IStoreConversation storeConversation;
         private readonly IStoreGroup storeGroup;
         private readonly IStoreMessage storeMessage;
@@ -32,7 +32,7 @@ namespace Manager.WebApp.Controllers.Business
         public ConversationController(ILogger<ConversationController> logger)
         {
 
-            storeUser= Startup.IocContainer.Resolve<IAPIStoreUser>();
+            storeUser= Startup.IocContainer.Resolve<IApiStoreUser>();
             storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
             storeGroup = Startup.IocContainer.Resolve<IStoreGroup>();
             storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();

@@ -22,12 +22,12 @@ namespace Manager.WebApp.Controllers.Business
     public class FileManagementController : ControllerBase
     {
         private readonly ILogger<FileManagementController> _logger;
-        private readonly IAPIStoreUser storeUser;
+        private readonly IApiStoreUser storeUser;
         private readonly IStoreFileManagement storeFileManagement;
 
         public FileManagementController(ILogger<FileManagementController> logger)
         {
-            storeUser = Startup.IocContainer.Resolve<IAPIStoreUser>();
+            storeUser = Startup.IocContainer.Resolve<IApiStoreUser>();
             storeFileManagement = Startup.IocContainer.Resolve<IStoreFileManagement>();
             _logger = logger;
         }

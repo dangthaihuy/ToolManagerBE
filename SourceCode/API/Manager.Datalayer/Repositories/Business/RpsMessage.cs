@@ -346,6 +346,45 @@ namespace Manager.DataLayer.Repositories.Business
             return info;
         }
 
+        public IdentityMessageReply GetReplyMessageById(int id)
+        {
+            var info = new IdentityMessageReply();
+
+            if (id <= 0)
+            {
+                return null;
+            }
+
+            var sqlCmd = @"Message_GetReplyMessageById";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", id}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            info.Id = Utils.ConvertToInt32(reader["Id"]);
+                            info.Message = reader["Message"].ToString();
+                            info.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return info;
+        }
+
         public int DeleteByConId(int conversationId)
         {
             var sqlCmd = @"Message_DeleteByConId";

@@ -38,7 +38,7 @@ namespace Manager.DataLayer.Repositories.Business
 
                 {"@SenderId", identity.SenderId },
                 {"@ReceiverId", identity.ReceiverId },
-                {"@CreateDate", identity.CreateDate },
+                {"@CreatedDate", identity.CreatedDate },
 
             };
 
@@ -226,7 +226,7 @@ namespace Manager.DataLayer.Repositories.Business
             record.SenderId = Utils.ConvertToInt32(reader["SenderId"]);
             record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
 
-            record.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
+            record.CreatedDate = DateTime.Parse(reader["CreateDate"].ToString());
             record.Important = Utils.ConvertToInt32(reader["Important"]);
 
 

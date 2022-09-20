@@ -125,7 +125,7 @@ namespace Manager.WebApp.Hubs
 
                 var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
 
-                model.CreateDate = DateTime.Now;
+                model.CreatedDate = DateTime.Now;
 
                 //Lấy người gửi trong cache
                 var fromUser = connectedUsers.FirstOrDefault(x => x.Id == model.SenderId);

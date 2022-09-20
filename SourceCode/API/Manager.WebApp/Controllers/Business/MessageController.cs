@@ -5,15 +5,11 @@ using Manager.SharedLibs;
 using Manager.WebApp.Helpers;
 using Manager.WebApp.Helpers.Business;
 using Manager.WebApp.Models.Business;
-using Manager.WebApp.Settings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Manager.WebApp.Controllers.Business
@@ -244,7 +240,7 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     msg.ConversationId = con.Id;
                     msg.Type = EnumMessageType.Text;
-
+                    msg.ReplyMessage = storeMessage.GetReplyMessageById(model.ReplyMessageId);
                     msg.Id = storeMessage.Insert(msg);
 
                     //Send notification to user
@@ -272,7 +268,7 @@ namespace Manager.WebApp.Controllers.Business
                 if(msg != null)
                 {
                     msg.Type = EnumMessageType.Text;
-
+                    msg.ReplyMessage = storeMessage.GetReplyMessageById(model.ReplyMessageId);
                     msg.Id = storeMessage.Insert(msg);
 
                     ConversationHelpers.ClearCache(model.ConversationId);

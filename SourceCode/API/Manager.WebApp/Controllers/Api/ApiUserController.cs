@@ -28,14 +28,12 @@ namespace Manager.WebApp.Controllers.Api
     [Authorize]
     public class ApiUserController : Controller
     {
-        private readonly IAPIStoreUser storeUser;
-        private readonly IStoreToken storeToken;
+        private readonly IApiStoreUser storeUser;
         private readonly ILogger<ApiUserController> _logger;
 
         public ApiUserController(ILogger<ApiUserController> logger)
         {
-            storeUser = Startup.IocContainer.Resolve<IAPIStoreUser>();
-            storeToken = Startup.IocContainer.Resolve<IStoreToken>();
+            storeUser = Startup.IocContainer.Resolve<IApiStoreUser>();
             _logger = logger;
         }
 
@@ -117,10 +115,7 @@ namespace Manager.WebApp.Controllers.Api
                 if (ModelState.IsValid)
                 {
                     var result = ((JsonResult)VerifyAndGenerateToken(tokenRequest)).Value;
-                    if (result == null)
-                    {
-                        return Ok(new { apiMessage = new { type = "error", code = "account103" } });
-                    }
+                    
 
                     return Ok(result);
                 }
@@ -378,7 +373,7 @@ namespace Manager.WebApp.Controllers.Api
 
 
 
-        private ActionResult AssignJWTToken(IdentityInformationUser user)
+        private JsonResult AssignJWTToken(IdentityInformationUser user)
         {
             //create claims details based on the user information
             var claims = new[] {
@@ -401,24 +396,17 @@ namespace Manager.WebApp.Controllers.Api
 
             var tokenInstring = new JwtSecurityTokenHandler().WriteToken(token);
 
-            var refreshToken = new IdentityRefreshToken()
-            {
-                JwtId = token.Id,
-                IsUsed = false,
-                IsRevorked = false,
-                UserId = user.Id,
-                AddedDate = DateTime.Now,
-                ExpiryDate = DateTime.Now.AddMonths(6),
-                Token = RandomString(35) + Guid.NewGuid()
-            };
+            var identity = user.MappingObject<IdentityInformationUser>();
 
-            var result = storeToken.Insert(refreshToken);
+            identity.RefreshToken = RandomString(35) + Guid.NewGuid();
+
+            var result = storeUser.Update(identity);
 
 
-            return Json(new { Token = tokenInstring, RefreshToken = refreshToken.Token });
+            return Json(new { Token = tokenInstring, RefreshToken = identity.RefreshToken });
         }
 
-        private ActionResult VerifyAndGenerateToken(TokenRequest tokenRequest)
+        private JsonResult VerifyAndGenerateToken(TokenRequest tokenRequest)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
             try
@@ -441,114 +429,24 @@ namespace Manager.WebApp.Controllers.Api
                 _tokenValidationParams.ValidateLifetime = true;
 
 
-                // Validation 2 - Validate encryption alg
 
-                /*if (validatedToken is JwtSecurityToken jwtSecurityToken)
+                var user = storeUser.GetByRefreshToken(tokenRequest.RefreshToken);
+
+                if(user.Id == 0)
                 {
-                    var result = jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase);
-
-                    if (result == false)
-                    {
-                        return null;
-                    }
+                    return Json(new { apiMessage = new { type = "error", code = "account103" } });
                 }
-                // Validation 3 - validate expiry date
-                var utcExpiryDate = long.Parse(tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
+                
 
-                var expiryDate = UnixTimeStampToDateTime(utcExpiryDate);
 
-                if (expiryDate > DateTime.UtcNow)
-                {
-                    return Json(new
-                    {
-                        Success = false,
-                        Errors = new List<string>() {
-                            "Token has not yet expired"
-                        }
-                    });
-                    
-                }*/
-
-                // validation 4 - validate existence of the token
-                var storedToken = storeToken.GetList().FirstOrDefault(x => x.Token == tokenRequest.RefreshToken);
-
-                /*if (storedToken == null)
-                {
-                    return Json(new
-                    {
-                        Success = false,
-                        Errors = new List<string>() {
-                            "Token does not exist"
-                        }
-                    });
-                }*/
-
-                // Validation 5 - validate if used
-                if (storedToken.IsUsed)
-                {
-                    return Json(new
-                    {
-                        Success = false,
-                        Errors = new List<string>() {
-                            "Token has been used"
-                        }
-                    });
-                }
-
-                // Validation 6 - validate if revoked
-                /*if (storedToken.IsRevorked)
-                {
-                    return Json(new
-                    {
-                        Success = false,
-                        Errors = new List<string>() {
-                            "Token has been revoked"
-                        }
-                    });
-                }
-
-                // Validation 7 - validate the id
-                var jti = tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value;
-
-                if (storedToken.JwtId != jti)
-                {
-                    return Json(new
-                    {
-                        Success = false,
-                        Errors = new List<string>() {
-                            "Token doesn't match"
-                        }
-                    });
-                }
-
-                // Validation 8 - validate stored token expiry date
-                if (storedToken.ExpiryDate < DateTime.UtcNow)
-                {
-                    return Json(new
-                    {
-                        Success = false,
-                        Errors = new List<string>() {
-                            "Refresh token has expired"
-                        }
-                    });
-                }
-*/
-
-                // update current token 
-                storedToken.IsUsed = true;
-                storeToken.UpdateRefToken(storedToken);
-
-                // Generate a new token
-                var dbUser = storeUser.GetById(Convert.ToString(storedToken.UserId));
-
-                return AssignJWTToken(dbUser);
+                return AssignJWTToken(user);
 
             }
             catch (Exception ex)
             {
                 _logger.LogDebug("Could not refresh token: " + ex.ToString());
 
-                return StatusCode(500, new { message = "Server error: Refresh token" });
+                return Json(new { code = 500, message = "Server error: Refresh token" });
             }
         }
 

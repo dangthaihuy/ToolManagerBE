@@ -200,6 +200,39 @@ namespace Manager.DataLayer.Repositories.System
 
         }
 
+        public IdentityInformationUser GetByRefreshToken(string refreshToken)
+        {
+            var info = new IdentityInformationUser();
+
+            var sqlCmd = @"ApiUser_GetByRefreshToken";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@RefreshToken", refreshToken}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            info = ExtractUserData(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return info;
+
+        }
+
         public IdentityInformationUser GetByEmail(string email)
         {
             var info = new IdentityInformationUser();
@@ -293,6 +326,7 @@ namespace Manager.DataLayer.Repositories.System
                 {"@Phone", identity.Phone},
 
                 {"@Avatar", identity.Avatar },
+                {"@RefreshToken", identity.RefreshToken },
             };
 
             try
@@ -322,8 +356,8 @@ namespace Manager.DataLayer.Repositories.System
             var record = new IdentityInformationUser();
 
             //Seperate properties
-            if (reader.HasColumn("TotalCount"))
-                record.TotalCount = Utils.ConvertToInt32(reader["TotalCount"]);
+            if (reader.HasColumn("RefreshToken"))
+                record.RefreshToken = reader["RefreshToken"].ToString();
 
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.Email = reader["Email"].ToString();
