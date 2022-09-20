@@ -36,6 +36,7 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@ConversationId", identity.ConversationId },
                 {"@Message", identity.Message },
                 {"@Type", identity.Type },
+                {"@ReplyMessageId", identity.ReplyMessageId },
 
                 {"@SenderId", identity.SenderId },
                 {"@ReceiverId", identity.ReceiverId },

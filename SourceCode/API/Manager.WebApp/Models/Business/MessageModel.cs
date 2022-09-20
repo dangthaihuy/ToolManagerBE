@@ -27,10 +27,11 @@ namespace Manager.WebApp.Models.Business
         public int GroupId { get; set; }
         public int Type { get; set; }
         public string Message { get; set; }
-
+        public int ReplyMessageId { get; set; }
         public List<IFormFile> Files { get; set; }
         public List<IdentityMessageAttachment> Attachments { get; set; }
 
         public DateTime CreatedDate { get; set; }
+        
     }
 }
