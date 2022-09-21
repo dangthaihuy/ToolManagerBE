@@ -223,8 +223,8 @@ namespace Manager.WebApp.Controllers.Business
 
                         if (!string.IsNullOrEmpty(filePath))
                         {
-
-                            identity.Avatar = filePath;
+                            identity.AvatarPath = filePath;
+                            identity.Avatar = Request.Form.Files[0].FileName;
                         }
                     }
 

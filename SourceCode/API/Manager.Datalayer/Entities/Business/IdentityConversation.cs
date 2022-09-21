@@ -48,6 +48,7 @@ namespace Manager.DataLayer.Entities.Business
         public int Id { get; set; }
         public string Name { get; set; }
         public string Avatar { get; set; }
+        public string AvatarPath { get; set; }
 
     }
 

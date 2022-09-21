@@ -244,6 +244,7 @@ namespace Manager.DataLayer.Repositories.Business
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
             record.Name = reader["Name"].ToString();
+            record.Avatar = reader["AvatarPath"].ToString();
 
             return record;
         }

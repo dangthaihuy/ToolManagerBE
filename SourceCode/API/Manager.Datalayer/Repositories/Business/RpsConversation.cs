@@ -254,8 +254,9 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 {"@Id", identity.Id},
                 {"@Name", identity.Name},
-
                 {"@Avatar", identity.Avatar },
+                {"@AvatarPath", identity.AvatarPath },
+
             };
 
             try
@@ -305,7 +306,7 @@ namespace Manager.DataLayer.Repositories.Business
             record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
             record.Type = Utils.ConvertToInt32(reader["Type"]);
             record.Name = reader["Name"].ToString();
-            record.Avatar = reader["Avatar"].ToString();
+            record.Avatar = reader["AvatarPath"].ToString();
 
 
 
