@@ -30,6 +30,7 @@ namespace Manager.WebApp.AutofacDI
             builder.RegisterType<StoreGroup>().As<IStoreGroup>();
 
             builder.RegisterType<StoreFileManagement>().As<IStoreFileManagement>();
+            builder.RegisterType<StoreProject>().As<IStoreProject>();
 
 
             #region Business
