@@ -298,6 +298,7 @@ namespace Manager.WebApp.Controllers.Business
                     
                     msg.Message = "";
                     msg.Type = EnumMessageType.Attachment;
+                    msg.ReplyMessage = storeMessage.GetReplyMessageById(model.ReplyMessageId);
                     msg.Attachments = new List<IdentityMessageAttachment>();
 
                     foreach (var formFile in model.Files)
