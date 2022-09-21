@@ -255,12 +255,20 @@ namespace Manager.DataLayer.Repositories.Business
                                 replyMessage.Message = reader["Message"].ToString();
                                 replyMessage.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
 
-                                if (info.Attachments == null)
-                                {
-                                    info.Attachments = new List<IdentityMessageAttachment>();
-                                }
-
                                 info.ReplyMessage = replyMessage;
+                            }
+                        }
+                        if (info != null && reader.NextResult())
+                        {
+                            while (reader.Read())
+                            {
+                                var attachment = ExtractMessageAttachment(reader);
+                                if (info.ReplyMessage.Attachments == null)
+                                {
+                                    info.ReplyMessage.Attachments  = new List<IdentityMessageAttachment>();
+                                }
+                                info.ReplyMessage.Attachments.Add(attachment);
+
                             }
                         }
                     }
@@ -368,12 +376,27 @@ namespace Manager.DataLayer.Repositories.Business
                 {
                     using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
                     {
-                        while (reader.Read())
+                        if (reader.Read())
                         {
                             info.Id = Utils.ConvertToInt32(reader["Id"]);
                             info.Message = reader["Message"].ToString();
                             info.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
                         }
+
+                        if (info != null && reader.NextResult())
+                        {
+                            while (reader.Read())
+                            {
+                                var attachment = ExtractMessageAttachment(reader);
+                                if (info.Attachments == null)
+                                {
+                                    info.Attachments = new List<IdentityMessageAttachment>();
+                                }
+                                info.Attachments.Add(attachment);
+
+                            }
+                        }
+
                     }
                 }
             }
@@ -475,7 +498,11 @@ namespace Manager.DataLayer.Repositories.Business
             record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
             record.Important = Utils.ConvertToInt32(reader["Important"]);
 
-            record.ReplyMessageId = Utils.ConvertToInt32(reader["ReplyMessageId"]);
+
+            if (reader.HasColumn("ReplyMessageId"))
+            {
+                record.PageIndex = Utils.ConvertToInt32(reader["ReplyMessageId"]);
+            }
 
             if (reader.HasColumn("PageIndex"))
             {

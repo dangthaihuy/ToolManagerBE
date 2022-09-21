@@ -46,6 +46,7 @@ namespace Manager.DataLayer.Entities.Business
     {
         public int Id { get; set; }
         public string Message { get; set; }
+        public List<IdentityMessageAttachment> Attachments { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }
