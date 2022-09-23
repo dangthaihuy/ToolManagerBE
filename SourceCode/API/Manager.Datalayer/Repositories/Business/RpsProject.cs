@@ -34,7 +34,7 @@ namespace Manager.DataLayer.Repositories.Business
             var parameters = new Dictionary<string, object>
             {
                 {"@Name", identity.Name },
-                {"@CreateBy", identity.CreatedBy }
+                {"@CreatedBy", identity.CreatedBy }
 
             };
 
@@ -96,7 +96,8 @@ namespace Manager.DataLayer.Repositories.Business
             var parameters = new Dictionary<string, object>
             {
                 {"@Id", identity.Id},
-                {"@Name", identity.Name}
+                {"@Name", identity.Name},
+                {"Avatar", identity.Avatar},
             };
 
             try
@@ -105,9 +106,9 @@ namespace Manager.DataLayer.Repositories.Business
                 {
                     using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
                     {
-                        while (reader.Read())
+                        if (reader.Read())
                         {
-                            info = ExtractFolder(reader);
+                            info = ExtractProject(reader);
                         }
                     }
                 }
@@ -121,16 +122,83 @@ namespace Manager.DataLayer.Repositories.Business
             return info;
         }
 
+        public List<int> GetProjectByUserId(int id)
+        {
+            var list = new List<int>();
+
+            var sqlCmd = @"Project_GetByUserId";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@UserId", id}
+            };
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = Utils.ConvertToInt32(reader["ProjectId"]);
+                            list.Add(res);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return list;
+        }
+
+        public IdentityProject GetProjectById(int id)
+        {
+            var res = new IdentityProject();
+
+            var sqlCmd = @"Project_GetById";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", id}
+            };
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            res = ExtractProject(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
+        }
+
+
         public int InsertTask(IdentityTask identity)
         {
-            var sqlCmd = @"Project_InsertTask";
+            var sqlCmd = @"Task_Insert";
             int newId = 0;
 
             //For parameters
             var parameters = new Dictionary<string, object>
             {
                 {"@Name", identity.Name },
-                {"@CreateBy", identity.CreatedBy }
+                {"@ProjectId", identity.ProjectId },
+                {"@CreatedBy", identity.CreatedBy },
 
             };
 
@@ -154,7 +222,7 @@ namespace Manager.DataLayer.Repositories.Business
 
         public int DeleteTask(IdentityTask identity)
         {
-            var sqlCmd = @"Project_DeleteTask";
+            var sqlCmd = @"Task_Delete";
             int newId = 0;
 
             //For parameters
@@ -181,13 +249,156 @@ namespace Manager.DataLayer.Repositories.Business
             return newId;
         }
 
+        public IdentityTask UpdateTask(IdentityTask identity)
+        {
+            var info = new IdentityTask();
 
-        private IdentityProject ExtractFolder(IDataReader reader)
+            //Common syntax
+            var sqlCmd = @"Task_Update";
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", identity.Id},
+                {"@Name", identity.Name},
+                {"Description", identity.Description},
+                {"Status", identity.Status},
+            };
+
+            try
+            {
+
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            info = ExtractTask(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return info;
+        }
+        public List<int> GetTaskByUserId(int id)
+        {
+            var list = new List<int>();
+
+            var sqlCmd = @"Task_GetByUserId";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@UserId", id}
+            };
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = Utils.ConvertToInt32(reader["TaskId"]);
+                            list.Add(res);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return list;
+        }
+
+        public IdentityTask GetTaskById(int id)
+        {
+            var res = new IdentityTask();
+
+            var sqlCmd = @"Task_GetById";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", id}
+            };
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            res = ExtractTask(reader);
+                        }
+                        if (res != null && reader.NextResult())
+                        {
+                            res.File = new List<IdentityProjectAttachment>();
+                            while (reader.Read())
+                            {
+                                res.File.Add(ExtractAttachment(reader));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
+        }
+
+
+        private IdentityProject ExtractProject(IDataReader reader)
         {
             var record = new IdentityProject();
 
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.Name = reader["Name"].ToString();
+            record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
+            record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
+            record.Avatar = reader["Avatar"].ToString();
+
+            return record;
+        }
+
+        private IdentityTask ExtractTask(IDataReader reader)
+        {
+            var record = new IdentityTask();
+
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
+            record.Name = reader["Name"].ToString();
+            record.ProjectId = Utils.ConvertToInt32(reader["ProjectId"]);
+            record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
+            record.Description = reader["CreatedBy"].ToString();
+            record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
+            record.Status = Utils.ConvertToInt32(reader["Status"]);
+
+            return record;
+        }
+
+        private IdentityProjectAttachment ExtractAttachment(IDataReader reader)
+        {
+            var record = new IdentityProjectAttachment();
+
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
+            record.Name = reader["Name"].ToString();
+            record.ProjectId = Utils.ConvertToInt32(reader["ProjectId"]);
+            record.TaskId = Utils.ConvertToInt32(reader["TaskId"]);
+            record.Path = reader["Path"].ToString();
+
 
             return record;
         }

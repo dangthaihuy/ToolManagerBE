@@ -13,6 +13,10 @@ namespace Manager.WebApp.Helpers
         public static string ConversationLastMessage = "CONVERSATIONLASTMESSAGE_{0}";
         public static string GroupOfUser = "GROUPOFUSER_{0}";
         public static string UsersInGroup = "USERSINGROUP_{0}";
+
+        public static string Project = "PROJECT_{0}";
+        public static string Task = "TASK_{0}";
+
     }
 
     public static class EnumListCacheKeys

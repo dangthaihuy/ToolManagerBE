@@ -3,11 +3,15 @@ using Manager.DataLayer.Entities.Business;
 using Manager.DataLayer.Stores.Business;
 using Manager.DataLayer.Stores.System;
 using Manager.SharedLibs;
+using Manager.WebApp.Helpers;
+using Manager.WebApp.Helpers.Business;
 using Manager.WebApp.Models.Business;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Manager.WebApp.Controllers.Business
 {
@@ -62,6 +66,9 @@ namespace Manager.WebApp.Controllers.Business
 
                 var res = storeProject.DeleteProject(identity);
 
+                //Clear Cache
+                ProjectHelpers.ClearCacheBaseInfoProject(model.Id);
+
                 return Ok(new { apiMessage = new { type = "success", code = "project002" } });
             }
             catch (Exception ex)
@@ -74,16 +81,34 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpPost]
         [Route("update_project")]
-        public ActionResult UpdateProject(ProjectModel model)
+        public async Task<ActionResult> UpdateProject([FromForm] ProjectModel model)
         {
             try
             {
                 var identity = model.MappingObject<IdentityProject>();
+
+                if (Request.Form.Files.Count > 0)
+                {
+                    
+                    var file = Request.Form.Files[0];
+                    var attachmentFolder = string.Format("Project/{0}/Avatar", identity.Id);
+                    var filePath = FileUploadHelper.UploadFile(file, attachmentFolder);
+
+                    await Task.FromResult(filePath);
+
+                    if (!string.IsNullOrEmpty(filePath))
+                    {
+                        identity.Avatar = filePath;
+                    }
+
+                    
+
+                }
                 var res = storeProject.UpdateProject(identity);
+                //Clear Cache
+                ProjectHelpers.ClearCacheBaseInfoProject(model.Id);
 
-
-
-                return Ok(new { folder = res, apiMessage = new { type = "success", code = "project003" } });
+                return Ok(new { project = res, apiMessage = new { type = "success", code = "project003" } });
             }
             catch (Exception ex)
             {
@@ -92,6 +117,36 @@ namespace Manager.WebApp.Controllers.Business
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
         }
+
+        [HttpGet]
+        [Route("get_project_by_userid")]
+        public ActionResult GetProjectByUserId(int id)
+        {
+            try
+            {
+                var res = new List<IdentityProject>();
+                var listProject = storeProject.GetProjectByUserId(id);
+
+                foreach(int item in listProject)
+                {
+                    var project =  ProjectHelpers.GetBaseInfoProject(item);
+                    if(project != null)
+                    {
+                        res.Add(project);
+                    }
+                }
+                return Ok(new { listProject = res, apiMessage = new { type = "success", code = "projectxxx" } });
+            }
+            catch(Exception ex)
+            {
+                _logger.LogDebug("Could not get project by user id: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+
+            
+        }
+
 
         [HttpPost]
         [Route("insert_task")]
@@ -112,7 +167,7 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
-                _logger.LogDebug("Could not insert folder: " + ex.ToString());
+                _logger.LogDebug("Could not insert task: " + ex.ToString());
 
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
@@ -128,6 +183,8 @@ namespace Manager.WebApp.Controllers.Business
 
                 var res = storeProject.DeleteTask(identity);
 
+                //Clear Cache
+                ProjectHelpers.ClearCacheBaseInfoTask(model.Id);
                 return Ok(new { apiMessage = new { type = "success", code = "project005" } });
             }
             catch (Exception ex)
@@ -137,5 +194,106 @@ namespace Manager.WebApp.Controllers.Business
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
         }
+
+        [HttpPost]
+        [Route("update_task")]
+        public async Task<ActionResult> UpdateTask(TaskModel model)
+        {
+            try
+            {
+                var identity = model.MappingObject<IdentityTask>();
+
+                if (Request.Form.Files.Count > 0)
+                {
+                    foreach(var file in Request.Form.Files)
+                    {
+                        var attachmentFolder = string.Format("Project/{0}/Attachment", identity.Id);
+                        var filePath = FileUploadHelper.UploadFile(file, attachmentFolder);
+
+                        await Task.FromResult(filePath);
+
+                        if (!string.IsNullOrEmpty(filePath))
+                        {
+                            identity.File.Add(new IdentityProjectAttachment{ Path= filePath});
+                            
+                        }
+                    }
+                    
+
+                }
+
+                var res = storeProject.UpdateTask(identity);
+
+                //Clear Cache
+                ProjectHelpers.ClearCacheBaseInfoTask(model.Id);
+
+                return Ok(new { apiMessage = new { type = "success", code = "project005" } });
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogDebug("Could not update task: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+        }
+
+        [HttpGet]
+        [Route("get_task_by_id")]
+        public ActionResult GetTaskById(int id)
+        {
+            try
+            {
+                if(id == 0)
+                {
+                    return Ok(new { apiMessage = new { type = "error", code = "projectxxx" } });
+                }
+                var task = ProjectHelpers.GetBaseInfoTask(id);
+
+                if (task == null)
+                {
+                    return Ok(new { apiMessage = new { type = "error", code = "projectxxx" } });
+                }
+
+                return Ok(new { task = task, apiMessage = new { type = "success", code = "projectxxx" } });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not get task by id: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+
+
+        }
+        [HttpGet]
+        [Route("get_task_by_userid")]
+        public ActionResult GetTaskByUserId(int id)
+        {
+            try
+            {
+                var res = new List<IdentityTask>();
+                var listProject = storeProject.GetTaskByUserId(id);
+
+                foreach (int item in listProject)
+                {
+                    var task = ProjectHelpers.GetBaseInfoTask(item);
+                    if (task != null)
+                    {
+                        res.Add(task);
+                    }
+                }
+                return Ok(new { listTask = res, apiMessage = new { type = "success", code = "projectxxx" } });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not get task by user id: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+
+
+        }
+
     }
 }
