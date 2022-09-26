@@ -360,6 +360,72 @@ namespace Manager.DataLayer.Repositories.Business
             return res;
         }
 
+        public List<int> GetTaskByProjectId(int id)
+        {
+            var list = new List<int>();
+
+            var sqlCmd = @"Task_GetByProjectId";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@ProjectId", id}
+            };
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = Utils.ConvertToInt32(reader["Id"]);
+                            list.Add(res);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return list;
+        }
+
+
+        public List<int> GetUserByProjectId(int id)
+        {
+            var list = new List<int>();
+
+            var sqlCmd = @"ApiUser_GetByProjectId";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@ProjectId", id}
+            };
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = Utils.ConvertToInt32(reader["UserId"]);
+                            list.Add(res);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return list;
+        }
 
         private IdentityProject ExtractProject(IDataReader reader)
         {

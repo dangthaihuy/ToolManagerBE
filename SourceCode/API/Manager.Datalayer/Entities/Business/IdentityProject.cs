@@ -13,8 +13,11 @@ namespace Manager.DataLayer.Entities.Business
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Avatar { get; set; }
+        public List<IdentityInformationUser> User { get; set; }
+        public List<IdentityTask> Task { get; set; }
 
     }
+
 
     public class IdentityTask
     {

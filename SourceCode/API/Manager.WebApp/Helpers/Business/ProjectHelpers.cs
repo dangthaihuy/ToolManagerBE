@@ -10,6 +10,7 @@ namespace Manager.WebApp.Helpers.Business
     public class ProjectHelpers
     {
         private static readonly ILogger _logger = Log.ForContext(typeof(MessengerHelpers));
+
         private static ICacheProvider _myCache;
         private static int _cacheExpiredTime = 10080;
 

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Manager.DataLayer.Entities;
 using Manager.DataLayer.Entities.Business;
 using Manager.DataLayer.Stores.Business;
 using Manager.DataLayer.Stores.System;
@@ -145,6 +146,54 @@ namespace Manager.WebApp.Controllers.Business
             }
 
             
+        }
+
+        [HttpGet]
+        [Route("get_project_by_id")]
+        public ActionResult GetProjectById(int id)
+        {
+            try
+            {
+                var res = ProjectHelpers.GetBaseInfoProject(id);
+                var listTaskId = storeProject.GetTaskByProjectId(id);
+
+                if (listTaskId.HasData())
+                {
+                    res.Task = new List<IdentityTask>();
+                    foreach (var taskId in listTaskId)
+                    {
+                        var idenTask = ProjectHelpers.GetBaseInfoTask(taskId);
+                        if (idenTask != null)
+                        {
+                            res.Task.Add(idenTask);
+                        }
+                    }
+                }
+
+                var listUserId = storeProject.GetUserByProjectId(id);
+                if (listUserId.HasData())
+                {
+                    res.User = new List<IdentityInformationUser>();
+                    foreach(var userId in listUserId)
+                    {
+                        var idenUser = UserHelpers.GetBaseInfo(userId);
+                        if (idenUser != null)
+                        {
+                            res.User.Add(idenUser);
+                        }
+                    }
+                }
+
+                return Ok(new { project = res, apiMessage = new { type = "success", code = "projectxxx" } });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not get project by id: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+
+
         }
 
 

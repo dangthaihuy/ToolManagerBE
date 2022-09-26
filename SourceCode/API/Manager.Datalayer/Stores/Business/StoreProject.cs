@@ -22,8 +22,9 @@ namespace Manager.DataLayer.Stores.Business
         IdentityTask UpdateTask(IdentityTask identity);
         List<int> GetTaskByUserId(int id);
         IdentityTask GetTaskById(int id);
+        List<int> GetTaskByProjectId(int id);
 
-
+        List<int> GetUserByProjectId(int id);
 
     }
 
@@ -85,8 +86,16 @@ namespace Manager.DataLayer.Stores.Business
             return r.GetTaskById(id);
         }
 
+        public List<int> GetTaskByProjectId(int id)
+        {
+            return r.GetTaskByProjectId(id);
+        }
 
-        
+
+        public List<int> GetUserByProjectId(int id)
+        {
+            return r.GetUserByProjectId(id);
+        }
 
     }
 }
