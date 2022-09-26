@@ -159,13 +159,13 @@ namespace Manager.WebApp.Controllers.Business
 
                 if (listTaskId.HasData())
                 {
-                    res.Task = new List<IdentityTask>();
+                    res.Tasks = new List<IdentityTask>();
                     foreach (var taskId in listTaskId)
                     {
                         var idenTask = ProjectHelpers.GetBaseInfoTask(taskId);
                         if (idenTask != null)
                         {
-                            res.Task.Add(idenTask);
+                            res.Tasks.Add(idenTask);
                         }
                     }
                 }
@@ -173,13 +173,13 @@ namespace Manager.WebApp.Controllers.Business
                 var listUserId = storeProject.GetUserByProjectId(id);
                 if (listUserId.HasData())
                 {
-                    res.User = new List<IdentityInformationUser>();
+                    res.Users = new List<IdentityInformationUser>();
                     foreach(var userId in listUserId)
                     {
                         var idenUser = UserHelpers.GetBaseInfo(userId);
                         if (idenUser != null)
                         {
-                            res.User.Add(idenUser);
+                            res.Users.Add(idenUser);
                         }
                     }
                 }
@@ -193,7 +193,36 @@ namespace Manager.WebApp.Controllers.Business
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
+        }
 
+        [HttpPost]
+        [Route("add_user_to_project")]
+        public ActionResult AddUserToProject(UserProjectModel model)
+        {
+            if(model == null)
+            {
+                return Ok(new { apiMessage = new { type = "error", code = "projectxxx" } });
+            }
+
+            var identity = model.MappingObject<IdentityUserProject>();
+            var res = storeProject.InsertUserToProject(identity);
+
+            return Ok(new { apiMessage = new { type = "success", code = "projectxxx" } });
+        }
+
+        [HttpPost]
+        [Route("delete_user_in_project")]
+        public ActionResult DeleteUserInProject(UserProjectModel model)
+        {
+            if (model == null)
+            {
+                return Ok(new { apiMessage = new { type = "error", code = "projectxxx" } });
+            }
+
+            var identity = model.MappingObject<IdentityUserProject>();
+            var res = storeProject.DeleteUserInProject(identity);
+
+            return Ok(new { apiMessage = new { type = "success", code = "projectxxx" } });
         }
 
 
@@ -246,7 +275,7 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpPost]
         [Route("update_task")]
-        public async Task<ActionResult> UpdateTask(TaskModel model)
+        public async Task<ActionResult> UpdateTask([FromForm] TaskModel model)
         {
             try
             {
@@ -257,26 +286,34 @@ namespace Manager.WebApp.Controllers.Business
                     foreach(var file in Request.Form.Files)
                     {
                         var attachmentFolder = string.Format("Project/{0}/Attachment", identity.Id);
+                        if (!System.IO.Directory.Exists(attachmentFolder))
+                        {
+                            System.IO.Directory.CreateDirectory(attachmentFolder);
+                        }
                         var filePath = FileUploadHelper.UploadFile(file, attachmentFolder);
 
                         await Task.FromResult(filePath);
 
                         if (!string.IsNullOrEmpty(filePath))
                         {
-                            identity.File.Add(new IdentityProjectAttachment{ Path= filePath});
+                            if(identity.Files == null)
+                            {
+                                identity.Files = new List<IdentityProjectAttachment>();
+                            }
+                            identity.Files.Add(new IdentityProjectAttachment{Name= file.FileName, Path= filePath});
                             
                         }
                     }
                     
-
                 }
 
-                var res = storeProject.UpdateTask(identity);
+                var updateTask = storeProject.UpdateTask(identity);
 
                 //Clear Cache
                 ProjectHelpers.ClearCacheBaseInfoTask(model.Id);
+                var res = ProjectHelpers.GetBaseInfoTask(model.Id);
 
-                return Ok(new { apiMessage = new { type = "success", code = "project005" } });
+                return Ok(new {task=res, apiMessage = new { type = "success", code = "project005" } });
 
             }
             catch(Exception ex)
@@ -344,5 +381,61 @@ namespace Manager.WebApp.Controllers.Business
 
         }
 
+        [HttpPost]
+        [Route("add_user_to_task")]
+        public ActionResult AddUserToTask(UserProjectModel model)
+        {
+            if (model == null)
+            {
+                return Ok(new { apiMessage = new { type = "error", code = "projectxxx" } });
+            }
+
+            var identity = model.MappingObject<IdentityUserProject>();
+            var res = storeProject.InsertUserToTask(identity);
+
+            return Ok(new { apiMessage = new { type = "success", code = "projectxxx" } });
+        }
+
+        [HttpPost]
+        [Route("delete_user_in_task")]
+        public ActionResult DeleteUserInTask(UserProjectModel model)
+        {
+            if (model == null)
+            {
+                return Ok(new { apiMessage = new { type = "error", code = "projectxxx" } });
+            }
+
+            var identity = model.MappingObject<IdentityUserProject>();
+            var res = storeProject.DeleteUserInTask(identity);
+
+            return Ok(new { apiMessage = new { type = "success", code = "projectxxx" } });
+        }
+
+
+        //FEATURE
+        /*[HttpPost]
+        [Route("insert_feature")]
+        public ActionResult InsertFeature(FeatureModel model)
+        {
+            try
+            {
+
+                var identity = model.MappingObject<IdentityFolder>();
+                var res = storeFileManagement.InsertFolder(identity);
+
+                if (res > 0)
+                {
+                    return Ok(new { apiMessage = new { type = "success", code = "folder001" } });
+                }
+
+                return Ok(new { apiMessage = new { type = "error", code = "folder101" } });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not insert folder: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+        }*/
     }
 }

@@ -16,6 +16,8 @@ namespace Manager.DataLayer.Stores.Business
         IdentityProject UpdateProject(IdentityProject identity);
         List<int> GetProjectByUserId(int id);
         IdentityProject GetProjectById(int id);
+        int InsertUserToProject(IdentityUserProject identity);
+        int DeleteUserInProject(IdentityUserProject identity);
 
         int InsertTask(IdentityTask identity);
         int DeleteTask(IdentityTask identity);
@@ -25,6 +27,8 @@ namespace Manager.DataLayer.Stores.Business
         List<int> GetTaskByProjectId(int id);
 
         List<int> GetUserByProjectId(int id);
+        int InsertUserToTask(IdentityUserProject id);
+        int DeleteUserInTask(IdentityUserProject identity);
 
     }
 
@@ -63,6 +67,15 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetProjectById(id);
         }
+        public int InsertUserToProject(IdentityUserProject identity)
+        {
+            return r.InsertUserToProject(identity);
+        }
+        public int DeleteUserInProject(IdentityUserProject identity)
+        {
+            return r.DeleteUserInProject(identity);
+        }
+
 
         public int InsertTask(IdentityTask identity)
         {
@@ -96,6 +109,13 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetUserByProjectId(id);
         }
-
+        public int InsertUserToTask(IdentityUserProject identity)
+        {
+            return r.InsertUserToTask(identity);
+        }
+        public int DeleteUserInTask(IdentityUserProject identity)
+        {
+            return r.DeleteUserInTask(identity);
+        }
     }
 }

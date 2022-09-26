@@ -34,7 +34,8 @@ namespace Manager.DataLayer.Repositories.Business
             var parameters = new Dictionary<string, object>
             {
                 {"@Name", identity.Name },
-                {"@CreatedBy", identity.CreatedBy }
+                {"@CreatedBy", identity.CreatedBy },
+                {"@Description", identity.Description }
 
             };
 
@@ -186,6 +187,67 @@ namespace Manager.DataLayer.Repositories.Business
 
             return res;
         }
+        public int InsertUserToProject(IdentityUserProject identity)
+        {
+            var sqlCmd = @"Project_InsertUser";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@UserId", identity.UserId },
+                {"@ProjectId", identity.ProjectId }
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
+
+        public int DeleteUserInProject(IdentityUserProject identity)
+        {
+            var sqlCmd = @"Project_DeleteUser";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@UserId", identity.UserId },
+                {"@ProjectId", identity.ProjectId }
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
 
 
         public int InsertTask(IdentityTask identity)
@@ -261,8 +323,8 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 {"@Id", identity.Id},
                 {"@Name", identity.Name},
-                {"Description", identity.Description},
-                {"Status", identity.Status},
+                {"@Description", identity.Description},
+                {"@Status", identity.Status},
             };
 
             try
@@ -270,12 +332,18 @@ namespace Manager.DataLayer.Repositories.Business
 
                 using (var conn = new SqlConnection(_conStr))
                 {
-                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    MsSqlHelper.ExecuteNonQuery(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    foreach(var file in identity.Files)
                     {
-                        if (reader.Read())
+                        var param = new Dictionary<string, object>
                         {
-                            info = ExtractTask(reader);
-                        }
+                            {"@Name", file.Name},
+                            {"@ProjectId", identity.ProjectId},
+                            {"@TaskId", identity.Id},
+                            {"@Path", file.Path},
+                        };
+                        MsSqlHelper.ExecuteNonQuery(conn, CommandType.StoredProcedure, @"Project_InsertAttachment", param);
                     }
                 }
             }
@@ -342,10 +410,10 @@ namespace Manager.DataLayer.Repositories.Business
                         }
                         if (res != null && reader.NextResult())
                         {
-                            res.File = new List<IdentityProjectAttachment>();
+                            res.Files = new List<IdentityProjectAttachment>();
                             while (reader.Read())
                             {
-                                res.File.Add(ExtractAttachment(reader));
+                                res.Files.Add(ExtractAttachment(reader));
                             }
                         }
                     }
@@ -426,7 +494,66 @@ namespace Manager.DataLayer.Repositories.Business
 
             return list;
         }
+        public int InsertUserToTask(IdentityUserProject identity)
+        {
+            var sqlCmd = @"Task_InsertUser";
+            int newId = 0;
 
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@UserId", identity.UserId },
+                {"@TaskId", identity.TaskId }
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
+        public int DeleteUserInTask(IdentityUserProject identity)
+        {
+            var sqlCmd = @"Task_DeleteUser";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@UserId", identity.UserId },
+                {"@TaskId", identity.TaskId }
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
         private IdentityProject ExtractProject(IDataReader reader)
         {
             var record = new IdentityProject();
