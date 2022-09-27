@@ -49,7 +49,7 @@ namespace Manager.DataLayer.Repositories.Business
 
                     if (identity.Members.HasData())
                     {
-                        foreach(var userId in identity.Members)
+                        foreach(var userId in identity.MemberIds)
                         {
                             var param = new Dictionary<string, object>
                             {
@@ -241,6 +241,38 @@ namespace Manager.DataLayer.Repositories.Business
             //For parameters
             var parameters = new Dictionary<string, object>
             {
+                {"@UserId", identity.UserId },
+                {"@ProjectId", identity.ProjectId }
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
+
+        public int UpdateUserInProject(IdentityUserProject identity)
+        {
+            var sqlCmd = @"Project_UpdateUser";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Role", identity.Role },
                 {"@UserId", identity.UserId },
                 {"@ProjectId", identity.ProjectId }
 
@@ -571,6 +603,7 @@ namespace Manager.DataLayer.Repositories.Business
         }
 
 
+
         public int GetRoleUser(IdentityUserProject identity)
         {
             var res = new int();
@@ -640,6 +673,106 @@ namespace Manager.DataLayer.Repositories.Business
             return newId;
         }
 
+        public List<int> GetChild(int parentId)
+        {
+            var list = new List<int>();
+
+            //Common syntax
+            var sqlCmd = @"Feature_GetChild";
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@ParentId", parentId}
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = Utils.ConvertToInt32(reader["Id"]);
+                            list.Add(res);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return list;
+        }
+        public int DeleteFeature(int id)
+        {
+            var sqlCmd = @"Feature_Delete";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", id }
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
+        public IdentityFeature UpdateFeature(IdentityFeature identity)
+        {
+            var info = new IdentityFeature();
+
+            //Common syntax
+            var sqlCmd = @"Feature_Update";
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", identity.Id},
+                {"@Name", identity.Name}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            info = ExtractFeature(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return info;
+        }
+
         private IdentityProject ExtractProject(IDataReader reader)
         {
             var record = new IdentityProject();
@@ -681,5 +814,21 @@ namespace Manager.DataLayer.Repositories.Business
 
             return record;
         }
+
+        private IdentityFeature ExtractFeature(IDataReader reader)
+        {
+            var record = new IdentityFeature();
+
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
+            record.Name = reader["Name"].ToString();
+            record.ProjectId = Utils.ConvertToInt32(reader["ProjectId"]);
+            record.ParentId = Utils.ConvertToInt32(reader["ParentId"]);
+            record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
+            record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
+            
+
+            return record;
+        }
+
     }
 }

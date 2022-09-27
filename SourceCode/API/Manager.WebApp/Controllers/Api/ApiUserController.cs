@@ -391,7 +391,7 @@ namespace Manager.WebApp.Controllers.Api
                 AppConfiguration.GetAppsetting("Jwt:Issuer"),
                 AppConfiguration.GetAppsetting("Jwt:Audience"),
                 claims,
-                expires: DateTime.Now.AddHours(1),
+                expires: DateTime.Now.AddDays(1),
                 signingCredentials: signIn);
 
             var tokenInstring = new JwtSecurityTokenHandler().WriteToken(token);

@@ -10,7 +10,7 @@ namespace Manager.WebApp.Models.Business
         public string Description { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
-        public List<string> Members { get; set; }
+        public List<string> MemberIds { get; set; }
         public string Avatar { get; set; }
 
     }

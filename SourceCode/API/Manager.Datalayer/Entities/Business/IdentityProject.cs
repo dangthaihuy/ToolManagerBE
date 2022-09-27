@@ -14,9 +14,9 @@ namespace Manager.DataLayer.Entities.Business
 
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
-        public List<string> Members { get; set; }
+        public List<string> MemberIds { get; set; }
         public string Avatar { get; set; }
-        public List<IdentityInformationUser> Member { get; set; }
+        public List<IdentityInformationUser> Members { get; set; }
         public List<IdentityTask> Tasks { get; set; }
 
     }

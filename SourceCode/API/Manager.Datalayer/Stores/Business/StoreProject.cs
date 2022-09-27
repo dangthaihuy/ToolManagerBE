@@ -18,6 +18,7 @@ namespace Manager.DataLayer.Stores.Business
         IdentityProject GetProjectById(int id);
         int InsertUserToProject(IdentityUserProject identity);
         int DeleteUserInProject(IdentityUserProject identity);
+        int UpdateUserInProject(IdentityUserProject identity);
 
         int InsertTask(IdentityTask identity);
         int DeleteTask(IdentityTask identity);
@@ -25,6 +26,7 @@ namespace Manager.DataLayer.Stores.Business
         List<int> GetTaskByUserId(int id);
         IdentityTask GetTaskById(int id);
         List<int> GetTaskByProjectId(int id);
+        /*List<int> GetTaskByFeatureId(int id);*/
         List<int> GetUserByProjectId(int id);
         int InsertUserToTask(IdentityUserProject id);
         int DeleteUserInTask(IdentityUserProject identity);
@@ -33,7 +35,9 @@ namespace Manager.DataLayer.Stores.Business
         int GetRoleUser(IdentityUserProject identity);
 
         int InsertFeature(IdentityFeature identity);
-
+        int DeleteFeature(int id);
+        IdentityFeature UpdateFeature(IdentityFeature identity);
+        List<int> GetChild(int parentId);
     }
 
     public class StoreProject : IStoreProject
@@ -61,12 +65,10 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.UpdateProject(identity);
         }
-
         public List<int> GetProjectByUserId(int id)
         {
             return r.GetProjectByUserId(id);
         }
-
         public IdentityProject GetProjectById(int id)
         {
             return r.GetProjectById(id);
@@ -79,6 +81,11 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.DeleteUserInProject(identity);
         }
+        public int UpdateUserInProject(IdentityUserProject identity)
+        {
+            return r.UpdateUserInProject(identity);
+        }
+
 
 
         public int InsertTask(IdentityTask identity)
@@ -102,13 +109,10 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetTaskById(id);
         }
-
         public List<int> GetTaskByProjectId(int id)
         {
             return r.GetTaskByProjectId(id);
         }
-
-
         public List<int> GetUserByProjectId(int id)
         {
             return r.GetUserByProjectId(id);
@@ -135,7 +139,18 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.InsertFeature(identity);
         }
-
+        public int DeleteFeature(int id)
+        {
+            return r.DeleteFeature(id);
+        }
+        public IdentityFeature UpdateFeature(IdentityFeature identity)
+        {
+            return r.UpdateFeature(identity);
+        }
+        public List<int> GetChild(int parentId)
+        {
+            return r.GetChild(parentId);
+        }
     }
 
 }
