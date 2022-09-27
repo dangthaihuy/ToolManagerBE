@@ -44,7 +44,7 @@ namespace Manager.WebApp.Controllers.Business
 
                 if (res > 0)
                 {
-                    return Ok(new { apiMessage = new { type = "success", code = "project001" } });
+                    return Ok(new {projectId = res, apiMessage = new { type = "success", code = "project001" } });
                 }
 
                 return Ok(new { apiMessage = new { type = "error", code = "project101" } });
@@ -173,13 +173,18 @@ namespace Manager.WebApp.Controllers.Business
                 var listUserId = storeProject.GetUserByProjectId(id);
                 if (listUserId.HasData())
                 {
-                    res.Users = new List<IdentityInformationUser>();
+                    var userProject = new IdentityUserProject();
+                    res.Member = new List<IdentityInformationUser>();
                     foreach(var userId in listUserId)
                     {
                         var idenUser = UserHelpers.GetBaseInfo(userId);
                         if (idenUser != null)
                         {
-                            res.Users.Add(idenUser);
+                            userProject.UserId = userId;
+                            userProject.ProjectId = id;
+
+                            idenUser.Role = storeProject.GetRoleUser(userProject);
+                            res.Member.Add(idenUser);
                         }
                     }
                 }
@@ -413,26 +418,47 @@ namespace Manager.WebApp.Controllers.Business
 
 
         //FEATURE
-        /*[HttpPost]
+        [HttpPost]
         [Route("insert_feature")]
         public ActionResult InsertFeature(FeatureModel model)
         {
             try
             {
 
-                var identity = model.MappingObject<IdentityFolder>();
-                var res = storeFileManagement.InsertFolder(identity);
+                var identity = model.MappingObject<IdentityFeature>();
+                var res = storeProject.InsertFeature(identity);
 
                 if (res > 0)
                 {
-                    return Ok(new { apiMessage = new { type = "success", code = "folder001" } });
+                    return Ok(new { apiMessage = new { type = "success", code = "featurexxx" } });
                 }
 
-                return Ok(new { apiMessage = new { type = "error", code = "folder101" } });
+                return Ok(new { apiMessage = new { type = "error", code = "featurexxx" } });
             }
             catch (Exception ex)
             {
-                _logger.LogDebug("Could not insert folder: " + ex.ToString());
+                _logger.LogDebug("Could not insert feature: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+        }
+
+        /*[HttpPost]
+        [Route("delete_folder")]
+        public ActionResult DeleteFeature(FeatureModel model)
+        {
+            try
+            {
+                var identity = model.MappingObject<IdentityFeature>();
+
+
+                DeleteChild(identity);
+
+                return Ok(new { apiMessage = new { type = "success", code = "featurexxx" } });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not delete feature: " + ex.ToString());
 
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }

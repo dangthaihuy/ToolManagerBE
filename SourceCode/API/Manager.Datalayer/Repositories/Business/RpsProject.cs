@@ -46,6 +46,20 @@ namespace Manager.DataLayer.Repositories.Business
                     var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
 
                     newId = Convert.ToInt32(returnObj);
+
+                    if (identity.Members.HasData())
+                    {
+                        foreach(var userId in identity.Members)
+                        {
+                            var param = new Dictionary<string, object>
+                            {
+                                {"@UserId", Utils.ConvertToInt32(userId) },
+                                {"@ProjectId", newId }
+
+                            };
+                            MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, @"Project_InsertUser", param);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -196,7 +210,8 @@ namespace Manager.DataLayer.Repositories.Business
             var parameters = new Dictionary<string, object>
             {
                 {"@UserId", identity.UserId },
-                {"@ProjectId", identity.ProjectId }
+                {"@ProjectId", identity.ProjectId },
+                {"@Role", identity.Role }
 
             };
 
@@ -554,6 +569,77 @@ namespace Manager.DataLayer.Repositories.Business
 
             return newId;
         }
+
+
+        public int GetRoleUser(IdentityUserProject identity)
+        {
+            var res = new int();
+
+            var sqlCmd = @"Project_GetRoleUser";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@UserId", identity.UserId},
+                {"@ProjectId", identity.ProjectId}
+            };
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            res = Utils.ConvertToInt32(reader["Role"]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
+        }
+
+
+
+        public int InsertFeature(IdentityFeature identity)
+        {
+            var sqlCmd = @"Feature_Insert";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Name", identity.Name },
+                {"@ProjectId", identity.ProjectId },
+                {"@ParentId", identity.ParentId },
+                {"@CreatedBy", identity.CreatedBy }
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
+
         private IdentityProject ExtractProject(IDataReader reader)
         {
             var record = new IdentityProject();

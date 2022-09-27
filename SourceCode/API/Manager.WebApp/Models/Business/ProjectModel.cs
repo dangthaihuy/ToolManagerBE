@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Manager.WebApp.Models.Business
 {
@@ -9,6 +10,7 @@ namespace Manager.WebApp.Models.Business
         public string Description { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        public List<string> Members { get; set; }
         public string Avatar { get; set; }
 
     }
@@ -30,6 +32,7 @@ namespace Manager.WebApp.Models.Business
         public int UserId { get; set; }
         public int ProjectId { get; set; }
         public int TaskId { get;set; }
+        public int Role { get;set; }
     }
 
 

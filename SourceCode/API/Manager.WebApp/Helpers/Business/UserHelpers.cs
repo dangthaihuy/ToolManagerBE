@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Manager.DataLayer.Entities;
+using Manager.DataLayer.Stores.Business;
 using Manager.DataLayer.Stores.System;
 using Manager.WebApp.Settings;
 using Serilog;
@@ -29,11 +30,13 @@ namespace Manager.WebApp.Helpers.Business
                 if (info == null)
                 {
                     var myStore = Startup.IocContainer.Resolve<IApiStoreUser>();
+                    
                     info = myStore.GetById(id.ToString());
 
                     if (info != null)
                     {
                         //Storage to cache
+                        
                         cacheProvider.Set(myKey, info, SystemSettings.DefaultCachingTimeInMinutes);
                     }
                 }

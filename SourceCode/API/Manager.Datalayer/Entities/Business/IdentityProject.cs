@@ -14,8 +14,9 @@ namespace Manager.DataLayer.Entities.Business
 
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        public List<string> Members { get; set; }
         public string Avatar { get; set; }
-        public List<IdentityInformationUser> Users { get; set; }
+        public List<IdentityInformationUser> Member { get; set; }
         public List<IdentityTask> Tasks { get; set; }
 
     }
@@ -49,5 +50,17 @@ namespace Manager.DataLayer.Entities.Business
         public int UserId { get; set; }
         public int ProjectId { get; set; }
         public int TaskId { get; set; }
+        public int Role { get; set; }
+
+    }
+
+    public class IdentityFeature
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int ProjectId { get; set; }
+        public int ParentId { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

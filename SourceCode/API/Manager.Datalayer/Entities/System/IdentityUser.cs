@@ -117,7 +117,7 @@ namespace Manager.DataLayer.Entities
         public string PasswordHash { get; set; }
         public string Password { get; set; }
         public string Phone { get; set; }
-        public int TotalCount { get; set; }
+        public int Role { get; set; }
         public string RefreshToken { get; set; }
 
     }
