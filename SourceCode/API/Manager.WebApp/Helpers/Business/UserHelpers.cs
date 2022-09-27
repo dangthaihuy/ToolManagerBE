@@ -48,5 +48,23 @@ namespace Manager.WebApp.Helpers.Business
 
             return info;
         }
+
+        public static void ClearCacheBaseInfo(int id)
+        {
+            try
+            {
+                var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
+
+                var myKey = string.Format(EnumFormatInfoCacheKeys.User, id);
+
+
+                cacheProvider.Clear(myKey);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Failed to ClearCache: {0}", ex.ToString());
+            }
+        }
     }
 }

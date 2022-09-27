@@ -319,6 +319,7 @@ namespace Manager.WebApp.Controllers.Api
                     }
 
                     var updateUser = storeUser.Update(identity);
+                    UserHelpers.ClearCacheBaseInfo(identity.Id);
 
                     return Ok(new { userProfile = updateUser, apiMessage = new { type = "success", code = "account009" } });
                 }

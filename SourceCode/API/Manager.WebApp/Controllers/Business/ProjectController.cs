@@ -524,19 +524,19 @@ namespace Manager.WebApp.Controllers.Business
                         DeleteChild(item);
                     }
                 }
-                /*var listTask = storeProject.GetTaskByFeatureId(parentId);*/
+                var listTask = storeProject.GetTaskByFeatureId(parentId);
                 var res = storeProject.DeleteFeature(parentId);
 
                 //Xóa task trong feature , quan hệ task user, attachment trong task
 
 
-                /*if (listFile.HasData())
+                if (listTask.HasData())
                 {
-                    foreach (var file in listFile)
+                    foreach (var task in listTask)
                     {
-                        System.IO.File.Delete(String.Concat("wwwroot", file.Path));
+                        
                     }
-                }*/
+                }
             }
             catch (Exception ex)
             {
