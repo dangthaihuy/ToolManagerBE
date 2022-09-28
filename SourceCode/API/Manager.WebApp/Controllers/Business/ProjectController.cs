@@ -142,17 +142,17 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var res = ProjectHelpers.GetBaseInfoProject(id);
-                var listTaskId = storeProject.GetTaskByProjectId(id);
+                var listFeatureId = storeProject.GetFeatureByProjectId(id);
 
-                if (listTaskId.HasData())
+                if (listFeatureId.HasData())
                 {
-                    res.Tasks = new List<IdentityTask>();
-                    foreach (var taskId in listTaskId)
+                    res.Features = new List<IdentityFeature>();
+                    foreach (var featureId in listFeatureId)
                     {
-                        var idenTask = ProjectHelpers.GetBaseInfoTask(taskId);
-                        if (idenTask != null)
+                        var idenFeature = ProjectHelpers.GetBaseInfoFeature(featureId);
+                        if (idenFeature != null)
                         {
-                            res.Tasks.Add(idenTask);
+                            res.Features.Add(idenFeature);
                         }
                     }
                 }

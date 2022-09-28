@@ -16,6 +16,7 @@ namespace Manager.WebApp.Helpers
 
         public static string Project = "PROJECT_{0}";
         public static string Task = "TASK_{0}";
+        public static string Feature = "FEATURE_{0}";
 
         public static string User = "User_{0}";
 

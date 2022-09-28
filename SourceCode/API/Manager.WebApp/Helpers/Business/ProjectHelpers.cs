@@ -78,7 +78,37 @@ namespace Manager.WebApp.Helpers.Business
             return info;
         }
 
+        public static IdentityFeature GetBaseInfoFeature(int id)
+        {
+            var myKey = string.Format(EnumFormatInfoCacheKeys.Feature, id);
 
+            IdentityFeature info = null;
+            try
+            {
+                //Check the cache first (Find the product that has Id equal to id)
+                var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
+
+                info = cacheProvider.Get<IdentityFeature>(myKey);
+
+                if (info == null)
+                {
+                    var myStore = Startup.IocContainer.Resolve<IStoreProject>();
+                    info = myStore.GetFeatureById(id);
+
+                    if (info != null)
+                    {
+                        //Storage to cache
+                        cacheProvider.Set(myKey, info, SystemSettings.DefaultCachingTimeInMinutes);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Could not GetBaseInfoTask: " + ex.ToString());
+            }
+
+            return info;
+        }
 
 
 

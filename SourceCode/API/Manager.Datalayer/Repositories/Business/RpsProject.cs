@@ -112,7 +112,7 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 {"@Id", identity.Id},
                 {"@Name", identity.Name},
-                {"Avatar", identity.Avatar},
+                {"@Avatar", identity.Avatar},
             };
 
             try
@@ -804,6 +804,71 @@ namespace Manager.DataLayer.Repositories.Business
 
             return info;
         }
+        public IdentityFeature GetFeatureById(int id)
+        {
+            var res = new IdentityFeature();
+
+            var sqlCmd = @"Feature_GetById";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", id}
+            };
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            res = ExtractFeature(reader);
+                        }
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
+        }
+
+        public List<int> GetFeatureByProjectId(int id)
+        {
+            var list = new List<int>();
+
+            var sqlCmd = @"Feature_GetByProjectId";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@ProjectId", id}
+            };
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = Utils.ConvertToInt32(reader["Id"]);
+                            list.Add(res);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return list;
+        }
 
         private IdentityProject ExtractProject(IDataReader reader)
         {
@@ -857,7 +922,8 @@ namespace Manager.DataLayer.Repositories.Business
             record.ParentId = Utils.ConvertToInt32(reader["ParentId"]);
             record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
             record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
-            
+            record.Description = reader["Description"].ToString();
+
 
             return record;
         }

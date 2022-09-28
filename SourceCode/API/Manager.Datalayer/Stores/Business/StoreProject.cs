@@ -38,6 +38,8 @@ namespace Manager.DataLayer.Stores.Business
         int DeleteFeature(int id);
         IdentityFeature UpdateFeature(IdentityFeature identity);
         List<int> GetChild(int parentId);
+        IdentityFeature GetFeatureById(int id);
+        List<int> GetFeatureByProjectId(int id);
     }
 
     public class StoreProject : IStoreProject
@@ -155,6 +157,16 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetChild(parentId);
         }
+        public IdentityFeature GetFeatureById(int id)
+        {
+            return r.GetFeatureById(id);
+        }
+        public List<int> GetFeatureByProjectId(int id)
+        {
+            return r.GetFeatureByProjectId(id);
+        }
+
+
     }
 
 }

@@ -17,7 +17,7 @@ namespace Manager.DataLayer.Entities.Business
         public List<string> MemberIds { get; set; }
         public string Avatar { get; set; }
         public List<IdentityInformationUser> Members { get; set; }
-        public List<IdentityTask> Tasks { get; set; }
+        public List<IdentityFeature> Features { get; set; }
 
     }
 
@@ -62,5 +62,7 @@ namespace Manager.DataLayer.Entities.Business
         public int ParentId { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string Description { get; set; }
+
     }
 }

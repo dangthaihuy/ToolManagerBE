@@ -44,5 +44,7 @@ namespace Manager.WebApp.Models.Business
         public int ParentId { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string Description { get; set; }
+
     }
 }
