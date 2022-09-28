@@ -636,7 +636,39 @@ namespace Manager.DataLayer.Repositories.Business
             return newId;
         }
 
+        public List<string> DeleleAttachmentByTaskId(int id)
+        {
+            var list = new List<string>();
 
+            var sqlCmd = @"Project_DeleteAttachmentByTaskId";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@TaskId", id}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = reader["Path"].ToString();
+                            list.Add(res);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return list;
+        }
 
         public int GetRoleUser(IdentityUserProject identity)
         {
@@ -686,9 +718,9 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@ParentId", identity.ParentId },
                 {"@CreatedBy", identity.CreatedBy },
                 {"@Description", identity.Description },
+                 
 
-
-            };
+            }; 
 
             try
             {
@@ -917,6 +949,7 @@ namespace Manager.DataLayer.Repositories.Business
             record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
             record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
             record.Avatar = reader["Avatar"].ToString();
+            record.Description = reader["Description"].ToString();
 
             return record;
         }

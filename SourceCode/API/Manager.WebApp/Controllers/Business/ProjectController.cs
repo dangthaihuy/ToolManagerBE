@@ -66,7 +66,7 @@ namespace Manager.WebApp.Controllers.Business
                 //Clear Cache
                 ProjectHelpers.ClearCacheBaseInfoProject(model.Id);
 
-                return Ok(new { apiMessage = new { type = "success", code = "project002" } });
+                return Ok(new { id = model.Id, apiMessage = new { type = "success", code = "project002" } });
             }
             catch (Exception ex)
             {
@@ -461,7 +461,7 @@ namespace Manager.WebApp.Controllers.Business
 
                 if (res > 0)
                 {
-                    return Ok(new {feature=res, apiMessage = new { type = "success", code = "featurexxx" } });
+                    return Ok(new {id=res, apiMessage = new { type = "success", code = "featurexxx" } });
                 }
 
                 return Ok(new { apiMessage = new { type = "error", code = "featurexxx" } });
@@ -549,9 +549,11 @@ namespace Manager.WebApp.Controllers.Business
                         DeleteChild(item);
                     }
                 }
-                var listTask = storeProject.GetTaskByFeatureId(parentId);
-                var res = storeProject.DeleteFeature(parentId);
 
+                var listTask = storeProject.GetTaskByFeatureId(parentId);
+
+                var res = storeProject.DeleteFeature(parentId);
+                ProjectHelpers.ClearCacheBaseInfoFeature(parentId);
                 //Xóa task trong feature , quan hệ task user, attachment trong task
 
 
@@ -559,7 +561,15 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     foreach (var task in listTask)
                     {
-                        
+                        var attachments = storeProject.DeleleAttachmentByTaskId(task.Id);
+                        foreach(var item in attachments)
+                        {
+                            if(!System.IO.Directory.Exists(String.Concat("wwwroot", item)))
+                            {
+                                System.IO.File.Delete(String.Concat("wwwroot", item));
+                            }
+                            
+                        }
                     }
                 }
             }
