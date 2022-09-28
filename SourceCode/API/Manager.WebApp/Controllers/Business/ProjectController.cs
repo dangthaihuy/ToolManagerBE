@@ -461,7 +461,7 @@ namespace Manager.WebApp.Controllers.Business
 
                 if (res > 0)
                 {
-                    return Ok(new { apiMessage = new { type = "success", code = "featurexxx" } });
+                    return Ok(new {feature=res, apiMessage = new { type = "success", code = "featurexxx" } });
                 }
 
                 return Ok(new { apiMessage = new { type = "error", code = "featurexxx" } });
@@ -501,6 +501,8 @@ namespace Manager.WebApp.Controllers.Business
                 var identity = model.MappingObject<IdentityFeature>();
                 var res = storeProject.UpdateFeature(identity);
 
+                ProjectHelpers.ClearCacheBaseInfoFeature(model.Id);
+
                 return Ok(new { apiMessage = new { type = "success", code = "featurexxx" } });
             }
             catch (Exception ex)
@@ -510,6 +512,29 @@ namespace Manager.WebApp.Controllers.Business
             }
         }
 
+        [HttpGet]
+        [Route("get_feature_by_id")]
+        public ActionResult GetFeatureById(int id)
+        {
+            try
+            {
+                var res = ProjectHelpers.GetBaseInfoFeature(id);
+                res.SubFeatures = storeProject.GetSubFeature(id);
+                res.Tasks = storeProject.GetTaskByFeatureId(id);
+
+                if (res != null)
+                {
+                    return Ok(new {feature = res, apiMessage = new { type = "success", code = "featurexxx" } });
+                }
+
+                return Ok(new { apiMessage = new { type = "error", code = "featurexxx" } });
+            }
+            catch(Exception ex)
+            {
+                _logger.LogDebug("Could not get feature by id: " + ex.ToString());
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+        }
 
         private void DeleteChild(int parentId)
         {

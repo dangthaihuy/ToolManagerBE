@@ -150,5 +150,23 @@ namespace Manager.WebApp.Helpers.Business
                 _logger.Error("Failed to ClearCache: {0}", ex.ToString());
             }
         }
+
+        public static void ClearCacheBaseInfoFeature(int id)
+        {
+            try
+            {
+                var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
+
+                var myKey = string.Format(EnumFormatInfoCacheKeys.Feature, id);
+
+
+                cacheProvider.Clear(myKey);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Failed to ClearCache: {0}", ex.ToString());
+            }
+        }
     }
 }

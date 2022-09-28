@@ -26,7 +26,7 @@ namespace Manager.DataLayer.Stores.Business
         List<int> GetTaskByUserId(int id);
         IdentityTask GetTaskById(int id);
         List<int> GetTaskByProjectId(int id);
-        List<int> GetTaskByFeatureId(int id);
+        List<IdentityTask> GetTaskByFeatureId(int id);
         List<int> GetUserByProjectId(int id);
         int InsertUserToTask(IdentityUserProject id);
         int DeleteUserInTask(IdentityUserProject identity);
@@ -40,6 +40,7 @@ namespace Manager.DataLayer.Stores.Business
         List<int> GetChild(int parentId);
         IdentityFeature GetFeatureById(int id);
         List<int> GetFeatureByProjectId(int id);
+        List<IdentityFeature> GetSubFeature(int id);
     }
 
     public class StoreProject : IStoreProject
@@ -115,7 +116,8 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetTaskByProjectId(id);
         }
-        public List<int> GetTaskByFeatureId(int id)
+        
+        public List<IdentityTask> GetTaskByFeatureId(int id)
         {
             return r.GetTaskByFeatureId(id);
         }
@@ -164,6 +166,10 @@ namespace Manager.DataLayer.Stores.Business
         public List<int> GetFeatureByProjectId(int id)
         {
             return r.GetFeatureByProjectId(id);
+        }
+        public List<IdentityFeature> GetSubFeature(int id)
+        {
+            return r.GetSubFeature(id);
         }
 
 

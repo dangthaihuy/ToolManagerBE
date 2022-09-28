@@ -27,6 +27,7 @@ namespace Manager.DataLayer.Entities.Business
         public int Id { get; set; }
         public string Name { get; set; }
         public int ProjectId { get; set; }
+        public int FeatureId { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Description { get; set; }
@@ -63,6 +64,8 @@ namespace Manager.DataLayer.Entities.Business
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Description { get; set; }
+        public List<IdentityTask> Tasks { get; set; }
+        public List<IdentityFeature> SubFeatures { get; set; }
 
     }
 }

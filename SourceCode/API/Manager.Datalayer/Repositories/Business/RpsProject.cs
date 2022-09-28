@@ -307,6 +307,7 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 {"@Name", identity.Name },
                 {"@ProjectId", identity.ProjectId },
+                {"@FeatureId", identity.FeatureId },
                 {"@CreatedBy", identity.CreatedBy },
 
             };
@@ -508,9 +509,9 @@ namespace Manager.DataLayer.Repositories.Business
             return list;
         }
 
-        public List<int> GetTaskByFeatureId(int id)
+        public List<IdentityTask> GetTaskByFeatureId(int id)
         {
-            var list = new List<int>();
+            var list = new List<IdentityTask>();
 
             var sqlCmd = @"Task_GetByFeatureId";
 
@@ -518,6 +519,7 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 {"@FeatureId", id}
             };
+
             try
             {
                 using (var conn = new SqlConnection(_conStr))
@@ -526,7 +528,7 @@ namespace Manager.DataLayer.Repositories.Business
                     {
                         while (reader.Read())
                         {
-                            var res = Utils.ConvertToInt32(reader["Id"]);
+                            var res = ExtractTask(reader);
                             list.Add(res);
                         }
                     }
@@ -682,7 +684,9 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@Name", identity.Name },
                 {"@ProjectId", identity.ProjectId },
                 {"@ParentId", identity.ParentId },
-                {"@CreatedBy", identity.CreatedBy }
+                {"@CreatedBy", identity.CreatedBy },
+                {"@Description", identity.Description },
+
 
             };
 
@@ -825,6 +829,7 @@ namespace Manager.DataLayer.Repositories.Business
                             res = ExtractFeature(reader);
                         }
                         
+
                     }
                 }
             }
@@ -856,6 +861,39 @@ namespace Manager.DataLayer.Repositories.Business
                         while (reader.Read())
                         {
                             var res = Utils.ConvertToInt32(reader["Id"]);
+                            list.Add(res);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return list;
+        }
+
+        public List<IdentityFeature> GetSubFeature(int id)
+        {
+            var list = new List<IdentityFeature>();
+
+            var sqlCmd = @"Feature_GetSubFeature";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@ParentId", id}
+            };
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = ExtractFeature(reader);
                             list.Add(res);
                         }
                     }
