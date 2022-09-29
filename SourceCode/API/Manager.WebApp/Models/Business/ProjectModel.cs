@@ -49,4 +49,14 @@ namespace Manager.WebApp.Models.Business
         public string Description { get; set; }
 
     }
+
+    public class ProjectAttachmentModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int ProjectId { get; set; }
+        public int TaskId { get; set; }
+        public string Path { get; set; }
+
+    }
 }

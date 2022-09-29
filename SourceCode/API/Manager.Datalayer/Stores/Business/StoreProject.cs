@@ -12,18 +12,19 @@ namespace Manager.DataLayer.Stores.Business
     public interface IStoreProject
     {
         int InsertProject(IdentityProject identity);
-        int DeleteProject(IdentityProject identity);
+        List<int> DeleteProject(IdentityProject identity);
         IdentityProject UpdateProject(IdentityProject identity);
         List<int> GetProjectByUserId(int id);
         IdentityProject GetProjectById(int id);
         int InsertUserToProject(IdentityUserProject identity);
         int DeleteUserInProject(IdentityUserProject identity);
         int UpdateUserInProject(IdentityUserProject identity);
-        
+        List<IdentityProjectAttachment> GetAttachmentByProjectId(int id);
+
 
         int InsertTask(IdentityTask identity);
-        int DeleteTask(IdentityTask identity);
         IdentityTask UpdateTask(IdentityTask identity);
+        List<string> DeleteTask(int id);
         List<int> GetTaskByUserId(int id);
         IdentityTask GetTaskById(int id);
         List<int> GetTaskByProjectId(int id);
@@ -31,11 +32,12 @@ namespace Manager.DataLayer.Stores.Business
         List<int> GetUserByProjectId(int id);
         int InsertUserToTask(IdentityUserProject id);
         int DeleteUserInTask(IdentityUserProject identity);
-        List<string> DeleleAttachmentByTaskId(int id);
+        List<IdentityProjectAttachment> GetAttachmentByTaskId(int id);
+        IdentityProjectAttachment DeleteAttachmentById(int id);
 
         int GetRoleUser(IdentityUserProject identity);
 
-        int InsertFeature(IdentityFeature identity);
+        IdentityFeature InsertFeature(IdentityFeature identity);
         int DeleteFeature(int id);
         IdentityFeature UpdateFeature(IdentityFeature identity);
         List<int> GetChild(int parentId);
@@ -61,7 +63,7 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.InsertProject(identity);
         }
-        public int DeleteProject(IdentityProject identity)
+        public List<int> DeleteProject(IdentityProject identity)
         {
             return r.DeleteProject(identity);
         }
@@ -89,6 +91,10 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.UpdateUserInProject(identity);
         }
+        public List<IdentityProjectAttachment> GetAttachmentByProjectId(int id)
+        {
+            return r.GetAttachmentByProjectId(id);
+        }
 
 
 
@@ -96,11 +102,10 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.InsertTask(identity);
         }
-        public int DeleteTask(IdentityTask identity)
+        public List<string> DeleteTask(int id)
         {
-            return r.DeleteTask(identity);
+            return r.DeleteTask(id);
         }
-
         public IdentityTask UpdateTask(IdentityTask identity)
         {
             return r.UpdateTask(identity);
@@ -117,7 +122,6 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetTaskByProjectId(id);
         }
-        
         public List<IdentityTask> GetTaskByFeatureId(int id)
         {
             return r.GetTaskByFeatureId(id);
@@ -134,9 +138,13 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.DeleteUserInTask(identity);
         }
-        public List<string> DeleleAttachmentByTaskId(int id)
+        public List<IdentityProjectAttachment> GetAttachmentByTaskId(int id)
         {
-            return r.DeleleAttachmentByTaskId(id);
+            return r.GetAttachmentByTaskId(id);
+        }
+        public IdentityProjectAttachment DeleteAttachmentById(int id)
+        {
+            return r.DeleteAttachmentById(id);
         }
 
 
@@ -148,7 +156,7 @@ namespace Manager.DataLayer.Stores.Business
 
 
 
-        public int InsertFeature(IdentityFeature identity)
+        public IdentityFeature InsertFeature(IdentityFeature identity)
         {
             return r.InsertFeature(identity);
         }

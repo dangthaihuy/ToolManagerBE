@@ -71,8 +71,10 @@ namespace Manager.DataLayer.Repositories.Business
             return newId;
         }
 
-        public int DeleteProject(IdentityProject identity)
+        public List<int> DeleteProject(IdentityProject identity)
         {
+            var list = new List<int>();
+
             var sqlCmd = @"Project_Delete";
             int newId = 0;
 
@@ -86,9 +88,14 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 using (var conn = new SqlConnection(_conStr))
                 {
-                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
-
-                    newId = Convert.ToInt32(returnObj);
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = Utils.ConvertToInt32(reader["Id"]);
+                            list.Add(res);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -97,7 +104,7 @@ namespace Manager.DataLayer.Repositories.Business
                 throw new CustomSQLException(strError);
             }
 
-            return newId;
+            return list;
         }
 
         public IdentityProject UpdateProject(IdentityProject identity)
@@ -112,6 +119,7 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 {"@Id", identity.Id},
                 {"@Name", identity.Name},
+                {"@Description", identity.Description},
                 {"@Avatar", identity.Avatar},
             };
 
@@ -330,24 +338,29 @@ namespace Manager.DataLayer.Repositories.Business
             return newId;
         }
 
-        public int DeleteTask(IdentityTask identity)
+        public List<string> DeleteTask(int id)
         {
-            var sqlCmd = @"Task_Delete";
-            int newId = 0;
+            var list = new List<string>();
 
-            //For parameters
+            var sqlCmd = @"Task_Delete";
+
             var parameters = new Dictionary<string, object>
             {
-                {"@Id", identity.Id }
+                {"@TaskId", id}
             };
 
             try
             {
                 using (var conn = new SqlConnection(_conStr))
                 {
-                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
-
-                    newId = Convert.ToInt32(returnObj);
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = reader["Path"].ToString();
+                            list.Add(res);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -356,7 +369,7 @@ namespace Manager.DataLayer.Repositories.Business
                 throw new CustomSQLException(strError);
             }
 
-            return newId;
+            return list;
         }
 
         public IdentityTask UpdateTask(IdentityTask identity)
@@ -462,6 +475,15 @@ namespace Manager.DataLayer.Repositories.Business
                             while (reader.Read())
                             {
                                 res.Files.Add(ExtractAttachment(reader));
+                            }
+                        }
+                        if(res != null && reader.NextResult())
+                        {
+                            res.MemberIds = new List<int>();
+                            while (reader.Read())
+                            {
+                                var memberId = Utils.ConvertToInt32(reader["UserId"]);
+                                res.MemberIds.Add(memberId);
                             }
                         }
                     }
@@ -575,6 +597,39 @@ namespace Manager.DataLayer.Repositories.Business
 
             return list;
         }
+        public List<IdentityProjectAttachment> GetAttachmentByProjectId(int id)
+        {
+            var list = new List<IdentityProjectAttachment>();
+
+            var sqlCmd = @"Project_GetAttachmentByProjectId";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", id}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = ExtractAttachment(reader);
+                            list.Add(res);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return list;
+        }
         public int InsertUserToTask(IdentityUserProject identity)
         {
             var sqlCmd = @"Task_InsertUser";
@@ -636,15 +691,17 @@ namespace Manager.DataLayer.Repositories.Business
             return newId;
         }
 
-        public List<string> DeleleAttachmentByTaskId(int id)
-        {
-            var list = new List<string>();
+        
 
-            var sqlCmd = @"Project_DeleteAttachmentByTaskId";
+        public List<IdentityProjectAttachment> GetAttachmentByTaskId(int id)
+        {
+            var list = new List<IdentityProjectAttachment>();
+
+            var sqlCmd = @"Project_GetAttachmentByTaskId";
 
             var parameters = new Dictionary<string, object>
             {
-                {"@TaskId", id}
+                {"@Id", id}
             };
 
             try
@@ -655,7 +712,7 @@ namespace Manager.DataLayer.Repositories.Business
                     {
                         while (reader.Read())
                         {
-                            var res = reader["Path"].ToString();
+                            var res = ExtractAttachment(reader);
                             list.Add(res);
                         }
                     }
@@ -669,7 +726,38 @@ namespace Manager.DataLayer.Repositories.Business
 
             return list;
         }
+        public IdentityProjectAttachment DeleteAttachmentById(int id)
+        {
+            var res = new IdentityProjectAttachment();
 
+            var sqlCmd = @"Project_DeleteAttachmentById";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", id}
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            res = ExtractAttachment(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
+        }
         public int GetRoleUser(IdentityUserProject identity)
         {
             var res = new int();
@@ -705,8 +793,9 @@ namespace Manager.DataLayer.Repositories.Business
 
 
 
-        public int InsertFeature(IdentityFeature identity)
+        public IdentityFeature InsertFeature(IdentityFeature identity)
         {
+            var res = new IdentityFeature();
             var sqlCmd = @"Feature_Insert";
             int newId = 0;
 
@@ -726,9 +815,13 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 using (var conn = new SqlConnection(_conStr))
                 {
-                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
-
-                    newId = Convert.ToInt32(returnObj);
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            res = ExtractFeature(reader);
+                        }
+                    }
 
                 }
             }
@@ -738,7 +831,7 @@ namespace Manager.DataLayer.Repositories.Business
                 throw new CustomSQLException(strError);
             }
 
-            return newId;
+            return res;
         }
 
         public List<int> GetChild(int parentId)
@@ -816,7 +909,8 @@ namespace Manager.DataLayer.Repositories.Business
             var parameters = new Dictionary<string, object>
             {
                 {"@Id", identity.Id},
-                {"@Name", identity.Name}
+                {"@Name", identity.Name},
+                {"@Description", identity.Description}
             };
 
             try
