@@ -143,7 +143,7 @@ namespace Manager.DataLayer.Repositories.Business
                 return listData;
             }
 
-            var sqlCmd = @"Group_User_GetGroupByUserId";
+            var sqlCmd = @"Conversation_User_GetGroupByUserId";
 
             var parameters = new Dictionary<string, object>
             {

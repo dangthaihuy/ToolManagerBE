@@ -27,7 +27,7 @@ namespace Manager.DataLayer.Entities.Business
         public DateTime LastTime { get; set; }
 
         public IdentityCurrentUser Receiver { get; set; }
-        public IdentityGroup Group { get; set; }
+        public IdentityConversationUser Group { get; set; }
 
 
     }

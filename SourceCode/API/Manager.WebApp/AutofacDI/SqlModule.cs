@@ -27,7 +27,7 @@ namespace Manager.WebApp.AutofacDI
             builder.RegisterType<StoreConversation>().As<IStoreConversation>();
             builder.RegisterType<StoreMessage>().As<IStoreMessage>();
             builder.RegisterType<StoreMessageAttachment>().As<IStoreMessageAttachment>();
-            builder.RegisterType<StoreGroup>().As<IStoreGroup>();
+            builder.RegisterType<StoreConversationUser>().As<IStoreConversationUser>();
 
             builder.RegisterType<StoreFileManagement>().As<IStoreFileManagement>();
             builder.RegisterType<StoreProject>().As<IStoreProject>();

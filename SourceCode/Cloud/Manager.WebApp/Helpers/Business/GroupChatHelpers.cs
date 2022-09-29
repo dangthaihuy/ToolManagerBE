@@ -12,21 +12,21 @@ namespace Manager.WebApp.Helpers.Business
     {
         private static readonly ILogger _logger = Log.ForContext(typeof(ConversationHelpers));
 
-        public static IdentityGroup GetGroupInfo(IdentityConversation item)
+        public static IdentityConversationUser GetGroupInfo(IdentityConversation item)
         {
             var myKey = string.Format(EnumFormatInfoCacheKeys.ConversationGroup, item.Id);
 
-            IdentityGroup info = null;
+            IdentityConversationUser info = null;
             try
             {
                 //Check the cache first (Find the product that has Id equal to id)
                 var cacheProvider = Startup.IocContainer.Resolve<ICacheProvider>();
 
-                info = cacheProvider.Get<IdentityGroup>(myKey);
+                info = cacheProvider.Get<IdentityConversationUser>(myKey);
 
                 if (info == null)
                 {
-                    var myStore = Startup.IocContainer.Resolve<IStoreGroup>();
+                    var myStore = Startup.IocContainer.Resolve<IStoreConversationUser>();
                     info = myStore.GetById(Convert.ToString(item.Id))
 ;                   info.Member = myStore.GetUserById(item.Id);
 

@@ -25,7 +25,7 @@ namespace Manager.WebApp.Controllers.Business
     {
         private readonly IApiStoreUser storeUser;
         private readonly IStoreConversation storeConversation;
-        private readonly IStoreGroup storeGroup;
+        private readonly IStoreConversationUser StoreConversationUser;
         private readonly IStoreMessage storeMessage;
         private readonly IStoreMessageAttachment storeMessageAttachment;
         private readonly ILogger<ConversationController> _logger;
@@ -34,7 +34,7 @@ namespace Manager.WebApp.Controllers.Business
 
             storeUser= Startup.IocContainer.Resolve<IApiStoreUser>();
             storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
-            storeGroup = Startup.IocContainer.Resolve<IStoreGroup>();
+            StoreConversationUser = Startup.IocContainer.Resolve<IStoreConversationUser>();
             storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
             storeMessageAttachment = Startup.IocContainer.Resolve<IStoreMessageAttachment>();
             _logger = logger;
@@ -74,8 +74,8 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     foreach (var item in listGroup)
                     {
-                        IdentityGroup groupInfo = storeGroup.GetById(Convert.ToString(item.Id));
-                        groupInfo.Member = storeGroup.GetUserById(item.Id);
+                        IdentityConversationUser groupInfo = StoreConversationUser.GetById(Convert.ToString(item.Id));
+                        groupInfo.Member = StoreConversationUser.GetUserById(item.Id);
                         var lastMessage = ConversationHelpers.GetLastMessage(item);
 
                         if (groupInfo != null)
@@ -127,13 +127,13 @@ namespace Manager.WebApp.Controllers.Business
                     idenMessage.Type = EnumMessageType.Noti;
                     idenMessage.Message = "Nhóm mới đã được tạo";
 
-                    var creator = storeGroup.Insert(res, model.CreatedBy);
+                    var creator = StoreConversationUser.Insert(res, model.CreatedBy);
                     var insertMess = storeMessage.Insert(idenMessage);
 
 
                     foreach(string item in model.MemberGroup)
                     {
-                        var insertMember  = storeGroup.Insert(res, Utils.ConvertToInt32(item));
+                        var insertMember  = StoreConversationUser.Insert(res, Utils.ConvertToInt32(item));
                     }
                 }
                 return Ok(new { ConversationId = res });

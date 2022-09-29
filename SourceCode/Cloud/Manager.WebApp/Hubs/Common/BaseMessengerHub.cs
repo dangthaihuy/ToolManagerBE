@@ -14,7 +14,7 @@ namespace Manager.WebApp.Hubs.Common
     public class BaseMessengerHub : Hub
     {
         private static readonly ILogger _logger = Log.ForContext(typeof(MessengerHelpers));
-        private static readonly IStoreGroup storeGroup = Startup.IocContainer.Resolve<IStoreGroup>();
+        private static readonly IStoreConversationUser StoreConversationUser = Startup.IocContainer.Resolve<IStoreConversationUser>();
         public void Connect(string SenderId)
         {
             int Id = Utils.ConvertToInt32(SenderId);
