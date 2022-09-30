@@ -12,6 +12,8 @@ namespace Manager.WebApp.Models.Business
         public DateTime CreatedDate { get; set; }
         public List<string> MemberIds { get; set; }
         public string Avatar { get; set; }
+        public int Process { get; set; }
+
 
     }
 
@@ -21,7 +23,7 @@ namespace Manager.WebApp.Models.Business
         public string Name { get; set; }
         public int ProjectId { get; set; }
         public int FeatureId { get; set; }
-
+        public int Process { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Description { get; set; }
