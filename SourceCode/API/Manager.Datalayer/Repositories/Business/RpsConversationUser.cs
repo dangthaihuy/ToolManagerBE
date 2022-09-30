@@ -235,6 +235,42 @@ namespace Manager.DataLayer.Repositories.Business
             return newId;
         }
 
+        public bool GetIsRead(IdentityConversation identity)
+        {
+            var res = new bool();
+
+
+            var sqlCmd = @"Conversation_User_GetIsRead";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@ConversationId", identity.Id},
+                {"@UserId", identity.SenderId}
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            res = Utils.ConvertToBoolean(reader["IsRead"]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return res;
+        }
+
+
         private static IdentityConversationUser ExtractGroup(IDataReader reader)
         {
             var record = new IdentityConversationUser();

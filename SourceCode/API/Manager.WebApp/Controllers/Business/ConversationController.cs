@@ -25,7 +25,7 @@ namespace Manager.WebApp.Controllers.Business
     {
         private readonly IApiStoreUser storeUser;
         private readonly IStoreConversation storeConversation;
-        private readonly IStoreConversationUser StoreConversationUser;
+        private readonly IStoreConversationUser storeConversationUser;
         private readonly IStoreMessage storeMessage;
         private readonly IStoreMessageAttachment storeMessageAttachment;
         private readonly ILogger<ConversationController> _logger;
@@ -34,7 +34,7 @@ namespace Manager.WebApp.Controllers.Business
 
             storeUser= Startup.IocContainer.Resolve<IApiStoreUser>();
             storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
-            StoreConversationUser = Startup.IocContainer.Resolve<IStoreConversationUser>();
+            storeConversationUser = Startup.IocContainer.Resolve<IStoreConversationUser>();
             storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
             storeMessageAttachment = Startup.IocContainer.Resolve<IStoreMessageAttachment>();
             _logger = logger;
@@ -74,8 +74,8 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     foreach (var item in listGroup)
                     {
-                        IdentityConversationUser groupInfo = StoreConversationUser.GetById(Convert.ToString(item.Id));
-                        groupInfo.Member = StoreConversationUser.GetUserById(item.Id);
+                        IdentityConversationUser groupInfo = storeConversationUser.GetById(Convert.ToString(item.Id));
+                        groupInfo.Member = storeConversationUser.GetUserById(item.Id);
                         var lastMessage = ConversationHelpers.GetLastMessage(item);
 
                         if (groupInfo != null)
@@ -89,6 +89,11 @@ namespace Manager.WebApp.Controllers.Business
                         }
                     }
 
+                }
+
+                foreach(var conversation in data)
+                {
+                    conversation.IsRead = storeConversationUser.GetIsRead(conversation);
                 }
                 return Ok(data);
             }
@@ -110,12 +115,20 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var res= new int();
+                var creator = storeConversationUser.Insert(res, newConversation.CreatedBy);
+
+                if(newConversation.ReceiverId > 0)
+                {
+                    var receiver = storeConversationUser.Insert(res, newConversation.ReceiverId);
+                }
+
                 if (model.MemberGroup == null)
                 {
                     res = storeConversation.Insert(newConversation);
 
                     var files = Directory.CreateDirectory(String.Concat("wwwroot\\Media\\Message\\Attachments\\", res));
                 }
+
                 if (model.MemberGroup.HasData())
                 {
                     res = storeConversation.InsertGroup(newConversation);
@@ -127,15 +140,15 @@ namespace Manager.WebApp.Controllers.Business
                     idenMessage.Type = EnumMessageType.Noti;
                     idenMessage.Message = "Nhóm mới đã được tạo";
 
-                    var creator = StoreConversationUser.Insert(res, model.CreatedBy);
                     var insertMess = storeMessage.Insert(idenMessage);
-
 
                     foreach(string item in model.MemberGroup)
                     {
-                        var insertMember  = StoreConversationUser.Insert(res, Utils.ConvertToInt32(item));
+                        var insertMember  = storeConversationUser.Insert(res, Utils.ConvertToInt32(item));
                     }
                 }
+
+
                 return Ok(new { ConversationId = res });
             }
             catch(Exception ex)

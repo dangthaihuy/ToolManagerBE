@@ -72,7 +72,18 @@ namespace Manager.DataLayer.Repositories.Business
                                 MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, @"Message_InsertAttachment", attParms);
                             }
                         }
+
+                        var conSenderParam = new Dictionary<string, object>
+                        {
+                            {"@ConversationId", identity.ConversationId },
+                            {"@SenderId", identity.SenderId }
+                        };
+                        MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, @"Conversation_User_UpdateIsRead", conSenderParam);
+
+                        
                     }
+
+
                 }
             }
             catch (Exception ex)

@@ -17,6 +17,8 @@ namespace Manager.DataLayer.Stores.Business
         List<IdentityCurrentUser> GetUserById(int id);
         int Insert(int groupId, int memberId);
         int Delete(int groupId, int memberId);
+
+        bool GetIsRead(IdentityConversation identity);
         
     }
     public class StoreConversationUser : IStoreConversationUser
@@ -53,6 +55,11 @@ namespace Manager.DataLayer.Stores.Business
         public List<int> GetGroupIdByUserId(string id)
         {
             return r.GetGroupIdByUserId(id);
+        }
+
+        public bool GetIsRead(IdentityConversation identity)
+        {
+            return r.GetIsRead(identity);
         }
 
     }
