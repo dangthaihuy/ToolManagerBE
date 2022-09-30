@@ -15,10 +15,10 @@ namespace Manager.DataLayer.Stores.Business
         List<int> GetGroupIdByUserId(string id);
         IdentityConversationUser GetById(string id);
         List<IdentityCurrentUser> GetUserById(int id);
-        int Insert(int groupId, int memberId);
+        int Insert(int groupId, int memberId, int type);
         int Delete(int groupId, int memberId);
-
         bool GetIsRead(IdentityConversation identity);
+        int UpdateRead(IdentityConversationUser identity);
         
     }
     public class StoreConversationUser : IStoreConversationUser
@@ -38,9 +38,9 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetById(id);
         }
-        public int Insert(int groupId, int memberId)
+        public int Insert(int groupId, int memberId, int type)
         {
-            return r.Insert(groupId, memberId);
+            return r.Insert(groupId, memberId, type);
         }
         public int Delete(int groupId, int memberId)
         {
@@ -60,6 +60,10 @@ namespace Manager.DataLayer.Stores.Business
         public bool GetIsRead(IdentityConversation identity)
         {
             return r.GetIsRead(identity);
+        }
+        public int UpdateRead(IdentityConversationUser identity)
+        {
+            return r.UpdateRead(identity);
         }
 
     }

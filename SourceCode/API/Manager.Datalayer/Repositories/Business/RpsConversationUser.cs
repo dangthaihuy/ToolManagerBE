@@ -147,7 +147,7 @@ namespace Manager.DataLayer.Repositories.Business
 
 
 
-        public int Insert(int groupId, int memberId)
+        public int Insert(int groupId, int memberId, int type)
         {
             var sqlCmd = @"Conversation_User_Insert";
             int newId = 0;
@@ -157,6 +157,7 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 {"@ConversationId", groupId },
                 {"@UserId", memberId },
+                {"@Type", type },
             };
 
             try
@@ -269,7 +270,36 @@ namespace Manager.DataLayer.Repositories.Business
             }
             return res;
         }
+        public int UpdateRead(IdentityConversationUser identity)
+        {
+            var res = new int();
 
+
+            var sqlCmd = @"Conversation_User_UpdateRead";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@ConversationId", identity.ConversationId},
+                {"@UserId", identity.UserId}
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    res = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+            return res;
+        }
 
         private static IdentityConversationUser ExtractGroup(IDataReader reader)
         {

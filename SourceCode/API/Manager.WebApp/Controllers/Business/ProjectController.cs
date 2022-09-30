@@ -590,7 +590,7 @@ namespace Manager.WebApp.Controllers.Business
 
                 DeleteChild(identity.Id);
 
-                return Ok(new { apiMessage = new { type = "success", code = "featurexxx" } });
+                return Ok(new { id = model.Id, apiMessage = new { type = "success", code = "featurexxx" } });
             }
             catch (Exception ex)
             {

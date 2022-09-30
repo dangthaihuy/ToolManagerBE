@@ -22,14 +22,14 @@ namespace Manager.WebApp.Controllers.Business
     [Authorize]
     public class ConversationUserController : ControllerBase
     {
-        private readonly IStoreConversationUser StoreConversationUser;
+        private readonly IStoreConversationUser storeConversationUser;
         private readonly IApiStoreUser storeUser;
         private readonly IStoreMessage storeMessage;
         private readonly ILogger<ConversationUserController> _logger;
         public ConversationUserController(ILogger<ConversationUserController> logger)
         {
 
-            StoreConversationUser = Startup.IocContainer.Resolve<IStoreConversationUser>();
+            storeConversationUser = Startup.IocContainer.Resolve<IStoreConversationUser>();
             storeUser = Startup.IocContainer.Resolve<IApiStoreUser>();
             storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
             _logger = logger;
@@ -45,7 +45,7 @@ namespace Manager.WebApp.Controllers.Business
                 var idenMessage = new IdentityMessage();
                 idenMessage.Users = new List<IdentityInformationUser>();
 
-                idenMessage.ConversationId = model.GroupId;
+                idenMessage.ConversationId = model.ConversationId;
                 idenMessage.Type = EnumMessageType.Noti;
 
                 int check = 0;
@@ -53,7 +53,7 @@ namespace Manager.WebApp.Controllers.Business
                 foreach (string item in model.UsersId)
                 {
                     check++;
-                    var res = StoreConversationUser.Insert(model.GroupId, Utils.ConvertToInt32(item));
+                    var res = storeConversationUser.Insert(model.ConversationId, Utils.ConvertToInt32(item), EnumConversationType.Group);
                     var user = storeUser.GetById(item);
 
                     idenMessage.Users.Add(user);
@@ -72,12 +72,11 @@ namespace Manager.WebApp.Controllers.Business
                 idenMessage.Id = storeMessage.Insert(idenMessage);
 
                 MessengerHelpers.NotifNewGroupMessage(idenMessage);
-                GroupChatHelpers.ClearCache(model.GroupId);
+                GroupChatHelpers.ClearCache(model.ConversationId);
             }
             catch(Exception ex)
             {
                 _logger.LogDebug("Could not insert group-user: " + ex.ToString());
-
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
@@ -93,7 +92,7 @@ namespace Manager.WebApp.Controllers.Business
                 var idenMessage = new IdentityMessage();
                 idenMessage.Users = new List<IdentityInformationUser>();
 
-                idenMessage.ConversationId = model.GroupId;
+                idenMessage.ConversationId = model.ConversationId;
                 idenMessage.Type = EnumMessageType.Noti;
 
                 int check = 0;
@@ -102,7 +101,7 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     check++;
 
-                    var res = StoreConversationUser.Delete(model.GroupId, Utils.ConvertToInt32(item));
+                    var res = storeConversationUser.Delete(model.ConversationId, Utils.ConvertToInt32(item));
                     var user = storeUser.GetById(item);
 
                     idenMessage.Users.Add(user);
@@ -121,19 +120,33 @@ namespace Manager.WebApp.Controllers.Business
                 idenMessage.Id = storeMessage.Insert(idenMessage);
 
                 MessengerHelpers.NotifNewGroupMessage(idenMessage);
-                GroupChatHelpers.ClearCache(model.GroupId);
+                GroupChatHelpers.ClearCache(model.ConversationId);
             }
             catch (Exception ex)
             {
                 _logger.LogDebug("Could not delete user from group: " + ex.ToString());
-
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
             return Ok(new { apiMessage = new { type = "success", code = "ConversationUser002" } });
         }
 
+        [HttpPost]
+        [Route("update_read")]
+        public ActionResult UpdateRead(ConversationUserModel model)
+        {
+            try
+            {
+                var identity = model.MappingObject<IdentityConversationUser>();
+                var res = storeConversationUser.UpdateRead(identity);
 
-        
+                return Ok(new { apiMessage = new { type = "success", code = "conversationuser001" } });
+            }
+            catch(Exception ex)
+            {
+                _logger.LogDebug("Could not update read: " + ex.ToString());
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+        }
     }
 }

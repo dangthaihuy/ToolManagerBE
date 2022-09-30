@@ -141,7 +141,7 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@Id", filter.Id},
                 {"@Direction", filter.Direction},
                 {"@IsMore", filter.IsMore},
-                {"@PageSize", filter.PageSize},
+                {"@PageSize", filter.PageSize}
 
             };
 

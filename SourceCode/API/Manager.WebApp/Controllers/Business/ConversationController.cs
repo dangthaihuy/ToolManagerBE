@@ -81,11 +81,14 @@ namespace Manager.WebApp.Controllers.Business
                         if (groupInfo != null)
                         {
                             item.Group = groupInfo;
-                            item.LastMessageId = lastMessage.Id;
-                            item.LastMessage = lastMessage.Message;
-                            item.LastTime = lastMessage.CreatedDate;
                             item.Type = EnumMessageType.Attachment;
                             data.Add(item);
+                            if(lastMessage != null)
+                            {
+                                item.LastMessageId = lastMessage.Id;
+                                item.LastMessage = lastMessage.Message;
+                                item.LastTime = lastMessage.CreatedDate;
+                            }
                         }
                     }
 
@@ -115,17 +118,18 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var res= new int();
-                var creator = storeConversationUser.Insert(res, newConversation.CreatedBy);
 
-                if(newConversation.ReceiverId > 0)
-                {
-                    var receiver = storeConversationUser.Insert(res, newConversation.ReceiverId);
-                }
+                
 
                 if (model.MemberGroup == null)
                 {
                     res = storeConversation.Insert(newConversation);
+                    if (newConversation.ReceiverId > 0)
+                    {
 
+                        var receiver = storeConversationUser.Insert(res, newConversation.ReceiverId, newConversation.Type);
+                    }
+                    var creator = storeConversationUser.Insert(res, newConversation.CreatedBy, newConversation.Type);
                     var files = Directory.CreateDirectory(String.Concat("wwwroot\\Media\\Message\\Attachments\\", res));
                 }
 
@@ -144,9 +148,11 @@ namespace Manager.WebApp.Controllers.Business
 
                     foreach(string item in model.MemberGroup)
                     {
-                        var insertMember  = storeConversationUser.Insert(res, Utils.ConvertToInt32(item));
+                        var insertMember  = storeConversationUser.Insert(res, Utils.ConvertToInt32(item), newConversation.Type);
                     }
+                    var creator = storeConversationUser.Insert(res, newConversation.CreatedBy, newConversation.Type);
                 }
+                
 
 
                 return Ok(new { ConversationId = res });

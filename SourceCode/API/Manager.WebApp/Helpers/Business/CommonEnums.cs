@@ -48,5 +48,11 @@ namespace Manager.WebApp.Helpers
         public static int Noti = 3;
     }
 
-    
+    public static class EnumConversationType
+    {
+        public static int Solo = 1;
+        public static int Group = 2;
+    }
+
+
 }
