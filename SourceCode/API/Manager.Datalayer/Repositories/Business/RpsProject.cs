@@ -121,6 +121,7 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@Name", identity.Name},
                 {"@Description", identity.Description},
                 {"@Avatar", identity.Avatar},
+                {"@Process", identity.Process},
             };
 
             try
@@ -386,6 +387,7 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@Name", identity.Name},
                 {"@Description", identity.Description},
                 {"@Status", identity.Status},
+                {"@Process", identity.Process},
             };
 
             try
@@ -395,16 +397,19 @@ namespace Manager.DataLayer.Repositories.Business
                 {
                     MsSqlHelper.ExecuteNonQuery(conn, CommandType.StoredProcedure, sqlCmd, parameters);
 
-                    foreach(var file in identity.Files)
+                    if (identity.Files.HasData())
                     {
-                        var param = new Dictionary<string, object>
+                        foreach (var file in identity.Files)
+                        {
+                            var param = new Dictionary<string, object>
                         {
                             {"@Name", file.Name},
                             {"@ProjectId", identity.ProjectId},
                             {"@TaskId", identity.Id},
                             {"@Path", file.Path},
                         };
-                        MsSqlHelper.ExecuteNonQuery(conn, CommandType.StoredProcedure, @"Project_InsertAttachment", param);
+                            MsSqlHelper.ExecuteNonQuery(conn, CommandType.StoredProcedure, @"Project_InsertAttachment", param);
+                        }
                     }
                 }
             }
@@ -1042,6 +1047,7 @@ namespace Manager.DataLayer.Repositories.Business
             record.Name = reader["Name"].ToString();
             record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
             record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
+            record.Process = Utils.ConvertToInt32(reader["Process"]);
             record.Avatar = reader["Avatar"].ToString();
             record.Description = reader["Description"].ToString();
 
@@ -1058,6 +1064,7 @@ namespace Manager.DataLayer.Repositories.Business
             record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
             record.Description = reader["CreatedBy"].ToString();
             record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
+            record.Process = Utils.ConvertToInt32(reader["Process"]);
             record.Status = Utils.ConvertToInt32(reader["Status"]);
 
             return record;

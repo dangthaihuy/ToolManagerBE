@@ -19,7 +19,10 @@ namespace Manager.DataLayer.Stores.Business
         int Delete(int groupId, int memberId);
         bool GetIsRead(IdentityConversation identity);
         int UpdateRead(IdentityConversationUser identity);
-        
+
+        List<int> GetUsersReadConversation(int conversationId);
+
+
     }
     public class StoreConversationUser : IStoreConversationUser
     {
@@ -64,6 +67,10 @@ namespace Manager.DataLayer.Stores.Business
         public int UpdateRead(IdentityConversationUser identity)
         {
             return r.UpdateRead(identity);
+        }
+        public List<int> GetUsersReadConversation(int conversationId)
+        {
+            return r.GetUsersReadConversation(conversationId);
         }
 
     }
