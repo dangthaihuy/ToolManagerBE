@@ -281,6 +281,42 @@ namespace Manager.DataLayer.Repositories.Business
             return info;
         }
 
+        public int GetReceiverById(IdentityConversationUser identity)
+        {
+            var res = new int();
+
+            //Common syntax
+            var sqlCmd = @"Conversations_GetReceiverById";
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", identity.ConversationId},
+                {"@SenderId", identity.UserId},
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            res = Utils.ConvertToInt32(reader["ReceiverId"]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
+        }
 
 
         private IdentityConversation ExtractConversation(IDataReader reader)

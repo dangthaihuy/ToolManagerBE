@@ -248,7 +248,7 @@ namespace Manager.WebApp.Controllers.Business
                     MessengerHelpers.NotifNewPrivateMessage(msg);
                 }
                 
-                ConversationHelpers.ClearCache(con.Id);
+                ConversationHelpers.ClearCacheLastMessage(con.Id);
             }
             catch (Exception ex)
             {
@@ -272,7 +272,7 @@ namespace Manager.WebApp.Controllers.Business
                     msg.ReplyMessage = storeMessage.GetReplyMessageById(model.ReplyMessageId);
                     msg.Id = storeMessage.Insert(msg);
 
-                    ConversationHelpers.ClearCache(model.ConversationId);
+                    ConversationHelpers.ClearCacheLastMessage(model.ConversationId);
 
                     //Send notification to user
                     MessengerHelpers.NotifNewGroupMessage(msg);
@@ -329,7 +329,7 @@ namespace Manager.WebApp.Controllers.Business
                     msg.Id = storeMessage.Insert(msg);
 
                     //Clear cache last message
-                    ConversationHelpers.ClearCache(model.ConversationId);
+                    ConversationHelpers.ClearCacheLastMessage(model.ConversationId);
 
                     //Send notification
                     if(model.ReceiverId == 0)

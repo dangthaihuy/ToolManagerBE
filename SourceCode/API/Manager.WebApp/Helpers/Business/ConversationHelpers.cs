@@ -51,7 +51,7 @@ namespace Manager.WebApp.Helpers
 
         }
 
-        public static void ClearCache(int id)
+        public static void ClearCacheLastMessage(int id)
         {
         try
         {

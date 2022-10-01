@@ -18,6 +18,7 @@ namespace Manager.DataLayer.Stores.Business
         IdentityConversation GetDetail(int senderId, int receiverId);
         int Delete(int id);
         IdentityConversationDefault Update(IdentityConversationUpdate identity);
+        int GetReceiverById(IdentityConversationUser identity);
     }
 
     public class StoreConversation : IStoreConversation
@@ -65,6 +66,10 @@ namespace Manager.DataLayer.Stores.Business
         public IdentityConversationDefault Update(IdentityConversationUpdate identity)
         {
             return r.Update(identity);
+        }
+        public int GetReceiverById(IdentityConversationUser identity)
+        {
+            return r.GetReceiverById(identity);
         }
 
 

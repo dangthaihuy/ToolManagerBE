@@ -23,6 +23,7 @@ namespace Manager.WebApp.Controllers.Business
     public class ConversationUserController : ControllerBase
     {
         private readonly IStoreConversationUser storeConversationUser;
+        private readonly IStoreConversation storeConversation;
         private readonly IApiStoreUser storeUser;
         private readonly IStoreMessage storeMessage;
         private readonly ILogger<ConversationUserController> _logger;
@@ -30,6 +31,7 @@ namespace Manager.WebApp.Controllers.Business
         {
 
             storeConversationUser = Startup.IocContainer.Resolve<IStoreConversationUser>();
+            storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
             storeUser = Startup.IocContainer.Resolve<IApiStoreUser>();
             storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
             _logger = logger;
@@ -139,6 +141,24 @@ namespace Manager.WebApp.Controllers.Business
             {
                 var identity = model.MappingObject<IdentityConversationUser>();
                 var readBy = storeConversationUser.UpdateRead(identity);
+                var receiver = storeConversation.GetReceiverById(identity);
+
+                var msg = new IdentityMessage();
+                msg.ConversationId = identity.ConversationId;
+                msg.SenderId = identity.UserId;
+                msg.Type = EnumMessageType.Read;
+                msg.Message = model.UserId.ToString();
+
+                if (receiver == 0)
+                {
+                    MessengerHelpers.NotifNewGroupMessage(msg);
+                }
+                else
+                {
+                    msg.ReceiverId = receiver;
+                    MessengerHelpers.NotifNewPrivateMessage(msg);
+                }
+                
 
                 return Ok(new {readBy = readBy, apiMessage = new { type = "success", code = "conversationuser001" } });
             }
