@@ -21,7 +21,6 @@ namespace Manager.WebApp.Controllers.Business
     {
         private readonly IStoreMessage storeMessage;
         private readonly IStoreMessageAttachment storeMessageAttachment;
-        private readonly IStoreConversationUser storeConversationUser;
         private readonly IStoreConversation storeConversation;
         private readonly ILogger<MessageController> _logger;
         public MessageController(ILogger<MessageController> logger)
@@ -29,7 +28,6 @@ namespace Manager.WebApp.Controllers.Business
             storeConversation = Startup.IocContainer.Resolve<IStoreConversation>();
             storeMessage = Startup.IocContainer.Resolve<IStoreMessage>();
             storeMessageAttachment = Startup.IocContainer.Resolve<IStoreMessageAttachment>();
-            storeConversationUser = Startup.IocContainer.Resolve<IStoreConversationUser>();
             _logger = logger;
 
         }
@@ -46,7 +44,6 @@ namespace Manager.WebApp.Controllers.Business
             pageSize = pageSize > 0 ? pageSize : 20;
             var currentPage = 1;
             var messageList = new List<IdentityMessage>();
-            var readBy = new List<int>();
             var filter = new IdentityMessageFilter();
             try
             {
@@ -58,7 +55,7 @@ namespace Manager.WebApp.Controllers.Business
                 filter.IsMore = isMore;
 
                 var list = storeMessage.GetByPage(filter);
-                readBy = storeConversationUser.GetUsersReadConversation(conversationId);
+                
 
                 if (list.HasData())
                 {
@@ -80,7 +77,7 @@ namespace Manager.WebApp.Controllers.Business
 
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
-            return Ok(new { messageList = messageList, readBy = readBy });
+            return Ok(messageList);
         }
 
         [HttpGet]

@@ -270,9 +270,9 @@ namespace Manager.DataLayer.Repositories.Business
             }
             return res;
         }
-        public int UpdateRead(IdentityConversationUser identity)
+        public List<int> UpdateRead(IdentityConversationUser identity)
         {
-            var res = new int();
+            var list = new List<int>();
 
 
             var sqlCmd = @"Conversation_User_UpdateRead";
@@ -282,38 +282,6 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@ConversationId", identity.ConversationId},
                 {"@UserId", identity.UserId}
 
-            };
-
-            try
-            {
-                using (var conn = new SqlConnection(_conStr))
-                {
-                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
-
-                    res = Convert.ToInt32(returnObj);
-                }
-            }
-            catch (Exception ex)
-            {
-                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
-                throw new CustomSQLException(strError);
-            }
-            return res;
-        }
-
-        public List<int> GetUsersReadConversation(int conversationId)
-        {
-            var list = new List<int>();
-            if (conversationId <= 0)
-            {
-                return list;
-            }
-
-            var sqlCmd = @"Conversation_User_GetUsersRead";
-
-            var parameters = new Dictionary<string, object>
-            {
-                {"@ConversationId", conversationId}
             };
 
             try
@@ -337,6 +305,8 @@ namespace Manager.DataLayer.Repositories.Business
             }
             return list;
         }
+
+        
 
         private static IdentityConversationUser ExtractGroup(IDataReader reader)
         {

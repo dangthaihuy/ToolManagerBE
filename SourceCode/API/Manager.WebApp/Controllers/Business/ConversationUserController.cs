@@ -138,9 +138,9 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var identity = model.MappingObject<IdentityConversationUser>();
-                var res = storeConversationUser.UpdateRead(identity);
+                var readBy = storeConversationUser.UpdateRead(identity);
 
-                return Ok(new { apiMessage = new { type = "success", code = "conversationuser001" } });
+                return Ok(new {readBy = readBy, apiMessage = new { type = "success", code = "conversationuser001" } });
             }
             catch(Exception ex)
             {
