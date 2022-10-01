@@ -147,7 +147,6 @@ namespace Manager.WebApp.Controllers.Business
                 msg.ConversationId = identity.ConversationId;
                 msg.SenderId = identity.UserId;
                 msg.Type = EnumMessageType.Read;
-                msg.Message = model.UserId.ToString();
 
                 if (receiver == 0)
                 {

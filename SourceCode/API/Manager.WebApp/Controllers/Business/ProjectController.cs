@@ -399,15 +399,7 @@ namespace Manager.WebApp.Controllers.Business
                 }
 
                 var task = ProjectHelpers.GetBaseInfoTask(id);
-                if(task.MemberIds != null)
-                {
-                    task.Members = new List<IdentityInformationUser>();
-                    foreach (var userId in task.MemberIds)
-                    {
-                        var member = UserHelpers.GetBaseInfo(userId);
-                        task.Members.Add(member);
-                    }
-                }
+                
 
                 if (task == null)
                 {
