@@ -159,7 +159,7 @@ namespace Manager.WebApp.Controllers.Business
                 }
                 
 
-                return Ok(new {readBy = readBy, apiMessage = new { type = "success", code = "conversationuser001" } });
+                return Ok(new {conversationId = model.ConversationId ,readBy = readBy, apiMessage = new { type = "success", code = "conversationuser001" } });
             }
             catch(Exception ex)
             {

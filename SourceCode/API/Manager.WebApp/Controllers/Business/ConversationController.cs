@@ -42,7 +42,7 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpGet]
-        [Route("getbyid")]
+        [Route("getbyuserid")]
         public ActionResult GetById(string id)
         {
             if (id == null)
@@ -96,7 +96,7 @@ namespace Manager.WebApp.Controllers.Business
 
                 foreach(var conversation in data)
                 {
-                    conversation.IsRead = storeConversationUser.GetIsRead(conversation);
+                    conversation.ReadBy = storeConversationUser.GetUsersRead(conversation);
                 }
                 return Ok(data);
             }

@@ -318,6 +318,8 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@ProjectId", identity.ProjectId },
                 {"@FeatureId", identity.FeatureId },
                 {"@CreatedBy", identity.CreatedBy },
+                {"@Assignee", identity.Assignee },
+                {"@Deadline", identity.Deadline },
 
             };
 
@@ -388,6 +390,8 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@Description", identity.Description},
                 {"@Status", identity.Status},
                 {"@Process", identity.Process},
+                {"@Assignee", identity.Assignee},
+                {"@Deadline", identity.Deadline},
             };
 
             try
@@ -959,8 +963,6 @@ namespace Manager.DataLayer.Repositories.Business
                         {
                             res = ExtractFeature(reader);
                         }
-                        
-
                     }
                 }
             }
@@ -1066,7 +1068,7 @@ namespace Manager.DataLayer.Repositories.Business
             record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
             record.Deadline = DateTime.Parse(reader["Deadline"].ToString());
             record.FeatureId = Utils.ConvertToInt32(reader["FeatureId"]);
-            record.Assignee = Utils.ConvertToInt32(reader["Assignee"]);
+            record.Assignee = reader["Assignee"].ToString();
             record.Process = Utils.ConvertToInt32(reader["Process"]);
             record.Status = Utils.ConvertToInt32(reader["Status"]);
 

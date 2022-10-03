@@ -236,17 +236,15 @@ namespace Manager.DataLayer.Repositories.Business
             return newId;
         }
 
-        public bool GetIsRead(IdentityConversation identity)
+        public List<int> GetUsersRead(IdentityConversation identity)
         {
-            var res = new bool();
+            var res = new List<int>();
 
-
-            var sqlCmd = @"Conversation_User_GetIsRead";
+            var sqlCmd = @"Conversation_User_GetUsersRead";
 
             var parameters = new Dictionary<string, object>
             {
-                {"@ConversationId", identity.Id},
-                {"@UserId", identity.SenderId}
+                {"@ConversationId", identity.Id}
 
             };
 
@@ -256,9 +254,10 @@ namespace Manager.DataLayer.Repositories.Business
                 {
                     using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
                     {
-                        if (reader.Read())
+                        while (reader.Read())
                         {
-                            res = Utils.ConvertToBoolean(reader["IsRead"]);
+                            var user = Utils.ConvertToInt32(reader["UserId"]);
+                            res.Add(user);
                         }
                     }
                 }

@@ -17,7 +17,7 @@ namespace Manager.DataLayer.Stores.Business
         List<IdentityCurrentUser> GetUserById(int id);
         int Insert(int groupId, int memberId, int type);
         int Delete(int groupId, int memberId);
-        bool GetIsRead(IdentityConversation identity);
+        List<int> GetUsersRead(IdentityConversation identity);
         List<int> UpdateRead(IdentityConversationUser identity);
 
 
@@ -59,9 +59,9 @@ namespace Manager.DataLayer.Stores.Business
             return r.GetGroupIdByUserId(id);
         }
 
-        public bool GetIsRead(IdentityConversation identity)
+        public List<int> GetUsersRead(IdentityConversation identity)
         {
-            return r.GetIsRead(identity);
+            return r.GetUsersRead(identity);
         }
         public List<int> UpdateRead(IdentityConversationUser identity)
         {
