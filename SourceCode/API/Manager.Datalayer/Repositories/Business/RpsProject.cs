@@ -396,7 +396,6 @@ namespace Manager.DataLayer.Repositories.Business
 
             try
             {
-
                 using (var conn = new SqlConnection(_conStr))
                 {
                     MsSqlHelper.ExecuteNonQuery(conn, CommandType.StoredProcedure, sqlCmd, parameters);
@@ -410,6 +409,7 @@ namespace Manager.DataLayer.Repositories.Business
                             {"@Name", file.Name},
                             {"@ProjectId", identity.ProjectId},
                             {"@TaskId", identity.Id},
+                            {"@FeatureId", identity.FeatureId},
                             {"@Path", file.Path},
                         };
                             MsSqlHelper.ExecuteNonQuery(conn, CommandType.StoredProcedure, @"Project_InsertAttachment", param);
@@ -540,7 +540,7 @@ namespace Manager.DataLayer.Repositories.Business
             return list;
         }
 
-        public List<IdentityTask> GetTaskByFeatureId(int id)
+        public List<IdentityTask> GetTaskIdByFeatureId(int id)
         {
             var list = new List<IdentityTask>();
 
@@ -879,10 +879,10 @@ namespace Manager.DataLayer.Repositories.Business
 
             return list;
         }
-        public int DeleteFeature(int id)
+        public List<string> DeleteFeature(int id)
         {
+            var list = new List<string>();
             var sqlCmd = @"Feature_Delete";
-            int newId = 0;
 
             //For parameters
             var parameters = new Dictionary<string, object>
@@ -894,9 +894,14 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 using (var conn = new SqlConnection(_conStr))
                 {
-                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
-
-                    newId = Convert.ToInt32(returnObj);
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = reader["Path"].ToString();
+                            list.Add(res);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -905,7 +910,7 @@ namespace Manager.DataLayer.Repositories.Business
                 throw new CustomSQLException(strError);
             }
 
-            return newId;
+            return list;
         }
         public IdentityFeature UpdateFeature(IdentityFeature identity)
         {
@@ -1039,6 +1044,110 @@ namespace Manager.DataLayer.Repositories.Business
             }
 
             return list;
+        }
+
+        public int InsertFile(IdentityProjectAttachment identity)
+        {
+            var sqlCmd = @"Project_InsertFile";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Name", identity.Name },
+                {"@ProjectId", identity.ProjectId },
+                {"@FeatureId", identity.FeatureId },
+                {"@Path", identity.Path }
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
+
+        public string DeleteFile(int id)
+        {
+            var res = "";
+            var sqlCmd = @"Project_DeleteFile";
+            
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", id}
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            res = reader["Path"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
+        }
+
+        public List<IdentityProjectAttachment> GetAttachmentByFeatureId(IdentityProjectAttachment identity)
+        {
+            var res = new List<IdentityProjectAttachment>();
+            var sqlCmd = @"Project_GetAttachmentByFeatureId";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@FeatureId", identity.FeatureId},
+                {"@ProjectId", identity.ProjectId}
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var file = ExtractAttachment(reader);
+                            res.Add(file);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
         }
 
         private IdentityProject ExtractProject(IDataReader reader)

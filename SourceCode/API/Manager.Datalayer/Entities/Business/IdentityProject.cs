@@ -19,6 +19,7 @@ namespace Manager.DataLayer.Entities.Business
         public int Process { get; set; }
         public List<IdentityInformationUser> Members { get; set; }
         public List<IdentityFeature> Features { get; set; }
+        public List<IdentityProjectAttachment> Files { get; set; }
 
     }
 
@@ -32,7 +33,7 @@ namespace Manager.DataLayer.Entities.Business
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Description { get; set; }
-        public DateTime Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
         public string Assignee { get; set; }
         public int Process { get; set; }
         public List<int> MemberIds { get; set; }
@@ -47,6 +48,7 @@ namespace Manager.DataLayer.Entities.Business
         public string Name { get; set; }
         public int ProjectId { get; set; }
         public int TaskId { get; set; }
+        public int FeatureId { get; set; }
         public string Path { get; set; }
 
     }
@@ -71,6 +73,7 @@ namespace Manager.DataLayer.Entities.Business
         public string Description { get; set; }
         public List<IdentityTask> Tasks { get; set; }
         public List<IdentityFeature> SubFeatures { get; set; }
+        public List<IdentityProjectAttachment> Files { get; set; }
 
     }
 }

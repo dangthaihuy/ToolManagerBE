@@ -250,7 +250,7 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch(Exception ex)
             {
-                _logger.LogDebug("Could not delete folder: " + ex.ToString());
+                _logger.LogDebug("Could not delete file: " + ex.ToString());
 
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }

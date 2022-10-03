@@ -181,6 +181,11 @@ namespace Manager.WebApp.Controllers.Business
                     }
                 }
 
+                var idenAttach = new IdentityProjectAttachment();
+                idenAttach.ProjectId = id;
+                idenAttach.FeatureId = 0;
+                res.Files = storeProject.GetAttachmentByFeatureId(idenAttach);
+
                 return Ok(new { project = res, apiMessage = new { type = "success", code = "projectxxx" } });
             }
             catch (Exception ex)
@@ -349,7 +354,7 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     foreach(var file in Request.Form.Files)
                     {
-                        var attachmentFolder = string.Format("Project/{0}/Attachment", identity.Id);
+                        var attachmentFolder = string.Format("Project/{0}/Attachment", identity.ProjectId);
                         if (!System.IO.Directory.Exists(attachmentFolder))
                         {
                             System.IO.Directory.CreateDirectory(attachmentFolder);
@@ -617,9 +622,13 @@ namespace Manager.WebApp.Controllers.Business
         {
             try
             {
+                var idenAttach = new IdentityProjectAttachment();
+                idenAttach.FeatureId = id;
+
                 var res = ProjectHelpers.GetBaseInfoFeature(id);
                 res.SubFeatures = storeProject.GetSubFeature(id);
-                res.Tasks = storeProject.GetTaskByFeatureId(id);
+                res.Tasks = storeProject.GetTaskIdByFeatureId(id);
+                res.Files = storeProject.GetAttachmentByFeatureId(idenAttach);
 
                 if (res != null)
                 {
@@ -633,6 +642,78 @@ namespace Manager.WebApp.Controllers.Business
                 _logger.LogDebug("Could not get feature by id: " + ex.ToString());
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
+        }
+
+        [HttpPost]
+        [Route("insert_file")]
+        [RequestFormLimits(MultipartBodyLengthLimit = 409715200)]
+        [RequestSizeLimit(409715200)]
+        public async Task<ActionResult> InsertFile([FromForm] ProjectAttachmentModel model)
+        {
+            try
+            {
+                var listFile = new List<IdentityProjectAttachment>();
+                
+                if (Request.Form.Files.Count > 0)
+                {
+                    foreach (var file in Request.Form.Files)
+                    {
+                        var attachmentFolder = string.Format("Project/{0}/Attachment", model.ProjectId);
+                        var filePath = FileUploadHelper.UploadFile(file, attachmentFolder);
+
+                        await Task.FromResult(filePath);
+
+                        if (!string.IsNullOrEmpty(filePath))
+                        {
+                            var identity = model.MappingObject<IdentityProjectAttachment>();
+                            identity.Name = file.FileName;
+                            identity.Path = filePath;
+
+                            identity.Id = storeProject.InsertFile(identity);
+                            listFile.Add(identity);
+                        }
+
+                    }
+
+                    return Ok(new { listFile = listFile, apiMessage = new { type = "success", code = "file001" } });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not insert file: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+
+            return Ok(new { apiMessage = new { type = "error", code = "file101" } });
+        }
+
+        [HttpPost]
+        [Route("delete_file")]
+        public ActionResult DeleteFile(ProjectAttachmentModel model)
+        {
+            try
+            {
+                
+                var path = storeProject.DeleteFile(model.Id);
+
+                if (path != null)
+                {
+                    System.IO.File.Delete(String.Concat("wwwroot", path));
+                    return Ok(new { apiMessage = new { type = "success", code = "file002" } });
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("Could not delete file: " + ex.ToString());
+
+                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+            }
+
+            return Ok(new { apiMessage = new { type = "error", code = "file102" } });
         }
 
         private void DeleteChild(int parentId)
@@ -649,25 +730,26 @@ namespace Manager.WebApp.Controllers.Business
                     }
                 }
 
-                var listTask = storeProject.GetTaskByFeatureId(parentId);
-
-                var res = storeProject.DeleteFeature(parentId);
-                ProjectHelpers.ClearCacheBaseInfoFeature(parentId);
-                //Xóa task trong feature , quan hệ task user, attachment trong task
-
-
-                if (listTask.HasData())
+                var attachments = storeProject.DeleteFeature(parentId);
+                if (attachments.HasData())
                 {
-                    foreach (var task in listTask)
+                    foreach (var item in attachments)
                     {
-                        var attachments = storeProject.DeleteTask(task.Id);
-                        foreach(var item in attachments)
+                        if (!System.IO.Directory.Exists(String.Concat("wwwroot", item)))
                         {
-                            if(!System.IO.Directory.Exists(String.Concat("wwwroot", item)))
-                            {
-                                System.IO.File.Delete(String.Concat("wwwroot", item));
-                            }
+                            System.IO.File.Delete(String.Concat("wwwroot", item));
                         }
+                    }
+                }
+                ProjectHelpers.ClearCacheBaseInfoFeature(parentId);
+
+                var listTaskId = storeProject.GetTaskIdByFeatureId(parentId);
+                //Xóa task trong feature , quan hệ task user
+                if (listTaskId.HasData())
+                {
+                    foreach (var taskId in listTaskId)
+                    {
+                        var deleteTask = storeProject.DeleteTask(taskId.Id);
                     }
                 }
             }

@@ -27,7 +27,7 @@ namespace Manager.WebApp.Models.Business
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Description { get; set; }
-        public DateTime Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
         public string Assignee { get; set; }
         public int Status { get; set; }
 
@@ -60,6 +60,7 @@ namespace Manager.WebApp.Models.Business
         public string Name { get; set; }
         public int ProjectId { get; set; }
         public int TaskId { get; set; }
+        public int FeatureId { get; set; }
         public string Path { get; set; }
 
     }

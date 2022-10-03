@@ -146,6 +146,7 @@ namespace Manager.WebApp.Controllers.Business
                 var msg = new IdentityMessage();
                 msg.ConversationId = identity.ConversationId;
                 msg.SenderId = identity.UserId;
+                msg.Message = "đã xem";
                 msg.Type = EnumMessageType.Read;
 
                 if (receiver == 0)

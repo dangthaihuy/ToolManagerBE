@@ -28,7 +28,7 @@ namespace Manager.DataLayer.Stores.Business
         List<int> GetTaskByUserId(int id);
         IdentityTask GetTaskById(int id);
         List<int> GetTaskByProjectId(int id);
-        List<IdentityTask> GetTaskByFeatureId(int id);
+        List<IdentityTask> GetTaskIdByFeatureId(int id);
         List<int> GetUserByProjectId(int id);
         int InsertUserToTask(IdentityUserProject id);
         int DeleteUserInTask(IdentityUserProject identity);
@@ -38,12 +38,16 @@ namespace Manager.DataLayer.Stores.Business
         int GetRoleUser(IdentityUserProject identity);
 
         IdentityFeature InsertFeature(IdentityFeature identity);
-        int DeleteFeature(int id);
+        List<string> DeleteFeature(int id);
         IdentityFeature UpdateFeature(IdentityFeature identity);
         List<int> GetChild(int parentId);
         IdentityFeature GetFeatureById(int id);
         List<int> GetFeatureByProjectId(int id);
         List<IdentityFeature> GetSubFeature(int id);
+
+        int InsertFile(IdentityProjectAttachment identity);
+        string DeleteFile(int id);
+        List<IdentityProjectAttachment> GetAttachmentByFeatureId(IdentityProjectAttachment identity);
     }
 
     public class StoreProject : IStoreProject
@@ -122,9 +126,9 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetTaskByProjectId(id);
         }
-        public List<IdentityTask> GetTaskByFeatureId(int id)
+        public List<IdentityTask> GetTaskIdByFeatureId(int id)
         {
-            return r.GetTaskByFeatureId(id);
+            return r.GetTaskIdByFeatureId(id);
         }
         public List<int> GetUserByProjectId(int id)
         {
@@ -154,13 +158,11 @@ namespace Manager.DataLayer.Stores.Business
         }
 
 
-
-
         public IdentityFeature InsertFeature(IdentityFeature identity)
         {
             return r.InsertFeature(identity);
         }
-        public int DeleteFeature(int id)
+        public List<string> DeleteFeature(int id)
         {
             return r.DeleteFeature(id);
         }
@@ -185,6 +187,19 @@ namespace Manager.DataLayer.Stores.Business
             return r.GetSubFeature(id);
         }
 
+        public int InsertFile(IdentityProjectAttachment identity)
+        {
+            return r.InsertFile(identity);
+        }
+        public string DeleteFile(int id)
+        {
+            return r.DeleteFile(id);
+        }
+
+        public List<IdentityProjectAttachment> GetAttachmentByFeatureId(IdentityProjectAttachment identity)
+        {
+            return r.GetAttachmentByFeatureId(identity);
+        }
 
     }
 
