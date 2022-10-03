@@ -1062,8 +1062,11 @@ namespace Manager.DataLayer.Repositories.Business
             record.Name = reader["Name"].ToString();
             record.ProjectId = Utils.ConvertToInt32(reader["ProjectId"]);
             record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
-            record.Description = reader["CreatedBy"].ToString();
+            record.Description = reader["Description"].ToString();
             record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
+            record.Deadline = DateTime.Parse(reader["Deadline"].ToString());
+            record.FeatureId = Utils.ConvertToInt32(reader["FeatureId"]);
+            record.Assignee = Utils.ConvertToInt32(reader["Assignee"]);
             record.Process = Utils.ConvertToInt32(reader["Process"]);
             record.Status = Utils.ConvertToInt32(reader["Status"]);
 
