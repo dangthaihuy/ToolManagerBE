@@ -555,9 +555,9 @@ namespace Manager.DataLayer.Repositories.Business
             return list;
         }
 
-        public List<IdentityTask> GetTaskIdByFeatureId(int id)
+        public List<int> GetTaskIdByFeatureId(int id)
         {
-            var list = new List<IdentityTask>();
+            var list = new List<int>();
 
             var sqlCmd = @"Task_GetByFeatureId";
 
@@ -574,7 +574,7 @@ namespace Manager.DataLayer.Repositories.Business
                     {
                         while (reader.Read())
                         {
-                            var res = ExtractTask(reader);
+                            var res = Utils.ConvertToInt32(reader["Id"]);
                             list.Add(res);
                         }
                     }
@@ -1028,9 +1028,9 @@ namespace Manager.DataLayer.Repositories.Business
             return list;
         }
 
-        public List<IdentityFeature> GetSubFeature(int id)
+        public List<int> GetSubFeature(int id)
         {
-            var list = new List<IdentityFeature>();
+            var list = new List<int>();
 
             var sqlCmd = @"Feature_GetSubFeature";
 
@@ -1046,7 +1046,7 @@ namespace Manager.DataLayer.Repositories.Business
                     {
                         while (reader.Read())
                         {
-                            var res = ExtractFeature(reader);
+                            var res = Utils.ConvertToInt32(reader["Id"]);
                             list.Add(res);
                         }
                     }

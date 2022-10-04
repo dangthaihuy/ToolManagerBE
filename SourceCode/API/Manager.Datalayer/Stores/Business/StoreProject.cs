@@ -28,7 +28,7 @@ namespace Manager.DataLayer.Stores.Business
         List<int> GetTaskByUserId(int id);
         IdentityTask GetTaskById(int id);
         List<int> GetTaskByProjectId(int id);
-        List<IdentityTask> GetTaskIdByFeatureId(int id);
+        List<int> GetTaskIdByFeatureId(int id);
         List<int> GetUserByProjectId(int id);
         int InsertUserToTask(IdentityUserProject id);
         int DeleteUserInTask(IdentityUserProject identity);
@@ -43,7 +43,7 @@ namespace Manager.DataLayer.Stores.Business
         List<int> GetChild(int parentId);
         IdentityFeature GetFeatureById(int id);
         List<int> GetFeatureByProjectId(int id);
-        List<IdentityFeature> GetSubFeature(int id);
+        List<int> GetSubFeature(int id);
 
         int InsertFile(IdentityProjectAttachment identity);
         string DeleteFile(int id);
@@ -126,7 +126,7 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetTaskByProjectId(id);
         }
-        public List<IdentityTask> GetTaskIdByFeatureId(int id)
+        public List<int> GetTaskIdByFeatureId(int id)
         {
             return r.GetTaskIdByFeatureId(id);
         }
@@ -182,7 +182,7 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetFeatureByProjectId(id);
         }
-        public List<IdentityFeature> GetSubFeature(int id)
+        public List<int> GetSubFeature(int id)
         {
             return r.GetSubFeature(id);
         }

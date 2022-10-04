@@ -297,7 +297,6 @@ namespace Manager.WebApp.Controllers.Business
             {
                 var identity = model.MappingObject<IdentityTask>();
                 
-
                 if (Request.Form.Files.Count > 0)
                 {
                     foreach (var file in Request.Form.Files)
@@ -648,15 +647,32 @@ namespace Manager.WebApp.Controllers.Business
             {
                 var idenAttach = new IdentityProjectAttachment();
                 idenAttach.FeatureId = id;
-
                 var res = ProjectHelpers.GetBaseInfoFeature(id);
-                res.SubFeatures = storeProject.GetSubFeature(id);
-                res.Tasks = storeProject.GetTaskIdByFeatureId(id);
-                res.Files = storeProject.GetAttachmentByFeatureId(idenAttach);
 
-                if (res != null)
+                if(res.Id > 0)
                 {
-                    return Ok(new {feature = res, apiMessage = new { type = "success", code = "featurexxx" } });
+                    res.SubFeatures = new List<IdentityFeature>();
+                    res.Tasks = new List<IdentityTask>();
+                    var listSubFeature = storeProject.GetSubFeature(id);
+                    foreach(var item in listSubFeature)
+                    {
+                        var feature = ProjectHelpers.GetBaseInfoFeature(item);
+                        res.SubFeatures.Add(feature);
+                    }
+
+                    var listTask = storeProject.GetTaskIdByFeatureId(id);
+                    foreach (var item in listTask)
+                    {
+                        var task = ProjectHelpers.GetBaseInfoTask(item);
+                        res.Tasks.Add(task);
+                    }
+
+                    res.Files = storeProject.GetAttachmentByFeatureId(idenAttach);
+                    /*res.SubFeatures = storeProject.GetSubFeature(id);
+                    res.Tasks = storeProject.GetTaskIdByFeatureId(id);*/
+
+
+                    return Ok(new { feature = res, apiMessage = new { type = "success", code = "featurexxx" } });
                 }
 
                 return Ok(new { apiMessage = new { type = "error", code = "featurexxx" } });
@@ -701,7 +717,6 @@ namespace Manager.WebApp.Controllers.Business
 
                     return Ok(new { listFile = listFile, apiMessage = new { type = "success", code = "file001" } });
                 }
-
             }
             catch (Exception ex)
             {
@@ -773,7 +788,7 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     foreach (var taskId in listTaskId)
                     {
-                        var deleteTask = storeProject.DeleteTask(taskId.Id);
+                        var deleteTask = storeProject.DeleteTask(taskId);
                     }
                 }
             }
