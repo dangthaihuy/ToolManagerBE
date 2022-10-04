@@ -22,12 +22,10 @@ namespace Manager.WebApp.Controllers.Business
     public class ProjectController : ControllerBase
     {
         private readonly ILogger<ProjectController> _logger;
-        private readonly IApiStoreUser storeUser;
         private readonly IStoreProject storeProject;
 
         public ProjectController(ILogger<ProjectController> logger)
         {
-            storeUser = Startup.IocContainer.Resolve<IApiStoreUser>();
             storeProject = Startup.IocContainer.Resolve<IStoreProject>();
             _logger = logger;
         }
@@ -293,16 +291,42 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpPost]
         [Route("insert_task")]
-        public ActionResult InsertTask(TaskModel model)
+        public async Task<ActionResult> InsertTask([FromForm]TaskModel model)
         {
             try
             {
                 var identity = model.MappingObject<IdentityTask>();
-                var res = storeProject.InsertTask(identity);
+                
 
+                if (Request.Form.Files.Count > 0)
+                {
+                    foreach (var file in Request.Form.Files)
+                    {
+                        var attachmentFolder = string.Format("Project/{0}/Attachment", identity.ProjectId);
+                        if (!System.IO.Directory.Exists(attachmentFolder))
+                        {
+                            System.IO.Directory.CreateDirectory(attachmentFolder);
+                        }
+
+                        var filePath = FileUploadHelper.UploadFile(file, attachmentFolder);
+
+                        await Task.FromResult(filePath);
+
+                        if (!string.IsNullOrEmpty(filePath))
+                        {
+                            if (identity.Files == null)
+                            {
+                                identity.Files = new List<IdentityProjectAttachment>();
+                            }
+
+                            identity.Files.Add(new IdentityProjectAttachment { Name = file.FileName, Path = filePath });
+                        }
+                    }
+                }
+                var res = storeProject.InsertTask(identity);
                 if (res > 0)
                 {
-                    return Ok(new { apiMessage = new { type = "success", code = "taskxxx" } });
+                    return Ok(new {id = res, apiMessage = new { type = "success", code = "taskxxx" } });
                 }
 
                 return Ok(new { apiMessage = new { type = "error", code = "taskxxx" } });

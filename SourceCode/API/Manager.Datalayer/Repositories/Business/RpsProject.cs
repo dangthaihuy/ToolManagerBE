@@ -330,6 +330,21 @@ namespace Manager.DataLayer.Repositories.Business
                     var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
 
                     newId = Convert.ToInt32(returnObj);
+                    if (newId > 0 && identity.Files.HasData())
+                    {
+                        foreach (var file in identity.Files)
+                        {
+                            var param = new Dictionary<string, object>
+                            {
+                                {"@Name", file.Name},
+                                {"@ProjectId", identity.ProjectId},
+                                {"@TaskId", newId},
+                                {"@FeatureId", identity.FeatureId},
+                                {"@Path", file.Path},
+                            };
+                            MsSqlHelper.ExecuteNonQuery(conn, CommandType.StoredProcedure, @"Project_InsertAttachment", param);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
