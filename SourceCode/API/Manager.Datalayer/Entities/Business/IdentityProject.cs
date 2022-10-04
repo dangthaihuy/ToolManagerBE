@@ -11,7 +11,6 @@ namespace Manager.DataLayer.Entities.Business
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public List<string> MemberIds { get; set; }
@@ -38,6 +37,7 @@ namespace Manager.DataLayer.Entities.Business
         public int Process { get; set; }
         public List<int> MemberIds { get; set; }
         public List<IdentityProjectAttachment> Files { get; set; }
+        public int MessageId { get; set; }
         public int Status { get; set; }
 
     }

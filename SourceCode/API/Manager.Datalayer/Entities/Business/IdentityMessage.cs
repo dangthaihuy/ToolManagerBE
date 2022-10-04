@@ -27,6 +27,7 @@ namespace Manager.DataLayer.Entities.Business
         public int ReplyMessageId { get; set; }
         public IdentityMessageReply ReplyMessage { get; set; }
         public int TotalCount { get; set; }
+        public int TaskId { get; set; }
         public int PageIndex { get; set; }
         public List<IdentityMessageAttachment> Attachments { get; set; }
         public List<IdentityInformationUser> Users { get; set; }

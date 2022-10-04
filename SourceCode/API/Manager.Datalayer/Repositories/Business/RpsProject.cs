@@ -320,6 +320,7 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@CreatedBy", identity.CreatedBy },
                 {"@Assignee", identity.Assignee },
                 {"@Deadline", identity.Deadline },
+                {"@MessageId", identity.MessageId },
 
             };
 
@@ -345,6 +346,8 @@ namespace Manager.DataLayer.Repositories.Business
                             MsSqlHelper.ExecuteNonQuery(conn, CommandType.StoredProcedure, @"Project_InsertAttachment", param);
                         }
                     }
+
+                    
                 }
             }
             catch (Exception ex)
@@ -413,7 +416,13 @@ namespace Manager.DataLayer.Repositories.Business
             {
                 using (var conn = new SqlConnection(_conStr))
                 {
-                    MsSqlHelper.ExecuteNonQuery(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            info = ExtractTask(reader);
+                        }
+                    }
 
                     if (identity.Files.HasData())
                     {
@@ -1194,6 +1203,7 @@ namespace Manager.DataLayer.Repositories.Business
             record.FeatureId = Utils.ConvertToInt32(reader["FeatureId"]);
             record.Assignee = reader["Assignee"].ToString();
             record.Process = Utils.ConvertToInt32(reader["Process"]);
+            record.MessageId = Utils.ConvertToInt32(reader["MessageId"]);
             record.Status = Utils.ConvertToInt32(reader["Status"]);
 
             return record;

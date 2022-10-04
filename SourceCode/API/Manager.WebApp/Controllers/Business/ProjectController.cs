@@ -288,7 +288,6 @@ namespace Manager.WebApp.Controllers.Business
             }
         }
 
-
         [HttpPost]
         [Route("insert_task")]
         public async Task<ActionResult> InsertTask([FromForm]TaskModel model)
@@ -400,11 +399,9 @@ namespace Manager.WebApp.Controllers.Business
                     
                 }
 
-                var updateTask = storeProject.UpdateTask(identity);
-
+                var res = storeProject.UpdateTask(identity);
                 //Clear Cache
                 ProjectHelpers.ClearCacheBaseInfoTask(model.Id);
-                var res = ProjectHelpers.GetBaseInfoTask(model.Id);
 
                 return Ok(new {task=res, apiMessage = new { type = "success", code = "taskxxx" } });
             }
