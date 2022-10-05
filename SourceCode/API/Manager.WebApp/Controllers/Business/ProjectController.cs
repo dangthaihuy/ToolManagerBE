@@ -400,6 +400,7 @@ namespace Manager.WebApp.Controllers.Business
                 }
 
                 var res = storeProject.UpdateTask(identity);
+                res.Files = storeProject.GetAttachmentByTaskId(res.Id);
                 //Clear Cache
                 ProjectHelpers.ClearCacheBaseInfoTask(model.Id);
 
@@ -426,12 +427,13 @@ namespace Manager.WebApp.Controllers.Business
                 var task = ProjectHelpers.GetBaseInfoTask(id);
                 
 
-                if (task == null)
+                if (task.Id > 0)
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "taskxxx" } });
+                    task.Files = storeProject.GetAttachmentByTaskId(task.Id);
+                    return Ok(new { task = task, apiMessage = new { type = "success", code = "taskxxx" } });
                 }
-
-                return Ok(new { task = task, apiMessage = new { type = "success", code = "taskxxx" } });
+                return Ok(new { apiMessage = new { type = "error", code = "taskxxx" } });
+                
             }
             catch (Exception ex)
             {

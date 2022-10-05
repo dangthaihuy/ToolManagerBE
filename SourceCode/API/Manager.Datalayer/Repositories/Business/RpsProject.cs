@@ -502,23 +502,6 @@ namespace Manager.DataLayer.Repositories.Business
                         {
                             res = ExtractTask(reader);
                         }
-                        if (res != null && reader.NextResult())
-                        {
-                            res.Files = new List<IdentityProjectAttachment>();
-                            while (reader.Read())
-                            {
-                                res.Files.Add(ExtractAttachment(reader));
-                            }
-                        }
-                        if(res != null && reader.NextResult())
-                        {
-                            res.MemberIds = new List<int>();
-                            while (reader.Read())
-                            {
-                                var memberId = Utils.ConvertToInt32(reader["UserId"]);
-                                res.MemberIds.Add(memberId);
-                            }
-                        }
                     }
                 }
             }
