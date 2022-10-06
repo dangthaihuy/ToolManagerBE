@@ -329,7 +329,7 @@ namespace Manager.DataLayer.Repositories.Business
                 using (var conn = new SqlConnection(_conStr))
                 {
                     var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
-
+                    
                     newId = Convert.ToInt32(returnObj);
                     if (newId > 0 && identity.Files.HasData())
                     {

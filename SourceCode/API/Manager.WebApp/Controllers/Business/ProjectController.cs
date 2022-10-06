@@ -9,9 +9,11 @@ using Manager.WebApp.Helpers.Business;
 using Manager.WebApp.Models.Business;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Manager.WebApp.Controllers.Business
@@ -23,6 +25,7 @@ namespace Manager.WebApp.Controllers.Business
     {
         private readonly ILogger<ProjectController> _logger;
         private readonly IStoreProject storeProject;
+        private readonly string filePath;
 
         public ProjectController(ILogger<ProjectController> logger)
         {
@@ -348,8 +351,9 @@ namespace Manager.WebApp.Controllers.Business
                         }
                     }
                 }
-                var res = storeProject.InsertTask(identity);
-                return Ok(new { id = res, apiMessage = returnModel });
+                var newTaskId = storeProject.InsertTask(identity);
+                var task = ProjectHelpers.GetBaseInfoTask(newTaskId);
+                return Ok(new { task = task, apiMessage = returnModel });
             }
             catch (Exception ex)
             {
@@ -818,6 +822,17 @@ namespace Manager.WebApp.Controllers.Business
             returnModel.Type = "error";
             returnModel.Code = "file102";
             return Ok(new { apiMessage = returnModel });
+        }
+
+        [HttpGet]
+        [Route("download_file")]
+        [Authorize]
+        public IActionResult DownloadFile(string path)
+        {
+            string physicalPath = "wwwroot/test.pdf";
+            byte[] pdfBytes = System.IO.File.ReadAllBytes(physicalPath);
+            MemoryStream ms = new MemoryStream(pdfBytes);
+            return new FileStreamResult(ms, "application/pdf");
         }
 
         private void DeleteChild(int parentId)

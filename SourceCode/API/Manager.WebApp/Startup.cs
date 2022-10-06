@@ -39,8 +39,6 @@ namespace Manager.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR();
-
-
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
