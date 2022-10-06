@@ -34,21 +34,25 @@ namespace Manager.WebApp.Controllers.Business
         [Route("insert_project")]
         public ActionResult InsertProject(ProjectModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "project101" };
             try
             {
                 var identity = model.MappingObject<IdentityProject>();
                 var res = storeProject.InsertProject(identity);
                 if (res > 0)
                 {
-                    return Ok(new {projectId = res, apiMessage = new { type = "success", code = "project001" } });
+                    returnModel.Type = "project001";
+                    returnModel.Code = "success";
+                    return Ok(new {projectId = res, apiMessage = returnModel });
                 }
 
                 return Ok(new { apiMessage = new { type = "error", code = "project101" } });
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not insert project: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -56,6 +60,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("delete_project")]
         public ActionResult DeleteProject(ProjectModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "project002" };
             try
             {
                 var identity = model.MappingObject<IdentityProject>();
@@ -69,10 +74,12 @@ namespace Manager.WebApp.Controllers.Business
                 //Clear Cache
                 ProjectHelpers.ClearCacheBaseInfoProject(model.Id);
 
-                return Ok(new { id = model.Id, apiMessage = new { type = "success", code = "project002" } });
+                return Ok(new { id = model.Id, apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
+                returnModel.Type = "error";
                 _logger.LogDebug("Could not delete project: " + ex.ToString());
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
@@ -82,6 +89,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("update_project")]
         public async Task<ActionResult> UpdateProject([FromForm] ProjectModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "project003" };
             try
             {
                 var identity = model.MappingObject<IdentityProject>();
@@ -103,12 +111,14 @@ namespace Manager.WebApp.Controllers.Business
                 //Clear Cache
                 ProjectHelpers.ClearCacheBaseInfoProject(model.Id);
 
-                return Ok(new { project = res, apiMessage = new { type = "success", code = "project003" } });
+                return Ok(new { project = res, apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
+                returnModel.Type = "error";
                 _logger.LogDebug("Could not update project: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -116,6 +126,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("get_project_by_userid")]
         public ActionResult GetProjectByUserId(int id)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "projectxxx" };
             try
             {
                 var res = new List<IdentityProject>();
@@ -129,12 +140,14 @@ namespace Manager.WebApp.Controllers.Business
                     }
                 }
 
-                return Ok(new { listProject = res, apiMessage = new { type = "success", code = "projectxxx" } });
+                return Ok(new { listProject = res, apiMessage = returnModel });
             }
             catch(Exception ex)
             {
+                returnModel.Code = "server001";
+                returnModel.Type = "error";
                 _logger.LogDebug("Could not get project by user id: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -142,6 +155,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("get_project_by_id")]
         public ActionResult GetProjectById(int id)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "projectxxx" };
             try
             {
                 var res = ProjectHelpers.GetBaseInfoProject(id);
@@ -184,12 +198,14 @@ namespace Manager.WebApp.Controllers.Business
                 idenAttach.FeatureId = 0;
                 res.Files = storeProject.GetAttachmentByFeatureId(idenAttach);
 
-                return Ok(new { project = res, apiMessage = new { type = "success", code = "projectxxx" } });
+                return Ok(new { project = res, apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
+                returnModel.Type = "error";
                 _logger.LogDebug("Could not get project by id: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
 
         }
@@ -198,22 +214,20 @@ namespace Manager.WebApp.Controllers.Business
         [Route("add_user_to_project")]
         public ActionResult AddUserToProject(UserProjectModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "projectxxx" };
             try
             {
-                if (model == null)
-                {
-                    return Ok(new { apiMessage = new { type = "error", code = "projectxxx" } });
-                }
-
                 var identity = model.MappingObject<IdentityUserProject>();
                 var res = storeProject.InsertUserToProject(identity);
 
-                return Ok(new { apiMessage = new { type = "success", code = "projectxxx" } });
+                return Ok(new { apiMessage = returnModel });
             }
             catch(Exception ex)
             {
+                returnModel.Code = "server001";
+                returnModel.Type = "error";
                 _logger.LogDebug("Could not add user to project: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -221,22 +235,26 @@ namespace Manager.WebApp.Controllers.Business
         [Route("delete_user_in_project")]
         public ActionResult DeleteUserInProject(UserProjectModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "projectxxx" };
             try
             {
                 if (model == null)
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "projectxxx" } });
+                    return Ok(new { apiMessage = returnModel });
                 }
 
                 var identity = model.MappingObject<IdentityUserProject>();
                 var res = storeProject.DeleteUserInProject(identity);
 
-                return Ok(new { userId = model.UserId, apiMessage = new { type = "success", code = "projectxxx" } });
+                returnModel.Type = "success";
+                return Ok(new { userId = model.UserId, apiMessage = returnModel });
             }
             catch(Exception ex)
             {
+                returnModel.Code = "server001";
+                returnModel.Type = "error";
                 _logger.LogDebug("Could not delete user in project: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -244,47 +262,55 @@ namespace Manager.WebApp.Controllers.Business
         [Route("update_user_in_project")]
         public ActionResult UpdateUserInProject(UserProjectModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "projectxxx" };
             try
             {
                 if (model == null)
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "projectxxx" } });
+                    return Ok(new { apiMessage = returnModel });
                 }
 
                 var identity = model.MappingObject<IdentityUserProject>();
                 var res = storeProject.UpdateUserInProject(identity);
-
-                return Ok(new { apiMessage = new { type = "success", code = "projectxxx" } });
+                
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not add user to project: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
+            returnModel.Type = "success";
+            returnModel.Code = "projectxxx";
+            return Ok(new { apiMessage = returnModel });
         }
         [HttpGet]
         [Route("get_attachment_in_project")]
         public ActionResult GetAttachmentInProject(int id)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "projectxxx" };
             try
             {
                 if (id == 0)
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "projectxxx" } });
+                    return Ok(new { apiMessage = returnModel });
                 }
 
                 var res = storeProject.GetAttachmentByProjectId(id);
                 if (res == null)
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "projectxxx" } });
+                    return Ok(new { apiMessage = returnModel });
                 }
 
-                return Ok(new { attachments = res, apiMessage = new { type = "success", code = "projectxxx" } });
+                returnModel.Type = "success";
+                returnModel.Code = "projectxxx";
+                return Ok(new { attachments = res, apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not get attachment in task: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -292,6 +318,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("insert_task")]
         public async Task<ActionResult> InsertTask([FromForm]TaskModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "taskxxx" };
             try
             {
                 var identity = model.MappingObject<IdentityTask>();
@@ -322,17 +349,14 @@ namespace Manager.WebApp.Controllers.Business
                     }
                 }
                 var res = storeProject.InsertTask(identity);
-                if (res > 0)
-                {
-                    return Ok(new {id = res, apiMessage = new { type = "success", code = "taskxxx" } });
-                }
-
-                return Ok(new { apiMessage = new { type = "error", code = "taskxxx" } });
+                return Ok(new { id = res, apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
+                returnModel.Type = "error";
                 _logger.LogDebug("Could not insert task: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -340,6 +364,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("delete_task")]
         public ActionResult DeleteTask(TaskModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "taskxxx" };
             try
             {
                 var identity = model.MappingObject<IdentityTask>();
@@ -355,12 +380,14 @@ namespace Manager.WebApp.Controllers.Business
 
                 //Clear Cache
                 ProjectHelpers.ClearCacheBaseInfoTask(model.Id);
-                return Ok(new { taskId = model.Id, apiMessage = new { type = "success", code = "taskxxx" } });
+                return Ok(new { taskId = model.Id, apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
+                returnModel.Type = "error";
                 _logger.LogDebug("Could not delete task: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -368,6 +395,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("update_task")]
         public async Task<ActionResult> UpdateTask([FromForm] TaskModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "taskxxx" };
             try
             {
                 var identity = model.MappingObject<IdentityTask>();
@@ -404,12 +432,14 @@ namespace Manager.WebApp.Controllers.Business
                 //Clear Cache
                 ProjectHelpers.ClearCacheBaseInfoTask(model.Id);
 
-                return Ok(new {task=res, apiMessage = new { type = "success", code = "taskxxx" } });
+                return Ok(new {task=res, apiMessage = returnModel });
             }
             catch(Exception ex)
             {
+                returnModel.Code = "server001";
+                returnModel.Type = "error";
                 _logger.LogDebug("Could not update task: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -417,34 +447,39 @@ namespace Manager.WebApp.Controllers.Business
         [Route("get_task_by_id")]
         public ActionResult GetTaskById(int id)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "taskxxx" };
             try
             {
-                if(id == 0)
+                if (id == 0)
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "taskxxx" } });
+                    return Ok(new { apiMessage = returnModel });
                 }
 
                 var task = ProjectHelpers.GetBaseInfoTask(id);
                 
-
                 if (task.Id > 0)
                 {
                     task.Files = storeProject.GetAttachmentByTaskId(task.Id);
-                    return Ok(new { task = task, apiMessage = new { type = "success", code = "taskxxx" } });
+                    returnModel.Code = "taskxxx";
+                    returnModel.Type = "success";
+
+                    return Ok(new { task = task, apiMessage = returnModel });
                 }
-                return Ok(new { apiMessage = new { type = "error", code = "taskxxx" } });
-                
+
+                return Ok(new { apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Code = "serrver001";
                 _logger.LogDebug("Could not get task by id: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
         [HttpGet]
         [Route("get_task_by_userid")]
         public ActionResult GetTaskByUserId(int id)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "taskxxx" };
             try
             {
                 var res = new List<IdentityTask>();
@@ -459,12 +494,14 @@ namespace Manager.WebApp.Controllers.Business
                     }
                 }
 
-                return Ok(new { listTask = res, apiMessage = new { type = "success", code = "taskxxx" } });
+                return Ok(new { listTask = res, apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
+                returnModel.Type = "error";
                 _logger.LogDebug("Could not get task by user id: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
 
         }
@@ -524,25 +561,30 @@ namespace Manager.WebApp.Controllers.Business
         [Route("get_attachment_in_task")]
         public ActionResult GetAttachmentInTask(int id)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "taskxxx" };
             try
             {
                 if (id == 0)
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "taskxxx" } });
+                    return Ok(new { apiMessage = returnModel });
                 }
 
                 var res = storeProject.GetAttachmentByTaskId(id);
                 if(res == null)
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "taskxxx" } });
+                    return Ok(new { apiMessage = returnModel });
                 }
 
-                return Ok(new { attachments = res, apiMessage = new { type = "success", code = "taskxxx" } });
+                returnModel.Type = "success";
+                returnModel.Code = "taskxxx";
+                return Ok(new { attachments = res, apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not get attachment in task: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -550,6 +592,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("delete_attachment_by_id")]
         public ActionResult DeleteAttachmentById(ProjectAttachmentModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "taskxxx" };
             try
             {
                 var identity = model.MappingObject<IdentityProjectAttachment>();
@@ -561,15 +604,18 @@ namespace Manager.WebApp.Controllers.Business
                         System.IO.File.Delete(String.Concat("wwwroot", attachment.Path));
                     }
 
-                    return Ok(new { attachmentId = attachment.Id, apiMessage = new { type = "success", code = "taskxxx" } });
+                    returnModel.Type = "success";
+                    return Ok(new { attachmentId = attachment.Id, apiMessage = returnModel });
                 }
 
-                return Ok(new { apiMessage = new { type = "error", code = "taskxxx" } });
+                return Ok(new { apiMessage = returnModel });
             }
             catch(Exception ex)
             {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not delete attachment in task: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -580,6 +626,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("insert_feature")]
         public ActionResult InsertFeature(FeatureModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "featurexxx" };
             try
             {
                 var identity = model.MappingObject<IdentityFeature>();
@@ -587,15 +634,18 @@ namespace Manager.WebApp.Controllers.Business
 
                 if (res != null)
                 {
-                    return Ok(new {feature = res, apiMessage = new { type = "success", code = "featurexxx" } });
+                    returnModel.Type = "success";
+                    return Ok(new {feature = res, apiMessage = returnModel });
                 }
 
-                return Ok(new { apiMessage = new { type = "error", code = "featurexxx" } });
+                return Ok(new { apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not insert feature: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -603,18 +653,21 @@ namespace Manager.WebApp.Controllers.Business
         [Route("delete_feature")]
         public ActionResult DeleteFeature(FeatureModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "featurexxx" };
             try
             {
                 var identity = model.MappingObject<IdentityFeature>();
 
                 DeleteChild(identity.Id);
 
-                return Ok(new { id = model.Id, apiMessage = new { type = "success", code = "featurexxx" } });
+                return Ok(new { id = model.Id, apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not delete feature: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -622,6 +675,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("update_feature")]
         public ActionResult UpdateFeature(FeatureModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "featurexxx" };
             try
             {
                 var identity = model.MappingObject<IdentityFeature>();
@@ -629,10 +683,12 @@ namespace Manager.WebApp.Controllers.Business
 
                 ProjectHelpers.ClearCacheBaseInfoFeature(model.Id);
 
-                return Ok(new { apiMessage = new { type = "success", code = "featurexxx" } });
+                return Ok(new { apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not update feature: " + ex.ToString());
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
@@ -642,6 +698,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("get_feature_by_id")]
         public ActionResult GetFeatureById(int id)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "featurexxx" };
             try
             {
                 var idenAttach = new IdentityProjectAttachment();
@@ -671,15 +728,19 @@ namespace Manager.WebApp.Controllers.Business
                     res.Tasks = storeProject.GetTaskIdByFeatureId(id);*/
 
 
-                    return Ok(new { feature = res, apiMessage = new { type = "success", code = "featurexxx" } });
+                    return Ok(new { feature = res, apiMessage = returnModel });
                 }
 
-                return Ok(new { apiMessage = new { type = "error", code = "featurexxx" } });
+                returnModel.Type = "error";
+                returnModel.Code = "featurexxx";
+                return Ok(new { apiMessage = returnModel });
             }
             catch(Exception ex)
             {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not get feature by id: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
@@ -689,6 +750,7 @@ namespace Manager.WebApp.Controllers.Business
         [RequestSizeLimit(409715200)]
         public async Task<ActionResult> InsertFile([FromForm] ProjectAttachmentModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "file001" };
             try
             {
                 var listFile = new List<IdentityProjectAttachment>();
@@ -714,14 +776,15 @@ namespace Manager.WebApp.Controllers.Business
 
                     }
 
-                    return Ok(new { listFile = listFile, apiMessage = new { type = "success", code = "file001" } });
+                    return Ok(new { listFile = listFile, apiMessage = returnModel });
                 }
             }
             catch (Exception ex)
             {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not insert file: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
 
             return Ok(new { apiMessage = new { type = "error", code = "file101" } });
@@ -731,27 +794,30 @@ namespace Manager.WebApp.Controllers.Business
         [Route("delete_file")]
         public ActionResult DeleteFile(ProjectAttachmentModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "file002" };
             try
             {
-                
                 var path = storeProject.DeleteFile(model.Id);
 
                 if (path != null)
                 {
                     System.IO.File.Delete(String.Concat("wwwroot", path));
-                    return Ok(new { apiMessage = new { type = "success", code = "file002" } });
+                    return Ok(new { apiMessage = returnModel });
                 }
 
                 
             }
             catch (Exception ex)
             {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not delete file: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
 
-            return Ok(new { apiMessage = new { type = "error", code = "file102" } });
+            returnModel.Type = "error";
+            returnModel.Code = "file102";
+            return Ok(new { apiMessage = returnModel });
         }
 
         private void DeleteChild(int parentId)

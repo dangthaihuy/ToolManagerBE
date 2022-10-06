@@ -36,9 +36,10 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getbypage")]
         public ActionResult GetByPage(int conversationId, int messageId, int pageSize, int direction, bool isMore = false)
         {
-            if(conversationId <= 0)
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "message101" };
+            if (conversationId <= 0)
             {
-                return BadRequest(new { apiMessage = new { type = "error", code = "message101" } });
+                return Ok(new { apiMessage = returnModel });
             }
 
             pageSize = pageSize > 0 ? pageSize : 20;
@@ -56,7 +57,6 @@ namespace Manager.WebApp.Controllers.Business
 
                 var list = storeMessage.GetByPage(filter);
                 
-
                 if (list.HasData())
                 {
                     foreach (var item in list)
@@ -73,9 +73,9 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not getbypage: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
             return Ok(messageList);
         }
@@ -84,9 +84,10 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getbysearch")]
         public ActionResult GetBySearch(int conversationId, string keyword)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "message102" };
             if (conversationId <= 0)
             {
-                return BadRequest(new { apiMessage = new { type = "error", code = "message102" } });
+                return Ok(new { apiMessage = returnModel });
             }
 
             List<IdentityMessage> list = new List<IdentityMessage>();
@@ -109,9 +110,9 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not getbypage: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
             return Ok(list);
         }
@@ -120,6 +121,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("delete")]
         public ActionResult DeleteMessage(MessageModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "server001" };
             try
             {
                 var identity = model.MappingObject<IdentityMessage>();
@@ -136,7 +138,7 @@ namespace Manager.WebApp.Controllers.Business
             {
                 _logger.LogDebug("Could not deletemessage: " + ex.ToString());
 
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
             return Ok(model.Id);
         }
@@ -147,9 +149,10 @@ namespace Manager.WebApp.Controllers.Business
         [Route("get_important")]
         public ActionResult GetImportant(int conversationId, int page, string keyword, int pageSize)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "message103" };
             if (conversationId <= 0)
             {
-                return BadRequest(new { apiMessage = new { type = "error", code = "message103" } });
+                return Ok(new { apiMessage = returnModel });
             }
 
             pageSize = pageSize != 0 ? pageSize : 50;
@@ -168,9 +171,9 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not getimportant: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
             return Ok(list);
         }
@@ -179,9 +182,10 @@ namespace Manager.WebApp.Controllers.Business
         [Route("change_important")]
         public ActionResult ChangeImportant(MessageCheckImportantModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "message104" };
             if (model.Id == 0)
             {
-                return BadRequest(new { apiMessage = new { type = "error", code = "message104" } });
+                return Ok(new { apiMessage = returnModel });
             }
             else
             {
@@ -195,8 +199,8 @@ namespace Manager.WebApp.Controllers.Business
                 }
                 catch (Exception ex)
                 {
+                    returnModel.Code = "server001";
                     _logger.LogDebug("Could not changeimportant: " + ex.ToString());
-
                     return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
                 }
             }

@@ -467,7 +467,7 @@ namespace Manager.DataLayer.Repositories.Business
                     {
                         while (reader.Read())
                         {
-                            var res = Utils.ConvertToInt32(reader["TaskId"]);
+                            var res = Utils.ConvertToInt32(reader["Id"]);
                             list.Add(res);
                         }
                     }
@@ -1182,9 +1182,9 @@ namespace Manager.DataLayer.Repositories.Business
             record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
             record.Description = reader["Description"].ToString();
             record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
-            record.Deadline = DateTime.Parse(reader["Deadline"].ToString());
+            record.Deadline = DBNull.Value == reader["Deadline"] ? null : DateTime.Parse(reader["Deadline"].ToString());
             record.FeatureId = Utils.ConvertToInt32(reader["FeatureId"]);
-            record.Assignee = reader["Assignee"].ToString();
+            record.Assignee = Utils.ConvertToInt32(reader["Assignee"]);
             record.Process = Utils.ConvertToInt32(reader["Process"]);
             record.MessageId = Utils.ConvertToInt32(reader["MessageId"]);
             record.Status = Utils.ConvertToInt32(reader["Status"]);

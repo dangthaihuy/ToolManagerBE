@@ -42,6 +42,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("insert")]
         public ActionResult Insert(ConversationUserModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "ConversationUser001" };
             try
             {
                 var idenMessage = new IdentityMessage();
@@ -78,17 +79,20 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch(Exception ex)
             {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not insert group-user: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
 
-            return Ok(new { apiMessage = new { type = "success", code = "ConversationUser001" } });
+            return Ok(new { apiMessage = returnModel });
         }
 
         [HttpPost]
         [Route("delete")]
         public ActionResult Delete(ConversationUserModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "ConversationUser002" };
             try
             {
                 var idenMessage = new IdentityMessage();
@@ -126,17 +130,20 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not delete user from group: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
 
-            return Ok(new { apiMessage = new { type = "success", code = "ConversationUser002" } });
+            return Ok(new { apiMessage = returnModel });
         }
 
         [HttpPost]
         [Route("update_read")]
         public ActionResult UpdateRead(ConversationUserModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "ConversationUser003" };
             try
             {
                 var identity = model.MappingObject<IdentityConversationUser>();
@@ -160,12 +167,14 @@ namespace Manager.WebApp.Controllers.Business
                 }
                 
 
-                return Ok(new {conversationId = model.ConversationId ,readBy = readBy, apiMessage = new { type = "success", code = "conversationuser001" } });
+                return Ok(new {conversationId = model.ConversationId ,readBy = readBy, apiMessage = returnModel });
             }
             catch(Exception ex)
             {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not update read: " + ex.ToString());
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
     }

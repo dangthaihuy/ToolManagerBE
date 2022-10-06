@@ -42,29 +42,29 @@ namespace Manager.WebApp.Controllers.Api
         [AllowAnonymous]
         public ActionResult Register(ApiRegisterModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "account101" };
             try
             {
-
                 if (storeUser.GetByEmail(model.Email).Email != null)
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "account101" } });
+                    return Ok(new { apiMessage = returnModel });
                 }
 
-
                 var newUser = model.MappingObject<IdentityInformationUser>();
-
                 newUser.PasswordHash = Helpers.Utility.Md5HashingData(model.Password);
-
                 var res = storeUser.Register(newUser);
+                
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not register: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
 
-            return Ok(new { apiMessage = new { type = "success", code = "account001" } });
+            returnModel.Type = "success";
+            returnModel.Code = "account001";
+            return Ok(new { apiMessage = returnModel });
 
         }
 
@@ -73,33 +73,31 @@ namespace Manager.WebApp.Controllers.Api
         [AllowAnonymous]
         public ActionResult Login(ApiLoginModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "account102" };
             try
             {
                 model.Email = model.Email.ToStringNormally();
-
                 var pwd = model.Password.ToStringNormally();
                 pwd = Helpers.Utility.Md5HashingData(pwd);
-
 
                 var user = storeUser.Login(new IdentityInformationUser { Email = model.Email, PasswordHash = pwd });
 
                 if (user != null)
                 {
                     dynamic token = ((JsonResult)AssignJWTToken(user)).Value;
-
                     return Ok(new { user.Id, token.Token, token.RefreshToken });
                 }
                 else
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "account102" } });
+                    return Ok(new { apiMessage = returnModel });
                 }
 
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not login: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
 
             }
 
@@ -110,24 +108,24 @@ namespace Manager.WebApp.Controllers.Api
         [AllowAnonymous]
         public ActionResult RefreshToken([FromBody] TokenRequest tokenRequest)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "account103" };
+
             try
             {
                 if (ModelState.IsValid)
                 {
                     var result = ((JsonResult)VerifyAndGenerateToken(tokenRequest)).Value;
-                    
-
                     return Ok(result);
                 }
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not refresh token: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
 
             }
-            return Ok(new { apiMessage = new { type = "error", code = "account103" } });
+            return Ok(new { apiMessage = returnModel });
         }
 
         [HttpPost]
@@ -135,32 +133,34 @@ namespace Manager.WebApp.Controllers.Api
         [AllowAnonymous]
         public ActionResult ChangePassword(ChangePasswordModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "account104" };
             try
             {
                 var identityChangePw = model.MappingObject<IdentityInformationUser>();
                 identityChangePw.Password = Helpers.Utility.Md5HashingData(model.Password);
 
                 var user = storeUser.GetByPassword(identityChangePw);
-                if (user != null)
+                if (user.Id > 0)
                 {
                     var identity = new IdentityInformationUser();
                     identity.Id = model.Id;
                     identity.PasswordHash = Helpers.Utility.Md5HashingData(model.NewPassword);
 
                     var res = storeUser.Update(identity);
-
-                    return Ok(new { apiMessage = new { type = "success", code = "account004" } });
+                    returnModel.Type = "success";
+                    returnModel.Code = "account004";
+                    return Ok(new { apiMessage = returnModel });
 
                 }
 
-                return Ok(new { apiMessage = new { type = "error", code = "account104" } });
+                return Ok(new { apiMessage = returnModel });
 
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not change password: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
 
         }
@@ -170,18 +170,16 @@ namespace Manager.WebApp.Controllers.Api
         [AllowAnonymous]
         public ActionResult ForgetPassword(ChangePasswordModel model)
         {
-
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "account105" };
             try
             {
                 var user = storeUser.GetByEmail(model.Email);
                 if (user == null)
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "account105" } });
+                    return Ok(new { apiMessage = returnModel });
                 }
 
                 dynamic token = ((JsonResult)AssignJWTToken(user)).Value;
-
-
 
                 var url = $"{AppConfiguration.GetAppsetting("SystemSetting:ClientHost")}/resetpassword?email={model.Email}&token={token.Token}";
 
@@ -191,20 +189,21 @@ namespace Manager.WebApp.Controllers.Api
                 emailModel.Subject = "huy đẹp trai";
                 emailModel.SenderName = "2se";
 
-
                 emailModel.Receiver = model.Email;
-                emailModel.Body = $"Ha ha đồ ngốc bấm vào đây đi: {url}";
+                emailModel.Body = $"Ha ha đồ ngốc quên mật khẩu đúng không, bấm vào đây đi: {url}";
 
                 EmailHelpers.SendEmail(emailModel);
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not forget password: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
 
-            return Ok(new { apiMessage = new { type = "success", code = "account005" } });
+            returnModel.Type = "success";
+            returnModel.Code = "account005";
+            return Ok(new { apiMessage = returnModel });
         }
 
 
@@ -212,6 +211,7 @@ namespace Manager.WebApp.Controllers.Api
         [Route("getlist")]
         public ActionResult GetList()
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "account106" };
             try
             {
                 var data = storeUser.GetList();
@@ -223,24 +223,24 @@ namespace Manager.WebApp.Controllers.Api
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not getlist user: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
 
             }
 
-            return Ok(new { apiMessage = new { type = "error", code = "account106" } });
+            return Ok(new { apiMessage = returnModel });
         }
 
         [HttpGet]
         [Route("get_currentuser")]
         public ActionResult GetCurrentById(string id)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "account107_1" };
             if (id == null)
             {
-                return BadRequest(new { apiMessage = new { type = "error", message = "account107_1" } });
+                return Ok(new { apiMessage = returnModel });
             }
-
             try
             {
                 var data = storeUser.GetById(id);
@@ -251,21 +251,22 @@ namespace Manager.WebApp.Controllers.Api
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not get currentuser: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
-
+                return StatusCode(500, new { apiMessage = returnModel });
             }
-            return Ok(new { apiMessage = new { type = "error", code = "account107_2" } });
+            returnModel.Code = "account107_2";
+            return Ok(new { apiMessage = returnModel });
         }
 
         [HttpGet]
         [Route("get_inforuser")]
         public ActionResult GetInforUser(int id)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "account108_1" };
             if (id == 0)
             {
-                return BadRequest(new { apiMessage = new { type = "error", message = "account108_1" } });
+                return Ok(new { apiMessage = returnModel });
             }
 
             try
@@ -278,20 +279,20 @@ namespace Manager.WebApp.Controllers.Api
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not get currentuser: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
 
             }
-            return Ok(new { apiMessage = new { type = "error", code = "getdata108_2" } });
+            returnModel.Code = "getdata108_2";
+            return Ok(new { apiMessage = returnModel });
         }
 
         [HttpPost]
         [Route("update")]
         public async Task<ActionResult> Update([FromForm] UserModel model)
         {
-
-
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "account109" };
             try
             {
                 var identity = new IdentityInformationUser();
@@ -320,19 +321,21 @@ namespace Manager.WebApp.Controllers.Api
 
                     var updateUser = storeUser.Update(identity);
                     UserHelpers.ClearCacheBaseInfo(identity.Id);
+                    returnModel.Code = "account009";
+                    returnModel.Type = "success";
 
-                    return Ok(new { userProfile = updateUser, apiMessage = new { type = "success", code = "account009" } });
+                    return Ok(new { userProfile = updateUser, apiMessage = returnModel });
                 }
 
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not get currentuser: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
 
-            return Ok(new { apiMessage = new { type = "error", code = "account109" } });
+            return Ok(new { apiMessage = returnModel });
         }
 
         [HttpPost]
@@ -340,13 +343,14 @@ namespace Manager.WebApp.Controllers.Api
         [AllowAnonymous]
         public ActionResult ResetPassword(ChangePasswordModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "account110" };
             try
             {
                 var user = storeUser.GetByEmail(model.Email);
 
                 if (user == null)
                 {
-                    return Ok(new { apiMessage = new { type = "error", code = "account110" } });
+                    return Ok(new { apiMessage = returnModel });
                 }
 
                 var identity = model.MappingObject<IdentityInformationUser>();
@@ -354,20 +358,18 @@ namespace Manager.WebApp.Controllers.Api
                 identity.PasswordHash = Helpers.Utility.Md5HashingData(model.Password);
 
                 var res = storeUser.Update(identity);
-
+                returnModel.Type = "success";
+                returnModel.Code = "account010";
 
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not reset password: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
 
-
-
-
-            return Ok(new { apiMessage = new { type = "success", code = "account010" } });
+            return Ok(new { apiMessage = returnModel });
         }
 
 

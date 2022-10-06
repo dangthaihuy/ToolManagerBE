@@ -28,7 +28,7 @@ namespace Manager.WebApp.Models.Business
         public DateTime CreatedDate { get; set; }
         public string Description { get; set; }
         public DateTime? Deadline { get; set; }
-        public string Assignee { get; set; }
+        public int Assignee { get; set; }
         public int MessageId { get; set; }
         public int Status { get; set; }
 

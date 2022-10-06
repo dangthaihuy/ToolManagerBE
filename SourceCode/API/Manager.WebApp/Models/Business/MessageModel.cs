@@ -35,4 +35,10 @@ namespace Manager.WebApp.Models.Business
         public DateTime CreatedDate { get; set; }
         
     }
+
+    public class ReturnMessageModel
+    {
+        public string Type { get; set; }
+        public string Code { get; set; }
+    }
 }

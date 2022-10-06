@@ -45,9 +45,10 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getbyuserid")]
         public ActionResult GetById(string id)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "conversation101" };
             if (id == null)
             {
-                return BadRequest(new { apiMessage = new { type = "error", message = "conversation101" } });
+                return Ok(new { apiMessage = returnModel });
             }
             try
             {
@@ -102,9 +103,9 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not getbyid conversation: " + ex.ToString());
-
-                return StatusCode(500 ,new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500 ,new { apiMessage = returnModel });
 
             }
         }
@@ -113,13 +114,11 @@ namespace Manager.WebApp.Controllers.Business
         [Route("insert")]
         public ActionResult Insert(ConversationModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "" };
             var newConversation = model.MappingObject<IdentityConversationDefault>();
-            
             try
             {
                 var res= new int();
-
-                
 
                 if (model.MemberGroup == null)
                 {
@@ -153,15 +152,13 @@ namespace Manager.WebApp.Controllers.Business
                     var creator = storeConversationUser.Insert(res, newConversation.CreatedBy, newConversation.Type);
                 }
                 
-
-
                 return Ok(new { ConversationId = res });
             }
             catch(Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not insert conversation: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
 
             }
 
@@ -171,6 +168,7 @@ namespace Manager.WebApp.Controllers.Business
         [Route("delete")]
         public ActionResult Delete(ConversationModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "" };
             var identity = model.MappingObject<IdentityConversationDefault>();
             string filePath = "wwwroot\\Media\\Message\\Attachments\\";
             try
@@ -182,9 +180,9 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch(Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogDebug("Could not delete conversation: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
 
             }
         }
@@ -193,9 +191,10 @@ namespace Manager.WebApp.Controllers.Business
         [Route("getfile")]
         public ActionResult GetFile(int conversationId, int page, int pageSize)
         {
-            if(conversationId <= 0)
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "conversation102" };
+            if (conversationId <= 0)
             {
-                return BadRequest(new { apiMessage = new { type = "error", message = "conversation002" } });
+                return BadRequest(new { apiMessage = returnModel });
             }
             var list = new List<IdentityMessageAttachment>();
             var filter = new IdentityMessageFilter();
@@ -212,9 +211,9 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogError("Could not Get file by conid: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
 
             }
             return Ok(list);
@@ -224,11 +223,11 @@ namespace Manager.WebApp.Controllers.Business
         [Route("update")]
         public async Task<ActionResult> Update([FromForm] ConversationUpdateModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "conversation103" };
             try
             {
                 var identity = model.MappingObject<IdentityConversationUpdate>();
                 
-
                 if (model != null)
                 {
                     
@@ -248,8 +247,9 @@ namespace Manager.WebApp.Controllers.Business
                     }
 
                     var updateConversation = storeConversation.Update(identity);
-
-                    return Ok(new {conversation = updateConversation, apiMessage = new { type = "success", code = "conversation003" } });
+                    returnModel.Type = "success";
+                    returnModel.Code = "conversation003";
+                    return Ok(new { conversation = updateConversation, apiMessage = returnModel });
                 }
             }
             catch(Exception ex)
@@ -259,7 +259,7 @@ namespace Manager.WebApp.Controllers.Business
                 return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
             }
 
-            return Ok(new { apiMessage = new { type = "error", code = "conversation103" } });
+            return Ok(new { apiMessage = returnModel });
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Manager.DataLayer.Entities.Business
         public DateTime CreatedDate { get; set; }
         public string Description { get; set; }
         public DateTime? Deadline { get; set; }
-        public string Assignee { get; set; }
+        public int Assignee { get; set; }
         public int Process { get; set; }
         public List<int> MemberIds { get; set; }
         public List<IdentityProjectAttachment> Files { get; set; }
