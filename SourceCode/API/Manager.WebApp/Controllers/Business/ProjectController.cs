@@ -185,10 +185,10 @@ namespace Manager.WebApp.Controllers.Business
                     res.Members = new List<IdentityInformationUser>();
                     foreach(var userId in listUserId)
                     {
-                        var idenUser = UserHelpers.GetBaseInfo(userId);
+                        var idenUser = UserHelpers.GetBaseInfo(Utils.ConvertToInt32(userId));
                         if (idenUser != null)
                         {
-                            userProject.UserId = userId;
+                            userProject.UserId = Utils.ConvertToInt32(userId);
                             userProject.ProjectId = id;
 
                             idenUser.Role = storeProject.GetRoleUser(userProject);

@@ -372,10 +372,6 @@ namespace Manager.WebApp.Controllers.Api
             return Ok(new { apiMessage = returnModel });
         }
 
-
-
-
-
         private JsonResult AssignJWTToken(IdentityInformationUser user)
         {
             //create claims details based on the user information

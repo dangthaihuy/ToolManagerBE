@@ -583,9 +583,9 @@ namespace Manager.DataLayer.Repositories.Business
             return list;
         }
 
-        public List<int> GetUserByProjectId(int id)
+        public List<string> GetUserByProjectId(int id)
         {
-            var list = new List<int>();
+            var list = new List<string>();
 
             var sqlCmd = @"ApiUser_GetByProjectId";
 
@@ -601,7 +601,7 @@ namespace Manager.DataLayer.Repositories.Business
                     {
                         while (reader.Read())
                         {
-                            var res = Utils.ConvertToInt32(reader["UserId"]);
+                            var res = reader["UserId"].ToString();
                             list.Add(res);
                         }
                     }
