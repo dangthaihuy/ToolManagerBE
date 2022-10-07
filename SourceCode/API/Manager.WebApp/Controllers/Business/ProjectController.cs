@@ -139,6 +139,7 @@ namespace Manager.WebApp.Controllers.Business
                     var project =  ProjectHelpers.GetBaseInfoProject(item);
                     if(project != null)
                     {
+                        project.MemberIds = storeProject.GetUserByProjectId(project.Id);
                         res.Add(project);
                     }
                 }
@@ -826,13 +827,11 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpGet]
         [Route("download_file")]
-        [Authorize]
+        [AllowAnonymous]
         public IActionResult DownloadFile(string path)
         {
-            string physicalPath = "wwwroot/test.pdf";
-            byte[] pdfBytes = System.IO.File.ReadAllBytes(physicalPath);
-            MemoryStream ms = new MemoryStream(pdfBytes);
-            return new FileStreamResult(ms, "application/pdf");
+            byte[] fileBytes = System.IO.File.ReadAllBytes("wwwroot" + path);
+            return File(fileBytes, "application/octet-stream");
         }
 
         private void DeleteChild(int parentId)

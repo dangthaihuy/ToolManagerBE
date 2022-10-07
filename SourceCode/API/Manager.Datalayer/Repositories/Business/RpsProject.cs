@@ -47,14 +47,15 @@ namespace Manager.DataLayer.Repositories.Business
 
                     newId = Convert.ToInt32(returnObj);
 
-                    if (identity.Members.HasData())
+                    if (identity.MemberIds.HasData())
                     {
                         foreach(var userId in identity.MemberIds)
                         {
                             var param = new Dictionary<string, object>
                             {
-                                {"@UserId", Utils.ConvertToInt32(userId) },
-                                {"@ProjectId", newId }
+                                {"@UserId", userId },
+                                {"@ProjectId", newId },
+                                {"@Role", 2 }
 
                             };
                             MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, @"Project_InsertUser", param);
@@ -122,6 +123,7 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@Description", identity.Description},
                 {"@Avatar", identity.Avatar},
                 {"@Process", identity.Process},
+                {"@Status", identity.Status},
             };
 
             try
@@ -1168,6 +1170,7 @@ namespace Manager.DataLayer.Repositories.Business
             record.Process = Utils.ConvertToInt32(reader["Process"]);
             record.Avatar = reader["Avatar"].ToString();
             record.Description = reader["Description"].ToString();
+            record.Status = Utils.ConvertToInt32(reader["Status"]);
 
             return record;
         }

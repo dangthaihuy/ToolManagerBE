@@ -13,15 +13,15 @@ namespace Manager.DataLayer.Entities.Business
         public string Description { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
-        public List<string> MemberIds { get; set; }
+        public List<int> MemberIds { get; set; }
         public string Avatar { get; set; }
         public int Process { get; set; }
+        public int Status { get; set; }
         public List<IdentityInformationUser> Members { get; set; }
         public List<IdentityFeature> Features { get; set; }
         public List<IdentityProjectAttachment> Files { get; set; }
 
     }
-
 
     public class IdentityTask
     {
