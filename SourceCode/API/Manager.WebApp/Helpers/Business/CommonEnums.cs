@@ -47,6 +47,7 @@ namespace Manager.WebApp.Helpers
         public static int Attachment = 2;
         public static int Noti = 3;
         public static int Read = 4;
+        public static int TaskNoti = 5;
     }
 
     public static class EnumConversationType

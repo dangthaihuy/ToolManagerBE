@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using Manager.DataLayer.Entities;
 using Manager.DataLayer.Entities.Business;
 using Manager.DataLayer.Stores.Business;
 using Manager.DataLayer.Stores.System;
@@ -182,7 +181,7 @@ namespace Manager.WebApp.Controllers.Business
                 if (listUserId.HasData())
                 {
                     var userProject = new IdentityUserProject();
-                    res.Members = new List<IdentityInformationUser>();
+                    res.Members = new List<DataLayer.Entities.IdentityInformationUser>();
                     foreach(var userId in listUserId)
                     {
                         var idenUser = UserHelpers.GetBaseInfo(Utils.ConvertToInt32(userId));
@@ -326,7 +325,8 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var identity = model.MappingObject<IdentityTask>();
-                
+                var notif = identity.MappingObject<IdentityNotification>();
+
                 if (Request.Form.Files.Count > 0)
                 {
                     foreach (var file in Request.Form.Files)
@@ -352,8 +352,15 @@ namespace Manager.WebApp.Controllers.Business
                         }
                     }
                 }
-                var newTaskId = storeProject.InsertTask(identity);
-                var task = ProjectHelpers.GetBaseInfoTask(newTaskId);
+                
+                notif.UserId = identity.Assignee;
+                notif.Content = "Bạn vừa được thêm vào task " + model.Name.ToString();
+                /*identity.Id = storeProject.InsertTask(identity);*/
+                notif.Id = storeProject.InsertNotif(notif);
+                notif.TaskId = identity.Id;
+
+                MessengerHelpers.NotifNew(notif);
+                var task = ProjectHelpers.GetBaseInfoTask(identity.Id);
                 return Ok(new { task = task, apiMessage = returnModel });
             }
             catch (Exception ex)

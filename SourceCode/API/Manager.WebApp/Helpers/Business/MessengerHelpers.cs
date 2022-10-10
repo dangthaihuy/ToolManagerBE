@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using Manager.DataLayer.Entities;
 using Manager.DataLayer.Entities.Business;
 using Manager.DataLayer.Stores.Business;
 using Manager.SharedLibs;
@@ -221,6 +220,36 @@ namespace Manager.WebApp.Helpers.Business
 
                 //Make your call - but in this case don't wait for a response 
                 conn.InvokeAsync("SendToUser", apiPrivateMsg);
+
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to NotifNewPrivateMessage because: {0}", ex.ToString());
+                _logger.Error(strError);
+            }
+        }
+
+        public static void NotifNew(IdentityNotification identity)
+        {
+            try
+            {
+                var notiModel = identity.MappingObject<NotificationModel>();
+                notiModel.CreatedDate = DateTime.Now;
+
+                var connBuilder = new HubConnectionBuilder();
+                connBuilder.WithUrl(string.Format("{0}/chat", SystemSettings.MessengerCloud));
+                connBuilder.WithAutomaticReconnect(); //I don't think this is totally required, but can't hurt either
+
+                var conn = connBuilder.Build();
+
+                //Start the connection
+                var t = conn.StartAsync();
+
+                //Wait for the connection to complete
+                t.Wait();
+
+                //Make your call - but in this case don't wait for a response 
+                conn.InvokeAsync("SendNotif", notiModel);
 
             }
             catch (Exception ex)

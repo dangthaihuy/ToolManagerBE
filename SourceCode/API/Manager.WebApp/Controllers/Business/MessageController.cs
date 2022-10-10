@@ -208,28 +208,7 @@ namespace Manager.WebApp.Controllers.Business
            
         }
 
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //API chat real time
-
+        //API chat real time
         [HttpPost]
         [Route("send_private_message")]
         public void SendPrivateMessage(SendMessageModel model)

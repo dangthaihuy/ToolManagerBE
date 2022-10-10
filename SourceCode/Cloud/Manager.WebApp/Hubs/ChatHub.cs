@@ -49,16 +49,8 @@ namespace Manager.WebApp.Hubs
             }
             catch (Exception ex)
             {
-                _logger.Error("Could not GetBaseInfo: " + ex.ToString());
+                _logger.Error("Could not SendTaskNotif: " + ex.ToString());
             }
-
-
-
-            
-
-
-            //Lấy người gửi trong cache
-
         }
 
 
@@ -159,6 +151,28 @@ namespace Manager.WebApp.Hubs
             {
 
                 _logger.Error("Could not SendToUser: " + ex.ToString());
+            }
+        }
+
+        [HubMethodName("SendNotif")]
+        public void SendTaskNotif(NotificationModel model)
+        {
+            try
+            {
+                var connectedUsers = MessengerHelpers.GetAllUsersFromCache();
+                
+                var userConnect = connectedUsers.FirstOrDefault(x => x.Id == model.UserId);
+                if (userConnect != null)
+                {
+                    foreach (var senderConn in userConnect.Connections)
+                    {
+                        Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveTaskNoti", model);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Could not SendTaskNotif: " + ex.ToString());
             }
         }
     }

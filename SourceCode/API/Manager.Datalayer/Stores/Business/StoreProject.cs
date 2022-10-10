@@ -48,6 +48,8 @@ namespace Manager.DataLayer.Stores.Business
         int InsertFile(IdentityProjectAttachment identity);
         string DeleteFile(int id);
         List<IdentityProjectAttachment> GetAttachmentByFeatureId(IdentityProjectAttachment identity);
+
+        int InsertNotif(IdentityNotification identity);
     }
 
     public class StoreProject : IStoreProject
@@ -199,6 +201,11 @@ namespace Manager.DataLayer.Stores.Business
         public List<IdentityProjectAttachment> GetAttachmentByFeatureId(IdentityProjectAttachment identity)
         {
             return r.GetAttachmentByFeatureId(identity);
+        }
+
+        public int InsertNotif(IdentityNotification identity)
+        {
+            return r.InsertNotif(identity);
         }
 
     }

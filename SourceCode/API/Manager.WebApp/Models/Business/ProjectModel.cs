@@ -31,6 +31,7 @@ namespace Manager.WebApp.Models.Business
         public DateTime? Deadline { get; set; }
         public int Assignee { get; set; }
         public int MessageId { get; set; }
+        public List<int> MemberIds { get; set; }
         public int Status { get; set; }
 
     }
@@ -65,5 +66,16 @@ namespace Manager.WebApp.Models.Business
         public int FeatureId { get; set; }
         public string Path { get; set; }
 
+    }
+
+    public class NotificationModel
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public string Content { get; set; }
+        public int ProjectId { get; set; }
+        public int TaskId { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public bool IsRead { get; set; }
     }
 }

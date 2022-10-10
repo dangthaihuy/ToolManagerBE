@@ -76,4 +76,16 @@ namespace Manager.DataLayer.Entities.Business
         public List<IdentityProjectAttachment> Files { get; set; }
 
     }
+
+    public class IdentityNotification
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public string Content { get; set; }
+        public int ProjectId { get; set; }
+        public int TaskId { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public Boolean IsRead { get; set; }
+
+    }
 }
