@@ -1192,6 +1192,42 @@ namespace Manager.DataLayer.Repositories.Business
 
             return newId;
         }
+
+        public List<IdentityNotification> GetNotificationByUserId(int id)
+        {
+            var res = new List<IdentityNotification>();
+            var sqlCmd = @"Notif_GetByUserId";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@UserId", id}
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var noti = ExtractNotif(reader);
+                            res.Add(noti);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
+        }
         private IdentityProject ExtractProject(IDataReader reader)
         {
             var record = new IdentityProject();
@@ -1238,7 +1274,6 @@ namespace Manager.DataLayer.Repositories.Business
             record.TaskId = Utils.ConvertToInt32(reader["TaskId"]);
             record.Path = reader["Path"].ToString();
 
-
             return record;
         }
 
@@ -1253,6 +1288,21 @@ namespace Manager.DataLayer.Repositories.Business
             record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
             record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
             record.Description = reader["Description"].ToString();
+
+            return record;
+        }
+
+        private IdentityNotification ExtractNotif(IDataReader reader)
+        {
+            var record = new IdentityNotification();
+
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
+            record.UserId = Utils.ConvertToInt32(reader["UserId"]);
+            record.ProjectId = Utils.ConvertToInt32(reader["ProjectId"]);
+            record.Content = reader["Content"].ToString();
+            record.TaskId = Utils.ConvertToInt32(reader["TaskId"]);
+            record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
+            record.IsRead = Utils.ConvertToBoolean(reader["IsRead"]);
 
 
             return record;

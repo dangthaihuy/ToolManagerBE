@@ -50,6 +50,7 @@ namespace Manager.DataLayer.Stores.Business
         List<IdentityProjectAttachment> GetAttachmentByFeatureId(IdentityProjectAttachment identity);
 
         int InsertNotif(IdentityNotification identity);
+        List<IdentityNotification> GetNotificationByUserId(int id);
     }
 
     public class StoreProject : IStoreProject
@@ -206,6 +207,11 @@ namespace Manager.DataLayer.Stores.Business
         public int InsertNotif(IdentityNotification identity)
         {
             return r.InsertNotif(identity);
+        }
+
+        public List<IdentityNotification> GetNotificationByUserId(int id)
+        {
+            return r.GetNotificationByUserId(id);
         }
 
     }

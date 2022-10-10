@@ -355,7 +355,7 @@ namespace Manager.WebApp.Controllers.Business
                 
                 notif.UserId = identity.Assignee;
                 notif.Content = "Bạn vừa được thêm vào task " + model.Name.ToString();
-                /*identity.Id = storeProject.InsertTask(identity);*/
+                identity.Id = storeProject.InsertTask(identity);
                 notif.Id = storeProject.InsertNotif(notif);
                 notif.TaskId = identity.Id;
 
@@ -839,6 +839,31 @@ namespace Manager.WebApp.Controllers.Business
         {
             byte[] fileBytes = System.IO.File.ReadAllBytes("wwwroot" + path);
             return File(fileBytes, "application/octet-stream");
+        }
+
+        [HttpGet]
+        [Route("get_notification_by_userid")]
+        public ActionResult GetNotificationByUserId(int id)
+        {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "notification101" };
+            if(id < 0)
+            {
+                return Ok(new { apiMessage = returnModel });
+            }
+            try
+            {
+                var res = storeProject.GetNotificationByUserId(id);
+                returnModel.Type = "success";
+                returnModel.Code = "notification001";
+                return Ok(new { listNoti = res, apiMessage = returnModel });
+            }
+            catch(Exception ex)
+            {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
+                _logger.LogDebug("Could not get notification by userid: " + ex.ToString());
+                return StatusCode(500, new { apiMessage = returnModel });
+            }
         }
 
         private void DeleteChild(int parentId)

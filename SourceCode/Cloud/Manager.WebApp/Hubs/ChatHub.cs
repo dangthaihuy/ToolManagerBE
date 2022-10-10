@@ -149,7 +149,6 @@ namespace Manager.WebApp.Hubs
             }
             catch (Exception ex)
             {
-
                 _logger.Error("Could not SendToUser: " + ex.ToString());
             }
         }
@@ -166,13 +165,13 @@ namespace Manager.WebApp.Hubs
                 {
                     foreach (var senderConn in userConnect.Connections)
                     {
-                        Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveTaskNoti", model);
+                        Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveNotif", model);
                     }
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error("Could not SendTaskNotif: " + ex.ToString());
+                _logger.Error("Could not SendNotif: " + ex.ToString());
             }
         }
     }
