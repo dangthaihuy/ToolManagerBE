@@ -648,6 +648,46 @@ namespace Manager.DataLayer.Repositories.Business
 
             return list;
         }
+        public List<int> GetProjectBySearch(IdentitySearchFilter identity)
+        {
+            var res = new List<int>();
+
+            var sqlCmd = @"Project_GetBySearch";
+
+            int offset = (identity.CurrentPage - 1) * identity.PageSize;
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Keyword", identity.Keyword},
+                {"@PageSize", identity.PageSize},
+                {"@Offset", offset},
+                {"@UserId", identity.UserId},
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var projectId = Utils.ConvertToInt32(reader["ProjectId"]);
+                            res.Add(projectId);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
+        }
+
         public int InsertUserToTask(IdentityUserProject identity)
         {
             var sqlCmd = @"Task_InsertUser";
@@ -744,6 +784,48 @@ namespace Manager.DataLayer.Repositories.Business
 
             return list;
         }
+
+        public List<int> GetTaskBySearch(IdentitySearchFilter identity)
+        {
+            var res = new List<int>();
+
+            var sqlCmd = @"Task_GetBySearch";
+
+            int offset = (identity.CurrentPage - 1) * identity.PageSize;
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Keyword", identity.Keyword},
+                {"@PageSize", identity.PageSize},
+                {"@Offset", offset},
+                {"@UserId", identity.UserId},
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var taskId = Utils.ConvertToInt32(reader["Id"]);
+
+                            res.Add(taskId);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
+        }
+
         public IdentityProjectAttachment DeleteAttachmentById(int id)
         {
             var res = new IdentityProjectAttachment();
@@ -1197,7 +1279,6 @@ namespace Manager.DataLayer.Repositories.Business
         {
             var res = new List<IdentityNotification>();
             var sqlCmd = @"Notif_GetByUserId";
-            int newId = 0;
 
             //For parameters
             var parameters = new Dictionary<string, object>

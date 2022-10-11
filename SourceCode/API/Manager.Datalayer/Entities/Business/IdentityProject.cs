@@ -88,4 +88,10 @@ namespace Manager.DataLayer.Entities.Business
         public Boolean IsRead { get; set; }
 
     }
+
+    public class IdentitySearchFilter : CommonIdentity
+    {
+        public int UserId { get; set; }
+    }
+    
 }

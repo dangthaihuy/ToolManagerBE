@@ -20,7 +20,7 @@ namespace Manager.DataLayer.Stores.Business
         int DeleteUserInProject(IdentityUserProject identity);
         int UpdateUserInProject(IdentityUserProject identity);
         List<IdentityProjectAttachment> GetAttachmentByProjectId(int id);
-
+        List<int> GetProjectBySearch(IdentitySearchFilter identity);
 
         int InsertTask(IdentityTask identity);
         IdentityTask UpdateTask(IdentityTask identity);
@@ -33,6 +33,7 @@ namespace Manager.DataLayer.Stores.Business
         int InsertUserToTask(IdentityUserProject id);
         int DeleteUserInTask(IdentityUserProject identity);
         List<IdentityProjectAttachment> GetAttachmentByTaskId(int id);
+        List<int> GetTaskBySearch(IdentitySearchFilter identity);
         IdentityProjectAttachment DeleteAttachmentById(int id);
 
         int GetRoleUser(IdentityUserProject identity);
@@ -102,6 +103,10 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetAttachmentByProjectId(id);
         }
+        public List<int> GetProjectBySearch(IdentitySearchFilter identity)
+        {
+            return r.GetProjectBySearch(identity);
+        }
 
 
 
@@ -149,6 +154,11 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetAttachmentByTaskId(id);
         }
+        public List<int> GetTaskBySearch(IdentitySearchFilter identity)
+        {
+            return r.GetTaskBySearch(identity);
+        }
+
         public IdentityProjectAttachment DeleteAttachmentById(int id)
         {
             return r.DeleteAttachmentById(id);

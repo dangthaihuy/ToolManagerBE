@@ -213,6 +213,8 @@ namespace Manager.WebApp.Controllers.Business
 
         }
 
+        
+
         [HttpPost]
         [Route("add_user_to_project")]
         public ActionResult AddUserToProject(UserProjectModel model)
@@ -313,6 +315,43 @@ namespace Manager.WebApp.Controllers.Business
             {
                 returnModel.Code = "server001";
                 _logger.LogDebug("Could not get attachment in task: " + ex.ToString());
+                return StatusCode(500, new { apiMessage = returnModel });
+            }
+        }
+        [HttpGet]
+        [Route("get_project_by_search")]
+        public ActionResult GetProjectBySearch(int userId, string keyword, int pageSize, int currentPage)
+        {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "searchxxx" };
+            try
+            {
+                var list = new List<IdentityProject>();
+                keyword = keyword == null ? "" : keyword;
+                pageSize = pageSize == 0 ? 20 : pageSize;
+                currentPage = currentPage == 0 ? 1 : currentPage;
+
+                var filter = new IdentitySearchFilter();
+                filter.Keyword = keyword;
+                filter.PageSize = pageSize;
+                filter.CurrentPage = currentPage;
+                filter.UserId = userId;
+
+                var listId = storeProject.GetProjectBySearch(filter);
+
+                foreach (var id in listId)
+                {
+                    list.Add(ProjectHelpers.GetBaseInfoProject(id));
+                }
+
+                return Ok(new { list = list, apiMessage = returnModel });
+
+
+            }
+            catch (Exception ex)
+            {
+                returnModel.Code = "server001";
+                returnModel.Type = "error";
+                _logger.LogDebug("Could not get project by search: " + ex.ToString());
                 return StatusCode(500, new { apiMessage = returnModel });
             }
         }
@@ -631,7 +670,44 @@ namespace Manager.WebApp.Controllers.Business
             }
         }
 
-        
+        [HttpGet]
+        [Route("get_task_by_search")]
+        public ActionResult GetTaskBySearch(int userId, string keyword, int pageSize, int currentPage)
+        {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "searchxxx" };
+            try
+            {
+                var list = new List<IdentityTask>();
+                keyword = keyword == null ? "" : keyword;
+                pageSize = pageSize == 0 ? 20 : pageSize;
+                currentPage = currentPage == 0 ? 1 : currentPage;
+
+                var filter = new IdentitySearchFilter();
+                filter.Keyword = keyword;
+                filter.PageSize = pageSize;
+                filter.CurrentPage = currentPage;
+                filter.UserId = userId;
+
+                var listId = storeProject.GetTaskBySearch(filter);
+
+                foreach (var id in listId)
+                {
+                    list.Add(ProjectHelpers.GetBaseInfoTask(id));
+                }
+
+                return Ok(new { list = list, apiMessage = returnModel });
+
+
+            }
+            catch (Exception ex)
+            {
+                returnModel.Code = "server001";
+                returnModel.Type = "error";
+                _logger.LogDebug("Could not get task by search: " + ex.ToString());
+                return StatusCode(500, new { apiMessage = returnModel });
+            }
+        }
+
 
         //FEATURE
         [HttpPost]
@@ -865,7 +941,7 @@ namespace Manager.WebApp.Controllers.Business
                 return StatusCode(500, new { apiMessage = returnModel });
             }
         }
-
+        
         private void DeleteChild(int parentId)
         {
             try
