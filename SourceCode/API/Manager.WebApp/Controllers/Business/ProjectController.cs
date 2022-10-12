@@ -392,7 +392,7 @@ namespace Manager.WebApp.Controllers.Business
                 
                 notif.UserId = identity.Assignee;
                 notif.Content = "Bạn vừa được thêm vào task " + model.Name.ToString();
-                /*identity.Id = storeProject.InsertTask(identity);*/
+                identity.Id = storeProject.InsertTask(identity);
                 notif.Id = storeProject.InsertNotif(notif);
                 notif.TaskId = identity.Id;
 
