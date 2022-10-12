@@ -323,6 +323,7 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@Assignee", identity.Assignee },
                 {"@Deadline", identity.Deadline },
                 {"@MessageId", identity.MessageId },
+                {"@Description", identity.Description },
 
             };
 
