@@ -336,7 +336,9 @@ namespace Manager.WebApp.Controllers.Business
 
                 foreach (var id in listId)
                 {
-                    list.Add(ProjectHelpers.GetBaseInfoProject(id));
+                    var project = ProjectHelpers.GetBaseInfoProject(id);
+                    project.MemberIds = storeProject.GetUserByProjectId(id);
+                    list.Add(project);
                 }
 
                 return Ok(new { list = list, apiMessage = returnModel });
@@ -390,7 +392,7 @@ namespace Manager.WebApp.Controllers.Business
                 
                 notif.UserId = identity.Assignee;
                 notif.Content = "Bạn vừa được thêm vào task " + model.Name.ToString();
-                identity.Id = storeProject.InsertTask(identity);
+                /*identity.Id = storeProject.InsertTask(identity);*/
                 notif.Id = storeProject.InsertNotif(notif);
                 notif.TaskId = identity.Id;
 
@@ -921,7 +923,7 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpGet]
-        [Route("get_notification_by_userid")]
+        [Route("get_notification_by_use=rid")]
         public ActionResult GetNotificationByUserId(int id)
         {
             var returnModel = new ReturnMessageModel { Type = "error", Code = "notification101" };
