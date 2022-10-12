@@ -507,10 +507,12 @@ namespace Manager.DataLayer.Repositories.Business
             record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
 
             record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
-            record.TaskId = Utils.ConvertToInt32(reader["TaskId"]);
             record.Important = Utils.ConvertToInt32(reader["Important"]);
 
-
+            if (reader.HasColumn("TaskId"))
+            {
+                record.TaskId = Utils.ConvertToInt32(reader["TaskId"]);
+            }
             if (reader.HasColumn("ReplyMessageId"))
             {
                 record.PageIndex = Utils.ConvertToInt32(reader["ReplyMessageId"]);
