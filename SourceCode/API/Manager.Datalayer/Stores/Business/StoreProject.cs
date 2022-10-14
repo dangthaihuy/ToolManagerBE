@@ -52,6 +52,7 @@ namespace Manager.DataLayer.Stores.Business
 
         int InsertNotif(IdentityNotification identity);
         List<IdentityNotification> GetNotificationByUserId(int id);
+        IdentityNotification UpdateReadNotif(IdentityNotification identity);
     }
 
     public class StoreProject : IStoreProject
@@ -223,6 +224,12 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetNotificationByUserId(id);
         }
+
+        public IdentityNotification UpdateReadNotif(IdentityNotification identity)
+        {
+            return r.UpdateReadNotif(identity);
+        }
+
 
     }
 

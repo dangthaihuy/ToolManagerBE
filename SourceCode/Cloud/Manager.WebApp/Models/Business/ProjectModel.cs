@@ -31,6 +31,7 @@ namespace Manager.WebApp.Models.Business
         public int CreatedBy { get; set; }
         public string Content { get; set; }
         public int ProjectId { get; set; }
+        public int FeatureId { get; set; }
         public int TaskId { get; set; }
         public DateTime CreatedDate { get; set; }
         public bool IsRead { get; set; }

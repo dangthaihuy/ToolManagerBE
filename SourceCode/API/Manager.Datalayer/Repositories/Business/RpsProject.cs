@@ -321,6 +321,7 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@FeatureId", identity.FeatureId },
                 {"@CreatedBy", identity.CreatedBy },
                 {"@Assignee", identity.Assignee },
+                {"@Process", identity.Process },
                 {"@Deadline", identity.Deadline },
                 {"@MessageId", identity.MessageId },
                 {"@Description", identity.Description },
@@ -1253,7 +1254,9 @@ namespace Manager.DataLayer.Repositories.Business
                 {"@UserId", identity.UserId },
                 {"@Content", identity.Content },
                 {"@ProjectId", identity.ProjectId },
+                {"@FeatureId", identity.FeatureId },
                 {"@TaskId", identity.TaskId },
+                {"@CreatedBy", identity.CreatedBy },
                 {"@IsRead", identity.IsRead },
 
             };
@@ -1298,6 +1301,41 @@ namespace Manager.DataLayer.Repositories.Business
                         {
                             var noti = ExtractNotif(reader);
                             res.Add(noti);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
+        }
+
+        public IdentityNotification UpdateReadNotif(IdentityNotification identity)
+        {
+            var res = new IdentityNotification();
+            var sqlCmd = @"Notif_UpdateRead";
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", identity.Id}
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            res = ExtractNotif(reader);
+                            
                         }
                     }
                 }
@@ -1381,8 +1419,10 @@ namespace Manager.DataLayer.Repositories.Business
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.UserId = Utils.ConvertToInt32(reader["UserId"]);
             record.ProjectId = Utils.ConvertToInt32(reader["ProjectId"]);
+            record.FeatureId = Utils.ConvertToInt32(reader["FeatureId"]);
             record.Content = reader["Content"].ToString();
             record.TaskId = Utils.ConvertToInt32(reader["TaskId"]);
+            record.CreatedBy = Utils.ConvertToInt32(reader["CreatedBy"]);
             record.CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString());
             record.IsRead = Utils.ConvertToBoolean(reader["IsRead"]);
 

@@ -43,7 +43,7 @@ namespace Manager.WebApp
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000")
+                    builder.WithOrigins("https://pmt.jinzai-tech.com", "http://pmt.jinzai-tech.com", "http://localhost:3000")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials();

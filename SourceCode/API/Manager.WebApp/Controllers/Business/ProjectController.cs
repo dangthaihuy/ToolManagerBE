@@ -24,11 +24,13 @@ namespace Manager.WebApp.Controllers.Business
     {
         private readonly ILogger<ProjectController> _logger;
         private readonly IStoreProject storeProject;
+        private readonly IApiStoreUser storeUser;
         private readonly string filePath;
 
         public ProjectController(ILogger<ProjectController> logger)
         {
             storeProject = Startup.IocContainer.Resolve<IStoreProject>();
+            storeUser = Startup.IocContainer.Resolve<IApiStoreUser>();
             _logger = logger;
         }
 
@@ -389,12 +391,14 @@ namespace Manager.WebApp.Controllers.Business
                         }
                     }
                 }
-                
+
+                var userCreated = storeUser.GetInforUser(model.CreatedBy);
                 notif.UserId = identity.Assignee;
-                notif.Content = "Bạn vừa được thêm vào task " + model.Name.ToString();
+                notif.Content = " đã thêm bạn vào task " + model.Name.ToString();
                 identity.Id = storeProject.InsertTask(identity);
-                notif.Id = storeProject.InsertNotif(notif);
                 notif.TaskId = identity.Id;
+                notif.Id = storeProject.InsertNotif(notif);
+                
 
                 MessengerHelpers.NotifNew(notif);
                 var task = ProjectHelpers.GetBaseInfoTask(identity.Id);
@@ -883,7 +887,7 @@ namespace Manager.WebApp.Controllers.Business
             return Ok(new { apiMessage = returnModel });
         }
 
-        /*[HttpPost]
+        [HttpPost]
         [Route("delete_file")]
         public ActionResult DeleteFile(ProjectAttachmentModel model)
         {
@@ -911,7 +915,7 @@ namespace Manager.WebApp.Controllers.Business
             returnModel.Type = "error";
             returnModel.Code = "file102";
             return Ok(new { apiMessage = returnModel });
-        }*/
+        }
 
         [HttpGet]
         [Route("download_file")]
@@ -923,7 +927,7 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpGet]
-        [Route("get_notification_by_use=rid")]
+        [Route("get_notification_by_userid")]
         public ActionResult GetNotificationByUserId(int id)
         {
             var returnModel = new ReturnMessageModel { Type = "error", Code = "notification101" };
@@ -943,6 +947,27 @@ namespace Manager.WebApp.Controllers.Business
                 returnModel.Type = "error";
                 returnModel.Code = "server001";
                 _logger.LogDebug("Could not get notification by userid: " + ex.ToString());
+                return StatusCode(500, new { apiMessage = returnModel });
+            }
+        }
+
+        [HttpPost]
+        [Route("update_read_notif")]
+        public ActionResult UpdateReadNotif(NotificationModel model)
+        {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "notification002" };
+            try
+            {
+                var identity = model.MappingObject<IdentityNotification>();
+                var res = storeProject.UpdateReadNotif(identity);
+
+                return Ok(new { notif = res, apiMessage = returnModel });
+            }
+            catch(Exception ex)
+            {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
+                _logger.LogDebug("Could not update read notification: " + ex.ToString());
                 return StatusCode(500, new { apiMessage = returnModel });
             }
         }
