@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Manager.WebApp.Controllers.Business
@@ -53,7 +54,7 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var listSolo = storeConversation.GetById(id);
-                var data = new List<IdentityConversation>();
+                var list = new List<IdentityConversation>();
                 if (listSolo != null)
                 {
                     foreach(var item in listSolo)
@@ -66,7 +67,7 @@ namespace Manager.WebApp.Controllers.Business
                             item.LastMessageId = lastMessage.Id; 
                             item.LastMessage = lastMessage.Message;
                             item.LastTime = lastMessage.CreatedDate;
-                            data.Add(item);
+                            list.Add(item);
                         }
                     }
                 }
@@ -83,7 +84,7 @@ namespace Manager.WebApp.Controllers.Business
                         {
                             item.Group = groupInfo;
                             item.Type = EnumMessageType.Attachment;
-                            data.Add(item);
+                            list.Add(item);
                             if(lastMessage != null)
                             {
                                 item.LastMessageId = lastMessage.Id;
@@ -95,10 +96,11 @@ namespace Manager.WebApp.Controllers.Business
 
                 }
 
-                foreach(var conversation in data)
+                foreach(var conversation in list)
                 {
                     conversation.ReadBy = storeConversationUser.GetUsersRead(conversation);
                 }
+                var data = list.OrderBy(x => x.LastTime);
                 return Ok(data);
             }
             catch (Exception ex)
