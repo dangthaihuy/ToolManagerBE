@@ -44,6 +44,7 @@ namespace Manager.DataLayer.Stores.Business
         List<int> GetChild(int parentId);
         IdentityFeature GetFeatureById(int id);
         List<int> GetFeatureByProjectId(int id);
+        List<int> GetAllFeatureByProjectId(int id);
         List<int> GetSubFeature(int id);
 
         int InsertFile(IdentityProjectAttachment identity);
@@ -196,6 +197,11 @@ namespace Manager.DataLayer.Stores.Business
         {
             return r.GetFeatureByProjectId(id);
         }
+        public List<int> GetAllFeatureByProjectId(int id)
+        {
+            return r.GetAllFeatureByProjectId(id);
+        }
+
         public List<int> GetSubFeature(int id)
         {
             return r.GetSubFeature(id);

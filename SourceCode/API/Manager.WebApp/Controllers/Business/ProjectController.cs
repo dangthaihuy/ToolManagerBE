@@ -391,15 +391,14 @@ namespace Manager.WebApp.Controllers.Business
                         }
                     }
                 }
-
+                identity.Id = storeProject.InsertTask(identity);
                 var userCreated = storeUser.GetInforUser(model.CreatedBy);
                 notif.UserId = identity.Assignee;
-                notif.Content = " đã thêm bạn vào task " + model.Name.ToString();
-                identity.Id = storeProject.InsertTask(identity);
+                notif.Content = " đã thêm bạn vào task " + model.Name;
+                
                 notif.TaskId = identity.Id;
                 notif.Id = storeProject.InsertNotif(notif);
                 
-
                 MessengerHelpers.NotifNew(notif);
                 var task = ProjectHelpers.GetBaseInfoTask(identity.Id);
                 return Ok(new { task = task, apiMessage = returnModel });
@@ -830,6 +829,38 @@ namespace Manager.WebApp.Controllers.Business
                 returnModel.Type = "error";
                 returnModel.Code = "feature104";
                 return Ok(new { apiMessage = returnModel });
+            }
+            catch(Exception ex)
+            {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
+                _logger.LogDebug("Could not get feature by id: " + ex.ToString());
+                return StatusCode(500, new { apiMessage = returnModel });
+            }
+        }
+
+        [HttpGet]
+        [Route("get_allfeature_by_projectid")]
+        public ActionResult GetAllFeatureByProjectId(int id)
+        {
+            var returnModel = new ReturnMessageModel { Type = "error", Code = "feature105" };
+            try
+            {
+                var list = new List<IdentityFeature>();
+                if(id <=0)
+                {
+                    return Ok(new { apiMessage = returnModel });
+                }
+
+                var featureIds = storeProject.GetAllFeatureByProjectId(id);
+                foreach(var featureid in featureIds)
+                {
+                    list.Add(ProjectHelpers.GetBaseInfoFeature(featureid));
+                }
+
+                returnModel.Type = "success";
+                returnModel.Code = "feature005";
+                return Ok(new { features = list, apiMessage = returnModel });
             }
             catch(Exception ex)
             {

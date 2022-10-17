@@ -174,7 +174,7 @@ namespace Manager.WebApp.Controllers.Api
             try
             {
                 var user = storeUser.GetByEmail(model.Email);
-                if (user == null)
+                if (user.Email == null)
                 {
                     return Ok(new { apiMessage = returnModel });
                 }

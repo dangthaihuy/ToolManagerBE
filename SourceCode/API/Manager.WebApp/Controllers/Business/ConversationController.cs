@@ -100,7 +100,7 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     conversation.ReadBy = storeConversationUser.GetUsersRead(conversation);
                 }
-                var data = list.OrderBy(x => x.LastTime);
+                var data = list.OrderByDescending(x => x.LastTime);
                 return Ok(data);
             }
             catch (Exception ex)

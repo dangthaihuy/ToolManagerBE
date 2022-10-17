@@ -69,7 +69,8 @@ namespace Manager.DataLayer.Repositories.Business
                                     {"@Path", att.Path}
                                 };
 
-                                MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, @"Message_InsertAttachment", attParms);
+                                var attachId = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, @"Message_InsertAttachment", attParms);
+                                att.Id = Convert.ToInt32(attachId);
                             }
                         }
 

@@ -271,6 +271,8 @@ namespace Manager.WebApp.Controllers.Business
 
         [HttpPost]
         [Route("send_file_message")]
+        [RequestFormLimits(MultipartBodyLengthLimit = 1073741824)]
+        [RequestSizeLimit(1073741824)]
         public async void SendFileMessage([FromForm] SendMessageModel model)
         {
             try

@@ -1106,6 +1106,39 @@ namespace Manager.DataLayer.Repositories.Business
             return list;
         }
 
+        public List<int> GetAllFeatureByProjectId(int id)
+        {
+            var list = new List<int>();
+
+            var sqlCmd = @"Feature_GetAllByProjectId";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"@ProjectId", id}
+            };
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        while (reader.Read())
+                        {
+                            var res = Utils.ConvertToInt32(reader["Id"]);
+                            list.Add(res);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return list;
+        }
+
         public List<int> GetSubFeature(int id)
         {
             var list = new List<int>();
