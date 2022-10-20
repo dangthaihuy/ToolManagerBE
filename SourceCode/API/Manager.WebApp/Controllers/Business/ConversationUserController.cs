@@ -58,6 +58,7 @@ namespace Manager.WebApp.Controllers.Business
                     check++;
                     var user = storeUser.GetById(item);
                     idenMessage.Users.Add(user);
+                    var res = storeConversationUser.Insert(model.ConversationId, Utils.ConvertToInt32(item), EnumConversationType.Group);
                     if (check != model.UsersId.Count)
                     {
                         idenMessage.Message = idenMessage.Message + user.Fullname + ", ";
@@ -75,10 +76,7 @@ namespace Manager.WebApp.Controllers.Business
                 MessengerHelpers.NotifNewGroupMessage(idenMessage);
                 GroupChatHelpers.ClearCache(model.ConversationId);
 
-                foreach (string item in model.UsersId)
-                {
-                    var res = storeConversationUser.Insert(model.ConversationId, Utils.ConvertToInt32(item), EnumConversationType.Group);
-                }
+               
             }
             catch(Exception ex)
             {
@@ -125,12 +123,15 @@ namespace Manager.WebApp.Controllers.Business
                 idenMessage.Id = storeMessage.Insert(idenMessage);
 
                 MessengerHelpers.NotifNewGroupMessage(idenMessage);
-                GroupChatHelpers.ClearCache(model.ConversationId);
-
+                
                 foreach (string item in model.UsersId)
                 {
                     var res = storeConversationUser.Delete(model.ConversationId, Utils.ConvertToInt32(item));
                 }
+
+                GroupChatHelpers.ClearCache(model.ConversationId);
+
+
             }
             catch (Exception ex)
             {
