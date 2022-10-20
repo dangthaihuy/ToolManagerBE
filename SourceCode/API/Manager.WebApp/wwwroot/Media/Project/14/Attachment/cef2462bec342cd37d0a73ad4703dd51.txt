@@ -1,0 +1,99 @@
+        [HttpPost]
+        [Route("UploadChunks")]
+        public async Task<IActionResult> UploadChunksFile(string id, string fileName)
+        {
+            try
+            {
+                string wwwPath = this.Environment.WebRootPath;
+                string dicPath = wwwPath + $@"\{fileName}";
+                string newpath = Path.Combine(dicPath, fileName + id);
+
+                if (!System.IO.Directory.Exists(dicPath))
+                {
+                    System.IO.Directory.CreateDirectory(dicPath);
+                }
+
+                using (FileStream fs = System.IO.File.Create(newpath))
+                {
+                    byte[] bytes = new byte[1048576 * 100];
+                    int byteRead = 0;
+
+                    while ((byteRead = await Request.Body.ReadAsync(bytes, 0, bytes.Length)) > 0)
+                    {
+                        fs.Write(bytes, 0, byteRead);
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not SendFileMessage: " + ex.ToString());
+            }
+
+            return Ok(new { isSuccess = true });
+        }
+
+        [HttpPost]
+        [Route("UploadComplete")]
+        public async Task<IActionResult> UploadComplete(string fileName)
+        {
+            try
+            {
+                string wwwPath = this.Environment.WebRootPath;
+                string dicPath = wwwPath + $@"\{fileName}";
+                string filePath = wwwPath + $@"\Files";
+                string newpath = Path.Combine(filePath, fileName);
+
+                if (!System.IO.Directory.Exists(filePath))
+                {
+                    System.IO.Directory.CreateDirectory(filePath);
+                }
+
+                foreach (string file in Directory.GetFiles(dicPath, "*.*"))
+                {
+                    if (!System.IO.File.Exists(newpath))
+                    {
+                        using (FileStream fs = System.IO.File.Create(newpath))
+                        {                           
+                            using (FileStream fs1 = System.IO.File.Open(file, FileMode.Open))
+                            {
+                                byte[] bytes = new byte[fs1.Length];
+                                int byteRead = 0;
+
+                                while ((byteRead = fs1.Read(bytes, 0, bytes.Length)) > 0)
+                                {
+                                    fs.Write(bytes, 0, byteRead);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        using (FileStream fs = System.IO.File.Open(newpath, FileMode.Append))
+                        {
+                            using (FileStream fs1 = System.IO.File.Open(file, FileMode.Open))
+                            {
+                                byte[] bytes = new byte[fs1.Length];
+                                int byteRead = 0;
+
+                                while ((byteRead = fs1.Read(bytes, 0, bytes.Length)) > 0)
+                                {
+                                    fs.Write(bytes, 0, byteRead);
+                                }
+                            }
+                        }
+                       
+                    }
+                }
+
+                System.IO.Directory.Delete(dicPath);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not SendFileMessage: " + ex.ToString());
+            }
+
+            return Ok(0);
+        }

@@ -36,11 +36,13 @@ namespace Manager.WebApp.Hubs
                 var listUserInGroup = GroupChatHelpers.GetGroupInfo(idenConversation);
                 foreach (var user in listUserInGroup.Member)
                 {
+                    _logger.Error("User: " + user.Fullname);
                     var userConnect = connectedUsers.FirstOrDefault(x => x.Id == user.Id);
                     if (userConnect != null)
                     {
                         foreach (var senderConn in userConnect.Connections)
                         {
+                            _logger.Error("Id: " + senderConn.ConnectionId);
                             Clients.Client(senderConn.ConnectionId).SendAsync("ReceiveMessage", model);
                         }
                     }

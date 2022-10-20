@@ -1,0 +1,174 @@
+/*.indexTable-container, .searchForm-container {
+    min-width: 300px;
+}*/
+
+.indexTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.indexTable td, .indexTable th {
+    padding: 12px 15px!important;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.indexTable th {
+    text-align: left;
+    color: #1A3365;
+}
+
+.indexTable tr:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+a {
+    color: #1A3365;
+}
+
+.indexTable-icon {
+    font-size: 18px;
+}
+
+.indexTable-icon:hover {
+    cursor: pointer;
+}
+
+.po_hidden {
+    display: none !important;
+}
+
+.po_active {
+    display: table-row;
+    margin-bottom: 15px;
+}
+
+.po_active td {
+    text-align: left;
+    border: none;
+    margin-bottom: 15px;
+}
+
+.po_active ul a {
+    color: #1A3365;
+}
+
+.po_active ul a:hover {
+    color: #36A3F7;
+    text-decoration: none;
+}
+
+td.po_selected {
+    background-color: #ebebeb !important;
+    border-left: 3px solid #1A3365;
+}
+
+.indexTable-extra-container {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.detail-header {
+    padding-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+    .detail-header h3 {
+        color: #1A3365;
+        font-size: 20px;
+    }
+
+.detail-body-container {
+    min-width: 375px;
+    padding: 20px 30px;
+    color: #606060;
+}
+
+.detail-body-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(275px,300px));
+    grid-gap: 20px 30px;
+    margin-bottom: 20px;
+}
+
+.detail-body-column {
+    display: flex;
+    grid-gap: 10px;
+}
+
+.detail-body-column-label {
+    font-weight: bold;
+}
+
+.modal-lg {
+    max-width: 950px !important;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: white;
+}
+
+.modal-content {
+    box-shadow: none !important;
+}
+
+.modal-title {
+    color: #1A3365 !important;
+}
+
+.checkbox-label, .stSelect-label {
+    margin-bottom: 14px !important;
+}
+/*responsive*/
+
+@media(max-width: 500px) {
+
+    .indexTable thead {
+        display: none;
+    }
+
+    .indexTable tr {
+        border: 1px solid #ddd;
+    }
+
+    .indexTable, .indexTable tbody, .indexTable tr, .indexTable td {
+        display: block;
+        width: 100%;
+    }
+
+    .indexTable tr {
+        margin-bottom: 20px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
+
+    .indexTable td {
+        padding-left: 50% !important;
+        text-align: right;
+        position: relative;
+        white-space: normal;
+    }
+
+    .indexTable td:not(.indexTable-extra) {
+        text-align: right !important;
+    }
+
+    .indexTable td::before {
+        content: attr(indexTable-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .indexTable .active td {
+        text-align: left;
+        padding-left: 15px;
+        position: relative;
+    }
+}

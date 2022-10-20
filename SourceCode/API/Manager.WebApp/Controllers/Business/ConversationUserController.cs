@@ -56,9 +56,7 @@ namespace Manager.WebApp.Controllers.Business
                 foreach (string item in model.UsersId)
                 {
                     check++;
-                    var res = storeConversationUser.Insert(model.ConversationId, Utils.ConvertToInt32(item), EnumConversationType.Group);
                     var user = storeUser.GetById(item);
-
                     idenMessage.Users.Add(user);
                     if (check != model.UsersId.Count)
                     {
@@ -76,6 +74,11 @@ namespace Manager.WebApp.Controllers.Business
 
                 MessengerHelpers.NotifNewGroupMessage(idenMessage);
                 GroupChatHelpers.ClearCache(model.ConversationId);
+
+                foreach (string item in model.UsersId)
+                {
+                    var res = storeConversationUser.Insert(model.ConversationId, Utils.ConvertToInt32(item), EnumConversationType.Group);
+                }
             }
             catch(Exception ex)
             {
@@ -106,10 +109,7 @@ namespace Manager.WebApp.Controllers.Business
                 foreach (string item in model.UsersId)
                 {
                     check++;
-
-                    var res = storeConversationUser.Delete(model.ConversationId, Utils.ConvertToInt32(item));
                     var user = storeUser.GetById(item);
-
                     idenMessage.Users.Add(user);
                     if(check != model.UsersId.Count)
                     {
@@ -119,7 +119,6 @@ namespace Manager.WebApp.Controllers.Business
                     {
                         idenMessage.Message = idenMessage.Message + user.Fullname + " ";
                     }
-
                 }
 
                 idenMessage.Message += "đã bị xóa khỏi nhóm";
@@ -127,6 +126,11 @@ namespace Manager.WebApp.Controllers.Business
 
                 MessengerHelpers.NotifNewGroupMessage(idenMessage);
                 GroupChatHelpers.ClearCache(model.ConversationId);
+
+                foreach (string item in model.UsersId)
+                {
+                    var res = storeConversationUser.Delete(model.ConversationId, Utils.ConvertToInt32(item));
+                }
             }
             catch (Exception ex)
             {
