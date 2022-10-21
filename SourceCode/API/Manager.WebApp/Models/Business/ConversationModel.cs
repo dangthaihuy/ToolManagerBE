@@ -23,4 +23,11 @@ namespace Manager.WebApp.Models.Business
         public string Name { get; set; }
         // public IFormFile File { get; set; }
     }
+
+    public class GetFileModel
+    {
+        public int Id { get; set; }
+        public int ConversationId { get; set; }
+        public int Direction { get; set; }
+    }
 }

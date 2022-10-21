@@ -43,13 +43,20 @@ namespace Manager.DataLayer.Entities.Business
         public string Avatar { get; set; }
     }
 
-   public class IdentityConversationUpdate
+    public class IdentityConversationUpdate
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Avatar { get; set; }
         public string AvatarPath { get; set; }
 
+    }
+
+    public class IdentityGetFile
+    {
+        public int Id { get; set; }
+        public int ConversationId { get; set; }
+        public int Direction { get; set; }
     }
 
 }

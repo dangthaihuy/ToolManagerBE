@@ -138,16 +138,11 @@ namespace Manager.DataLayer.Repositories.Business
         {
             var record = new IdentityMessageAttachment();
 
-            //Seperate properties
-
-
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.Name = reader["Name"].ToString();
             record.ConversationId = Utils.ConvertToInt32(reader["ConversationId"]);
             record.MessageId = Utils.ConvertToInt32(reader["MessageId"]);
             record.Path = reader["Path"].ToString();
-
-
 
             return record;
         }

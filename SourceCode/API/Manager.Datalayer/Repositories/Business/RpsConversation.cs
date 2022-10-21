@@ -318,6 +318,43 @@ namespace Manager.DataLayer.Repositories.Business
             return res;
         }
 
+        public string GetFile(IdentityGetFile identity)
+        {
+            var res = "";
+            //Common syntax
+            var sqlCmd = @"Conversations_GetFile";
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Id", identity.Id},
+                {"@ConversationId", identity.ConversationId},
+                {"@Direction", identity.Direction},
+
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    using (var reader = MsSqlHelper.ExecuteReader(conn, CommandType.StoredProcedure, sqlCmd, parameters))
+                    {
+                        if (reader.Read())
+                        {
+                            res = reader["Path"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return res;
+        }
+
 
         private IdentityConversation ExtractConversation(IDataReader reader)
         {
@@ -327,8 +364,6 @@ namespace Manager.DataLayer.Repositories.Business
             record.SenderId = Utils.ConvertToInt32(reader["SenderId"]);
             record.ReceiverId = Utils.ConvertToInt32(reader["ReceiverId"]);
             record.Type = Utils.ConvertToInt32(reader["Type"]);
-
-
 
             return record;
         }
@@ -344,8 +379,6 @@ namespace Manager.DataLayer.Repositories.Business
             record.Name = reader["Name"].ToString();
             record.Avatar = reader["AvatarPath"].ToString();
 
-
-
             return record;
         }
 
@@ -357,17 +390,25 @@ namespace Manager.DataLayer.Repositories.Business
             record.Id = Utils.ConvertToInt32(reader["Id"]);
             record.SenderId = Utils.ConvertToInt32(reader["SenderId"]);
 
-
             return record;
         }
 
         private IdentityConversation ExtractConversationDetail(IDataReader reader)
         {
             var record = new IdentityConversation();
-
             record.Id = Utils.ConvertToInt32(reader["Id"]);
 
+            return record;
+        }
+        public static IdentityMessageAttachment ExtractMessageAttachment(IDataReader reader)
+        {
+            var record = new IdentityMessageAttachment();
 
+            record.Id = Utils.ConvertToInt32(reader["Id"]);
+            record.Name = reader["Name"].ToString();
+            record.ConversationId = Utils.ConvertToInt32(reader["ConversationId"]);
+            record.MessageId = Utils.ConvertToInt32(reader["MessageId"]);
+            record.Path = reader["Path"].ToString();
 
             return record;
         }

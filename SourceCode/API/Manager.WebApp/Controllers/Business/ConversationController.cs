@@ -190,8 +190,8 @@ namespace Manager.WebApp.Controllers.Business
         }
 
         [HttpGet]
-        [Route("getfile")]
-        public ActionResult GetFile(int conversationId, int page, int pageSize)
+        [Route("getfiles")]
+        public ActionResult GetFiles(int conversationId, int page, int pageSize)
         {
             var returnModel = new ReturnMessageModel { Type = "error", Code = "conversation102" };
             if (conversationId <= 0)
@@ -256,12 +256,34 @@ namespace Manager.WebApp.Controllers.Business
             }
             catch(Exception ex)
             {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
                 _logger.LogError("Could not update: " + ex.ToString());
-
-                return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                return StatusCode(500, new { apiMessage = returnModel });
             }
 
             return Ok(new { apiMessage = returnModel });
+        }
+
+        [HttpPost]
+        [Route("getfile")]
+        public ActionResult GetFile(GetFileModel model)
+        {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "conversation104" };
+            try
+            {
+                var identity = model.MappingObject<IdentityGetFile>();
+                var res = storeConversation.GetFile(identity);
+
+                return Ok(new { file = res, apiMessage = returnModel });
+            }
+            catch(Exception ex)
+            {
+                returnModel.Type = "error";
+                returnModel.Code = "server001";
+                _logger.LogError("Could not get file: " + ex.ToString());
+                return StatusCode(500, new { apiMessage = returnModel });
+            }
         }
     }
 }
