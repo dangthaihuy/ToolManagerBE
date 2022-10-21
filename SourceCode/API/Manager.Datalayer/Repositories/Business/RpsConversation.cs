@@ -318,9 +318,10 @@ namespace Manager.DataLayer.Repositories.Business
             return res;
         }
 
-        public string GetFile(IdentityGetFile identity)
+        public IdentityMessageAttachment GetFile(IdentityGetFile identity)
         {
-            var res = "";
+            var res = new IdentityMessageAttachment();
+
             //Common syntax
             var sqlCmd = @"Conversations_GetFile";
 
@@ -341,7 +342,8 @@ namespace Manager.DataLayer.Repositories.Business
                     {
                         if (reader.Read())
                         {
-                            res = reader["Path"].ToString();
+                            res.Id = Utils.ConvertToInt32(reader["Id"]);
+                            res.Path = reader["Path"].ToString();
                         }
                     }
                 }
