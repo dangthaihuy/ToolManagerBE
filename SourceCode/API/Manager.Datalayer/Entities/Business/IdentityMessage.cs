@@ -25,6 +25,7 @@ namespace Manager.DataLayer.Entities.Business
         public DateTime CreatedDate { get; set; }
         public int Important { get; set; }
         public int ReplyMessageId { get; set; }
+        public List<string> UserIdsDeleted { get; set; }
         public IdentityMessageReply ReplyMessage { get; set; }
         public int TotalCount { get; set; }
         public int TaskId { get; set; }

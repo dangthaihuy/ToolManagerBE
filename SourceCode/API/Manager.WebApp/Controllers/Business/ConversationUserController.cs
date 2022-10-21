@@ -121,6 +121,7 @@ namespace Manager.WebApp.Controllers.Business
 
                 idenMessage.Message += "đã bị xóa khỏi nhóm";
                 idenMessage.Id = storeMessage.Insert(idenMessage);
+                idenMessage.UserIdsDeleted = model.UsersId;
 
                 MessengerHelpers.NotifNewGroupMessage(idenMessage);
                 
