@@ -308,6 +308,22 @@ namespace Manager.WebApp.Controllers.Business
                     }
                     //Insert message
                     msg.Id = storeMessage.Insert(msg);
+                    if(model.IsFinal == true)
+                    {
+                        msg.Attachments = storeMessageAttachment.GetByMessageId(model.Id);
+                        //Clear cache last message
+                        ConversationHelpers.ClearCacheLastMessage(model.ConversationId);
+
+                        //Send notification
+                        if (model.ReceiverId == 0)
+                        {
+                            MessengerHelpers.NotifNewGroupMessage(msg);
+                        }
+                        else
+                        {
+                            MessengerHelpers.NotifNewPrivateMessage(msg);
+                        }
+                    }
                     return Ok(new { messageId = msg.Id, apiMessage = returnModel });
 
                 }
@@ -335,10 +351,7 @@ namespace Manager.WebApp.Controllers.Business
 
                         }
                     }
-                    if(model.IsFinal == false)
-                    {
-                        return Ok(new { apiMessage = returnModel });
-                    }
+                    
                     else if (model.IsFinal == true)
                     {
                         msg.Attachments = storeMessageAttachment.GetByMessageId(model.Id);
