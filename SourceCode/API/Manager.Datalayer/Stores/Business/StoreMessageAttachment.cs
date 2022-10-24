@@ -11,9 +11,10 @@ namespace Manager.DataLayer.Stores.Business
 {
     public interface IStoreMessageAttachment
     {
-        List<IdentityMessageAttachment> GetByMessageId(IdentityMessage identity);
+        List<IdentityMessageAttachment> GetByMessageId(int id);
         
         List<IdentityMessageAttachment> GetByConId(IdentityMessageFilter filter);
+        int Insert(IdentityMessageAttachment identity);
     }
     public class StoreMessageAttachment : IStoreMessageAttachment
     {
@@ -28,14 +29,18 @@ namespace Manager.DataLayer.Stores.Business
             r = new RpsMessageAttachment(_conStr);
         }
 
-        public List<IdentityMessageAttachment> GetByMessageId(IdentityMessage identity)
+        public List<IdentityMessageAttachment> GetByMessageId(int id)
         {
-            return r.GetByMessageId(identity);
+            return r.GetByMessageId(id);
         }
         public List<IdentityMessageAttachment> GetByConId(IdentityMessageFilter filter)
         {
             return r.GetByConId(filter);
         }
         
+        public int Insert(IdentityMessageAttachment identity)
+        {
+            return r.Insert(identity);
+        }
     }
 }

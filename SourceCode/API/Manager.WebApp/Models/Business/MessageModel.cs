@@ -31,9 +31,8 @@ namespace Manager.WebApp.Models.Business
         public List<string> UserIdsDeleted { get; set; }
 
         public IdentityMessageReply ReplyMessage { get; set; }
-        public List<IFormFile> Files { get; set; }
         public List<IdentityMessageAttachment> Attachments { get; set; }
-
+        public bool IsFinal { get; set; }
         public DateTime CreatedDate { get; set; }
         
     }

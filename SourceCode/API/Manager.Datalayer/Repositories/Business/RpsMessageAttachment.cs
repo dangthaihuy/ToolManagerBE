@@ -25,17 +25,14 @@ namespace Manager.DataLayer.Repositories.Business
             _conStr = AppConfiguration.GetAppsetting("MainDBConn");
         }
 
-        public List<IdentityMessageAttachment> GetByMessageId(IdentityMessage identity)
+        public List<IdentityMessageAttachment> GetByMessageId(int id)
         {
             var sqlCmd = @"MessageAttachment_GetByMessageId";
             List<IdentityMessageAttachment> listData = null;
-
-            
-
             //For parameters
             var parameters = new Dictionary<string, object>
             {
-                {"@MessageId", identity.Id}
+                {"@MessageId", id}
 
             };
 
@@ -100,6 +97,38 @@ namespace Manager.DataLayer.Repositories.Business
             var parameters = new Dictionary<string, object>
             {
                 {"@ConversationId", conversationId },
+            };
+
+            try
+            {
+                using (var conn = new SqlConnection(_conStr))
+                {
+                    var returnObj = MsSqlHelper.ExecuteScalar(conn, CommandType.StoredProcedure, sqlCmd, parameters);
+
+                    newId = Convert.ToInt32(returnObj);
+                }
+            }
+            catch (Exception ex)
+            {
+                var strError = string.Format("Failed to execute {0}. Error: {1}", sqlCmd, ex.Message);
+                throw new CustomSQLException(strError);
+            }
+
+            return newId;
+        }
+
+        public int Insert(IdentityMessageAttachment identity)
+        {
+            var sqlCmd = @"MessageAttachment_Insert";
+            int newId = 0;
+
+            //For parameters
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Name", identity.Name },
+                {"@ConversationId", identity.ConversationId },
+                {"@MessageId", identity.MessageId },
+                {"@Path", identity.Path },
             };
 
             try

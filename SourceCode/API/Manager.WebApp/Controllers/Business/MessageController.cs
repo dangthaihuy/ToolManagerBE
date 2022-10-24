@@ -104,7 +104,7 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     if (item.Type == EnumMessageType.Attachment)
                     {
-                        item.Attachments = storeMessageAttachment.GetByMessageId(item);
+                        item.Attachments = storeMessageAttachment.GetByMessageId(item.Id);
                     }
                 }
             }
@@ -125,7 +125,7 @@ namespace Manager.WebApp.Controllers.Business
             try
             {
                 var identity = model.MappingObject<IdentityMessage>();
-                var attachments = storeMessageAttachment.GetByMessageId(identity);
+                var attachments = storeMessageAttachment.GetByMessageId(identity.Id);
                 foreach(var item in attachments)
                 {
                     System.IO.File.Delete(String.Concat("wwwroot", item.Path));
@@ -201,7 +201,7 @@ namespace Manager.WebApp.Controllers.Business
                 {
                     returnModel.Code = "server001";
                     _logger.LogDebug("Could not changeimportant: " + ex.ToString());
-                    return StatusCode(500, new { apiMessage = new { type = "error", code = "server001" } });
+                    return StatusCode(500, new { apiMessage = returnModel });
                 }
             }
 
@@ -273,65 +273,99 @@ namespace Manager.WebApp.Controllers.Business
         [Route("send_file_message")]
         [RequestFormLimits(MultipartBodyLengthLimit = 1073741824)]
         [RequestSizeLimit(1073741824)]
-        public async void SendFileMessage([FromForm] SendMessageModel model)
+        public async Task<ActionResult> SendFileMessage([FromForm] SendMessageModel model)
         {
+            var returnModel = new ReturnMessageModel { Type = "success", Code = "sendfile001" };
             try
-            {                
-                if (model.Files.HasData())
+            {
+                IdentityMessage msg = model.MappingObject<IdentityMessage>();
+                if (model.Id <= 0)
                 {
-
-                    IdentityMessage msg = model.MappingObject<IdentityMessage>();
-                    
                     msg.Message = "";
                     msg.Type = EnumMessageType.Attachment;
                     msg.ReplyMessage = storeMessage.GetReplyMessageById(model.ReplyMessageId);
                     msg.Attachments = new List<IdentityMessageAttachment>();
 
-                    foreach (var formFile in model.Files)
+                    var formFile = Request.Form.Files[0];
+                    if (formFile.Length > 0)
                     {
-                        if (formFile.Length > 0)
+                        var attachmentFolder = string.Format("Message/Attachments/{0}", msg.ConversationId);
+
+                        var filePath = FileUploadHelper.UploadFile(formFile, attachmentFolder);
+
+                        await Task.FromResult(filePath);
+
+                        if (!string.IsNullOrEmpty(filePath))
                         {
-                            var attachmentFolder = string.Format("Message/Attachments/{0}", msg.ConversationId);
+                            var msgAttach = new IdentityMessageAttachment();
+                            msgAttach.Name = formFile.FileName;
+                            msgAttach.MessageId = msg.Id;
+                            msgAttach.Path = filePath;
 
-                            var filePath = FileUploadHelper.UploadFile(formFile, attachmentFolder);
-
-                            await Task.FromResult(filePath);
-
-                            if (!string.IsNullOrEmpty(filePath))
-                            {
-                                var msgAttach = new IdentityMessageAttachment();
-                                msgAttach.Name = formFile.FileName;
-                                msgAttach.MessageId = msg.Id;
-                                msgAttach.Path = filePath;
-
-                                //Add attachment to list
-                                msg.Attachments.Add(msgAttach);
-                            }
+                            //Add attachment to list
+                            msg.Attachments.Add(msgAttach);
                         }
                     }
-
                     //Insert message
                     msg.Id = storeMessage.Insert(msg);
+                    return Ok(new { messageId = msg.Id, apiMessage = returnModel });
 
-                    //Clear cache last message
-                    ConversationHelpers.ClearCacheLastMessage(model.ConversationId);
-
-                    //Send notification
-                    if(model.ReceiverId == 0)
-                    {
-                        MessengerHelpers.NotifNewGroupMessage(msg);
-                    }
-                    else
-                    {
-                        MessengerHelpers.NotifNewPrivateMessage(msg);
-                    }
-                    
                 }
-                
+                else if (model.Id > 0)
+                {
+                    var msgAttach = new IdentityMessageAttachment();
+                    var formFile = Request.Form.Files[0];
+                    if (formFile.Length > 0)
+                    {
+                        var attachmentFolder = string.Format("Message/Attachments/{0}", msg.ConversationId);
+
+                        var filePath = FileUploadHelper.UploadFile(formFile, attachmentFolder);
+
+                        await Task.FromResult(filePath);
+
+                        if (!string.IsNullOrEmpty(filePath))
+                        {
+                            msgAttach.Name = formFile.FileName;
+                            msgAttach.MessageId = msg.Id;
+                            msgAttach.Path = filePath;
+                            msgAttach.ConversationId = model.ConversationId;
+                            //Add attachment to db
+
+                            var insertAttach = storeMessageAttachment.Insert(msgAttach);
+
+                        }
+                    }
+                    if(model.IsFinal == false)
+                    {
+                        return Ok(new { apiMessage = returnModel });
+                    }
+                    else if (model.IsFinal == true)
+                    {
+                        msg.Attachments = storeMessageAttachment.GetByMessageId(model.Id);
+                        //Clear cache last message
+                        ConversationHelpers.ClearCacheLastMessage(model.ConversationId);
+
+                        //Send notification
+                        if (model.ReceiverId == 0)
+                        {
+                            MessengerHelpers.NotifNewGroupMessage(msg);
+                        }
+                        else
+                        {
+                            MessengerHelpers.NotifNewPrivateMessage(msg);
+                        }
+
+                    }
+
+                }
+
+                return Ok(new { apiMessage = returnModel });
             }
             catch (Exception ex)
             {
+                returnModel.Code = "server001";
                 _logger.LogError("Could not SendFileMessage: " + ex.ToString());
+                return StatusCode(500, new { apiMessage = returnModel });
             }
         }
 
