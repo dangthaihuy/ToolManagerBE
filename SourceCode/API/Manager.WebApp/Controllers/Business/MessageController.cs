@@ -310,7 +310,6 @@ namespace Manager.WebApp.Controllers.Business
                     msg.Id = storeMessage.Insert(msg);
                     if(model.IsFinal == true)
                     {
-                        msg.Attachments = storeMessageAttachment.GetByMessageId(model.Id);
                         //Clear cache last message
                         ConversationHelpers.ClearCacheLastMessage(model.ConversationId);
 
@@ -352,7 +351,7 @@ namespace Manager.WebApp.Controllers.Business
                         }
                     }
                     
-                    else if (model.IsFinal == true)
+                    if (model.IsFinal == true)
                     {
                         msg.Attachments = storeMessageAttachment.GetByMessageId(model.Id);
                         //Clear cache last message

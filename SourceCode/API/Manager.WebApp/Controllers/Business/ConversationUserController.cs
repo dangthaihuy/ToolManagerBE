@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Manager.WebApp.Controllers.Business
 {
@@ -73,10 +74,13 @@ namespace Manager.WebApp.Controllers.Business
                 idenMessage.Message += "được thêm vào nhóm";
                 idenMessage.Id = storeMessage.Insert(idenMessage);
 
+                ConversationHelpers.ClearCacheLastMessage(idenMessage.ConversationId);
                 MessengerHelpers.NotifNewGroupMessage(idenMessage);
-                GroupChatHelpers.ClearCache(model.ConversationId);
 
-               
+                GroupChatHelpers.ClearCache(model.ConversationId);
+                var newGroup = GroupChatHelpers.GetGroupInfo(model.ConversationId);
+
+
             }
             catch(Exception ex)
             {
@@ -123,14 +127,11 @@ namespace Manager.WebApp.Controllers.Business
                 idenMessage.Id = storeMessage.Insert(idenMessage);
                 idenMessage.UserIdsDeleted = model.UsersId;
 
+                ConversationHelpers.ClearCacheLastMessage(idenMessage.ConversationId);
                 MessengerHelpers.NotifNewGroupMessage(idenMessage);
-                
-                foreach (string item in model.UsersId)
-                {
-                    var res = storeConversationUser.Delete(model.ConversationId, Utils.ConvertToInt32(item));
-                }
 
-                GroupChatHelpers.ClearCache(model.ConversationId);
+                
+
 
 
             }

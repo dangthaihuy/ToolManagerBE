@@ -22,6 +22,7 @@ namespace Manager.WebApp.Hubs
     public class ChatHub : BaseMessengerHub
     {
         private ILogger _logger = Log.ForContext(typeof(ConversationHelpers));
+        private IStoreConversationUser storeConversationUser = Startup.IocContainer.Resolve<IStoreConversationUser>();
 
         [HubMethodName("SendToGroup")]
         public void SendGroup(SendMessageModel model)
@@ -48,6 +49,17 @@ namespace Manager.WebApp.Hubs
                     }
 
                 }
+
+                if (model.UserIdsDeleted.HasData())
+                {
+                    foreach (string item in model.UserIdsDeleted)
+                    {
+                        var res = storeConversationUser.Delete(model.ConversationId, Utils.ConvertToInt32(item));
+                    }
+                    GroupChatHelpers.ClearCache(model.ConversationId);
+                }
+                
+
             }
             catch (Exception ex)
             {

@@ -185,7 +185,7 @@ namespace Manager.DataLayer.Repositories.Business
             //For parameters
             var parameters = new Dictionary<string, object>
             {
-                {"@GroupId", groupId },
+                {"@ConversationId", groupId },
                 {"@UserId", memberId },
             };
 

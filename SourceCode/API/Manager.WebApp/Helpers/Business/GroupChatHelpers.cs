@@ -12,9 +12,9 @@ namespace Manager.WebApp.Helpers.Business
     {
         private static readonly ILogger _logger = Log.ForContext(typeof(ConversationHelpers));
 
-        public static IdentityConversationUser GetGroupInfo(IdentityConversation item)
+        public static IdentityConversationUser GetGroupInfo(int id)
         {
-            var myKey = string.Format(EnumFormatInfoCacheKeys.ConversationGroup, item.Id);
+            var myKey = string.Format(EnumFormatInfoCacheKeys.ConversationGroup, id);
 
             IdentityConversationUser info = null;
             try
@@ -27,8 +27,8 @@ namespace Manager.WebApp.Helpers.Business
                 if (info == null)
                 {
                     var myStore = Startup.IocContainer.Resolve<IStoreConversationUser>();
-                    info = myStore.GetById(Convert.ToString(item.Id))
-;                   info.Member = myStore.GetUserById(item.Id);
+                    info = myStore.GetById(Convert.ToString(id))
+;                   info.Member = myStore.GetUserById(id);
 
                     if (info != null)
                     {
